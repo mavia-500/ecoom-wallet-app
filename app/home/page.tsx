@@ -1,9 +1,19 @@
-import React from 'react'
+
+
+import Footer from "@/components/Footer";
+import Slider from "@/components/Slider";
+import React from "react";
+
 
 const page = () => {
+  
   return (
-    <div>page</div>
-  )
-}
+    <div>
+      <Slider/>
+      
 
-export default page
+    </div>
+  );
+};
+
+export default page;
