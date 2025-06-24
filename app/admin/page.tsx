@@ -1,25 +1,45 @@
 'use client'; // only if using App Router
 
 import { useState } from 'react';
+import { useRouter } from "next/navigation"
+// import { error } from 'console';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const router = useRouter();
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+try {
+    const res = await fetch('/api/admin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+  
+      });
+      const data = await res.json();
 
-    const res = await fetch('/api/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
+      if (res.ok) {
+        // Store the token (e.g., in localStorage)
+        localStorage.setItem("adminToken", data.token);
+        // Redirect to the admin dashboard
+        router.push("/admin/dashboard"); // Create this page
+      } else {
+        console.log("Error occurred")
+      }
+    
+} catch (error) {
+    console.log(error)
+}
+    
 
-    const data = await res.json();
-    setMessage(data.message);
+    
+    // setMessage(data.message);
   };
 
   return (
