@@ -1,23 +1,24 @@
 import React from "react";
 
 const Announcement = () => {
-  const announcements: string[] = [
-    "up do 20% off for limited time",
-    "get free delivery over 2 orders",
-    "no forgetable un beataable",
-    "get deleiver with in 3 days",
-    "life time warranty of leather",
-    "very ellegent to use",
+  const announcements = [
+    "Up to 20% off for a limited time!",
+    "Free delivery on orders over $50!",
+    "Unforgettable and unbeatable deals!",
+    "Get delivery within 3 days!",
+    "Lifetime warranty on leather products!",
+    "Elegant and stylish designs!",
   ];
+
   return (
-    <div className="overflow-hidden bg-gray-100 py-2">
-      <div className="animate-marquee whitespace-nowrap">
+    <div className="overflow-hidden bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-3 shadow-lg">
+      <div className="animate-marquee whitespace-nowrap flex items-center">
         {announcements.map((announcement, index) => (
           <span
             key={index}
-            className="inline-block mx-18 text-lg font-medium text-red-800"
+            className="inline-block mx-8 text-lg font-semibold text-white transition-transform duration-300 ease-in-out hover:scale-110 hover:text-yellow-300"
           >
-            {announcement}
+            {announcement} ⭐
           </span>
         ))}
       </div>

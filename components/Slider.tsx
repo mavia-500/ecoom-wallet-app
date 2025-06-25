@@ -6,8 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/autoplay"; // If you're using autoplay
-import "swiper/css/pagination"; // If you're using pagination
+import "swiper/css/autoplay";
+import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import LeatherWallet from "./LeatherWallet";
@@ -19,73 +19,72 @@ const Slider = () => {
     imageUrl: string;
     price: number;
     color: string;
+    category: string;
   }
   const productData: product[] = [
     {
       title: "handmade laxrious wallet ",
-      imageUrl: "imageurl",
+      imageUrl: "/images/Gemini_Generated_Image_7pywpy7pywpy7pyw.webp",
       price: 30,
       color: "blue",
+      category: "longwallet",
     },
     {
       title: "life time with laxrious ",
-      imageUrl: "imageurl",
+      imageUrl: "/images/bf3.webp",
       price: 300,
       color: "green",
+      category: "bifoldwallet",
     },
     {
       title: "best wallet ",
-      imageUrl: "imageurl",
+      imageUrl: "/images/Gemini_Generated_Image_3g4hf3g4hf3g4hf3.webp",
       price: 305,
       color: "red",
+      category: "trifoldwallet",
     },
     {
       title: " laxrious wallet ",
-      imageUrl: "imageurl",
+      imageUrl: "/images/4.webp",
       price: 304,
       color: "gray",
+      category: "cardholder",
     },
   ];
   return (
-    <div>
+    <div className="w-full">
       <Swiper
-        spaceBetween={30} // Space between slides
-        centeredSlides={true} // Center active slide
+        spaceBetween={0}
+        centeredSlides={true}
         autoplay={{
-          delay: 3500, // Delay between slides in ms
-          disableOnInteraction: false, // Continue autoplay even after user interaction
+          delay: 3500,
+          disableOnInteraction: false,
         }}
         pagination={{
-          clickable: true, // Make pagination dots clickable
+          clickable: true,
+          bulletClass: "swiper-pagination-bullet mt-8",
+          bulletActiveClass: "swiper-pagination-bullet-active",
         }}
-        navigation={true} // Enable navigation arrows
-        loop={true} // Enable infinite loop
-        modules={[Autoplay, Pagination, Navigation]} // Register modules
-        className="mySwiper" // Optional: for custom CSS if needed
-        breakpoints={{
-          // Responsive breakpoints
-          640: {
-            slidesPerView: 1,
-          },
-          768: {
-            slidesPerView: 2, // Show 2 slides on tablets
-          },
-          1024: {
-            slidesPerView: 3, // Show 3 slides on larger desktops
-          },
-        }}
+        navigation={true}
+        loop={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper w-full"
+        slidesPerView={1}
       >
-        {productData.map(({ title, imageUrl }) => (
-          <SwiperSlide key={title}>
-            <div
-              className="bg-cover bg-center h-64 flex items-end justify-center text-center p-4"
-              style={{ backgroundImage: `url('${imageUrl}')` }}
-              key={title}
-            >
-              <div className="flex flex-col items-center">
-                <h3>{title}</h3>
-                <Link href={"/bifoldwallet"}>
-                  <button className="bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-indigo-700 hover:shadow-lg mt-5">
+        {productData.map(({ title, imageUrl, category }) => (
+          <SwiperSlide key={title} className="mt-5">
+            <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] flex items-end justify-center text-center p-4 text-white">
+              <img
+                src={imageUrl}
+                alt={title}
+                className="w-full h-full object-contain"
+              />
+              <div className="absolute bottom-4 left-0 right-0 flex flex-col items-center px-4">
+                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold">
+                  {title}
+                </h3>
+                <Link href={`/${category}`}>
+                  <button className="bg-indigo-600 text-white font-semibold py-2 px-4 sm:px-6 rounded-lg shadow-md hover:bg-indigo-700 hover:shadow-lg mt-2 sm:mt-4 text-sm sm:text-base">
                     Shop Now
                   </button>
                 </Link>
@@ -94,8 +93,9 @@ const Slider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <LeatherWallet productData={productData}/>
-      <Collections/>
+      <LeatherWallet productData={productData} />
+      <Collections />
+      
     </div>
   );
 };

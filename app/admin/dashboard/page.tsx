@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import jwt from "jsonwebtoken"; // Import jwt to decode on client (for roles check)
 
+
 interface DecodedToken {
   id: string;
   email: string;
@@ -23,6 +24,10 @@ interface FormData {
   discountedPrice: number;
 }
 
+interface ApiResponse {
+  success: boolean;
+  message: string;
+}
 export default function AdminDashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
@@ -36,6 +41,7 @@ export default function AdminDashboard() {
     price: 0,
     discountedPrice: 0,
   });
+  const [message, setMessage] = useState<ApiResponse | null>(null);
 
   /////check for validation for authorized person
   useEffect(() => {
@@ -91,19 +97,19 @@ export default function AdminDashboard() {
         (e.target as HTMLInputElement).value = "";
         return;
       }
-      
-    //   setFormData({ ...formData, images: files ? Array.from(files) : [] });
+
+      //   setFormData({ ...formData, images: files ? Array.from(files) : [] });
     } else {
       setFormData({ ...formData, [name]: value });
     }
   };
-  console.log(formData);
+  // console.log(formData);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const res = await fetch("/api/products", {
-        method:"POST",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -111,13 +117,24 @@ export default function AdminDashboard() {
       });
 
       const data = await res.json();
-      console.log('data',data);
+      console.log("data", data);
+      setMessage(data);
+      setFormData({
+        name: "",
+        description: "",
+        category: "Option 1",
+        images: [],
+        color: "",
+        price: 0,
+        discountedPrice: 0,
+      });
     } catch (error) {
-    //   console.log(error);
+      //   console.log(error);
     }
   };
 
   return (
+    <>
     <div className="bg-gray-100 flex items-center justify-center p-6 min-h-screen">
       <form
         onSubmit={handleSubmit}
@@ -204,7 +221,21 @@ export default function AdminDashboard() {
         >
           Submit
         </button>
+        {message ? (
+          <p className="bg-green-100 text-green-700 border border-green-300 px-4 py-2 rounded-md shadow-sm text-sm font-medium ">
+            {message.message}
+          </p>
+        ) : (
+          <p></p>
+        )}
       </form>
+      
     </div>
+    <div className="flex items-center justify-center  bg-gray-100">
+  <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+    View Your Products
+  </button>
+</div>
+    </>
   );
 }
