@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
-import Orders from "@/models/order";
+// import Orders from "@/models/order";
 import nodemailer from "nodemailer";
 
+
 export async function POST(req: Request) {
+
+  const user=process.env.EMAIL_USER // Your admin email address
+          const pass= process.env.EMAIL_PASS
+          console.log('user',user)
+          console.log('pass',pass)
   const body = await req.json();
   console.log(body.formData);
   const { fullName, phone, email, address, province, city } = body.formData;
@@ -37,10 +43,10 @@ export async function POST(req: Request) {
 
         <h3>item Details:</h3>
         <p><strong>id:</strong> ${id}</p>
-        <p><strong>Phone:</strong> ${title}</p>
-        <p><strong>Address:</strong> ${image}</p>
-        <p><strong>Province:</strong> ${finalPrice}</p>
-        <p><strong>City:</strong> ${color}</p>
+        <p><strong>Item Title:</strong> ${title}</p>
+        <p><strong>Image:</strong> ${image}</p>
+        <p><strong>Price:</strong> ${finalPrice}</p>
+        <p><strong>Color:</strong> ${color}</p>
       `;
 
       const mailOptions = {
@@ -49,6 +55,7 @@ export async function POST(req: Request) {
         subject: "New Order Placed!",
         html: emailContent,
       };
+      console.log(process.env.EMAIL_USER,process.env.ADMIN_EMAIL,)
 
       await transporter.sendMail(mailOptions);
       return NextResponse.json(

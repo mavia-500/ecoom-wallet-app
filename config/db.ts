@@ -4,7 +4,7 @@
 
 import mongoose from 'mongoose';
 
-const MONGODB_URI = 'mongodb+srv://maviasajjadabbasi:yaCOao3y3TKCkS8Z@cluster0.wajszqk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const MONGODB_URI: string  = process.env.MONGO_URI || "";
 
 
 if (!MONGODB_URI) {
