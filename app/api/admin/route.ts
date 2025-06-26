@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     //     { status: 200 }
     //   );
 
-    const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key"; // Store this in an environment variable!
+    const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key"; // Store this in an environment variable! 
     const token = jwt.sign(
       { id: admin._id, email: admin.email, role: "admin" }, //
       JWT_SECRET,

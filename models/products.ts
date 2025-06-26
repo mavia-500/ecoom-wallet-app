@@ -1,6 +1,5 @@
 import mongoose, { models,Schema ,Document,model} from "mongoose";
-import {  } from "mongoose";
-import {  } from "mongoose";
+
 export interface Iproduct extends Document {
     name:string,
     description: string,
