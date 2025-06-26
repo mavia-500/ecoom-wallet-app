@@ -22,12 +22,12 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product,category }) => {
   const router = useRouter();
 
-
+const finalPrice=product.price-product.discountedPrice
   return (
     <Link href={`${category}/${product.id}`}>
     <div className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-lg w-full max-w-sm mx-auto">
       <img
-        src={product.image}
+        src={product.image[0]}
         alt={product.title}
         className="w-full h-40 sm:h-48 object-cover"
       />
@@ -48,7 +48,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product,category }) =>
         </div>
         <div className="flex items-center mt-2 sm:mt-3">
           <span className="text-base sm:text-lg font-bold text-green-600">
-            Rs:{product.discountedPrice}
+            Rs:{finalPrice}
           </span>
           <span className="ml-2 sm:ml-3 text-xs sm:text-sm text-gray-500 line-through">
             Rs:{product.price}

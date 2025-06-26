@@ -2,7 +2,7 @@ interface Product {
     id: number;
     title: string;
     description: string;
-    image: string;
+    image: string[];
     color: string;
     price: number;
     discountedPrice: number;
@@ -11,94 +11,31 @@ interface Product {
   const trifoldProducts: Product[] = [
     {
       id: 1,
-      title: "Leather Bifold Wallet",
-      description: "Premium leather wallet with RFID protection and multiple card slots.",
-      image: "https://images.unsplash.com/photo-1618378533603-83d7a4b4b136",
-      color: "Brown",
-      price: 49.99,
-      discountedPrice: 39.99,
+      title: "Coin Pocket Lether Wallet",
+      description: "8 Card slots. 2 Cash Compartment. 1 Id compartment. 100% Lether. Best for use",
+      image: ['https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928445/Gemini_Generated_Image_ao448yao448yao44_z3n7tj.webp',"https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928463/WhatsAppImage2025-04-04at9.11.55AM_wxsxzw.webp"],
+      color: "Navy Blue",
+      price: 3000,
+      discountedPrice: 200,
     },
     {
       id: 2,
-      title: "Slim Minimalist Wallet",
-      description: "Sleek design with quick-access card slot and cash compartment.",
-      image: "https://images.unsplash.com/photo-1594631252845-006a4f2973e1",
-      color: "Black",
-      price: 34.99,
-      discountedPrice: 29.99,
+      title: "Zipper Leather Wallet",
+      description: "Ziper Compartment. Card Slots. Cash Compartment. 100% Leather. Best For travelers",
+      image:["https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928444/Gemini_Generated_Image_4301ll4301ll4301_lkx1ft.webp",'https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928448/Gemini_Generated_Image_nrs5acnrs5acnrs5_dvhfqg.webp','https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928443/Gemini_Generated_Image_3g4hf3g4hf3g4hf3_sarcxo.webp','https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928524/Gemini_Generated_Image_yy72gkyy72gkyy72_gw6d9d.webp'],
+      color: "Brown",
+      price: 2700,
+      discountedPrice: 200,
     },
     {
       id: 3,
-      title: "Vintage Canvas Wallet",
-      description: "Durable canvas material with a retro aesthetic and sturdy stitching.",
-      image: "https://images.unsplash.com/photo-1605733513597-a8f834bd9081",
-      color: "Green",
-      price: 44.99,
-      discountedPrice: 34.99,
-    },
-    {
-      id: 4,
-      title: "Luxury Leather Cardholder",
-      description: "Compact cardholder with premium leather and embossed logo.",
-      image: "https://images.unsplash.com/photo-1625731464208-90f0d2f9b864",
-      color: "Navy",
-      price: 29.99,
-      discountedPrice: 24.99,
-    },
-    {
-      id: 5,
-      title: "RFID Travel Wallet",
-      description: "Spacious wallet for travel with passport slot and RFID protection.",
-      image: "https://images.unsplash.com/photo-1605733160314-4d4f4b08f8a0",
-      color: "Gray",
-      price: 59.99,
-      discountedPrice: 49.99,
-    },
-    {
-      id: 6,
-      title: "Slim Carbon Fiber Wallet",
-      description: "Ultra-light carbon fiber wallet with a modern, sleek design.",
-      image: "https://images.unsplash.com/photo-1618378533603-83d7a4b4b136",
-      color: "Black",
-      price: 69.99,
-      discountedPrice: 59.99,
-    },
-    {
-      id: 7,
-      title: "Embossed Leather Wallet",
-      description: "Elegant wallet with intricate embossing and soft leather interior.",
-      image: "https://images.unsplash.com/photo-1594631252845-006a4f2973e1",
-      color: "Burgundy",
-      price: 54.99,
-      discountedPrice: 44.99,
-    },
-    {
-      id: 8,
-      title: "Minimalist Cardholder",
-      description: "Simple and functional cardholder for everyday use.",
-      image: "https://images.unsplash.com/photo-1605733513597-a8f834bd9081",
-      color: "Blue",
-      price: 24.99,
-      discountedPrice: 19.99,
-    },
-    {
-      id: 9,
-      title: "Classic Bifold Wallet",
-      description: "Timeless bifold design with ample space for cards and cash.",
-      image: "https://images.unsplash.com/photo-1625731464208-90f0d2f9b864",
-      color: "Tan",
-      price: 39.99,
-      discountedPrice: 34.99,
-    },
-    {
-      id: 10,
-      title: "Premium Travel Organizer",
-      description: "Multi-compartment wallet for travel with secure zipper closure.",
-      image: "https://images.unsplash.com/photo-1605733160314-4d4f4b08f8a0",
-      color: "Black",
-      price: 79.99,
-      discountedPrice: 69.99,
-    },
+      title: "trifold Leather Wallet",
+      description: "Trifold Wallet. Easy to Carry. Hard Leather. Card Slots. Cash Compartment. Unique Style",
+      image: ["https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928519/15_byiuhw.webp",'https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928522/18_saak2f.webp','https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928521/17_szzdkx.webp','https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928518/14_wcqc86.webp'],
+      color: "Grennish Brown",
+      price: 3000,
+      discountedPrice: 250,
+    }
   ];
   
   export default trifoldProducts;

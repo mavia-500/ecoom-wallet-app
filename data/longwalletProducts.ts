@@ -2,7 +2,7 @@ interface Product {
     id: number;
     title: string;
     description: string;
-    image: string;
+    image: string[];
     color: string;
     price: number;
     discountedPrice: number;
@@ -11,22 +11,32 @@ interface Product {
   const longwalletProducts: Product[] = [
     {
       id: 1,
-      title: "Leather Bifold Wallet",
-      description: "Premium leather wallet with RFID protection and multiple card slots.",
-      image: "https://images.unsplash.com/photo-1618378533603-83d7a4b4b136",
+      title: "Leather Long Wallet",
+      description: "Premium leather wallet with  and multiple card slots.Cash Comkpartment. Easy to carry. Elegent Look. Most Attractive Personality maker",
+      image: ["https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928347/Gemini_Generated_Image_7pywpy7pywpy7pyw_lpwfxi.webp",'https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928347/Gemini_Generated_Image_kq5az0kq5az0kq5a_cexwim.webp','https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928347/Gemini_Generated_Image_7pywpy7pywpy7pyw_1_ynsgcn.webp'],
       color: "Brown",
-      price: 49.99,
-      discountedPrice: 39.99,
+      price: 2700,
+      discountedPrice: 300,
     },
     {
       id: 2,
-      title: "Slim Minimalist Wallet",
-      description: "Sleek design with quick-access card slot and cash compartment.",
-      image: "https://images.unsplash.com/photo-1594631252845-006a4f2973e1",
+      title: "Attractive Leather Wallet",
+      description: "Sleek design with quick-access card slot and cash compartment. Beautiful Look. Easy to Carry. 100% Leather. Best for use",
+      image: ["https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928348/Gemini_Generated_Image_y029djy029djy029_tkwaqz.webp",'https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928348/Gemini_Generated_Image_u1tyxfu1tyxfu1ty_z16hr4.webp','https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928348/IMG_20250427_224015_533_cj4ekz.webp','https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928465/Gemini_Generated_Image_hllx88hllx88hllx_tphmsq.webp'],
       color: "Black",
-      price: 34.99,
-      discountedPrice: 29.99,
+      price: 1500,
+      discountedPrice: 50,
     },
+
+    {
+      id: 2,
+      title: "Original Leather Wallet",
+      description: "Sleek design with quick-access card slot and cash compartment. Beautiful Look. Easy to Carry. 100% Leather. Best for use. Top to Bottom Lether ",
+      image: ["https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928466/Gemini_Generated_Image_l82ljxl82ljxl82l_ivbhs8.webp",'https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928348/Gemini_Generated_Image_qp8oiqp8oiqp8oiq_xgkrgr.webp','https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928347/Gemini_Generated_Image_ihzjunihzjunihzj_fttyax.webp'],
+      color: "Brown",
+      price: 2900,
+      discountedPrice: 300,
+    }
     
   ];
   
