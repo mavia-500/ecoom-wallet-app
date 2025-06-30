@@ -3,9 +3,9 @@ import React from "react";
 const Announcement = () => {
   const announcements = [
     "Up to 20% off for a limited time!",
-    "Free delivery on orders over $50!",
+    "Enjoy Free delivery on 2 orders!",
     "Unforgettable and unbeatable deals!",
-    "Get delivery within 3 days!",
+    "Get delivery within 3-4 Working days!",
     "Lifetime warranty on leather products!",
     "Elegant and stylish designs!",
   ];

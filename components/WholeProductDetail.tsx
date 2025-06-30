@@ -5,7 +5,7 @@ interface Product {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image: string[];
   color: string;
   price: number;
   discountedPrice: number;
@@ -43,7 +43,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
     price: products.price.toString(),
     discountedPrice: products.discountedPrice.toString(),
   }).toString();
-
+  const finalPrice = products.price - products.discountedPrice;
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
@@ -53,11 +53,17 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
           </button>
         </Link>
         <div className="bg-white rounded-lg shadow-md overflow-hidden w-full">
-          <img
-            src={products?.image}
-            alt={products?.title}
-            className="w-full h-64 sm:h-80 object-cover"
-          />
+          {products.image.map((img, ind) => (
+            <>
+              <img
+                key={ind}
+                src={img}
+                alt={products?.title}
+                className="w-full h-64 sm:h-80 object-cover"
+              />
+            </>
+          ))}
+
           <div className="p-4 sm:p-6">
             <h1 className="text-xl sm:text-2xl font-bold text-gray-800">
               {products?.title}
@@ -75,7 +81,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
             </div>
             <div className="flex items-center mt-2 sm:mt-3">
               <span className="text-lg sm:text-xl font-bold text-green-600">
-                Rs{products?.discountedPrice}
+                Rs{finalPrice}
               </span>
               <span className="ml-2 sm:ml-3 text-sm sm:text-base text-gray-500 line-through">
                 Rs{products?.price}
