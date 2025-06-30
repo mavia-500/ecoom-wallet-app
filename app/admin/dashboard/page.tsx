@@ -3,7 +3,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import jwt from "jsonwebtoken"; // Import jwt to decode on client (for roles check)
+import {jwtDecode} from "jwt-decode";
+; // Import jwt to decode on client (for roles check)
 
 
 interface DecodedToken {
@@ -54,7 +55,7 @@ export default function AdminDashboard() {
 
     try {
       // Decode the token (client-side decoding is for UI purposes, not security)
-      const decoded = jwt.decode(token) as DecodedToken;
+      const decoded = jwtDecode<DecodedToken>(token);
 
       if (
         decoded &&

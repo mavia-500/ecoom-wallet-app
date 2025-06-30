@@ -7,7 +7,7 @@ interface Product {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image: string[];
   color: string;
   price: number;
   discountedPrice: number;
