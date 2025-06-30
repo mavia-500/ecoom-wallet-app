@@ -4,6 +4,7 @@ import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
+import { FaWhatsappSquare } from "react-icons/fa";
 
 interface FormData {
   fullName: string;
@@ -177,7 +178,21 @@ function PlaceOrderContent() {
                 />
               </svg>
             </div>
-            <p className="text-blue-700">{error}</p>
+            <p className="text-blue-700">
+              {error}{" "}
+              <div className="z-50">
+                <a
+                  href={
+                    'https://wa.me/923285478737?text=Hello%2C%20I%20am%20interested%20in%20your%20products"'
+                  }
+                >
+                  <FaWhatsappSquare
+                    className="text-green-500 text-5xl cursor-pointer"
+                    target="_blank"
+                  />
+                </a>
+              </div>
+            </p>
           </div>
         </div>
       )}

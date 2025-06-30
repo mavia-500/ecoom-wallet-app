@@ -54,14 +54,14 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
         </Link>
         <div className="bg-white rounded-lg shadow-md overflow-hidden w-full">
           {products.image.map((img, ind) => (
-            <>
+            <div key={ind}
+            >
               <img
-                key={ind}
                 src={img}
                 alt={products?.title}
                 className="w-full h-64 sm:h-80 object-cover"
               />
-            </>
+            </div>
           ))}
 
           <div className="p-4 sm:p-6">

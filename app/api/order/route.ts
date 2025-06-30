@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         message:
-          "All the fields are required Except Email and Additional Note Please Enter All the Remaining Fields to place order",
+          "All the fields are required Except Email and Additional Note Please Enter All the Remaining Fields to place order or contact on Whats'ápp",
       },
       { status: 401 }
     );
