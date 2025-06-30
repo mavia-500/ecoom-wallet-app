@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 // ProductCard component to display each product
 interface Product {
@@ -20,7 +20,7 @@ interface ProductCardProps {
 
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product,category }) => {
-  const router = useRouter();
+  // const router = useRouter();
 
 const finalPrice=product.price-product.discountedPrice
   return (
