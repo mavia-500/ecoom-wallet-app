@@ -10,11 +10,11 @@ import { FaTiktok } from "react-icons/fa6";
 const SocialMediaLinks = () => {
   return (
     <div className='flex space-x-5 m-10'>
-        <Link href={''}><FaFacebook /></Link>
-        <Link href={''}><FaInstagram /></Link>
+        <Link href={'https://www.facebook.com/profile.php?id=61573823107878'}><FaFacebook /></Link>
+        <Link href={'https://www.instagram.com/hilyah965?igsh=NnpjcXAxN29ldHVi'}><FaInstagram /></Link>
         <Link href={''}><BsFillThreadsFill /></Link>
         <Link href={''}><FaYoutube /></Link>
-        <Link href={''}><IoLogoWhatsapp /></Link>
+        <Link href={'https://wa.me/923285478737?text=Hello%2C%20I%20am%20interested%20in%20your%20products'}><IoLogoWhatsapp /></Link>
         <Link href={''}><FaTiktok /></Link>
     </div>
   )
