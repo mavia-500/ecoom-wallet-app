@@ -24,7 +24,7 @@ const Slider = () => {
   const productData: product[] = [
     {
       title: "handmade laxrious wallet ",
-      imageUrl: "/images/Gemini_Generated_Image_7pywpy7pywpy7pyw.webp",
+      imageUrl: "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928466/Gemini_Generated_Image_l82ljxl82ljxl82l_ivbhs8.webp",
       price: 2400,
       color: "blue",
       category: "longwallet",
@@ -77,7 +77,7 @@ const Slider = () => {
               <img
                 src={imageUrl}
                 alt={title}
-                className="w-full h-full object-contain"
+                className="w-full h-80 object-contain"
               />
               <div className="absolute bottom-4 left-0 right-0 flex flex-col items-center px-4">
                 <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold">

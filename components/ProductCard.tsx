@@ -29,7 +29,7 @@ const finalPrice=product.price-product.discountedPrice
       <img
         src={product.image[0]}
         alt={product.title}
-        className="w-full h-40 sm:h-48 object-cover"
+        className="w-full h-70 sm:h-48 object-cover"
       />
       <div className="p-4 sm:p-6">
         <h2 className="text-lg sm:text-xl font-semibold text-gray-800 line-clamp-1">

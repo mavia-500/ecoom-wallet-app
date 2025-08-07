@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import ImageSlider from "./ImageSlider";
 
 interface Product {
   id: number;
@@ -53,16 +54,9 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
           </button>
         </Link>
         <div className="bg-white rounded-lg shadow-md overflow-hidden w-full">
-          {products.image.map((img, ind) => (
-            <div key={ind}
-            >
-              <img
-                src={img}
-                alt={products?.title}
-                className="w-full h-64 sm:h-80 object-cover"
-              />
-            </div>
-          ))}
+         
+
+          <ImageSlider images={products.image}/>
 
           <div className="p-4 sm:p-6">
             <h1 className="text-xl sm:text-2xl font-bold text-gray-800">

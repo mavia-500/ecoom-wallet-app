@@ -83,7 +83,7 @@ const bifoldProducts: Product[] = [
     id: 7,
     title: "Turkish Leather Wallet",
     description:
-      "Color code leather Wallet.10 Card Slot. 2 Cash Compartment. 100% Leather",
+      "Color code leather Wallet.10 Card Slot. 2 Cash Compartment. 100% Leather and warranty of leather",
     image:["https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928449/Gemini_Generated_Image_pezkzqpezkzqpezk_diu59h.webp",'https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928450/Gemini_Generated_Image_ql6mqpql6mqpql6m_cabcen.webp','https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928447/Gemini_Generated_Image_homqjhomqjhomqjh_bfnwzl.webp','https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928445/Gemini_Generated_Image_bsd0ezbsd0ezbsd0_dofvit.webp'],
     color: "Black",
     price: 2200,
