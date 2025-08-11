@@ -58,7 +58,7 @@ const finalPrice=product.price-product.discountedPrice
           className="mt-3 sm:mt-4 w-full bg-blue-600 text-white py-2 sm:py-2.5 text-sm sm:text-base rounded-lg hover:bg-blue-700 transition duration-200 active:scale-95"
           
         >
-          Order Now
+          More Details
         </button>
       </div>
     </div>

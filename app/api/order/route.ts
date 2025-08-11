@@ -48,7 +48,7 @@ export async function POST(req: Request) {
         <p><strong>Price:</strong> ${finalPrice}</p>
         <p><strong>Color:</strong> ${color}</p>
       `;
-
+// console.log(emailContent)
       const mailOptions = {
         from: process.env.EMAIL_USER, // Sender address
         to: process.env.ADMIN_EMAIL, // Admin's email address
