@@ -7,6 +7,7 @@ interface product {
     imageUrl: string;
     price: number;
     color: string;
+    link:string;
   }
 const LeatherWallet = ({productData}:{productData:product[]}) => {
    
@@ -15,9 +16,10 @@ const LeatherWallet = ({productData}:{productData:product[]}) => {
     Leather Wallet
   </h3>
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 m-9 ">
-    {productData.map(({ title, color, price,imageUrl }) => {
+    {productData.map(({ title, color, price,imageUrl,link },index) => {
       return (
-        <div key={title}>
+        <Link key={title} href={`${link}`}>
+        <div >
           <div className="max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
             {/* Image */}
             
@@ -43,6 +45,7 @@ const LeatherWallet = ({productData}:{productData:product[]}) => {
             </div>
           </div>
         </div>
+        </Link>
       );
     })}
   </div>

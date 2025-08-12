@@ -20,6 +20,7 @@ const Slider = () => {
     price: number;
     color: string;
     category: string;
+    link:string
   }
   const productData: product[] = [
     {
@@ -28,6 +29,7 @@ const Slider = () => {
       price: 2400,
       color: "blue",
       category: "longwallet",
+      link:'/longwallet'
     },
     {
       title: "life time with laxrious ",
@@ -35,6 +37,7 @@ const Slider = () => {
       price: 2900,
       color: "green",
       category: "bifoldwallet",
+       link:'/bifoldwallet'
     },
     {
       title: "best wallet ",
@@ -42,6 +45,7 @@ const Slider = () => {
       price: 2500,
       color: "red",
       category: "trifoldwallet",
+      link:'/trifoldwallet'
     },
     {
       title: " laxrious wallet ",
@@ -49,6 +53,7 @@ const Slider = () => {
       price: 1800,
       color: "gray",
       category: "cardholder",
+      link:'/cardholder'
     },
   ];
   return (
@@ -73,7 +78,7 @@ const Slider = () => {
       >
         {productData.map(({ title, imageUrl, category }) => (
           <SwiperSlide key={title} className="mt-5">
-            <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] flex items-end justify-center text-center p-4 text-white">
+            <div className="relative w-full h-[50vh] sm:h-[50vh] md:h-[50vh] lg:h-[50vh] flex items-end justify-center text-center p-4 text-white">
               <img
                 src={imageUrl}
                 alt={title}
