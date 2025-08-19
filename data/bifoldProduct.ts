@@ -13,7 +13,7 @@ const bifoldProducts: Product[] = [
     id: 1,
     title: "Premium Leather Wallet",
     description:
-      "Premium leather wallet with 6 card slots and cash compartment 100% Leather ",
+      "Premium leather wallet with 6 card slots and cash compartment 100% Leather. Leather Warranty. No Cloth Stuff is used. Hand Made.",
     image: [
       "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928461/ssw_tmkrh7.webp",
       "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928460/ss_zsaym0.webp",

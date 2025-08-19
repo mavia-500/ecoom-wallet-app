@@ -30,6 +30,7 @@ function PlaceOrderContent() {
   const searchParams = useSearchParams();
   const [placeOrder, setOrderPlace] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [orderId,setOrderId]=useState<string>("")
 
   const itemData: ItemData = {
     id: searchParams.get("id"),
@@ -57,6 +58,7 @@ function PlaceOrderContent() {
       if (res.status === 200) {
         setOrderPlace(true);
         setError(null);
+        setOrderId(res.data.orderId)
       } else {
         setError(res.data.message);
       }
@@ -81,6 +83,9 @@ function PlaceOrderContent() {
         <div className="text-center">
           <h2 className="text-green-700 text-xl font-semibold bg-green-100 border border-green-300 rounded-lg px-4 py-2 shadow-sm text-center">
             Order Placed Successfully!
+            <p>Your Order ID Is:  </p>
+            <p>{`${orderId}`}</p>
+            <p>Please Note this id for further process</p>
           </h2>
           <h2 className="mt-10">Thanks for choosing Hilyah</h2>
           <h2 className="mt-10">
