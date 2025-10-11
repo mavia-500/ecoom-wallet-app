@@ -66,6 +66,26 @@ const cardholderProducts: Product[] = [
     price: 2400,
     discountedPrice: 400,
   },
+  {
+    id: 5,
+    title: "Vintage Card Holder",
+    description:
+      "Card Slots.Easy to carry. Mini design. 100% Leather. No cloth stuff is used. Life time warranty of leather. Hand Made and Hand stiech. Luxiours design",
+    image: ["https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928436/3_uyjrd7.webp",'https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928435/1_uctyg7.webp'],
+    color: "Brown",
+    price: 3400,
+    discountedPrice: 1000,
+  },
+  {
+    id: 6,
+    title: "Bega Card Holder",
+    description:
+      "upto 6 Card Slots.Mini design. Easy to carry. 100% Leather. No cloth stuff is used. Life time warranty of leather. Hand Made and Hand stiech. Luxiours design",
+    image: ["https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928436/3_uyjrd7.webp",'https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928435/1_uctyg7.webp'],
+    color: "Yellow",
+    price: 3300,
+    discountedPrice: 1000,
+  },
 ];
 
 export default cardholderProducts;

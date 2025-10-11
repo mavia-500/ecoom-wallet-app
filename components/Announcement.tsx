@@ -2,8 +2,7 @@ import React from "react";
 
 const Announcement = () => {
   const announcements = [
-    "Up to 20% off for a limited time!",
-    "Enjoy Free delivery on 2 orders!",
+    "Ummrah Ticket Win Offer is Live Now! For Limited Time Only ",
     "Unforgettable and unbeatable deals!",
     "Get delivery within 3-4 Working days!",
     "Lifetime warranty on leather products!",
