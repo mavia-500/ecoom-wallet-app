@@ -30,7 +30,9 @@ function PlaceOrderContent() {
   const searchParams = useSearchParams();
   const [placeOrder, setOrderPlace] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [orderId,setOrderId]=useState<string>("")
+  const [orderId, setOrderId] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+
 
   const itemData: ItemData = {
     id: searchParams.get("id"),
@@ -53,18 +55,21 @@ function PlaceOrderContent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await axios.post("/api/order", { formData, itemData });
       if (res.status === 200) {
         setOrderPlace(true);
         setError(null);
-        setOrderId(res.data.orderId)
+        setOrderId(res.data.orderId);
       } else {
         setError(res.data.message);
       }
     } catch (err: any) {
       console.error(err.response?.data?.message || err.message);
       setError(err.response?.data?.message || "An error occurred");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -83,9 +88,9 @@ function PlaceOrderContent() {
         <div className="text-center">
           <h2 className="text-green-700 text-xl font-semibold bg-green-100 border border-green-300 rounded-lg px-4 py-2 shadow-sm text-center">
             Order Placed Successfully!
-            <p>Your Order ID Is:  </p>
+            <p>Your Order ID Is: </p>
             <p>{`${orderId}`}</p>
-            <p>Please Note this id for further process</p>
+            <p>NOte this for your own secuirty</p>
           </h2>
           <h2 className="mt-10">Thanks for choosing Hilyah</h2>
           <h2 className="mt-10">
@@ -99,8 +104,41 @@ function PlaceOrderContent() {
         </div>
       ) : (
         <>
+        {loading ? (
+          <div className="flex flex-col items-center justify-center bg-blue-50 border border-blue-200 text-blue-700 py-4 px-6 rounded-lg shadow-sm mt-4 animate-pulse">
+          <svg
+            className="animate-spin h-16 w-16 text-blue-600 mb-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+            ></path>
+          </svg>
+          <p className="font-medium text-center">
+            Please wait — we’re confirming your order.  
+          </p>
+          <p className="text-sm text-gray-600 mt-1">
+            This may take a few seconds. Thank you for your patience!
+          </p>
+        </div>
+        
+        ):(
+          <>
           <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
-            Place Your Order
+            Place Your Order! please Enter the necessary information below to
+            recieve your order
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <input
@@ -111,16 +149,10 @@ function PlaceOrderContent() {
               onChange={handleChange}
               required
             />
-            <input
-              type="email"
-              placeholder="Email Address (Optional)"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              name="email"
-              onChange={handleChange}
-            />
+
             <input
               type="text"
-              placeholder="Complete Delivery Address"
+              placeholder="Complete Delivery Address(مکمل پتہ)"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
               name="address"
@@ -128,7 +160,7 @@ function PlaceOrderContent() {
             />
             <input
               type="text"
-              placeholder="Province"
+              placeholder="Province (صوبہ)"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
               name="province"
@@ -136,7 +168,7 @@ function PlaceOrderContent() {
             />
             <input
               type="text"
-              placeholder="City"
+              placeholder="City (شہر)"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
               name="city"
@@ -156,13 +188,32 @@ function PlaceOrderContent() {
               name="notes"
               onChange={handleChange}
             />
+
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+              disabled={
+                loading ||
+                !formData.fullName ||
+                !formData.address ||
+                !formData.province ||
+                !formData.city ||
+                !formData.phone
+              }
+              className={`w-full py-2 rounded-lg font-semibold transition ${
+                loading ||
+                !formData.fullName ||
+                !formData.address ||
+                !formData.province ||
+                !formData.city ||
+                !formData.phone
+                  ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                  : "bg-blue-600 text-white hover:bg-blue-700"
+              }`}
             >
               Place Order
             </button>
           </form>
+        </>)}
         </>
       )}
       {error && (

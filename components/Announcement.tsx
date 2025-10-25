@@ -2,7 +2,7 @@ import React from "react";
 
 const Announcement = () => {
   const announcements = [
-    
+
     "Unforgettable and unbeatable deals!",
     "Get delivery within 3-4 Working days!",
     "Lifetime warranty on leather products!",
