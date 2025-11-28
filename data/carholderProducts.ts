@@ -22,6 +22,20 @@ const cardholderProducts: Product[] = [
     price: 1600,
     discountedPrice: 200,
   },
+  {   
+    id: 15,
+    title: "Wax Pull Up Leather Card Holder + Mini Wallet",
+    description:
+      "Premium leather wallet with 6 card slots  and  cash compartment 100% wax pull up Leather.Life time Leather Warranty. No Cloth Stuff is used. Hand Made and hand stichthed.",
+    image: [
+      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764321858/be6d3cbd-926e-42bd-83ed-e29497832a7a_iofgmm.jpg",
+      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764321855/24449cbb-9b0d-4c60-b048-75b320e12391_bdkzph.jpg",
+      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764321856/1_ymontc.jpg"
+    ],
+    color: "Brown",
+    price: 2600,
+    discountedPrice: 200,
+  },
   {
     id: 2,
     title: "Slim Minimalist Card Holder",
