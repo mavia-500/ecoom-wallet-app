@@ -1,3 +1,5 @@
+import { generateReviews, Review } from "./reviews";
+
 interface Product {
   id: number;
   title: string;
@@ -6,6 +8,7 @@ interface Product {
   color: string;
   price: number;
   discountedPrice: number;
+  reviews: Review[];
 }
 
 const bifoldProducts: Product[] = [
@@ -22,6 +25,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 3400,
     discountedPrice: 200,
+    reviews: generateReviews(14, "bifold"),
   },
   {
     id: 15,
@@ -36,8 +40,8 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 2600,
     discountedPrice: 200,
+    reviews: generateReviews(15, "bifold"),
   },
-
   {
     id: 16,
     title: "Vegetable Leather  Wallet",
@@ -53,6 +57,7 @@ const bifoldProducts: Product[] = [
     color: "Choclate",
     price: 15000,
     discountedPrice: 1200,
+    reviews: generateReviews(16, "bifold"),
   },
   {
     id: 1,
@@ -66,8 +71,8 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 2000,
     discountedPrice: 200,
+    reviews: generateReviews(1, "bifold"),
   },
-
   {
     id: 2,
     title: "Pop up leather wallet",
@@ -82,6 +87,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 2400,
     discountedPrice: 400,
+    reviews: generateReviews(2, "bifold"),
   },
   {
     id: 3,
@@ -95,6 +101,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 1800,
     discountedPrice: 300,
+    reviews: generateReviews(3, "bifold"),
   },
   {
     id: 4,
@@ -108,6 +115,7 @@ const bifoldProducts: Product[] = [
     color: "Bronze",
     price: 1500,
     discountedPrice: 300,
+    reviews: generateReviews(4, "bifold"),
   },
   {
     id: 5,
@@ -122,6 +130,7 @@ const bifoldProducts: Product[] = [
     color: "Black",
     price: 2400,
     discountedPrice: 200,
+    reviews: generateReviews(5, "bifold"),
   },
   {
     id: 6,
@@ -137,6 +146,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 2500,
     discountedPrice: 300,
+    reviews: generateReviews(6, "bifold"),
   },
   {
     id: 7,
@@ -152,6 +162,7 @@ const bifoldProducts: Product[] = [
     color: "Black",
     price: 2200,
     discountedPrice: 300,
+    reviews: generateReviews(7, "bifold"),
   },
   {
     id: 8,
@@ -167,6 +178,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 3200,
     discountedPrice: 300,
+    reviews: generateReviews(8, "bifold"),
   },
   {
     id: 9,
@@ -179,6 +191,7 @@ const bifoldProducts: Product[] = [
     color: "Tan",
     price: 1700,
     discountedPrice: 300,
+    reviews: generateReviews(9, "bifold"),
   },
   {
     id: 10,
@@ -192,8 +205,8 @@ const bifoldProducts: Product[] = [
     color: "Blue",
     price: 1400,
     discountedPrice: 200,
+    reviews: generateReviews(10, "bifold"),
   },
-
   {
     id: 11,
     title: "juela Leather Wallet",
@@ -207,8 +220,8 @@ const bifoldProducts: Product[] = [
     color: "Redish Brown",
     price: 3500,
     discountedPrice: 1000,
+    reviews: generateReviews(11, "bifold"),
   },
-
   {
     id: 12,
     title: "Bega Card Holder",
@@ -225,8 +238,8 @@ const bifoldProducts: Product[] = [
     color: "Yellow",
     price: 3300,
     discountedPrice: 1000,
+    reviews: generateReviews(12, "bifold"),
   },
-
   {
     id: 13,
     title: "Vintage Card Holder",
@@ -242,6 +255,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 3400,
     discountedPrice: 1000,
+    reviews: generateReviews(13, "bifold"),
   },
 ];
 

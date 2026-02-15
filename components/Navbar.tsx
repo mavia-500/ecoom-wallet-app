@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="bg-gradient-to-r from-indigo-50 via-white to-purple-50 shadow-xl sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Search Bar (Always Visible) */}
-        <div className="pt-4 pb-2">
+        {/* <div className="pt-4 pb-2">
           <div className="relative max-w-lg mx-auto">
             <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-500 h-5 w-5 transition-transform duration-300 group-hover:scale-125" />
             <input
@@ -24,7 +24,7 @@ const Navbar = () => {
               className="w-full pl-12 pr-4 py-3 text-sm bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all duration-300 placeholder-gray-400 shadow-md hover:shadow-lg focus:shadow-xl"
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Main Navbar Content */}
         <div className="flex justify-between items-center h-16">
@@ -94,14 +94,14 @@ const Navbar = () => {
               Sign In
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:shadow-glow"></span>
             </Link>
-            <Link href="/cart" className="relative">
+            {/* <Link href="/cart" className="relative">
               <FiShoppingCart className="h-7 w-7 text-gray-800 hover:text-indigo-600 transition-colors duration-200 hover:scale-110" />
               {cartItemCount >= 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                   {cartItemCount}
                 </span>
               )}
-            </Link>
+            </Link> */}
             {/* Hamburger Menu Button */}
             <button
               className="md:hidden text-gray-800 focus:outline-none"

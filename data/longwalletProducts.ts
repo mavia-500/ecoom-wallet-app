@@ -1,3 +1,5 @@
+import { generateReviews, Review } from "./reviews";
+
 interface Product {
   id: number;
   title: string;
@@ -6,6 +8,7 @@ interface Product {
   color: string;
   price: number;
   discountedPrice: number;
+  reviews: Review[];
 }
 
 const longwalletProducts: Product[] = [
@@ -22,6 +25,7 @@ const longwalletProducts: Product[] = [
     color: "Brown",
     price: 2700,
     discountedPrice: 300,
+    reviews: generateReviews(1, "longwallet"),
   },
   {
     id: 2,
@@ -37,8 +41,8 @@ const longwalletProducts: Product[] = [
     color: "Black",
     price: 1500,
     discountedPrice: 50,
+    reviews: generateReviews(2, "longwallet"),
   },
-
   {
     id: 2,
     title: "Original Leather Wallet",
@@ -52,6 +56,7 @@ const longwalletProducts: Product[] = [
     color: "Brown",
     price: 2900,
     discountedPrice: 300,
+    reviews: generateReviews(3, "longwallet"),
   },
 ];
 
