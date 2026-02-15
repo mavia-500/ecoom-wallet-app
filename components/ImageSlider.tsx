@@ -2,25 +2,24 @@ import React, { useState } from "react";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 
-
 interface ImageSliderProps {
-    images: string[];
-  }
-const ImageSlider = ({ images}:ImageSliderProps) => {
+  images: string[];
+}
+const ImageSlider = ({ images }: ImageSliderProps) => {
   // console.log(rendering);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  // const handleNext = () => {
+  //   setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  // };
 
-  const handlePrev = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    );
-  };
+  // const handlePrev = () => {
+  //   setCurrentIndex(
+  //     (prevIndex) => (prevIndex - 1 + images.length) % images.length,
+  //   );
+  // };
 
-  const handleThumbnailClick = (index:number) => {
+  const handleThumbnailClick = (index: number) => {
     setCurrentIndex(index);
   };
 
@@ -28,17 +27,17 @@ const ImageSlider = ({ images}:ImageSliderProps) => {
     <div className="flex flex-col items-center w-full max-w-2xl mx-auto">
       {/* Main Image */}
       <div className="relative w-full aspect-[4/3] mb-4">
-        <img
-          src={images[currentIndex]}
-          alt="loading"
-          className={`w-full object-contain rounded-lg`}
-        />
+        <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 mb-4 overflow-hidden rounded-lg">
+          <img
+            src={images[currentIndex]}
+            alt="product image"
+            className="w-full h-full object-contain object-center"
+          />
+        </div>
         {/* Navigation Buttons */}
 
-      
+        {/* Thumbnail Slider */}
 
-      {/* Thumbnail Slider */}
-      
         <div className="flex space-x-2 overflow-x-auto w-full p-2">
           {images.map((imageUrl, index) => (
             <img
@@ -56,7 +55,7 @@ const ImageSlider = ({ images}:ImageSliderProps) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ImageSlider;
