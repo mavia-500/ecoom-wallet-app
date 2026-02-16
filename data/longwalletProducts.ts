@@ -18,9 +18,8 @@ const longwalletProducts: Product[] = [
     description:
       "Premium leather wallet with  and multiple card slots.Cash Comkpartment. Easy to carry. Elegent Look. Most Attractive Personality maker",
     image: [
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928347/Gemini_Generated_Image_7pywpy7pywpy7pyw_lpwfxi.webp",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928347/Gemini_Generated_Image_kq5az0kq5az0kq5a_cexwim.webp",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928347/Gemini_Generated_Image_7pywpy7pywpy7pyw_1_ynsgcn.webp",
+      "/assets/longwallet/Gemini_Generated_Image_7pywpy7pywpy7pyw (1).webp",
+      "/assets/longwallet/Gemini_Generated_Image_kq5az0kq5az0kq5a.webp",
     ],
     color: "Brown",
     price: 2700,
@@ -33,10 +32,8 @@ const longwalletProducts: Product[] = [
     description:
       "Sleek design with quick-access card slot and cash compartment. Beautiful Look. Easy to Carry. 100% Leather. Best for use",
     image: [
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928348/Gemini_Generated_Image_y029djy029djy029_tkwaqz.webp",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928348/Gemini_Generated_Image_u1tyxfu1tyxfu1ty_z16hr4.webp",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928348/IMG_20250427_224015_533_cj4ekz.webp",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928465/Gemini_Generated_Image_hllx88hllx88hllx_tphmsq.webp",
+      "/assets/longwallet/Gemini_Generated_Image_u1tyxfu1tyxfu1ty.webp",
+      "/assets/longwallet/Gemini_Generated_Image_hllx88hllx88hllx.webp",
     ],
     color: "Black",
     price: 1500,
@@ -49,9 +46,8 @@ const longwalletProducts: Product[] = [
     description:
       "Sleek design with quick-access card slot and cash compartment. Beautiful Look. Easy to Carry. 100% Leather. Best for use. Top to Bottom Lether ",
     image: [
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928466/Gemini_Generated_Image_l82ljxl82ljxl82l_ivbhs8.webp",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928348/Gemini_Generated_Image_qp8oiqp8oiqp8oiq_xgkrgr.webp",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928347/Gemini_Generated_Image_ihzjunihzjunihzj_fttyax.webp",
+      "/assets/longwallet/Gemini_Generated_Image_qp8oiqp8oiqp8oiq.webp",
+      "/assets/longwallet/Gemini_Generated_Image_r2ddlgr2ddlgr2dd.webp",
     ],
     color: "Brown",
     price: 2900,

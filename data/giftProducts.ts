@@ -17,10 +17,7 @@ const giftProducts: Product[] = [
     title: "Gift Leather  Wallet & Key Chain",
     description:
       "Premium leather wallet  and multiple card slots. Key Chain in laether. Best For your Loved ones.Unforgetabble for your loved Ones",
-    image: [
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928655/11_sfbaik.webp",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928655/11_sfbaik.webp",
-    ],
+    image: ["/assets/gifts/11.webp", "/assets/gifts/10.webp"],
     color: "Black",
     price: 2600,
     discountedPrice: 400,
@@ -32,9 +29,9 @@ const giftProducts: Product[] = [
     description:
       "Premium leather wallet one Long Wallet, One medium Wallet, One Card Holde, One Key Chain and multiple card slots. Key Chain in laether. Best For your Loved ones.Unforgetabble for your loved Ones",
     image: [
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928655/IMG_20250501_115709_050_lkrrbf.webp",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928657/IMG_20250501_115800_747_y4q2my.webp",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1750928661/IMG_20250501_115818_987_d5e1er.webp",
+      "/assets/gifts/IMG_20250501_115818_987.webp",
+      "/assets/gifts/IMG_20250501_115800_747.webp",
+      "/assets/gifts/IMG_20250501_115709_050.webp",
     ],
     color: "Black",
     price: 5000,
