@@ -18,9 +18,8 @@ const bifoldProducts: Product[] = [
     description:
       "Premium leather wallet with 6 card slots 2 hidden slots and 2 cash compartment 100% wax pull up Leather.Life time Leather Warranty. No Cloth Stuff is used. Hand Made and hand stichthed.",
     image: [
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764310852/IMG-20251124-WA0003_b82sgl.jpg",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764310853/IMG-20251124-WA0002_rksaex.jpg",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764321825/9dadd315-268b-407c-8fde-adb6f3b37f3d_xdyqxb.jpg",
+      "/assets/bifold/IMG-20251124-WA0003_b82sgl.jpg",
+      "/assets/bifold/IMG-20251124-WA0002_rksaex.jpg",
     ],
     color: "Brown",
     price: 3400,
@@ -33,9 +32,8 @@ const bifoldProducts: Product[] = [
     description:
       "Premium leather wallet with 6 card slots  and  cash compartment 100% wax pull up Leather.Life time Leather Warranty. No Cloth Stuff is used. Hand Made and hand stichthed.",
     image: [
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764321858/be6d3cbd-926e-42bd-83ed-e29497832a7a_iofgmm.jpg",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764321855/24449cbb-9b0d-4c60-b048-75b320e12391_bdkzph.jpg",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764321856/1_ymontc.jpg",
+      "/assets/bifold/be6d3cbd-926e-42bd-83ed-e29497832a7a.webp",
+      "/assets/bifold/1.webp",
     ],
     color: "Brown",
     price: 2600,
@@ -48,11 +46,11 @@ const bifoldProducts: Product[] = [
     description:
       "Premium leather wallet with 4 card slots, 2 hidden slots, 1 coin pocket  and 3 cash compartment 100%  Leather.Life time Leather Warranty. No Cloth Stuff is used. Hand Made and hand stichthed.",
     image: [
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764322799/4e2afded-fe05-4b77-9c2b-9e0558251f55_srlsfs.jpg",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764322800/Gemini_Generated_Image_v20n5ev20n5ev20n_uxjdgb.png",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764322800/801a9156-3514-4844-9774-bb933ede67c0_dua4fo.jpg",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764322875/Gemini_Generated_Image_1e6qnh1e6qnh1e6q_v1e9uj.png",
-      "https://res.cloudinary.com/dkbyjjnw5/image/upload/v1764322885/a695f8b1-4ddd-431e-8db9-dae602a0ce06_tzt6sd.jpg",
+      "/assets/bifold/Gemini_Generated_Image_1e6qnh1e6qnh1e6q.png",
+      "/assets/bifold/Gemini_Generated_Image_v20n5ev20n5ev20n.png",
+      "/assets/bifold/4e2afded-fe05-4b77-9c2b-9e0558251f55.webp",
+      "/assets/bifold/801a9156-3514-4844-9774-bb933ede67c0.webp",
+      "/assets/bifold/de40d1cb-dec1-4c2b-ac74-6bfa58feceab.webp",
     ],
     color: "Choclate",
     price: 15000,
