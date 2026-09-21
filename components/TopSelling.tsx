@@ -1,10 +1,12 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
+import CardImageCarousel from "@/components/CardImageCarousel";
 
 type TopItem = {
   id: number;
   title: string;
-  image: string;
+  images: string[];
   price: number;
   discountedPrice: number;
   category: string;
@@ -14,7 +16,10 @@ const topItems: TopItem[] = [
   {
     id: 14,
     title: "Wax Pull Up Leather Wallet",
-    image: "/assets/bifold/IMG-20251124-WA0003_b82sgl.webp",
+    images: [
+      "/assets/bifold/IMG-20251124-WA0003_b82sgl.webp",
+      "/assets/bifold/IMG-20251124-WA0002_rksaex.webp",
+    ],
     price: 3400,
     discountedPrice: 200,
     category: "bifoldwallet",
@@ -22,7 +27,11 @@ const topItems: TopItem[] = [
   {
     id: 2,
     title: "Pop up leather wallet",
-    image: "/assets/bifold/poup1.webp",
+    images: [
+      "/assets/bifold/poup1.webp",
+      "/assets/bifold/poup1..webp",
+      "/assets/bifold/poup.webp",
+    ],
     price: 2400,
     discountedPrice: 400,
     category: "bifoldwallet",
@@ -30,7 +39,10 @@ const topItems: TopItem[] = [
   {
     id: 15,
     title: "Wax Pull Up Card Holder + Mini Wallet",
-    image: "/assets/bifold/be6d3cbd-926e-42bd-83ed-e29497832a7a.webp",
+    images: [
+      "/assets/bifold/be6d3cbd-926e-42bd-83ed-e29497832a7a.webp",
+      "/assets/bifold/1.webp",
+    ],
     price: 2600,
     discountedPrice: 200,
     category: "cardholder",
@@ -38,7 +50,10 @@ const topItems: TopItem[] = [
   {
     id: 1,
     title: "Leather Long Wallet",
-    image: "/assets/longwallet/Gemini_Generated_Image_7pywpy7pywpy7pyw (1).webp",
+    images: [
+      "/assets/longwallet/Gemini_Generated_Image_7pywpy7pywpy7pyw (1).webp",
+      "/assets/longwallet/Gemini_Generated_Image_kq5az0kq5az0kq5a.webp",
+    ],
     price: 2700,
     discountedPrice: 300,
     category: "longwallet",
@@ -65,30 +80,27 @@ const TopSelling = () => {
         {topItems.map((item, index) => {
           const finalPrice = item.price - item.discountedPrice;
           const hasDiscount = item.discountedPrice > 0;
+          const href = `/${item.category}/${item.id}`;
 
           return (
-            <Link
+            <div
               key={`${item.category}-${item.id}`}
-              href={`/${item.category}/${item.id}`}
-              className="group block bg-[var(--surface)] transition-shadow hover:shadow-md"
+              className="bg-[var(--surface)] transition-shadow hover:shadow-md"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--bg-deep)]">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <span
-                  className="absolute left-3 top-3 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#faf9f7]"
-                  style={{ background: "var(--olive)" }}
-                >
-                  #{index + 1} Bestseller
-                </span>
-              </div>
-              <div className="px-4 py-4">
+              <CardImageCarousel
+                images={item.images}
+                alt={item.title}
+                href={href}
+                badge={
+                  <span
+                    className="pointer-events-none absolute left-3 top-3 z-10 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#faf9f7]"
+                    style={{ background: "var(--olive)" }}
+                  >
+                    #{index + 1} Bestseller
+                  </span>
+                }
+              />
+              <Link href={href} className="block px-4 py-4">
                 <h3 className="font-display line-clamp-1 text-lg font-semibold text-[var(--ink)]">
                   {item.title}
                 </h3>
@@ -105,8 +117,8 @@ const TopSelling = () => {
                 <span className="btn-primary mt-4 block w-full rounded-md py-2.5 text-center text-sm">
                   Shop now
                 </span>
-              </div>
-            </Link>
+              </Link>
+            </div>
           );
         })}
       </div>

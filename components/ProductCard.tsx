@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
+import CardImageCarousel from "@/components/CardImageCarousel";
 import { useCart } from "@/context/CartContext";
 
 interface Product {
@@ -30,6 +30,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const [added, setAdded] = useState(false);
   const finalPrice = product.price - product.discountedPrice;
   const hasDiscount = product.discountedPrice > 0;
+  const href = `/${category}/${product.id}`;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -55,27 +56,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           ? undefined
           : { contentVisibility: "auto", containIntrinsicSize: "400px 520px" }
       }
-    >      <Link href={`/${category}/${product.id}`} className="group block">
-        <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--bg-deep)]">
-          <Image
-            src={product.image[0]}
-            alt={product.title}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            priority={priority}
-            fetchPriority={priority ? "high" : "auto"}
-            loading={priority ? "eager" : "lazy"}
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-          {hasDiscount && (
+    >
+      <CardImageCarousel
+        images={product.image}
+        alt={product.title}
+        href={href}
+        badge={
+          hasDiscount ? (
             <span
-              className="absolute left-3 top-3 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#faf9f7]"
+              className="pointer-events-none absolute left-3 top-3 z-10 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#faf9f7]"
               style={{ background: "var(--olive)" }}
             >
               Sale
             </span>
-          )}
-        </div>
+          ) : undefined
+        }
+      />
+
+      <Link href={href} className="group block">
         <div className="px-4 pt-4 sm:px-5 sm:pt-5">
           <h2 className="font-display line-clamp-1 text-lg font-semibold text-[var(--ink)] sm:text-xl">
             {product.title}
@@ -108,7 +106,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {added ? "Added ✓" : "Add to cart"}
         </button>
         <Link
-          href={`/${category}/${product.id}`}
+          href={href}
           className="btn-secondary block w-full rounded-md py-2.5 text-center text-sm"
         >
           View details

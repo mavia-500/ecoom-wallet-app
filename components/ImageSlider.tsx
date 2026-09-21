@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
@@ -11,7 +11,14 @@ interface ImageSliderProps {
 
 const ImageSlider = ({ images, productTitle }: ImageSliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollerRef = useRef<HTMLDivElement>(null);
   const safeImages = images?.length ? images : [];
+  const altBase = productTitle || "Hilyah leather wallet";
+
+  useEffect(() => {
+    setCurrentIndex(0);
+    scrollerRef.current?.scrollTo({ left: 0 });
+  }, [safeImages.join("|")]);
 
   if (!safeImages.length) {
     return (
@@ -21,30 +28,51 @@ const ImageSlider = ({ images, productTitle }: ImageSliderProps) => {
     );
   }
 
-  const goPrev = () =>
-    setCurrentIndex((i) => (i - 1 + safeImages.length) % safeImages.length);
-  const goNext = () => setCurrentIndex((i) => (i + 1) % safeImages.length);
-  const altBase = productTitle || "Hilyah leather wallet";
+  const scrollToIndex = (index: number) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const next = (index + safeImages.length) % safeImages.length;
+    el.scrollTo({ left: next * el.clientWidth, behavior: "smooth" });
+    setCurrentIndex(next);
+  };
+
+  const onScroll = () => {
+    const el = scrollerRef.current;
+    if (!el || !el.clientWidth) return;
+    setCurrentIndex(Math.round(el.scrollLeft / el.clientWidth));
+  };
 
   return (
     <div className="w-full">
-      <div className="relative flex min-h-[320px] items-center justify-center overflow-hidden bg-[var(--bg-deep)] sm:min-h-[420px]">
-        <div className="relative h-[min(70vh,560px)] w-full">
-          <Image
-            src={safeImages[currentIndex]}
-            alt={`${altBase} — photo ${currentIndex + 1} of ${safeImages.length}`}
-            fill
-            priority
-            sizes="(max-width: 768px) 100vw, 896px"
-            className="object-contain object-center p-2 sm:p-4"
-          />
+      <div className="relative overflow-hidden bg-[var(--bg-deep)]">
+        <div
+          ref={scrollerRef}
+          onScroll={onScroll}
+          className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {safeImages.map((src, index) => (
+            <div
+              key={`${src}-${index}`}
+              className="relative h-[min(70vh,560px)] w-full min-w-full flex-none snap-center"
+            >
+              <Image
+                src={src}
+                alt={`${altBase} — photo ${index + 1} of ${safeImages.length}`}
+                fill
+                priority={index === 0}
+                sizes="(max-width: 768px) 100vw, 896px"
+                className="object-contain object-center p-2 sm:p-4"
+                draggable={false}
+              />
+            </div>
+          ))}
         </div>
 
         {safeImages.length > 1 && (
           <>
             <button
               type="button"
-              onClick={goPrev}
+              onClick={() => scrollToIndex(currentIndex - 1)}
               className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--surface)]/90 text-[var(--ink)] shadow"
               aria-label="Previous image"
             >
@@ -52,7 +80,7 @@ const ImageSlider = ({ images, productTitle }: ImageSliderProps) => {
             </button>
             <button
               type="button"
-              onClick={goNext}
+              onClick={() => scrollToIndex(currentIndex + 1)}
               className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--surface)]/90 text-[var(--ink)] shadow"
               aria-label="Next image"
             >
@@ -71,7 +99,7 @@ const ImageSlider = ({ images, productTitle }: ImageSliderProps) => {
             <button
               key={`${imageUrl}-${index}`}
               type="button"
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => scrollToIndex(index)}
               className={`relative h-16 w-16 flex-shrink-0 overflow-hidden rounded bg-[var(--bg-deep)] transition ${
                 currentIndex === index
                   ? "ring-2 ring-[var(--cognac)]"

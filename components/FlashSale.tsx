@@ -1,11 +1,13 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
+import CardImageCarousel from "@/components/CardImageCarousel";
 import SaleCountdown from "@/components/SaleCountdown";
 
 type SaleItem = {
   id: number;
   title: string;
-  image: string;
+  images: string[];
   price: number;
   discountedPrice: number;
   category: string;
@@ -15,7 +17,11 @@ const saleItems: SaleItem[] = [
   {
     id: 2,
     title: "Pop up leather wallet",
-    image: "/assets/bifold/poup1.webp",
+    images: [
+      "/assets/bifold/poup1.webp",
+      "/assets/bifold/poup1..webp",
+      "/assets/bifold/poup.webp",
+    ],
     price: 2400,
     discountedPrice: 400,
     category: "bifoldwallet",
@@ -23,7 +29,10 @@ const saleItems: SaleItem[] = [
   {
     id: 3,
     title: "Vintage book Wallet",
-    image: "/assets/bifold/p2.webp",
+    images: [
+      "/assets/bifold/p2.webp",
+      "/assets/bifold/p2_09a8dc7a-ca8e-4820-8dec-6957cfe25c03.webp",
+    ],
     price: 1800,
     discountedPrice: 300,
     category: "bifoldwallet",
@@ -31,7 +40,10 @@ const saleItems: SaleItem[] = [
   {
     id: 14,
     title: "Wax Pull Up Leather Wallet",
-    image: "/assets/bifold/IMG-20251124-WA0003_b82sgl.webp",
+    images: [
+      "/assets/bifold/IMG-20251124-WA0003_b82sgl.webp",
+      "/assets/bifold/IMG-20251124-WA0002_rksaex.webp",
+    ],
     price: 3400,
     discountedPrice: 200,
     category: "bifoldwallet",
@@ -39,7 +51,7 @@ const saleItems: SaleItem[] = [
   {
     id: 1,
     title: "Premium Leather Wallet",
-    image: "/assets/bifold/ssw.webp",
+    images: ["/assets/bifold/ssw.webp", "/assets/bifold/ss.webp"],
     price: 2000,
     discountedPrice: 200,
     category: "bifoldwallet",
@@ -72,30 +84,27 @@ const FlashSale = () => {
             const percent = Math.round(
               (item.discountedPrice / item.price) * 100,
             );
+            const href = `/${item.category}/${item.id}`;
 
             return (
-              <Link
+              <div
                 key={`${item.category}-${item.id}`}
-                href={`/${item.category}/${item.id}`}
-                className="group block bg-[var(--surface)] transition-shadow hover:shadow-md"
+                className="bg-[var(--surface)] transition-shadow hover:shadow-md"
               >
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--bg-deep)]">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <span
-                    className="absolute left-3 top-3 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#faf9f7]"
-                    style={{ background: "var(--cognac)" }}
-                  >
-                    -{percent}%
-                  </span>
-                </div>
-                <div className="px-4 py-4">
+                <CardImageCarousel
+                  images={item.images}
+                  alt={item.title}
+                  href={href}
+                  badge={
+                    <span
+                      className="pointer-events-none absolute left-3 top-3 z-10 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#faf9f7]"
+                      style={{ background: "var(--cognac)" }}
+                    >
+                      -{percent}%
+                    </span>
+                  }
+                />
+                <Link href={href} className="block px-4 py-4">
                   <h3 className="font-display line-clamp-1 text-lg font-semibold text-[var(--ink)]">
                     {item.title}
                   </h3>
@@ -110,8 +119,8 @@ const FlashSale = () => {
                   <span className="btn-primary mt-4 block w-full rounded-md py-2.5 text-center text-sm">
                     Grab deal
                   </span>
-                </div>
-              </Link>
+                </Link>
+              </div>
             );
           })}
         </div>
