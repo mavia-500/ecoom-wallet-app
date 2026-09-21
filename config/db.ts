@@ -6,13 +6,6 @@ import mongoose from 'mongoose';
 
 const MONGODB_URI: string  = process.env.MONGO_URI || "";
 
-
-if (!MONGODB_URI) {
-  throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env.local'
-  );
-}
-
 let cached = (global as any).mongoose;
 
 if (!cached) {
@@ -21,6 +14,11 @@ if (!cached) {
 
 
 async function dbConnect() {
+    if (!MONGODB_URI) {
+      throw new Error(
+        'Please define the MONGO_URI environment variable inside .env.local'
+      );
+    }
     if (cached.conn) {
       return cached.conn;
     }

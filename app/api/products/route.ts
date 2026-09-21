@@ -27,7 +27,6 @@ console.log(req.json())
         { status: 402 }
       );
     }
-
     await dbConnect();
     try {
       const product = await Products.create({

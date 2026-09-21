@@ -6,7 +6,7 @@ import longwalletProducts from "@/data/longwalletProducts";
 import giftProducts from "@/data/giftProducts";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://hilyah.pk";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://www.hilyah.online";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

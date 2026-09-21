@@ -1,5 +1,5 @@
 export const SITE_NAME = "Hilyah";
-export const SITE_DEFAULT_URL = "https://hilyah.pk";
+export const SITE_DEFAULT_URL = "https://www.hilyah.online";
 
 export function getSiteUrl(): string {
   return (
