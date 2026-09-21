@@ -1,8 +1,10 @@
 "use client";
-import Link from "next/link";
-// import { useRouter } from "next/navigation";
 
-// ProductCard component to display each product
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import { useCart } from "@/context/CartContext";
+
 interface Product {
   id: number;
   title: string;
@@ -15,53 +17,103 @@ interface Product {
 
 interface ProductCardProps {
   product: Product;
-  category: string; // This is where the 'category' prop is defined
+  category: string;
+  priority?: boolean;
 }
 
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  category,
+  priority = false,
+}) => {
+  const { addItem } = useCart();
+  const [added, setAdded] = useState(false);
+  const finalPrice = product.price - product.discountedPrice;
+  const hasDiscount = product.discountedPrice > 0;
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product,category }) => {
-  // const router = useRouter();
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addItem({
+      id: product.id,
+      title: product.title,
+      image: product.image[0],
+      color: product.color,
+      price: product.price,
+      discountedPrice: product.discountedPrice,
+      category,
+    });
+    setAdded(true);
+    window.setTimeout(() => setAdded(false), 1500);
+  };
 
-const finalPrice=product.price-product.discountedPrice
   return (
-    <Link href={`${category}/${product.id}`}>
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-lg w-full max-w-sm mx-auto">
-      <img
-        src={product.image[0]}
-        alt={product.title}
-        className="w-full h-70 sm:h-48 object-cover"
-      />
-      <div className="p-4 sm:p-6">
-        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 line-clamp-1">
-          {product.title}
-        </h2>
-        <p className="text-gray-600 text-sm sm:text-base mt-2 line-clamp-2">
-          {product.description}
-        </p>
-        <div className="flex items-center mt-2 sm:mt-3">
-          <span className="text-xs sm:text-sm font-medium text-gray-500">
-            Color:{" "}
-          </span>
-          <span className="ml-2 text-xs sm:text-sm text-gray-700">
-            {product.color}
-          </span>
+    <article
+      className="flex h-full flex-col overflow-hidden bg-[var(--surface)] transition-shadow duration-300 hover:shadow-md"
+      style={
+        priority
+          ? undefined
+          : { contentVisibility: "auto", containIntrinsicSize: "400px 520px" }
+      }
+    >      <Link href={`/${category}/${product.id}`} className="group block">
+        <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--bg-deep)]">
+          <Image
+            src={product.image[0]}
+            alt={product.title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            priority={priority}
+            fetchPriority={priority ? "high" : "auto"}
+            loading={priority ? "eager" : "lazy"}
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          {hasDiscount && (
+            <span
+              className="absolute left-3 top-3 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#faf9f7]"
+              style={{ background: "var(--olive)" }}
+            >
+              Sale
+            </span>
+          )}
         </div>
-        <div className="flex items-center mt-2 sm:mt-3">
-          <span className="text-base sm:text-lg font-bold text-green-600">
-            Rs:{finalPrice}
-          </span>
-          <span className="ml-2 sm:ml-3 text-xs sm:text-sm text-gray-500 line-through">
-            Rs:{product.price}
-          </span>
+        <div className="px-4 pt-4 sm:px-5 sm:pt-5">
+          <h2 className="font-display line-clamp-1 text-lg font-semibold text-[var(--ink)] sm:text-xl">
+            {product.title}
+          </h2>
+          <p className="mt-2 line-clamp-2 text-sm text-[var(--ink-soft)]">
+            {product.description}
+          </p>
+          <p className="mt-3 text-xs text-[var(--ink-soft)]">
+            Color: <span className="text-[var(--ink)]">{product.color}</span>
+          </p>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-lg font-bold text-[var(--sale)]">
+              Rs {finalPrice.toLocaleString()}
+            </span>
+            {hasDiscount && (
+              <span className="text-sm text-[var(--ink-soft)] line-through">
+                Rs {product.price.toLocaleString()}
+              </span>
+            )}
+          </div>
         </div>
+      </Link>
+
+      <div className="mt-auto flex flex-col gap-2 p-4 pt-3 sm:p-5 sm:pt-3">
         <button
-          className="mt-3 sm:mt-4 w-full bg-blue-600 text-white py-2 sm:py-2.5 text-sm sm:text-base rounded-lg hover:bg-blue-700 transition duration-200 active:scale-95"
-          
+          type="button"
+          onClick={handleAddToCart}
+          className="btn-primary w-full rounded-md py-2.5 text-sm"
         >
-          More Details
+          {added ? "Added ✓" : "Add to cart"}
         </button>
+        <Link
+          href={`/${category}/${product.id}`}
+          className="btn-secondary block w-full rounded-md py-2.5 text-center text-sm"
+        >
+          View details
+        </Link>
       </div>
-    </div>
-    </Link>
+    </article>
   );
 };

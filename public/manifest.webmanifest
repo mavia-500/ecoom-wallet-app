@@ -1,0 +1,24 @@
+{
+  "name": "Hilyah — Genuine Leather Wallets",
+  "short_name": "Hilyah",
+  "description": "Shop premium handcrafted leather wallets for men in Pakistan. COD and lifetime leather warranty.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f3ee",
+  "theme_color": "#5c3d2e",
+  "lang": "en-PK",
+  "icons": [
+    {
+      "src": "/images/logo1.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo1.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}

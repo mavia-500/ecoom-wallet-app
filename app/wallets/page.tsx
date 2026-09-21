@@ -1,9 +1,13 @@
-import React from 'react'
+import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/site";
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
+export const metadata: Metadata = {
+  title: { absolute: "Leather Wallets | Hilyah" },
+  alternates: { canonical: absoluteUrl("/bifoldwallet") },
+  robots: { index: false, follow: true },
+};
+
+export default function WalletsPage() {
+  redirect("/bifoldwallet");
 }
-
-export default page

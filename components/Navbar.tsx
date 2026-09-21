@@ -1,179 +1,198 @@
 "use client";
+
 import Link from "next/link";
-import React, { useState } from "react";
-import { FiMenu, FiX, FiShoppingCart, FiSearch } from "react-icons/fi";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { FiMenu, FiX, FiShoppingCart } from "react-icons/fi";
+import { useCart } from "@/context/CartContext";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/products", label: "All Products" },
+  { href: "/bifoldwallet", label: "Bi-Fold" },
+  { href: "/trifoldwallet", label: "Tri-Fold" },
+  { href: "/cardholder", label: "Card Holder" },
+  { href: "/longwallet", label: "Long Wallet" },
+  { href: "/gifts", label: "Gifts" },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const cartItemCount = 0; // Example cart item count, replace with dynamic data as needed
+  const pathname = usePathname();
+  const { totalItems, isReady } = useCart();
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [isOpen]);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/" || pathname === "/home";
+    return pathname.startsWith(href);
   };
 
-  return (
-    <nav className="bg-gradient-to-r from-indigo-50 via-white to-purple-50 shadow-xl sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Search Bar (Always Visible) */}
-        {/* <div className="pt-4 pb-2">
-          <div className="relative max-w-lg mx-auto">
-            <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-500 h-5 w-5 transition-transform duration-300 group-hover:scale-125" />
-            <input
-              type="search"
-              placeholder="Search products..."
-              className="w-full pl-12 pr-4 py-3 text-sm bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all duration-300 placeholder-gray-400 shadow-md hover:shadow-lg focus:shadow-xl"
-            />
-          </div>
-        </div> */}
+  const closeMenu = () => setIsOpen(false);
 
-        {/* Main Navbar Content */}
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/home">
+  return (
+    <>
+      <nav
+        className="sticky top-0 z-50 border-b backdrop-blur-md"
+        style={{
+          background: "rgba(250, 249, 247, 0.95)",
+          borderColor: "var(--line)",
+        }}
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between sm:h-[4.5rem]">
+            <Link
+              href="/"
+              className="flex flex-shrink-0 items-center"
+              aria-label="Hilyah home"
+            >
               <img
                 src="/images/logo1.webp"
-                alt="Hilyah Logo"
-                className="h-12 w-auto sm:h-16 transition-transform duration-300 hover:scale-110 hover:rotate-3"
+                alt="Hilyah — genuine leather wallets"
+                width={160}
+                height={56}
+                decoding="async"
+                fetchPriority="high"
+                className="h-11 w-auto sm:h-14"
               />
             </Link>
-          </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link
-              href="/home"
-              className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 relative group"
-            >
-              Home
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:shadow-glow"></span>
-            </Link>
-            <Link
-              href="/bifoldwallet"
-              className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 relative group"
-            >
-              Bi-Fold Wallet
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:shadow-glow"></span>
-            </Link>
-            <Link
-              href="/trifoldwallet"
-              className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 relative group"
-            >
-              Tri-Fold Wallet
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:shadow-glow"></span>
-            </Link>
-            <Link
-              href="/cardholder"
-              className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 relative group"
-            >
-              Card Holder
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:shadow-glow"></span>
-            </Link>
-            <Link
-              href="/longwallet"
-              className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 relative group"
-            >
-              Long Wallet
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:shadow-glow"></span>
-            </Link>
-            <Link
-              href="/gifts"
-              className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 relative group"
-            >
-              Gifts
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:shadow-glow"></span>
-            </Link>
-          </div>
+            <div className="hidden items-center gap-1 lg:flex">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                    isActive(link.href)
+                      ? "bg-[var(--bg-deep)] text-[var(--cognac)]"
+                      : "text-[var(--ink)] hover:bg-[var(--bg-deep)] hover:text-[var(--cognac)]"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
 
-          {/* Right Section (Sign-in, Cart, Hamburger) */}
-          <div className="flex items-center space-x-6">
-            <Link
-              href="/signin"
-              className="hidden sm:block text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 relative group"
-            >
-              Sign In
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:shadow-glow"></span>
-            </Link>
-            {/* <Link href="/cart" className="relative">
-              <FiShoppingCart className="h-7 w-7 text-gray-800 hover:text-indigo-600 transition-colors duration-200 hover:scale-110" />
-              {cartItemCount >= 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartItemCount}
-                </span>
-              )}
-            </Link> */}
-            {/* Hamburger Menu Button */}
-            <button
-              className="md:hidden text-gray-800 focus:outline-none"
-              onClick={toggleMenu}
-            >
-              {isOpen ? (
-                <FiX className="h-7 w-7 transition-transform duration-300 rotate-90" />
-              ) : (
-                <FiMenu className="h-7 w-7 transition-transform duration-300" />
-              )}
-            </button>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Link
+                href="/cart"
+                className="relative inline-flex h-10 w-10 items-center justify-center rounded-md text-[var(--ink)] hover:bg-[var(--bg-deep)]"
+                aria-label="Shopping cart"
+              >
+                <FiShoppingCart className="h-5 w-5" />
+                {isReady && totalItems > 0 && (
+                  <span
+                    className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-[10px] font-bold text-[#faf9f7]"
+                    style={{ background: "var(--cognac)" }}
+                  >
+                    {totalItems > 99 ? "99+" : totalItems}
+                  </span>
+                )}
+              </Link>
+              <Link
+                href="/products"
+                className="btn-primary hidden rounded-md px-3 py-2 text-sm sm:inline-block sm:px-4"
+              >
+                Shop now
+              </Link>
+              <button
+                type="button"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-md text-[var(--ink)] hover:bg-[var(--bg-deep)] lg:hidden"
+                onClick={() => setIsOpen(true)}
+                aria-label="Open menu"
+                aria-expanded={isOpen}
+              >
+                <FiMenu className="h-6 w-6" />
+              </button>
+            </div>
           </div>
         </div>
+      </nav>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100 py-4 animate-slide-in">
-            <div className="flex flex-col space-y-4 px-4">
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex flex-col bg-[var(--surface)] lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site menu"
+        >
+          <div
+            className="flex h-16 flex-none items-center justify-between border-b px-4"
+            style={{ borderColor: "var(--line)" }}
+          >
+            <img src="/images/logo1.webp" alt="Hilyah — genuine leather wallets" className="h-10 w-auto" />
+            <button
+              type="button"
+              onClick={closeMenu}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-md text-[var(--ink)] hover:bg-[var(--bg-deep)]"
+              aria-label="Close menu"
+            >
+              <FiX className="h-6 w-6" />
+            </button>
+          </div>
+
+          <div
+            className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain px-4 py-3"
+            style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+          >
+            <div className="flex flex-col gap-1 pb-10">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className={`rounded-md px-3 py-3 text-base font-medium ${
+                    isActive(link.href)
+                      ? "bg-[var(--bg-deep)] text-[var(--cognac)]"
+                      : "text-[var(--ink)] hover:bg-[var(--bg-deep)]"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
               <Link
-                href="/home"
-                className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 py-2"
-                onClick={toggleMenu}
+                href="/cart"
+                onClick={closeMenu}
+                className="rounded-md px-3 py-3 text-base font-medium text-[var(--ink)] hover:bg-[var(--bg-deep)]"
               >
-                Home
+                Cart{isReady && totalItems > 0 ? ` (${totalItems})` : ""}
               </Link>
               <Link
-                href="/bifoldwallet"
-                className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 py-2"
-                onClick={toggleMenu}
+                href="/contact"
+                onClick={closeMenu}
+                className="rounded-md px-3 py-3 text-base font-medium text-[var(--ink)] hover:bg-[var(--bg-deep)]"
               >
-                Bi-Fold Wallet
+                Contact & WhatsApp
               </Link>
-              <Link
-                href="/trifoldwallet"
-                className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 py-2"
-                onClick={toggleMenu}
+              <a
+                href="tel:+923285478737"
+                className="rounded-md px-3 py-3 text-base font-medium text-[var(--cognac)]"
               >
-                Tri-Fold Wallet
-              </Link>
+                Call +92 328 5478737
+              </a>
               <Link
-                href="/cardholder"
-                className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 py-2"
-                onClick={toggleMenu}
+                href="/policy"
+                onClick={closeMenu}
+                className="rounded-md px-3 py-3 text-base font-medium text-[var(--ink)] hover:bg-[var(--bg-deep)]"
               >
-                Card Holder
-              </Link>
-              <Link
-                href="/longwallet"
-                className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 py-2"
-                onClick={toggleMenu}
-              >
-                Long Wallet
-              </Link>
-              <Link
-                href="/gifts"
-                className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 py-2"
-                onClick={toggleMenu}
-              >
-                Gifts
-              </Link>
-              <Link
-                href="/signin"
-                className="text-gray-800 font-semibold hover:text-indigo-600 transition-colors duration-200 py-2"
-                onClick={toggleMenu}
-              >
-                Sign In
+                Policies
               </Link>
             </div>
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+      )}
+    </>
   );
 };
 

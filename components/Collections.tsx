@@ -1,118 +1,78 @@
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
-import Priority from "./Priority";
-import BiFoldImage from '/images/GGemini_Generated_Image_wm8m9uwm8m9uwm8m.webp';
 
+const collections = [
+  {
+    href: "/bifoldwallet",
+    title: "Bi-Fold",
+    image: "/images/wem.webp",
+    alt: "Bi fold leather wallet",
+  },
+  {
+    href: "/trifoldwallet",
+    title: "Tri-Fold",
+    image: "/images/ad.webp",
+    alt: "Tri fold leather wallet",
+  },
+  {
+    href: "/cardholder",
+    title: "Card Holder",
+    image: "/images/cardh.webp",
+    alt: "Leather card holder",
+  },
+  {
+    href: "/longwallet",
+    title: "Long Wallet",
+    image: "/images/d.webp",
+    alt: "Long leather wallet",
+  },
+];
 
 const Collections = () => {
   return (
-    <div className="px-4 py-8">
-      {/* Header Section */}
-      <div className="flex flex-col items-center text-center mb-8">
-        <h1 className="text-xl font-semibold mb-3 sm:text-2xl">
-          Shop By Collections
-        </h1>
-        <p className="text-gray-700 text-sm leading-relaxed max-w-md sm:text-base sm:max-w-lg">
-          Our leather goods are handcrafted using 100% rich full grain leather.
-          Our dedication and experience help us create unique goodness in the
-          work we make, and ensures your leather companion can last you a
-          lifetime of happy service.
+    <section className="px-4 py-14 sm:px-6 lg:px-8">
+      <div className="mx-auto mb-10 max-w-2xl text-center">
+        <h2 className="font-display text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
+          Shop by collection
+        </h2>
+        <p className="mt-3 text-sm leading-relaxed text-[var(--ink-soft)] sm:text-base">
+          Handcrafted from rich full-grain leather — built for daily use and
+          meant to age beautifully with you.
         </p>
       </div>
 
-      {/* Collections Grid */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {/* Bi Fold Wallet */}
-        <div className="w-full">
-          <Link href="/bifoldwallet">
-            <div className="relative h-64 rounded-lg overflow-hidden shadow-md cursor-pointer group">
-              <img
-                src="/images/wem.webp"
-                alt="Bi Fold Wallet"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {collections.map((item) => (
+          <Link key={item.href} href={item.href} className="group block">
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--bg-deep)]">
+              <Image
+                src={item.image}
+                alt={item.alt}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center justify-center text-white px-3">
-                <h2 className="text-lg font-semibold mb-3 sm:text-xl">
-                  Bi Fold
-                </h2>
-                <button className="px-3 py-1.5 bg-white text-black text-sm rounded hover:bg-gray-200 transition sm:px-4 sm:py-2 sm:text-base">
-                  View Product
-                </button>
+              <div
+                className="absolute inset-0 flex flex-col items-center justify-end px-4 pb-8 text-center"
+                style={{
+                  background:
+                    "linear-gradient(180deg, transparent 35%, rgba(26,22,20,0.75) 100%)",
+                }}
+              >
+                <h3 className="font-display text-2xl font-semibold text-[#faf9f7]">
+                  {item.title}
+                </h3>
+                <span className="mt-3 text-xs font-semibold uppercase tracking-wider text-[#faf9f7] underline-offset-4 group-hover:underline">
+                  View products
+                </span>
               </div>
             </div>
           </Link>
-        </div>
-
-        {/* Tri Fold Wallet */}
-        <div className="w-full">
-          <Link href="/trifoldwallet">
-            <div className="relative h-64 rounded-lg overflow-hidden shadow-md cursor-pointer group">
-              <img
-                src="/images/ad.webp"
-                alt="Tri Fold Wallet"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center justify-center text-white px-3">
-                <h2 className="text-lg font-semibold mb-3 sm:text-xl">
-                  Tri Fold
-                </h2>
-                <button className="px-3 py-1.5 bg-white text-black text-sm rounded hover:bg-gray-200 transition sm:px-4 sm:py-2 sm:text-base">
-                  View Product
-                </button>
-              </div>
-            </div>
-          </Link>
-        </div>
-
-        {/* Card Holder */}
-        <div className="w-full">
-          <Link href="/cardholder">
-            <div className="relative h-64 rounded-lg overflow-hidden shadow-md cursor-pointer group">
-              <img
-                src="images/cardh.webp"
-                alt="Card Holder"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center justify-center text-white px-3">
-                <h2 className="text-lg font-semibold mb-3 sm:text-xl">
-                  Card Holder
-                </h2>
-                <button className="px-3 py-1.5 bg-white text-black text-sm rounded hover:bg-gray-200 transition sm:px-4 sm:py-2 sm:text-base">
-                  View Product
-                </button>
-              </div>
-            </div>
-          </Link>
-        </div>
-
-        {/* Long Wallet */}
-        <div className="w-full">
-          <Link href="/longwallet">
-            <div className="relative h-64 rounded-lg overflow-hidden shadow-md cursor-pointer group">
-              <img
-                src="images/d.webp"
-                alt="Long Wallet"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center justify-center text-white px-3">
-                <h2 className="text-lg font-semibold mb-3 sm:text-xl">
-                  Long Wallet
-                </h2>
-                <button className="px-3 py-1.5 bg-white text-black text-sm rounded hover:bg-gray-200 transition sm:px-4 sm:py-2 sm:text-base">
-                  View Product
-                </button>
-              </div>
-            </div>
-          </Link>
-        </div>
+        ))}
       </div>
-
-      <Priority />
-    </div>
+    </section>
   );
 };
 

@@ -1,19 +1,40 @@
-'use client'
-
-import React from "react";
+import type { Metadata } from "next";
 import bifoldProducts from "@/data/bifoldProduct";
-import { useParams } from "next/navigation";
 import WholeProductDetail from "@/components/WholeProductDetail";
+import JsonLd from "@/components/JsonLd";
+import {
+  breadcrumbJsonLd,
+  productJsonLd,
+  productMetadata,
+} from "@/lib/seo";
 
+type Props = { params: Promise<{ product: string }> };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { product } = await params;
+  const item = bifoldProducts.find((p) => p.id === parseInt(product, 10));
+  return productMetadata(item, "bifoldwallet", "Bi-Fold Wallet");
+}
 
-const ProductPage = () => {
-//   const params = useParams();
-  
- const {product}=useParams()
- const products = bifoldProducts.find((p) => p.id === parseInt(product as string));
+export default async function BifoldProductPage({ params }: Props) {
+  const { product } = await params;
+  const item = bifoldProducts.find((p) => p.id === parseInt(product, 10)) || null;
 
- return <WholeProductDetail products={products || null} />
-};
-
-export default ProductPage;
+  return (
+    <>
+      {item && (
+        <JsonLd
+          data={[
+            productJsonLd(item, "bifoldwallet", "Bi-Fold Wallet"),
+            breadcrumbJsonLd([
+              { name: "Home", path: "/" },
+              { name: "Bi-Fold Wallets", path: "/bifoldwallet" },
+              { name: item.title, path: `/bifoldwallet/${item.id}` },
+            ]),
+          ]}
+        />
+      )}
+      <WholeProductDetail products={item} />
+    </>
+  );
+}

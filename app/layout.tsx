@@ -1,141 +1,136 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Cormorant_Garamond, Figtree } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
-import Announcement from "../components/Announcement";
 import Footer from "@/components/Footer";
-import { TbBrandWhatsappFilled } from "react-icons/tb";
-import Link from "next/link";
+import ScrollToTop from "@/components/ScrollToTop";
+import Providers from "@/components/Providers";
+import JsonLd from "@/components/JsonLd";
+import MetaPixel from "@/components/MetaPixel";
 import { FaWhatsappSquare } from "react-icons/fa";
+import { getSiteUrl } from "@/lib/site";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
+const display = Cormorant_Garamond({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  display: "swap",
+  preload: true,
+});
 
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
+const body = Figtree({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
+});
 
+const siteUrl = getSiteUrl();
 
+/** Prefer a real product photo for social previews over the logo. */
+const DEFAULT_OG_IMAGE = "/images/wem.webp";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#1a1614",
+};
 
 export const metadata: Metadata = {
-  title: "Men's Leather Wallets in Pakistan - Buy Online | Hylia",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Hilyah | Genuine Leather Wallets for Men in Pakistan",
+    template: "%s | Hilyah",
+  },
   description:
-    "Discover premium genuine leather wallets for men in Pakistan. Shop our collection of bifold, trifold, and minimalist wallets .shipping & COD available across Pakistan.",
-    keywords: [
-      "leather wallets Pakistan",
-      "men wallets Pakistan",
-      "wallets for men",
-      "handmade wallets",
-      "wallets in Lahore",
-      "wallets in Karachi",
-      "wallets in Islambad",
-      "wallets in Rawalpindi",
-      "buy wallets online Pakistan",
-      "stylish wallets",
-      "genuine leather wallets",
-     " men's leather wallet",
-     " leather wallet Pakistan",
-      "genuine leather wallet",
-      " mens wallets online",
-      " buy wallets Pakistan",
-      " RFID wallet",
-      " bifold wallet",
-      " trifold wallet",
-      " minimalist wallet",
-      " wallet for men",
-      " Pakistan online shopping",
-      " mens accessories",
-      " stylish wallets"
-    ],
+    "Shop premium handcrafted leather wallets from Hilyah. Bifold, trifold, card holders & gifts. Cash on delivery, fast shipping across Pakistan, lifetime leather warranty.",
+  keywords: [
+    "leather wallets Pakistan",
+    "men wallets Pakistan",
+    "Hilyah wallets",
+    "handmade wallets",
+    "wallets in Lahore",
+    "wallets in Karachi",
+    "wallets in Islamabad",
+    "wallets in Rawalpindi",
+    "buy wallets online Pakistan",
+    "genuine leather wallets",
+    "bifold wallet",
+    "trifold wallet",
+    "COD wallets Pakistan",
+  ],
+  authors: [{ name: "Hilyah" }],
+  creator: "Hilyah",
+  publisher: "Hilyah",
+  applicationName: "Hilyah",
+  category: "shopping",
+  icons: {
+    icon: [{ url: "/images/logo1.webp", type: "image/webp" }],
+    apple: [{ url: "/images/logo1.webp", type: "image/webp" }],
+  },
+  manifest: "/manifest.webmanifest",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Men's Leather Wallets in Pakistan - Buy Online Hylia",
+    title: "Hilyah | Genuine Leather Wallets for Men in Pakistan",
     description:
-      "Discover premium genuine leather wallets for men in Pakistan. Shop our collection of bifold, trifold, and minimalist wallets with RFID protection. Free shipping & COD available across Pakistan.",
-    url: "https://www.yourwebsite.com", // Replace with your actual website URL
-    siteName: "hylia",
+      "Premium handcrafted leather wallets. COD available. Lifetime leather warranty. Ships across Pakistan.",
+    url: siteUrl,
+    siteName: "Hilyah",
     images: [
       {
-        url: "https://www.yourwebsite.com/images/og-image.jpg", // Replace with a compelling image of your wallet
-        width: 1200,
-        height: 630,
-        alt: "Premium Men's Leather Wallets in Pakistan",
+        url: DEFAULT_OG_IMAGE,
+        alt: "Hilyah premium leather wallets",
       },
     ],
-    locale: "ur_PK", // Targeting English speakers in Pakistan
+    locale: "en_PK",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Men's Leather Wallets in Pakistan - Buy Online | Hylia",
+    title: "Hilyah | Genuine Leather Wallets for Men in Pakistan",
     description:
-      "Discover premium genuine leather wallets for men in Pakistan. Shop our collection of bifold, trifold, and minimalist wallets . shipping & COD available across Pakistan.",
-    creator: "@YourTwitterHandle", // Optional: Your brand's Twitter handle
-    images: ["https://www.yourwebsite.com/images/twitter-image.jpg"], // Replace with an image optimized for Twitter
-  },
-  // Optional: Add canonical URL for SEO
-  alternates: {
-    canonical: "https://www.yourwebsite.com", // Replace with your actual website URL
+      "Premium handcrafted leather wallets with COD and lifetime warranty across Pakistan.",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        {/* ✅ Meta Pixel Script */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '697594026040202');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
-        {/* ✅ Noscript fallback in HTML string */}
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=697594026040202&ev=PageView&noscript=1"
-            alt="Meta Pixel"
-          />
-        </noscript>
-      </head>
-      <body
-      // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Announcement />
-        <Navbar />
-        {children}
-        <div className="fixed top-50 right-4 z-50">
+    <html lang="en-PK">
+      <body className={`${display.variable} ${body.variable} antialiased`}>
+        <MetaPixel />
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+        <Providers>
+          <Navbar />
+          <main>{children}</main>
+          <ScrollToTop />
           <a
-            href={
-              'https://wa.me/923285478737?text=Hello%2C%20I%20am%20interested%20in%20your%20products"'
-            }
+            href="https://wa.me/923285478737?text=Hello%2C%20I%20am%20interested%20in%20Hilyah%20leather%20wallets"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat on WhatsApp"
+            className="fixed bottom-20 right-4 z-50 drop-shadow-lg transition-transform hover:scale-105 sm:bottom-6"
           >
-            <FaWhatsappSquare
-              className="text-green-500 text-5xl cursor-pointer"
-              target="_blank"
-            />
+            <FaWhatsappSquare className="text-5xl text-[#25D366]" />
           </a>
-        </div>
-
-        <Footer />
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

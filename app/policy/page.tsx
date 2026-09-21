@@ -1,68 +1,98 @@
 import React from "react";
+import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Shipping, Returns & Privacy Policy | Hilyah",
+  description:
+    "Read Hilyah policies for cash on delivery shipping, 7-day returns, refunds, and privacy. Clear terms for leather wallet orders in Pakistan.",
+  path: "/policy",
+  keywords: [
+    "Hilyah return policy",
+    "wallet shipping Pakistan",
+    "COD policy",
+  ],
+});
 
 const Page = () => {
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-10 text-gray-800">
-      <h1 className="text-3xl font-bold text-center text-blue-600">Policies & Information</h1>
+    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
+      <h1 className="font-display text-center text-4xl font-semibold text-[var(--ink)]">
+        Policies & information
+      </h1>
+      <p className="mx-auto mt-3 max-w-xl text-center text-sm text-[var(--ink-soft)]">
+        Clear rules so you know exactly how returns, shipping, and privacy work
+        at Hilyah.
+      </p>
 
-      {/* Return & Exchange Policy */}
-      <section>
-        <h2 className="text-2xl font-semibold text-gray-900 border-b pb-2 mb-4">Return & Exchange Policy</h2>
-        <p className="leading-7">
-          We have a <strong>7-day return policy</strong>, which means you have 7 days after receiving your item to request a return.
-          To be eligible, your item must be unused, in original packaging, with tags, and a proof of purchase.
+      <section
+        className="mt-10 space-y-4 bg-[var(--surface)] p-6 sm:p-8"
+        style={{ border: "1px solid var(--line)" }}
+      >
+        <h2 className="font-display text-2xl font-semibold text-[var(--ink)]">
+          Return & exchange
+        </h2>
+        <p className="leading-7 text-[var(--ink-soft)]">
+          We offer a <strong className="text-[var(--ink)]">7-day return policy</strong>{" "}
+          from the day you receive your order. Items must be unused, in original
+          packaging, with tags and proof of purchase.
         </p>
-        <p className="leading-7 mt-4">
-          To initiate a return, contact us at <a href="mailto:hilyah967@gmail.com" className="text-blue-600 underline">hilyah967@gmail.com</a>.
-          Items must first be approved before sending to: <br />
-          <span className="italic">Khanapull Snam Chook, Abdulbari House, Islamabad</span>
+        <p className="leading-7 text-[var(--ink-soft)]">
+          Email{" "}
+          <a
+            href="mailto:hilyah967@gmail.com"
+            className="font-medium text-[var(--cognac)] underline-offset-2 hover:underline"
+          >
+            hilyah967@gmail.com
+          </a>{" "}
+          for approval before shipping returns to:{" "}
+          <em>Islamabad</em>.
         </p>
-        <p className="leading-7 mt-4">
-          Once accepted, we’ll provide a shipping label and instructions. Items sent without approval will not be accepted.
-        </p>
-        <p className="leading-7 mt-4">
-          <strong>Damages & Issues:</strong> Inspect your order upon arrival and contact us immediately if it is defective, damaged, or incorrect.
-        </p>
-        <p className="leading-7 mt-4">
-          <strong>Non-returnable items:</strong> Sale items and gift cards cannot be returned.
-        </p>
-        <p className="leading-7 mt-4">
-          <strong>Refunds:</strong> If approved, refunds will be processed within 4 business days to your original payment method.
+        <p className="leading-7 text-[var(--ink-soft)]">
+          Damaged or incorrect items: contact us as soon as you open the parcel.
+          Sale items and gift cards are non-returnable. Approved refunds are
+          processed within 4 business days.
         </p>
       </section>
 
-      {/* Shipping Policy */}
-      <section>
-        <h2 className="text-2xl font-semibold text-gray-900 border-b pb-2 mb-4">Shipping Policy</h2>
-        <p className="leading-7">
-          All goods are shipped from <strong>Islamabad, Punjab</strong>. In-stock orders are dispatched within 3–5 business days.
-          Heavy-weight or bulk orders may take 5–7 days. Bulk orders can be negotiated individually.
+      <section
+        className="mt-6 space-y-4 bg-[var(--surface)] p-6 sm:p-8"
+        style={{ border: "1px solid var(--line)" }}
+      >
+        <h2 className="font-display text-2xl font-semibold text-[var(--ink)]">
+          Shipping
+        </h2>
+        <p className="leading-7 text-[var(--ink-soft)]">
+          All orders ship from <strong className="text-[var(--ink)]">Islamabad</strong>.
+          In-stock items usually leave within 3–5 business days. We deliver with{" "}
+          <strong className="text-[var(--ink)]">Cash on Delivery</strong>.
         </p>
-        <p className="leading-7 mt-4">
-          We use COD services via trusted couriers such as <strong>TCS</strong> and <strong>Leopard</strong>. 
-        </p>
-        <ul className="list-disc list-inside leading-7 mt-4">
-          <li>Free delivery on more than 2 items</li>
-          <li>Standard delivery time: 2–5 business days</li>
-          <li>In case of lockdowns, protests, or other delays: 5–10 business days</li>
+        <ul className="list-disc space-y-2 pl-5 leading-7 text-[var(--ink-soft)]">
+          <li>Standard delivery: 2–5 business days</li>
+          <li>Delays during lockdowns or protests: 5–10 business days</li>
         </ul>
       </section>
 
-      {/* Personal Information */}
-      <section>
-        <h2 className="text-2xl font-semibold text-gray-900 border-b pb-2 mb-4">Collecting Personal Information</h2>
-        <p className="leading-7">
-          We value your privacy. The personal information we collect (such as name, phone number, address, and email) is used 
-          only to process and deliver your orders efficiently.
-        </p>
-        <p className="leading-7 mt-4">
-          We <strong>do not</strong> share, sell, or disclose your data to third parties. Your data is securely stored and used only for 
-          relevant communications like order confirmations and delivery updates.
-        </p>
-        <p className="leading-7 mt-4">
-          By shopping with us, you trust that your privacy is protected every step of the way.
+      <section
+        className="mt-6 space-y-4 bg-[var(--surface)] p-6 sm:p-8"
+        style={{ border: "1px solid var(--line)" }}
+      >
+        <h2 className="font-display text-2xl font-semibold text-[var(--ink)]">
+          Privacy
+        </h2>
+        <p className="leading-7 text-[var(--ink-soft)]">
+          We only collect what we need to fulfill your order — name, phone,
+          address, and email. We do not sell or share your data with third
+          parties for marketing. Your information is used for order confirmation
+          and delivery updates only.
         </p>
       </section>
+
+      <div className="mt-10 text-center">
+        <Link href="/contact" className="btn-primary inline-block rounded-md px-5 py-2.5 text-sm">
+          Questions? Contact us
+        </Link>
+      </div>
     </div>
   );
 };

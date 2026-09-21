@@ -1,19 +1,40 @@
-'use client'
-
-import React from "react";
+import type { Metadata } from "next";
 import giftProducts from "@/data/giftProducts";
-import { useParams } from "next/navigation";
 import WholeProductDetail from "@/components/WholeProductDetail";
+import JsonLd from "@/components/JsonLd";
+import {
+  breadcrumbJsonLd,
+  productJsonLd,
+  productMetadata,
+} from "@/lib/seo";
 
+type Props = { params: Promise<{ product: string }> };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { product } = await params;
+  const item = giftProducts.find((p) => p.id === parseInt(product, 10));
+  return productMetadata(item, "gifts", "Gift");
+}
 
-const ProductPage = () => {
-//   const params = useParams();
-  
- const {product}=useParams()
- const products = giftProducts.find((p) => p.id === parseInt(product as string));
+export default async function GiftProductPage({ params }: Props) {
+  const { product } = await params;
+  const item = giftProducts.find((p) => p.id === parseInt(product, 10)) || null;
 
- return <WholeProductDetail products={products || null} />
-};
-
-export default ProductPage;
+  return (
+    <>
+      {item && (
+        <JsonLd
+          data={[
+            productJsonLd(item, "gifts", "Gift"),
+            breadcrumbJsonLd([
+              { name: "Home", path: "/" },
+              { name: "Gifts", path: "/gifts" },
+              { name: item.title, path: `/gifts/${item.id}` },
+            ]),
+          ]}
+        />
+      )}
+      <WholeProductDetail products={item} />
+    </>
+  );
+}

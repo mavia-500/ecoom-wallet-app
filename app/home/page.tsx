@@ -1,13 +1,17 @@
-import Footer from "@/components/Footer";
-import Slider from "@/components/Slider";
-import React from "react";
+import HomePageContent from "@/components/HomePageContent";
+import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/site";
 
-const page = () => {
-  return (
-    <div>
-      <Slider />
-    </div>
-  );
+export const metadata: Metadata = {
+  title: {
+    absolute: "Hilyah | Genuine Leather Wallets for Men in Pakistan",
+  },
+  description:
+    "Shop premium handcrafted leather wallets from Hilyah. Bifold, trifold, card holders & gifts with cash on delivery across Pakistan and a lifetime leather warranty.",
+  alternates: { canonical: absoluteUrl("/") },
+  robots: { index: false, follow: true },
 };
 
-export default page;
+export default function HomeAliasPage() {
+  return <HomePageContent />;
+}

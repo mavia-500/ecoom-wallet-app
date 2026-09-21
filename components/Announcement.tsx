@@ -2,22 +2,24 @@ import React from "react";
 
 const Announcement = () => {
   const announcements = [
-
-    "Unforgettable and unbeatable deals!",
-    "Get delivery within 3-4 Working days!",
-    "Lifetime warranty on leather products!",
-    "Elegant and stylish designs!",
+    "Cash on Delivery across Pakistan",
+    "Ships in 3–4 working days via TCS & Leopard",
+    "Lifetime warranty on leather",
+    "7-day easy return & exchange",
   ];
 
+  const loop = [...announcements, ...announcements];
+
   return (
-    <div className="overflow-hidden bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-3 shadow-lg">
-      <div className="animate-marquee whitespace-nowrap flex items-center">
-        {announcements.map((announcement, index) => (
-          <span
-            key={index}
-            className="inline-block mx-8 text-lg font-semibold text-white transition-transform duration-300 ease-in-out hover:scale-110 hover:text-yellow-300"
-          >
-            {announcement} ⭐
+    <div
+      className="overflow-hidden py-2.5 text-[13px] tracking-wide text-[#faf9f7]"
+      style={{ background: "var(--leather)" }}
+    >
+      <div className="animate-marquee flex w-max items-center whitespace-nowrap">
+        {loop.map((announcement, index) => (
+          <span key={`${announcement}-${index}`} className="mx-8 inline-flex items-center gap-3">
+            <span className="h-1 w-1 rounded-full bg-[var(--cognac)]" aria-hidden />
+            {announcement}
           </span>
         ))}
       </div>

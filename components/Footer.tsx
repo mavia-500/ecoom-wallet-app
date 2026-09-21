@@ -4,73 +4,118 @@ import SocialMediaLinks from "./SocialMediaLinks";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-blue-950 to-blue-900 text-gray-200 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* About Section */}
+    <footer
+      className="mt-8 py-14 text-[#e5e1dc]"
+      style={{ background: "var(--leather)" }}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white">About Hilyah</h3>
-            <p className="text-sm leading-relaxed max-w-md">
-              Hilyah offers premium hand-stitched leather products, crafted with meticulous attention to detail. Experience the artistry and quality in every piece we create.
+            <h3 className="font-display text-2xl font-semibold text-[#faf9f7]">
+              Hilyah
+            </h3>
+            <p className="max-w-md text-sm leading-relaxed">
+              Premium hand-stitched leather wallets crafted in Pakistan.
+              Genuine materials, clear policies, and cash on delivery so you
+              can shop with confidence.
+            </p>
+            <p className="text-sm">
+              <a href="tel:+923285478737" className="underline-offset-2 hover:underline">
+                +92 328 5478737
+              </a>
             </p>
           </div>
 
-          {/* Customer Care Section */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white">Customer Care</h3>
+            <h3 className="font-display text-xl font-semibold text-[#faf9f7]">
+              Customer care
+            </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/policy" className="hover:text-blue-300 transition-colors duration-200">
-                  Refund & Exchange Policy
+                <Link href="/products" className="hover:text-[#faf9f7]">
+                  All products
                 </Link>
               </li>
               <li>
-                <Link href="/policy" className="hover:text-blue-300 transition-colors duration-200">
-                  Shipping Policy
+                <Link href="/sale" className="hover:text-[#faf9f7]">
+                  Sale
                 </Link>
               </li>
               <li>
-                <Link href="/policy" className="hover:text-blue-300 transition-colors duration-200">
-                  Privacy Policy
+                <Link href="/bifoldwallet" className="hover:text-[#faf9f7]">
+                  Bi-fold wallets
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-blue-300 transition-colors duration-200">
+                <Link href="/trifoldwallet" className="hover:text-[#faf9f7]">
+                  Tri-fold wallets
+                </Link>
+              </li>
+              <li>
+                <Link href="/cardholder" className="hover:text-[#faf9f7]">
+                  Card holders
+                </Link>
+              </li>
+              <li>
+                <Link href="/longwallet" className="hover:text-[#faf9f7]">
+                  Long wallets
+                </Link>
+              </li>
+              <li>
+                <Link href="/gifts" className="hover:text-[#faf9f7]">
+                  Gifts
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-[#faf9f7]">
+                  Our story
+                </Link>
+              </li>
+              <li>
+                <Link href="/policy" className="hover:text-[#faf9f7]">
+                  Refund & exchange
+                </Link>
+              </li>
+              <li>
+                <Link href="/policy" className="hover:text-[#faf9f7]">
+                  Shipping policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/policy" className="hover:text-[#faf9f7]">
+                  Privacy policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-[#faf9f7]">
                   Contact
                 </Link>
               </li>
-              
             </ul>
           </div>
 
-          {/* Newsletter Section */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white">Stay Connected</h3>
-            <p className="text-sm max-w-xs">
-              Subscribe for updates, exclusive deals, and more.
-            </p>
-            <div className="mt-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full max-w-sm px-4 py-3 bg-gray-800 border border-gray-700 rounded-md text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
-              />
-            </div>
-            <button className="px-6 py-3 bg-blue-600 text-white font-medium rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-              SUBSCRIBE
-            </button>
+            <h3 className="font-display text-xl font-semibold text-[#faf9f7]">
+              Shop with confidence
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li>Cash on delivery (COD)</li>
+              <li>Lifetime leather warranty</li>
+              <li>7-day return window</li>
+            </ul>
           </div>
         </div>
 
-        {/* Social Media Links */}
         <div className="mt-10">
           <SocialMediaLinks />
         </div>
 
-        {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-gray-800 flex justify-center">
-          <p className="text-sm text-gray-400">
-            &copy; 2025 Hilyah. All rights reserved.
+        <div
+          className="mt-8 flex justify-center border-t pt-8"
+          style={{ borderColor: "rgba(250,249,247,0.15)" }}
+        >
+          <p className="text-sm text-[#c9c2b8]">
+            © {new Date().getFullYear()} Hilyah. All rights reserved.
           </p>
         </div>
       </div>

@@ -1,19 +1,41 @@
-'use client'
-
-import React from "react";
+import type { Metadata } from "next";
 import cardholderProducts from "@/data/carholderProducts";
-import { useParams } from "next/navigation";
 import WholeProductDetail from "@/components/WholeProductDetail";
+import JsonLd from "@/components/JsonLd";
+import {
+  breadcrumbJsonLd,
+  productJsonLd,
+  productMetadata,
+} from "@/lib/seo";
 
+type Props = { params: Promise<{ product: string }> };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { product } = await params;
+  const item = cardholderProducts.find((p) => p.id === parseInt(product, 10));
+  return productMetadata(item, "cardholder", "Card Holder");
+}
 
-const ProductPage = () => {
-//   const params = useParams();
-  
- const {product}=useParams()
- const products = cardholderProducts.find((p) => p.id === parseInt(product as string));
+export default async function CardholderProductPage({ params }: Props) {
+  const { product } = await params;
+  const item =
+    cardholderProducts.find((p) => p.id === parseInt(product, 10)) || null;
 
- return <WholeProductDetail products={products || null} />
-};
-
-export default ProductPage;
+  return (
+    <>
+      {item && (
+        <JsonLd
+          data={[
+            productJsonLd(item, "cardholder", "Card Holder"),
+            breadcrumbJsonLd([
+              { name: "Home", path: "/" },
+              { name: "Card Holders", path: "/cardholder" },
+              { name: item.title, path: `/cardholder/${item.id}` },
+            ]),
+          ]}
+        />
+      )}
+      <WholeProductDetail products={item} />
+    </>
+  );
+}

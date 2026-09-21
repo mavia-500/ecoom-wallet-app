@@ -1,23 +1,148 @@
 @import "tailwindcss";
 
+:root {
+  --bg: #f0eeec;
+  --bg-deep: #e5e1dc;
+  --surface: #faf9f7;
+  --ink: #1a1614;
+  --ink-soft: #5c554e;
+  --leather: #3f2a1d;
+  --cognac: #8a5a32;
+  --cognac-hover: #734a28;
+  --olive: #2f4a3c;
+  --line: #d4cfc8;
+  --sale: #2f4a3c;
+  --font-display: var(--font-display), "Georgia", serif;
+  --font-body: var(--font-body), "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 120% 80% at 10% -10%, rgba(138, 90, 50, 0.08), transparent 50%),
+    radial-gradient(ellipse 90% 60% at 100% 0%, rgba(47, 74, 60, 0.06), transparent 45%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
 @layer utilities {
-    .animate-marquee {
-      animation: marquee 50s linear infinite;
+  .animate-marquee {
+    animation: marquee 45s linear infinite;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out both;
+  }
+
+  .animate-fade-up-delay {
+    animation: fade-up 0.9s ease-out 0.15s both;
+  }
+
+  .animate-fade-up-delay-2 {
+    animation: fade-up 1s ease-out 0.3s both;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
     }
-  
-    @keyframes marquee {
-      0% {
-        transform: translateX(100%);
-        
-      }
-      100% {
-        transform: translateX(-100%);
-      }
+    100% {
+      transform: translateX(-50%);
     }
   }
 
- 
-      .input {
-        @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400;
-      }
-    
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.input {
+  @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2;
+  border-color: var(--line);
+  background: var(--surface);
+}
+
+.input:focus {
+  --tw-ring-color: var(--cognac);
+}
+
+.btn-primary {
+  background: var(--leather);
+  color: #faf9f7;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--cognac);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--leather);
+  border: 1.5px solid var(--leather);
+  font-weight: 600;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--leather);
+  color: #faf9f7;
+}
+
+/* Accessibility & usability */
+:focus-visible {
+  outline: 2px solid var(--cognac);
+  outline-offset: 2px;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade-up,
+  .animate-fade-up-delay,
+  .animate-fade-up-delay-2,
+  .animate-marquee {
+    animation: none !important;
+  }
+}
