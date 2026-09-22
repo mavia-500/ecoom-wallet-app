@@ -1,0 +1,35 @@
+# Hilyah
+
+> Hilyah is an online store for premium hand-stitched genuine leather wallets crafted and shipped from Islamabad, Pakistan. Shop with cash on delivery (COD), lifetime leather warranty, and a 7-day return window.
+
+Hilyah sells bi-fold wallets, tri-fold wallets, card holders, long wallets, and gift sets for everyday carry. Products are genuine leather (no cloth stuffing on premium pieces), handmade, and available nationwide in Pakistan with COD.
+
+Contact: +92 328 5478737 | WhatsApp https://wa.me/923285478737 | Email hilyah967@gmail.com
+
+## Main pages
+
+- [Home](https://www.hilyah.online/): Store homepage and featured wallets
+- [All products](https://www.hilyah.online/products): Full product catalog
+- [Sale](https://www.hilyah.online/sale): Discounted leather wallets
+- [About](https://www.hilyah.online/about): Brand story and policies overview
+- [Contact](https://www.hilyah.online/contact): Phone, WhatsApp, and email support
+- [Policies](https://www.hilyah.online/policy): Refund, exchange, shipping, and privacy
+
+## Collections
+
+- [Bi-fold wallets](https://www.hilyah.online/bifoldwallet): Everyday bi-fold leather wallets
+- [Tri-fold wallets](https://www.hilyah.online/trifoldwallet): Tri-fold wallets with extra capacity
+- [Card holders](https://www.hilyah.online/cardholder): Slim leather card holders and mini wallets
+- [Long wallets](https://www.hilyah.online/longwallet): Handcrafted long / traveler wallets
+- [Gifts](https://www.hilyah.online/gifts): Leather gift sets
+
+## How to order
+
+1. Add a product to cart or choose Order now — COD
+2. Enter delivery details on the place-order page
+3. Pay cash when the parcel arrives (Pakistan-wide delivery)
+
+## Optional
+
+- [Sitemap](https://www.hilyah.online/sitemap.xml): Machine-readable list of indexable URLs
+- [Robots](https://www.hilyah.online/robots.txt): Crawler rules
