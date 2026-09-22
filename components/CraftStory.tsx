@@ -12,7 +12,7 @@ const CraftStory = () => {
         <div className="relative min-h-[320px]">
           <Image
             src="/images/IMG_20250501_115816_569.webp"
-            alt="Hilyah leather craftsmanship"
+            alt="artisan stitching genuine leather wallets in workshop"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"

@@ -32,7 +32,7 @@ const Page = () => {
       <div className="mt-10 overflow-hidden">
         <img
           src="/images/IMG_20250501_115816_569.webp"
-          alt="Hilyah leather products"
+          alt="handcrafted genuine leather wallets and accessories from Pakistan"
           className="h-64 w-full object-cover sm:h-80"
         />
       </div>

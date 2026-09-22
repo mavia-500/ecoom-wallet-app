@@ -59,7 +59,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     >
       <CardImageCarousel
         images={product.image}
-        alt={product.title}
+        alt={`${product.title} —  ${product.color} leather product`}
         href={href}
         badge={
           hasDiscount ? (

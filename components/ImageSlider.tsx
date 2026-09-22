@@ -57,7 +57,7 @@ const ImageSlider = ({ images, productTitle }: ImageSliderProps) => {
             >
               <Image
                 src={src}
-                alt={`${altBase} — photo ${index + 1} of ${safeImages.length}`}
+                alt={`${altBase} — leather product photo ${index + 1} of ${safeImages.length}`}
                 fill
                 priority={index === 0}
                 sizes="(max-width: 768px) 100vw, 896px"
@@ -109,7 +109,7 @@ const ImageSlider = ({ images, productTitle }: ImageSliderProps) => {
             >
               <Image
                 src={imageUrl}
-                alt=""
+                alt={`${altBase} thumbnail ${index + 1} of ${safeImages.length}`}
                 fill
                 sizes="64px"
                 loading="lazy"

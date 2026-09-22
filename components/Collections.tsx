@@ -7,25 +7,25 @@ const collections = [
     href: "/bifoldwallet",
     title: "Bi-Fold",
     image: "/images/wem.webp",
-    alt: "Bi fold leather wallet",
+    alt: "bi-fold genuine leather wallet collection",
   },
   {
     href: "/trifoldwallet",
     title: "Tri-Fold",
     image: "/images/ad.webp",
-    alt: "Tri fold leather wallet",
+    alt: "tri-fold genuine leather wallet collection",
   },
   {
     href: "/cardholder",
     title: "Card Holder",
     image: "/images/cardh.webp",
-    alt: "Leather card holder",
+    alt: "slim leather card holder collection",
   },
   {
     href: "/longwallet",
     title: "Long Wallet",
     image: "/images/d.webp",
-    alt: "Long leather wallet",
+    alt: "Hilyah long leather wallet collection",
   },
 ];
 

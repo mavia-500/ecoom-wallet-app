@@ -93,7 +93,7 @@ const FlashSale = () => {
               >
                 <CardImageCarousel
                   images={item.images}
-                  alt={item.title}
+                  alt={`${item.title} —  leather wallet on sale`}
                   href={href}
                   badge={
                     <span

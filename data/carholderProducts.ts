@@ -28,9 +28,9 @@ const cardholderProducts: Product[] = [
   // },
   {
     id: 15,
-    title: "Wax Pull Up Leather Card Holder + Mini Wallet",
+    title: "Wax Pull Up Card Holder Mini Wallet",
     description:
-      "Premium leather wallet with 6 card slots  and  cash compartment 100% wax pull up Leather.Life time Leather Warranty. No Cloth Stuff is used. Hand Made and hand stichthed.",
+      "Slim card-holder style mini wallet in 100% wax pull-up leather with 6 card slots and a cash compartment. Hand-stitched everyday carry under Card Holders — lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/be6d3cbd-926e-42bd-83ed-e29497832a7a.webp",
       "/assets/bifold/1.webp",

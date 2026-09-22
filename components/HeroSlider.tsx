@@ -11,7 +11,7 @@ const heroSlides = [
     cta: "Shop wallets",
     href: "/bifoldwallet",
     image: "/images/wem.webp",
-    alt: "Hilyah leather bifold wallet",
+    alt: "genuine leather bifold wallet in pocket — homepage hero",
   },
   {
     title: "Hilyah",
@@ -19,7 +19,7 @@ const heroSlides = [
     cta: "Explore collections",
     href: "/trifoldwallet",
     image: "/images/ad.webp",
-    alt: "Hilyah leather trifold wallet",
+    alt: "full-grain leather trifold wallet — homepage hero",
   },
   {
     title: "Hilyah",
@@ -27,7 +27,7 @@ const heroSlides = [
     cta: "Shop gifts",
     href: "/gifts",
     image: "/images/d.webp",
-    alt: "Hilyah leather gift wallet",
+    alt: "leather wallet gift set — homepage hero",
   },
 ];
 

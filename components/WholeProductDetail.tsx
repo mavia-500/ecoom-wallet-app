@@ -197,9 +197,9 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
               className="mt-6 rounded-md bg-[var(--bg)] p-4"
               style={{ border: "1px solid var(--line)" }}
             >
-              <p className="text-sm font-semibold text-[var(--ink)]">
+              <h2 className="text-sm font-semibold text-[var(--ink)]">
                 How ordering works
-              </p>
+              </h2>
               <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm text-[var(--ink-soft)]">
                 <li>Add to cart (or order now)</li>
                 <li>Enter your delivery details</li>
@@ -256,9 +256,9 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
                 aria-controls="product-reviews"
               >
                 <span>
-                  <span className="font-display block text-lg font-semibold text-[var(--ink)] sm:text-xl">
+                  <h2 className="font-display text-lg font-semibold text-[var(--ink)] sm:text-xl">
                     Customer reviews
-                  </span>
+                  </h2>
                   <span className="mt-0.5 block text-xs text-[var(--ink-soft)]">
                     {displayReviews.length}{" "}
                     {displayReviews.length === 1 ? "review" : "reviews"}

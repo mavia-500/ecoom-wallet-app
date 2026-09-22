@@ -11,9 +11,9 @@ const Footer = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div className="space-y-4">
-            <h3 className="font-display text-2xl font-semibold text-[#faf9f7]">
+            <h2 className="font-display text-2xl font-semibold text-[#faf9f7]">
               Hilyah
-            </h3>
+            </h2>
             <p className="max-w-md text-sm leading-relaxed">
               Premium hand-stitched leather wallets crafted in Pakistan.
               Genuine materials, clear policies, and cash on delivery so you
@@ -27,9 +27,9 @@ const Footer = () => {
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-display text-xl font-semibold text-[#faf9f7]">
+            <h2 className="font-display text-xl font-semibold text-[#faf9f7]">
               Customer care
-            </h3>
+            </h2>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/products" className="hover:text-[#faf9f7]">
@@ -95,9 +95,9 @@ const Footer = () => {
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-display text-xl font-semibold text-[#faf9f7]">
+            <h2 className="font-display text-xl font-semibold text-[#faf9f7]">
               Shop with confidence
-            </h3>
+            </h2>
             <ul className="space-y-2 text-sm">
               <li>Cash on delivery (COD)</li>
               <li>Lifetime leather warranty</li>

@@ -30,7 +30,7 @@ const LeatherWallet = ({ productData }: { productData: Product[] }) => {
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--bg-deep)]">
                 <Image
                   src={imageUrl}
-                  alt={title}
+                  alt={`${title} — featured leather collection`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"

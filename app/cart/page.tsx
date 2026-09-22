@@ -77,7 +77,7 @@ export default function CartPage() {
               >
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={`${item.title} — ${item.color}  leather product`}
                   className="h-full w-full object-cover"
                 />
               </Link>

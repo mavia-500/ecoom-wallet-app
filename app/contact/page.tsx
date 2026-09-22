@@ -26,15 +26,15 @@ const Page = () => {
         style={{ border: "1px solid var(--line)" }}
       >
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-[var(--ink-soft)]">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--ink-soft)]">
             Trade name
-          </p>
+          </h2>
           <p className="mt-1 text-lg font-medium text-[var(--ink)]">Hilyah.pk</p>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-[var(--ink-soft)]">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--ink-soft)]">
             Phone
-          </p>
+          </h2>
           <a
             href="tel:+923285478737"
             className="mt-1 block text-lg font-medium text-[var(--cognac)] hover:underline"
@@ -43,9 +43,9 @@ const Page = () => {
           </a>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-[var(--ink-soft)]">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--ink-soft)]">
             WhatsApp
-          </p>
+          </h2>
           <a
             href="https://wa.me/923285478737"
             target="_blank"
@@ -56,9 +56,9 @@ const Page = () => {
           </a>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-[var(--ink-soft)]">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--ink-soft)]">
             Email
-          </p>
+          </h2>
           <a
             href="mailto:hilyah967@gmail.com"
             className="mt-1 block text-lg font-medium text-[var(--cognac)] hover:underline"
@@ -67,9 +67,9 @@ const Page = () => {
           </a>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-[var(--ink-soft)]">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--ink-soft)]">
             Dispatch from
-          </p>
+          </h2>
           <p className="mt-1 text-[var(--ink)]">Islamabad, Pakistan</p>
         </div>
       </div>

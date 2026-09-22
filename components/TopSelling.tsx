@@ -38,7 +38,7 @@ const topItems: TopItem[] = [
   },
   {
     id: 15,
-    title: "Wax Pull Up Card Holder + Mini Wallet",
+    title: "Wax Pull Up Card Holder Mini Wallet",
     images: [
       "/assets/bifold/be6d3cbd-926e-42bd-83ed-e29497832a7a.webp",
       "/assets/bifold/1.webp",
@@ -89,7 +89,7 @@ const TopSelling = () => {
             >
               <CardImageCarousel
                 images={item.images}
-                alt={item.title}
+                alt={`${item.title} —  bestselling leather wallet`}
                 href={href}
                 badge={
                   <span

@@ -69,6 +69,79 @@ export function pageMetadata({
   };
 }
 
+function fitProductMetaTitle(
+  productTitle: string,
+  categoryLabel: string,
+  min = 57,
+  max = 60
+): string {
+  const brand = ` | ${SITE_NAME}`;
+  const clean = productTitle.replace(/\s+/g, " ").trim();
+
+  const suffixes = [
+    ` | ${categoryLabel} | Pakistan${brand}`,
+    ` | ${categoryLabel} | COD${brand}`,
+    ` | ${categoryLabel}${brand}`,
+    ` | Pakistan${brand}`,
+    ` | COD${brand}`,
+    brand,
+    ` Online${brand}`,
+  ];
+
+  const cores = [clean, `Buy ${clean}`];
+
+  for (const suffix of suffixes) {
+    for (const core of cores) {
+      const title = `${core}${suffix}`;
+      if (title.length >= min && title.length <= max) return title;
+    }
+  }
+
+  // Truncate the product name only — keep a clean suffix
+  for (const suffix of suffixes) {
+    for (const core of cores) {
+      const room = max - suffix.length;
+      if (room < 20) continue;
+
+      let trimmed = core;
+      if (trimmed.length > room) {
+        trimmed = core.slice(0, room).trimEnd();
+        const space = trimmed.lastIndexOf(" ");
+        if (space >= 18) trimmed = trimmed.slice(0, space);
+      }
+
+      const title = `${trimmed}${suffix}`;
+      if (title.length >= min && title.length <= max) return title;
+    }
+  }
+
+  // Last resort: longest readable title that fits max, then pad into range
+  let title = `${clean}${brand}`;
+  if (title.length > max) {
+    const room = max - brand.length;
+    let trimmed = clean.slice(0, room).trimEnd();
+    const space = trimmed.lastIndexOf(" ");
+    if (space >= 18) trimmed = trimmed.slice(0, space);
+    title = `${trimmed}${brand}`;
+  }
+
+  for (const mid of [` | ${categoryLabel}`, " | Pakistan", " | COD", " Online", " PK"]) {
+    if (title.length >= min) break;
+    const next = title.replace(brand, `${mid}${brand}`);
+    if (next.length <= max) title = next;
+  }
+
+  if (title.length < min) {
+    const room = max - title.length;
+    if (room > 0) {
+      title = title.replace(brand, `${" PK".slice(0, room)}${brand}`);
+    }
+  }
+
+  if (title.length > max) title = title.slice(0, max).trimEnd();
+  return title;
+}
+
 export function productMetadata(
   product: ProductLike | undefined,
   categoryPath: string,
@@ -84,18 +157,19 @@ export function productMetadata(
 
   const finalPrice = product.price - product.discountedPrice;
   const shortDesc =
-    product.description.length > 155
-      ? `${product.description.slice(0, 152).trim()}…`
+    product.description.length > 110
+      ? `${product.description.slice(0, 107).trim()}…`
       : product.description;
 
   return pageMetadata({
-    title: `${product.title} | ${categoryLabel} | ${SITE_NAME}`,
-    description: `Buy ${product.title} in ${product.color} for Rs ${finalPrice.toLocaleString("en-PK")}. ${shortDesc} COD across Pakistan. Lifetime leather warranty.`,
+    title: fitProductMetaTitle(product.title, categoryLabel),
+    description: `Buy ${product.title} as a ${categoryLabel.toLowerCase()} in ${product.color} for Rs ${finalPrice.toLocaleString("en-PK")} at Hilyah. ${shortDesc} COD across Pakistan.`,
     path: `/${categoryPath}/${product.id}`,
     image: product.image[0],
     keywords: [
       product.title,
       `${product.title} Pakistan`,
+      `${categoryLabel} Pakistan`,
       categoryLabel,
       "leather wallet Pakistan",
       "Hilyah",
