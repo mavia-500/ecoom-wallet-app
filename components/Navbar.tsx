@@ -100,12 +100,6 @@ const Navbar = () => {
                   </span>
                 )}
               </Link>
-              <Link
-                href="/products"
-                className="btn-primary hidden rounded-md px-3 py-2 text-sm sm:inline-block sm:px-4"
-              >
-                Shop now
-              </Link>
               <button
                 type="button"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-md text-[var(--ink)] hover:bg-[var(--bg-deep)] lg:hidden"

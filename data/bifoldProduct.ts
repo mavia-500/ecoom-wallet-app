@@ -88,7 +88,7 @@ const bifoldProducts: Product[] = [
   },
   {
     id: 3,
-    title: "Vintage boook Wallet",
+    title: "Vintage book Wallet",
     description:
       " Book shape  Leather wallet  Cash Compartment 6 Card Slot ultra slim Easy to Carry 100% leather",
     image: [
