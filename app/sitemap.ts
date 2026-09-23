@@ -4,6 +4,7 @@ import trifoldProducts from "@/data/trifoldProducts";
 import cardholderProducts from "@/data/carholderProducts";
 import longwalletProducts from "@/data/longwalletProducts";
 import giftProducts from "@/data/giftProducts";
+import { productSlug } from "@/lib/productSlug";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://www.hilyah.online";
@@ -76,35 +77,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const bifold = bifoldProducts.map((product) => ({
-    url: `${siteUrl}/bifoldwallet/${product.id}`,
+    url: `${siteUrl}/bifoldwallet/${productSlug(product.title)}`,
     lastModified,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
 
   const trifold = trifoldProducts.map((product) => ({
-    url: `${siteUrl}/trifoldwallet/${product.id}`,
+    url: `${siteUrl}/trifoldwallet/${productSlug(product.title)}`,
     lastModified,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
 
   const cardholders = cardholderProducts.map((product) => ({
-    url: `${siteUrl}/cardholder/${product.id}`,
+    url: `${siteUrl}/cardholder/${productSlug(product.title)}`,
     lastModified,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
 
   const longwallets = longwalletProducts.map((product) => ({
-    url: `${siteUrl}/longwallet/${product.id}`,
+    url: `${siteUrl}/longwallet/${productSlug(product.title)}`,
     lastModified,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
 
   const gifts = giftProducts.map((product) => ({
-    url: `${siteUrl}/gifts/${product.id}`,
+    url: `${siteUrl}/gifts/${productSlug(product.title)}`,
     lastModified,
     changeFrequency: "weekly" as const,
     priority: 0.7,

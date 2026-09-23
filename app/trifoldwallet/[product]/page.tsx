@@ -7,19 +7,19 @@ import {
   productJsonLd,
   productMetadata,
 } from "@/lib/seo";
+import { findProductByParam, productHref } from "@/lib/productSlug";
 
 type Props = { params: Promise<{ product: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { product } = await params;
-  const item = trifoldProducts.find((p) => p.id === parseInt(product, 10));
+  const item = findProductByParam(trifoldProducts, product);
   return productMetadata(item, "trifoldwallet", "Tri-Fold Wallet");
 }
 
 export default async function TrifoldProductPage({ params }: Props) {
   const { product } = await params;
-  const item =
-    trifoldProducts.find((p) => p.id === parseInt(product, 10)) || null;
+  const item = findProductByParam(trifoldProducts, product) || null;
 
   return (
     <>
@@ -30,7 +30,7 @@ export default async function TrifoldProductPage({ params }: Props) {
             breadcrumbJsonLd([
               { name: "Home", path: "/" },
               { name: "Tri-Fold Wallets", path: "/trifoldwallet" },
-              { name: item.title, path: `/trifoldwallet/${item.id}` },
+              { name: item.title, path: productHref("trifoldwallet", item) },
             ]),
           ]}
         />

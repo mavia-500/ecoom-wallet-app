@@ -4,6 +4,7 @@ import cardholderProducts from "@/data/carholderProducts";
 import longwalletProducts from "@/data/longwalletProducts";
 import giftProducts from "@/data/giftProducts";
 import { absoluteUrl, SITE_NAME } from "@/lib/site";
+import { productHref } from "@/lib/productSlug";
 
 export type MetaCatalogItem = {
   id: string;
@@ -59,7 +60,7 @@ function toItem(
     condition: "new",
     price: `${product.price.toFixed(2)} PKR`,
     sale_price: hasSale ? `${finalPrice.toFixed(2)} PKR` : "",
-    link: absoluteUrl(`/${categoryPath}/${product.id}`),
+    link: absoluteUrl(productHref(categoryPath, product)),
     image_link: absoluteUrl(product.image[0] || "/images/logo1.webp"),
     additional_image_link: extraImages,
     brand: SITE_NAME,

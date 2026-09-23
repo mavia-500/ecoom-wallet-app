@@ -7,18 +7,19 @@ import {
   productJsonLd,
   productMetadata,
 } from "@/lib/seo";
+import { findProductByParam, productHref } from "@/lib/productSlug";
 
 type Props = { params: Promise<{ product: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { product } = await params;
-  const item = giftProducts.find((p) => p.id === parseInt(product, 10));
+  const item = findProductByParam(giftProducts, product);
   return productMetadata(item, "gifts", "Gift");
 }
 
 export default async function GiftProductPage({ params }: Props) {
   const { product } = await params;
-  const item = giftProducts.find((p) => p.id === parseInt(product, 10)) || null;
+  const item = findProductByParam(giftProducts, product) || null;
 
   return (
     <>
@@ -29,7 +30,7 @@ export default async function GiftProductPage({ params }: Props) {
             breadcrumbJsonLd([
               { name: "Home", path: "/" },
               { name: "Gifts", path: "/gifts" },
-              { name: item.title, path: `/gifts/${item.id}` },
+              { name: item.title, path: productHref("gifts", item) },
             ]),
           ]}
         />

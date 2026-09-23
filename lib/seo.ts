@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { absoluteUrl, getSiteUrl, SITE_NAME } from "@/lib/site";
+import { productHref } from "@/lib/productSlug";
 
 type ReviewLike = {
   rating?: number;
@@ -164,7 +165,7 @@ export function productMetadata(
   return pageMetadata({
     title: fitProductMetaTitle(product.title, categoryLabel),
     description: `Buy ${product.title} as a ${categoryLabel.toLowerCase()} in ${product.color} for Rs ${finalPrice.toLocaleString("en-PK")} at Hilyah. ${shortDesc} COD across Pakistan.`,
-    path: `/${categoryPath}/${product.id}`,
+    path: productHref(categoryPath, product),
     image: product.image[0],
     keywords: [
       product.title,
@@ -252,7 +253,7 @@ export function productJsonLd(
   categoryLabel: string
 ) {
   const finalPrice = product.price - product.discountedPrice;
-  const url = absoluteUrl(`/${categoryPath}/${product.id}`);
+  const url = absoluteUrl(productHref(categoryPath, product));
   const rated = (product.reviews || []).filter(
     (r) => typeof r.rating === "number" && r.rating > 0
   );
@@ -387,7 +388,7 @@ export function itemListJsonLd({
       itemListElement: products.map((product, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: absoluteUrl(`/${categoryPath}/${product.id}`),
+        url: absoluteUrl(productHref(categoryPath, product)),
         name: product.title,
         image: product.image[0] ? absoluteUrl(product.image[0]) : undefined,
       })),
@@ -428,7 +429,7 @@ export function catalogItemListJsonLd({
       itemListElement: products.map((product, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: absoluteUrl(`/${product.category}/${product.id}`),
+        url: absoluteUrl(productHref(product.category, product)),
         name: product.title,
         image: product.image[0] ? absoluteUrl(product.image[0]) : undefined,
       })),

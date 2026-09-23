@@ -3,6 +3,7 @@
 import Link from "next/link";
 import CardImageCarousel from "@/components/CardImageCarousel";
 import SaleCountdown from "@/components/SaleCountdown";
+import { productHref } from "@/lib/productSlug";
 
 type SaleItem = {
   id: number;
@@ -84,7 +85,7 @@ const FlashSale = () => {
             const percent = Math.round(
               (item.discountedPrice / item.price) * 100,
             );
-            const href = `/${item.category}/${item.id}`;
+            const href = productHref(item.category, item);
 
             return (
               <div

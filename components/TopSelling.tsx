@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import CardImageCarousel from "@/components/CardImageCarousel";
+import { productHref } from "@/lib/productSlug";
 
 type TopItem = {
   id: number;
@@ -80,7 +81,7 @@ const TopSelling = () => {
         {topItems.map((item, index) => {
           const finalPrice = item.price - item.discountedPrice;
           const hasDiscount = item.discountedPrice > 0;
-          const href = `/${item.category}/${item.id}`;
+          const href = productHref(item.category, item);
 
           return (
             <div

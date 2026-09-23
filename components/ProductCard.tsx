@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import CardImageCarousel from "@/components/CardImageCarousel";
 import { useCart } from "@/context/CartContext";
+import { productHref } from "@/lib/productSlug";
 
 interface Product {
   id: number;
@@ -30,7 +31,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const [added, setAdded] = useState(false);
   const finalPrice = product.price - product.discountedPrice;
   const hasDiscount = product.discountedPrice > 0;
-  const href = `/${category}/${product.id}`;
+  const href = productHref(category, product);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -54,7 +55,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       style={
         priority
           ? undefined
-          : { contentVisibility: "auto", containIntrinsicSize: "400px 520px" }
+          : { contentVisibility: "auto", containIntrinsicSize: "320px 420px" }
       }
     >
       <CardImageCarousel

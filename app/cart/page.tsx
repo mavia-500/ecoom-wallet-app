@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FiMinus, FiPlus, FiTrash2 } from "react-icons/fi";
 import { useCart } from "@/context/CartContext";
+import { productHref } from "@/lib/productSlug";
 
 export default function CartPage() {
   const {
@@ -72,7 +73,7 @@ export default function CartPage() {
               style={{ border: "1px solid var(--line)" }}
             >
               <Link
-                href={`/${item.category}/${item.id}`}
+                href={productHref(item.category, item)}
                 className="h-28 w-28 flex-shrink-0 overflow-hidden bg-[var(--bg-deep)]"
               >
                 <img
@@ -84,7 +85,7 @@ export default function CartPage() {
 
               <div className="min-w-0 flex-1">
                 <Link
-                  href={`/${item.category}/${item.id}`}
+                  href={productHref(item.category, item)}
                   className="font-display text-lg font-semibold text-[var(--ink)] hover:text-[var(--cognac)]"
                 >
                   {item.title}

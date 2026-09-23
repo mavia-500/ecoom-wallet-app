@@ -17,7 +17,7 @@ export default function CardImageCarousel({
   images,
   alt,
   href,
-  sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw",
+  sizes = "(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw",
   badge,
 }: CardImageCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -64,7 +64,7 @@ export default function CardImageCarousel({
               fill
               sizes={sizes}
               loading={index === 0 ? "eager" : "lazy"}
-              className="object-cover"
+              className="object-cover object-center"
               draggable={false}
             />
           </Link>

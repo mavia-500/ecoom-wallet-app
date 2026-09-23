@@ -7,18 +7,19 @@ import {
   productJsonLd,
   productMetadata,
 } from "@/lib/seo";
+import { findProductByParam, productHref } from "@/lib/productSlug";
 
 type Props = { params: Promise<{ product: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { product } = await params;
-  const item = bifoldProducts.find((p) => p.id === parseInt(product, 10));
+  const item = findProductByParam(bifoldProducts, product);
   return productMetadata(item, "bifoldwallet", "Bi-Fold Wallet");
 }
 
 export default async function BifoldProductPage({ params }: Props) {
   const { product } = await params;
-  const item = bifoldProducts.find((p) => p.id === parseInt(product, 10)) || null;
+  const item = findProductByParam(bifoldProducts, product) || null;
 
   return (
     <>
@@ -29,7 +30,7 @@ export default async function BifoldProductPage({ params }: Props) {
             breadcrumbJsonLd([
               { name: "Home", path: "/" },
               { name: "Bi-Fold Wallets", path: "/bifoldwallet" },
-              { name: item.title, path: `/bifoldwallet/${item.id}` },
+              { name: item.title, path: productHref("bifoldwallet", item) },
             ]),
           ]}
         />

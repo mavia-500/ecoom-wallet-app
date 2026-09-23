@@ -7,19 +7,19 @@ import {
   productJsonLd,
   productMetadata,
 } from "@/lib/seo";
+import { findProductByParam, productHref } from "@/lib/productSlug";
 
 type Props = { params: Promise<{ product: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { product } = await params;
-  const item = longwalletProducts.find((p) => p.id === parseInt(product, 10));
+  const item = findProductByParam(longwalletProducts, product);
   return productMetadata(item, "longwallet", "Long Wallet");
 }
 
 export default async function LongwalletProductPage({ params }: Props) {
   const { product } = await params;
-  const item =
-    longwalletProducts.find((p) => p.id === parseInt(product, 10)) || null;
+  const item = findProductByParam(longwalletProducts, product) || null;
 
   return (
     <>
@@ -30,7 +30,7 @@ export default async function LongwalletProductPage({ params }: Props) {
             breadcrumbJsonLd([
               { name: "Home", path: "/" },
               { name: "Long Wallets", path: "/longwallet" },
-              { name: item.title, path: `/longwallet/${item.id}` },
+              { name: item.title, path: productHref("longwallet", item) },
             ]),
           ]}
         />
