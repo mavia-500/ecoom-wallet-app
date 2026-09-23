@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaPinterest } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
 
@@ -20,6 +20,11 @@ const SocialMediaLinks = () => {
       href: "https://www.tiktok.com/@hilyah965",
       icon: FaTiktok,
       label: "TikTok",
+    },
+    {
+      href: "https://www.pinterest.com/hilyah967/",
+      icon: FaPinterest,
+      label: "Pinterest",
     },
     {
       href: "https://wa.me/923285478737?text=Hello%2C%20I%20am%20interested%20in%20Hilyah%20wallets",

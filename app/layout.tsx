@@ -66,6 +66,9 @@ export const metadata: Metadata = {
   publisher: "Hilyah",
   applicationName: "Hilyah",
   category: "shopping",
+  verification: {
+    google: "CM6kwdFEJj2jVmf7EeFnksHNJfN7Z6Dmp0MTFPB06ug",
+  },
   icons: {
     icon: [{ url: "/images/logo1.webp", type: "image/webp" }],
     apple: [{ url: "/images/logo1.webp", type: "image/webp" }],
