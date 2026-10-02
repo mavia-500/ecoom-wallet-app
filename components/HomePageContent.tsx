@@ -1,18 +1,5 @@
-import dynamic from "next/dynamic";
-import TrustBar from "@/components/TrustBar";
-import QuickShop from "@/components/QuickShop";
-import LeatherWallet from "@/components/LeatherWallet";
-import Collections from "@/components/Collections";
-import CraftStory from "@/components/CraftStory";
-import HomeReviews from "@/components/HomeReviews";
-import FlashSale from "@/components/FlashSale";
-import TopSelling from "@/components/TopSelling";
-import HeroSlider from "@/components/HeroSlider";
-
-const HomeFAQ = dynamic(() => import("@/components/HomeFAQ"), {
-  ssr: true,
-  loading: () => null,
-});
+import HomeHero from "@/components/HomeHero";
+import HomeBelowFold from "@/components/HomeBelowFold";
 
 const productData = [
   {
@@ -48,16 +35,8 @@ const productData = [
 export default function HomePageContent() {
   return (
     <div className="w-full">
-      <HeroSlider />
-      <TrustBar />
-      <QuickShop />
-      <FlashSale />
-      <TopSelling />
-      <LeatherWallet productData={productData} />
-      <Collections />
-      <CraftStory />
-      <HomeReviews />
-      <HomeFAQ />
+      <HomeHero />
+      <HomeBelowFold productData={productData} />
     </div>
   );
 }

@@ -33,13 +33,19 @@ const heroSlides = [
 
 const HeroSlider = () => {
   const [index, setIndex] = useState(0);
+  const [loaded, setLoaded] = useState<Record<number, boolean>>({ 0: true });
   const scrollerRef = useRef<HTMLDivElement>(null);
   const pauseRef = useRef(false);
+
+  const markLoaded = (i: number) => {
+    setLoaded((prev) => (prev[i] ? prev : { ...prev, [i]: true }));
+  };
 
   const scrollToIndex = (next: number, smooth = true) => {
     const el = scrollerRef.current;
     if (!el) return;
     const i = (next + heroSlides.length) % heroSlides.length;
+    markLoaded(i);
     el.scrollTo({
       left: i * el.clientWidth,
       behavior: smooth ? "smooth" : "auto",
@@ -51,10 +57,13 @@ const HeroSlider = () => {
     const el = scrollerRef.current;
     if (!el || !el.clientWidth) return;
     const i = Math.round(el.scrollLeft / el.clientWidth);
+    markLoaded(i);
     setIndex(i);
   };
 
   useEffect(() => {
+    // Autoplay only on larger screens — saves mobile main-thread work
+    if (window.matchMedia("(max-width: 640px)").matches) return;
     const id = window.setInterval(() => {
       if (pauseRef.current) return;
       const el = scrollerRef.current;
@@ -92,17 +101,21 @@ const HeroSlider = () => {
           {heroSlides.map((item, i) => (
             <div
               key={item.image}
-              className="relative h-[min(56vh,520px)] w-full min-w-full flex-none snap-center"
+              className="relative h-[min(48vh,420px)] w-full min-w-full flex-none snap-center sm:h-[min(56vh,520px)]"
             >
-              <Image
-                src={item.image}
-                alt={item.alt}
-                fill
-                priority={i === 0}
-                sizes="100vw"
-                className="object-contain object-center"
-                draggable={false}
-              />
+              {loaded[i] && (
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  priority={i === 0}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  quality={65}
+                  sizes="100vw"
+                  className="object-contain object-center"
+                  draggable={false}
+                />
+              )}
               <div
                 className="pointer-events-none absolute inset-0"
                 style={{

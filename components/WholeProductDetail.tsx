@@ -54,7 +54,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
   const pathname = usePathname();
   const category = pathname?.split("/")[1] || "bifoldwallet";
   const categoryLabel = categoryLabels[category] || "Wallets";
-  const { addItem } = useCart();
+  const { addItem, openCart } = useCart();
 
   useEffect(() => {
     if (!products || typeof window === "undefined" || !window.fbq) return;
@@ -225,9 +225,13 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
             {added && (
               <p className="mt-3 text-center text-sm text-[var(--olive)]">
                 Added!{" "}
-                <Link href="/cart" className="underline underline-offset-2">
+                <button
+                  type="button"
+                  onClick={openCart}
+                  className="underline underline-offset-2"
+                >
                   View cart
-                </Link>
+                </button>
               </p>
             )}
 

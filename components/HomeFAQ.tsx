@@ -9,7 +9,7 @@ const HomeFAQ = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-3xl px-4 pb-4 pt-4 sm:px-6 sm:pb-6 sm:pt-6 lg:px-8">
       <div className="text-center">
         <h2 className="font-display text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
           Common questions
@@ -54,7 +54,7 @@ const HomeFAQ = () => {
         })}
       </div>
 
-      <div className="mt-8 flex flex-wrap justify-center gap-3">
+      <div className="mt-5 flex flex-wrap justify-center gap-3">
         <a
           href="https://wa.me/923285478737?text=Hello%2C%20I%20have%20a%20question%20about%20ordering"
           target="_blank"

@@ -19,7 +19,7 @@ const links = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const { totalItems, isReady } = useCart();
+  const { totalItems, isReady, openCart } = useCart();
 
   useEffect(() => {
     setIsOpen(false);
@@ -44,36 +44,36 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className="sticky top-0 z-50 border-b backdrop-blur-md"
+        className="sticky top-0 z-50 border-b"
         style={{
-          background: "rgba(250, 249, 247, 0.95)",
+          background: "var(--surface)",
           borderColor: "var(--line)",
         }}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between sm:h-[4.5rem]">
+          <div className="flex h-12 items-center justify-between overflow-hidden sm:h-14">
             <Link
               href="/"
-              className="flex flex-shrink-0 items-center"
+              className="flex h-full flex-shrink-0 items-center overflow-hidden"
               aria-label="Hilyah home"
             >
               <img
                 src="/images/logo1.webp"
                 alt="Hilyah — genuine leather wallets"
-                width={160}
-                height={56}
+                width={120}
+                height={42}
                 decoding="async"
                 fetchPriority="high"
-                className="h-11 w-auto sm:h-14"
+                className="h-8 w-auto object-contain object-center sm:h-9"
               />
             </Link>
 
-            <div className="hidden items-center gap-1 lg:flex">
+            <div className="hidden items-center gap-0.5 lg:flex">
               {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors ${
                     isActive(link.href)
                       ? "bg-[var(--bg-deep)] text-[var(--cognac)]"
                       : "text-[var(--ink)] hover:bg-[var(--bg-deep)] hover:text-[var(--cognac)]"
@@ -84,30 +84,31 @@ const Navbar = () => {
               ))}
             </div>
 
-            <div className="flex items-center gap-2 sm:gap-3">
-              <Link
-                href="/cart"
-                className="relative inline-flex h-10 w-10 items-center justify-center rounded-md text-[var(--ink)] hover:bg-[var(--bg-deep)]"
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <button
+                type="button"
+                onClick={openCart}
+                className="relative inline-flex h-9 w-9 items-center justify-center rounded-md text-[var(--ink)] hover:bg-[var(--bg-deep)]"
                 aria-label="Shopping cart"
               >
                 <FiShoppingCart className="h-5 w-5" />
                 {isReady && totalItems > 0 && (
                   <span
-                    className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-[10px] font-bold text-[#faf9f7]"
+                    className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-bold text-[#faf9f7]"
                     style={{ background: "var(--cognac)" }}
                   >
                     {totalItems > 99 ? "99+" : totalItems}
                   </span>
                 )}
-              </Link>
+              </button>
               <button
                 type="button"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md text-[var(--ink)] hover:bg-[var(--bg-deep)] lg:hidden"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md text-[var(--ink)] hover:bg-[var(--bg-deep)] lg:hidden"
                 onClick={() => setIsOpen(true)}
                 aria-label="Open menu"
                 aria-expanded={isOpen}
               >
-                <FiMenu className="h-6 w-6" />
+                <FiMenu className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -122,17 +123,21 @@ const Navbar = () => {
           aria-label="Site menu"
         >
           <div
-            className="flex h-16 flex-none items-center justify-between border-b px-4"
+            className="flex h-12 flex-none items-center justify-between border-b px-4"
             style={{ borderColor: "var(--line)" }}
           >
-            <img src="/images/logo1.webp" alt="Hilyah — genuine leather wallets" className="h-10 w-auto" />
+            <img
+              src="/images/logo1.webp"
+              alt="Hilyah — genuine leather wallets"
+              className="h-8 w-auto object-contain object-center"
+            />
             <button
               type="button"
               onClick={closeMenu}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-md text-[var(--ink)] hover:bg-[var(--bg-deep)]"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md text-[var(--ink)] hover:bg-[var(--bg-deep)]"
               aria-label="Close menu"
             >
-              <FiX className="h-6 w-6" />
+              <FiX className="h-5 w-5" />
             </button>
           </div>
 
@@ -155,13 +160,16 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="/cart"
-                onClick={closeMenu}
-                className="rounded-md px-3 py-3 text-base font-medium text-[var(--ink)] hover:bg-[var(--bg-deep)]"
+              <button
+                type="button"
+                onClick={() => {
+                  closeMenu();
+                  openCart();
+                }}
+                className="rounded-md px-3 py-3 text-left text-base font-medium text-[var(--ink)] hover:bg-[var(--bg-deep)]"
               >
                 Cart{isReady && totalItems > 0 ? ` (${totalItems})` : ""}
-              </Link>
+              </button>
               <Link
                 href="/contact"
                 onClick={closeMenu}

@@ -1,12 +1,14 @@
 import CategoryCatalog from "@/components/CategoryCatalog";
 import JsonLd from "@/components/JsonLd";
 import longwalletProducts from "@/data/longwalletProducts";
+import { forCategoryList } from "@/lib/catalog";
 import { breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 
 export default function Page() {
   const title = "Long wallets";
   const description =
     "Spacious leather wallets for cash, cards, and documents.";
+  const products = forCategoryList(longwalletProducts);
 
   return (
     <>
@@ -22,7 +24,7 @@ export default function Page() {
             description,
             path: "/longwallet",
             categoryPath: "longwallet",
-            products: longwalletProducts,
+            products,
           }),
         ]}
       />
@@ -30,7 +32,7 @@ export default function Page() {
         title={title}
         description={description}
         category="longwallet"
-        products={longwalletProducts}
+        products={products}
       />
     </>
   );

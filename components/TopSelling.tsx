@@ -63,21 +63,21 @@ const topItems: TopItem[] = [
 
 const TopSelling = () => {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mb-10 text-center">
+    <section className="mx-auto max-w-7xl px-4 pb-2 pt-2 sm:px-6 sm:pb-3 sm:pt-3 lg:px-8">
+      <div className="mb-6 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--cognac)]">
           Customer favorites
         </p>
         <h2 className="font-display mt-2 text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
           Top selling
         </h2>
-        <p className="mx-auto mt-3 max-w-lg text-sm text-[var(--ink-soft)] sm:text-base">
+        <p className="mx-auto mt-2 max-w-lg text-sm text-[var(--ink-soft)] sm:text-base">
           Our most-loved leather wallets — the pieces customers reorder and gift
           most often.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2.5 sm:gap-5 lg:grid-cols-4">
         {topItems.map((item, index) => {
           const finalPrice = item.price - item.discountedPrice;
           const hasDiscount = item.discountedPrice > 0;
@@ -94,28 +94,28 @@ const TopSelling = () => {
                 href={href}
                 badge={
                   <span
-                    className="pointer-events-none absolute left-3 top-3 z-10 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#faf9f7]"
+                    className="pointer-events-none absolute left-2 top-2 z-10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[#faf9f7] sm:left-3 sm:top-3 sm:px-2 sm:py-1 sm:text-[11px]"
                     style={{ background: "var(--olive)" }}
                   >
                     #{index + 1} Bestseller
                   </span>
                 }
               />
-              <Link href={href} className="block px-4 py-4">
-                <h3 className="font-display line-clamp-1 text-lg font-semibold text-[var(--ink)]">
+              <Link href={href} className="block px-2.5 py-2.5 sm:px-4 sm:py-4">
+                <h3 className="font-display line-clamp-1 text-sm font-semibold text-[var(--ink)] sm:text-lg">
                   {item.title}
                 </h3>
-                <div className="mt-2 flex items-baseline gap-2">
-                  <span className="text-lg font-bold text-[var(--sale)]">
+                <div className="mt-1 flex items-baseline gap-1.5 sm:mt-2 sm:gap-2">
+                  <span className="text-sm font-bold text-[var(--sale)] sm:text-lg">
                     Rs {finalPrice.toLocaleString()}
                   </span>
                   {hasDiscount && (
-                    <span className="text-sm text-[var(--ink-soft)] line-through">
+                    <span className="text-[10px] text-[var(--ink-soft)] line-through sm:text-sm">
                       Rs {item.price.toLocaleString()}
                     </span>
                   )}
                 </div>
-                <span className="btn-primary mt-4 block w-full rounded-md py-2.5 text-center text-sm">
+                <span className="btn-primary mt-2 block w-full rounded-md py-2 text-center text-xs sm:mt-4 sm:py-2.5 sm:text-sm">
                   Shop now
                 </span>
               </Link>
@@ -124,7 +124,7 @@ const TopSelling = () => {
         })}
       </div>
 
-      <div className="mt-10 flex justify-center">
+      <div className="mt-6 flex justify-center">
         <Link
           href="/products"
           className="btn-secondary rounded-md px-6 py-2.5 text-sm"

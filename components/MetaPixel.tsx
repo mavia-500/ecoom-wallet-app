@@ -1,10 +1,21 @@
 "use client";
 
 import Script from "next/script";
+import { useEffect, useState } from "react";
 
 const PIXEL_ID = "697594026040202";
 
 export default function MetaPixel() {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    // Delay Meta Pixel well past first paint / TBT window
+    const t = window.setTimeout(() => setReady(true), 8000);
+    return () => window.clearTimeout(t);
+  }, []);
+
+  if (!ready) return null;
+
   return (
     <>
       <Script id="meta-pixel" strategy="lazyOnload">

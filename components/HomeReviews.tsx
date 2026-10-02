@@ -48,7 +48,7 @@ const reviews = [
 
 const HomeReviews = () => {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-7xl px-4 pb-6 pt-8 sm:px-6 sm:pb-8 sm:pt-10 lg:px-8">
       <div className="text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--cognac)]">
           Customer love
@@ -56,13 +56,13 @@ const HomeReviews = () => {
         <h2 className="font-display mt-2 text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
           What buyers say
         </h2>
-        <p className="mx-auto mt-3 max-w-lg text-sm text-[var(--ink-soft)]">
+        <p className="mx-auto mt-2 max-w-lg text-sm text-[var(--ink-soft)]">
           Real feedback from customers across Pakistan who shopped with cash on
           delivery.
         </p>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {reviews.map((review) => (
           <article
             key={review.name}
@@ -97,7 +97,7 @@ const HomeReviews = () => {
         ))}
       </div>
 
-      <div className="mt-10 text-center">
+      <div className="mt-6 text-center">
         <Link
           href="/products"
           className="btn-primary inline-block rounded-md px-6 py-3 text-sm"

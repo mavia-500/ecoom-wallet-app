@@ -1,12 +1,14 @@
 import CategoryCatalog from "@/components/CategoryCatalog";
 import JsonLd from "@/components/JsonLd";
 import trifoldProducts from "@/data/trifoldProducts";
+import { forCategoryList } from "@/lib/catalog";
 import { breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 
 export default function Page() {
   const title = "Tri-fold wallets";
   const description =
     "Extra capacity without compromising on leather quality.";
+  const products = forCategoryList(trifoldProducts);
 
   return (
     <>
@@ -22,7 +24,7 @@ export default function Page() {
             description,
             path: "/trifoldwallet",
             categoryPath: "trifoldwallet",
-            products: trifoldProducts,
+            products,
           }),
         ]}
       />
@@ -30,7 +32,7 @@ export default function Page() {
         title={title}
         description={description}
         category="trifoldwallet"
-        products={trifoldProducts}
+        products={products}
       />
     </>
   );

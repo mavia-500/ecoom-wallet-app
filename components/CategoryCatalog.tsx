@@ -169,13 +169,13 @@ export default function CategoryCatalog({
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
               {visible.map((product, index) => (
                 <ProductCard
                   key={product.id}
                   product={product}
                   category={category}
-                  priority={index === 0}
+                  priority={index < 2}
                 />
               ))}
             </div>

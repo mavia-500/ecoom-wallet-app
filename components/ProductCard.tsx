@@ -62,10 +62,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         images={product.image}
         alt={`${product.title} —  ${product.color} leather product`}
         href={href}
+        priority={priority}
         badge={
           hasDiscount ? (
             <span
-              className="pointer-events-none absolute left-3 top-3 z-10 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#faf9f7]"
+              className="pointer-events-none absolute left-2 top-2 z-10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[#faf9f7] sm:left-3 sm:top-3 sm:px-2 sm:py-1 sm:text-[11px]"
               style={{ background: "var(--olive)" }}
             >
               Sale
@@ -75,22 +76,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       />
 
       <Link href={href} className="group block">
-        <div className="px-4 pt-4 sm:px-5 sm:pt-5">
-          <h2 className="font-display line-clamp-1 text-lg font-semibold text-[var(--ink)] sm:text-xl">
+        <div className="px-2.5 pt-2.5 sm:px-5 sm:pt-5">
+          <h2 className="font-display line-clamp-1 text-sm font-semibold text-[var(--ink)] sm:text-xl">
             {product.title}
           </h2>
-          <p className="mt-2 line-clamp-2 text-sm text-[var(--ink-soft)]">
+          <p className="mt-1 line-clamp-2 text-[11px] text-[var(--ink-soft)] sm:mt-2 sm:text-sm">
             {product.description}
           </p>
-          <p className="mt-3 text-xs text-[var(--ink-soft)]">
+          <p className="mt-1.5 text-[10px] text-[var(--ink-soft)] sm:mt-3 sm:text-xs">
             Color: <span className="text-[var(--ink)]">{product.color}</span>
           </p>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-lg font-bold text-[var(--sale)]">
+          <div className="mt-1.5 flex items-baseline gap-1.5 sm:mt-3 sm:gap-2">
+            <span className="text-sm font-bold text-[var(--sale)] sm:text-lg">
               Rs {finalPrice.toLocaleString()}
             </span>
             {hasDiscount && (
-              <span className="text-sm text-[var(--ink-soft)] line-through">
+              <span className="text-[10px] text-[var(--ink-soft)] line-through sm:text-sm">
                 Rs {product.price.toLocaleString()}
               </span>
             )}
@@ -98,17 +99,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </Link>
 
-      <div className="mt-auto flex flex-col gap-2 p-4 pt-3 sm:p-5 sm:pt-3">
+      <div className="mt-auto flex flex-col gap-1.5 p-2.5 pt-2 sm:gap-2 sm:p-5 sm:pt-3">
         <button
           type="button"
           onClick={handleAddToCart}
-          className="btn-primary w-full rounded-md py-2.5 text-sm"
+          className="btn-primary w-full rounded-md py-2 text-xs sm:py-2.5 sm:text-sm"
         >
           {added ? "Added ✓" : "Add to cart"}
         </button>
         <Link
           href={href}
-          className="btn-secondary block w-full rounded-md py-2.5 text-center text-sm"
+          className="btn-secondary block w-full rounded-md py-2 text-center text-xs sm:py-2.5 sm:text-sm"
         >
           View details
         </Link>

@@ -41,6 +41,32 @@ function slim(
   );
 }
 
+/** Listing cards only — drops reviews so category pages stay light. */
+export function forCategoryList(
+  products: Array<{
+    id: number;
+    title: string;
+    description: string;
+    image: string[];
+    color: string;
+    price: number;
+    discountedPrice: number;
+    reviews?: unknown;
+  }>
+) {
+  return products.map(
+    ({ id, title, description, image, color, price, discountedPrice }) => ({
+      id,
+      title,
+      description,
+      image,
+      color,
+      price,
+      discountedPrice,
+    })
+  );
+}
+
 /** Listing catalog without reviews (keeps client JS small). */
 export function getCatalogProducts(): CatalogProduct[] {
   return [

@@ -5,7 +5,7 @@ import SocialMediaLinks from "./SocialMediaLinks";
 const Footer = () => {
   return (
     <footer
-      className="mt-8 py-14 text-[#e5e1dc]"
+      className="mt-2 py-10 text-[#e5e1dc] sm:py-12"
       style={{ background: "var(--leather)" }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

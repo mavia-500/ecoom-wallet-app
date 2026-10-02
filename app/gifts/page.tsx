@@ -1,12 +1,14 @@
 import CategoryCatalog from "@/components/CategoryCatalog";
 import JsonLd from "@/components/JsonLd";
 import giftProducts from "@/data/giftProducts";
+import { forCategoryList } from "@/lib/catalog";
 import { breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 
 export default function Page() {
   const title = "Gifts";
   const description =
     "Thoughtful leather pieces — ready to gift with COD checkout.";
+  const products = forCategoryList(giftProducts);
 
   return (
     <>
@@ -22,7 +24,7 @@ export default function Page() {
             description,
             path: "/gifts",
             categoryPath: "gifts",
-            products: giftProducts,
+            products,
           }),
         ]}
       />
@@ -30,7 +32,7 @@ export default function Page() {
         title={title}
         description={description}
         category="gifts"
-        products={giftProducts}
+        products={products}
       />
     </>
   );

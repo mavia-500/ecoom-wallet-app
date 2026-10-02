@@ -11,6 +11,7 @@ type CardImageCarouselProps = {
   href: string;
   sizes?: string;
   badge?: React.ReactNode;
+  priority?: boolean;
 };
 
 export default function CardImageCarousel({
@@ -19,6 +20,7 @@ export default function CardImageCarousel({
   href,
   sizes = "(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw",
   badge,
+  priority = false,
 }: CardImageCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -26,7 +28,7 @@ export default function CardImageCarousel({
 
   if (!gallery.length) {
     return (
-      <div className="relative aspect-[4/5] w-full bg-[var(--bg-deep)]" />
+      <div className="relative aspect-[3/4] w-full bg-[var(--bg-deep)] sm:aspect-[4/5]" />
     );
   }
 
@@ -45,7 +47,7 @@ export default function CardImageCarousel({
   };
 
   return (
-    <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--bg-deep)]">
+    <div className="relative aspect-[3/4] w-full overflow-hidden bg-[var(--bg-deep)] sm:aspect-[4/5]">
       <div
         ref={scrollerRef}
         onScroll={onScroll}
@@ -58,15 +60,21 @@ export default function CardImageCarousel({
             className="relative h-full w-full flex-none snap-center"
             aria-label={`${alt} photo ${index + 1}`}
           >
-            <Image
-              src={src}
-              alt={`${alt} — leather product photo ${index + 1}`}
-              fill
-              sizes={sizes}
-              loading={index === 0 ? "eager" : "lazy"}
-              className="object-cover object-center"
-              draggable={false}
-            />
+            {index === activeIndex ? (
+              <Image
+                src={src}
+                alt={`${alt} — leather product photo ${index + 1}`}
+                fill
+                sizes={sizes}
+                priority={priority && index === 0}
+                loading={priority && index === 0 ? "eager" : "lazy"}
+                quality={65}
+                className="object-cover object-center"
+                draggable={false}
+              />
+            ) : (
+              <div className="h-full w-full bg-[var(--bg-deep)]" />
+            )}
           </Link>
         ))}
       </div>

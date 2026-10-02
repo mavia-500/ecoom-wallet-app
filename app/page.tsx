@@ -21,12 +21,6 @@ export const metadata = pageMetadata({
 export default function HomePage() {
   return (
     <>
-      <link
-        rel="preload"
-        as="image"
-        href="/images/wem.webp"
-        fetchPriority="high"
-      />
       <JsonLd
         data={[
           faqJsonLd(homeFaqs),

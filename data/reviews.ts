@@ -140,7 +140,7 @@ export function generateReviews(productId: number, category: string): Review[] {
   const reviews: Review[] = [];
   const seed = productId * 1000 + category.length * 100;
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 12; i++) {
     const r1 = seededRandom(seed + i * 3);
     const r2 = seededRandom(seed + i * 3 + 1);
     const r3 = seededRandom(seed + i * 3 + 2);

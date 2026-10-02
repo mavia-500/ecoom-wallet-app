@@ -4,7 +4,7 @@ import React from "react";
 
 const CraftStory = () => {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-7xl px-4 pb-6 pt-10 sm:px-6 sm:pb-8 sm:pt-12 lg:px-8">
       <div
         className="grid overflow-hidden lg:grid-cols-2"
         style={{ background: "var(--leather)" }}
