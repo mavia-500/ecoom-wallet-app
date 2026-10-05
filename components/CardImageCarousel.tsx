@@ -63,7 +63,7 @@ export default function CardImageCarousel({
             {index === activeIndex ? (
               <Image
                 src={src}
-                alt={`${alt} — leather product photo ${index + 1}`}
+                alt={`${alt} leather product photo ${index + 1}`}
                 fill
                 sizes={sizes}
                 priority={priority && index === 0}

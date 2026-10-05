@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { v4 as uuidv4 } from "uuid";
+import { DELIVERY_CHARGE, withDelivery } from "@/lib/pricing";
 
 type CartItemPayload = {
   id: number | string;
@@ -128,19 +129,20 @@ export async function POST(req: Request) {
     };
   });
 
-  const total = lines.reduce((sum, line) => sum + line.lineTotal, 0);
+  const subtotal = lines.reduce((sum, line) => sum + line.lineTotal, 0);
+  const total = withDelivery(subtotal);
 
   const adminEmail =
     process.env.ADMIN_EMAIL || process.env.EMAIL_USER || "hilyah967@gmail.com";
 
-  const subject = `New Hilyah Order — ${fullName} (Rs ${total})`;
+  const subject = `New Hilyah Order ${fullName} (Rs ${total})`;
 
   const itemsHtml = lines
     .map(
       (line) => `
       <tr>
         <td style="padding:6px 8px;border:1px solid #ddd;">${line.title}</td>
-        <td style="padding:6px 8px;border:1px solid #ddd;">${line.color || "—"}</td>
+        <td style="padding:6px 8px;border:1px solid #ddd;">${line.color || " "}</td>
         <td style="padding:6px 8px;border:1px solid #ddd;">${line.qty}</td>
         <td style="padding:6px 8px;border:1px solid #ddd;">Rs ${line.unit}</td>
         <td style="padding:6px 8px;border:1px solid #ddd;">Rs ${line.lineTotal}</td>
@@ -157,7 +159,7 @@ export async function POST(req: Request) {
     <p><strong>Address:</strong> ${address}</p>
     <p><strong>Province:</strong> ${province}</p>
     <p><strong>City:</strong> ${city}</p>
-    <p><strong>Notes:</strong> ${notes || "—"}</p>
+    <p><strong>Notes:</strong> ${notes || " "}</p>
     <h3>Items</h3>
     <table style="border-collapse:collapse;width:100%;font-size:14px;">
       <thead>
@@ -171,7 +173,9 @@ export async function POST(req: Request) {
       </thead>
       <tbody>${itemsHtml}</tbody>
     </table>
-    <p style="margin-top:12px;"><strong>Grand Total:</strong> Rs ${total}</p>
+    <p style="margin-top:12px;"><strong>Subtotal:</strong> Rs ${subtotal}</p>
+    <p><strong>Delivery:</strong> Rs ${DELIVERY_CHARGE}</p>
+    <p><strong>Grand Total:</strong> Rs ${total}</p>
   `;
 
   const plainMessage = `
@@ -182,16 +186,18 @@ Phone: ${phone}
 Address: ${address}
 Province: ${province}
 City: ${city}
-Notes: ${notes || "—"}
+Notes: ${notes || " "}
 
 Items:
 ${lines
   .map(
     (line) =>
-      `- ${line.title} (${line.color || "—"}) x${line.qty} = Rs ${line.lineTotal}`,
+      `- ${line.title} (${line.color || " "}) x${line.qty} = Rs ${line.lineTotal}`,
   )
   .join("\n")}
 
+Subtotal: Rs ${subtotal}
+Delivery: Rs ${DELIVERY_CHARGE}
 Grand Total: Rs ${total}
   `.trim();
 
@@ -210,8 +216,10 @@ Grand Total: Rs ${total}
       address,
       province,
       city,
-      notes: notes || "—",
+      notes: notes || " ",
       orderId,
+      subtotal: `Rs ${subtotal}`,
+      delivery: `Rs ${DELIVERY_CHARGE}`,
       total: `Rs ${total}`,
       message: plainMessage,
     });

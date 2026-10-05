@@ -15,7 +15,7 @@ const HomeFAQ = () => {
           Common questions
         </h2>
         <p className="mt-2 text-sm text-[var(--ink-soft)]">
-          Quick answers before you order — or message us anytime.
+          Quick answers before you order or message us anytime.
         </p>
       </div>
 
@@ -63,8 +63,8 @@ const HomeFAQ = () => {
         >
           Ask on WhatsApp
         </a>
-        <Link href="/policy" className="btn-secondary rounded-md px-5 py-2.5 text-sm">
-          Read policies
+        <Link href="/shipping" className="btn-secondary rounded-md px-5 py-2.5 text-sm">
+          Shipping policy
         </Link>
       </div>
     </section>

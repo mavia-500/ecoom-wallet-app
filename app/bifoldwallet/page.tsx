@@ -7,7 +7,7 @@ import { breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 export default function Page() {
   const title = "Bi-fold wallets";
   const description =
-    "Compact everyday leather wallets — cash on delivery across Pakistan.";
+    "Compact everyday leather wallets cash on delivery across Pakistan.";
   const products = forCategoryList(bifoldProducts);
 
   return (

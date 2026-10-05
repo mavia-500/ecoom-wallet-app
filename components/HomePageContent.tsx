@@ -3,7 +3,7 @@ import HomeBelowFold from "@/components/HomeBelowFold";
 
 const productData = [
   {
-    title: "Handcrafted Long Wallet",
+    title: "Handcrafted Traveller Wallet",
     imageUrl: "/images/Gemini_Generated_Image_l82ljxl82ljxl82l.webp",
     price: 2400,
     color: "brown",

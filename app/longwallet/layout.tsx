@@ -1,15 +1,15 @@
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Long Leather Wallets for Men | Hilyah Pakistan",
+  title: "Traveller Leather Wallets for Men | Hilyah Pakistan",
   description:
-    "Shop long leather wallets crafted by Hilyah. Spacious genuine leather, COD across Pakistan, lifetime leather warranty.",
+    "Shop traveller leather wallets crafted by Hilyah. Spacious genuine leather, COD across Pakistan, lifetime leather warranty.",
   path: "/longwallet",
   keywords: [
-    "long wallet Pakistan",
-    "leather long wallet",
-    "men long wallet",
-    "Hilyah long wallet",
+    "traveller wallet Pakistan",
+    "leather traveller wallet",
+    "men traveller wallet",
+    "Hilyah traveller wallet",
   ],
 });
 

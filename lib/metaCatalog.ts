@@ -83,7 +83,7 @@ export function getMetaCatalogItems(): MetaCatalogItem[] {
       toItem(p, "cardholder", "Leather Wallets > Card Holder")
     ),
     ...longwalletProducts.map((p) =>
-      toItem(p, "longwallet", "Leather Wallets > Long Wallet")
+      toItem(p, "longwallet", "Leather Wallets > Traveller Wallet")
     ),
     ...giftProducts.map((p) =>
       toItem(p, "gifts", "Leather Wallets > Gifts")

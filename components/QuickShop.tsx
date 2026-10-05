@@ -6,7 +6,7 @@ const categories = [
   { href: "/bifoldwallet", label: "Bi-Fold", hint: "Everyday" },
   { href: "/trifoldwallet", label: "Tri-Fold", hint: "More space" },
   { href: "/cardholder", label: "Card Holder", hint: "Slim" },
-  { href: "/longwallet", label: "Long Wallet", hint: "Cash & cards" },
+  { href: "/longwallet", label: "Traveller Wallet", hint: "Cash & cards" },
   { href: "/gifts", label: "Gifts", hint: "For him" },
 ];
 
@@ -22,13 +22,13 @@ const QuickShop = ({ overlay = false }: { overlay?: boolean }) => {
             <Link
               key={cat.href}
               href={cat.href}
-              className="min-w-0 rounded-md bg-[var(--surface)]/95 px-1 py-1.5 text-center shadow-sm backdrop-blur-sm transition hover:bg-[#faf9f7] sm:px-2.5 sm:py-2.5"
+              className="group min-w-0 rounded-md bg-[var(--surface)]/95 px-1 py-1.5 text-center shadow-sm backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--cognac)] hover:shadow-md sm:px-2.5 sm:py-2.5"
               style={{ border: "1px solid rgba(250,249,247,0.35)" }}
             >
-              <span className="block text-[10px] font-semibold leading-tight text-[var(--ink)] sm:text-xs">
+              <span className="block text-[10px] font-bold leading-tight text-[var(--ink)] transition-colors group-hover:text-[#faf9f7] sm:text-xs">
                 {cat.label}
               </span>
-              <span className="mt-0.5 block text-[8px] leading-tight text-[var(--ink-soft)] sm:text-[10px]">
+              <span className="mt-0.5 block text-[8px] font-medium leading-tight text-[var(--ink-soft)] transition-colors group-hover:font-semibold group-hover:text-[#f0eeec] sm:text-[10px]">
                 {cat.hint}
               </span>
             </Link>

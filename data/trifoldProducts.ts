@@ -8,6 +8,7 @@ interface Product {
   color: string;
   price: number;
   discountedPrice: number;
+  stock: number;
   reviews: Review[];
 }
 
@@ -24,6 +25,7 @@ const trifoldProducts: Product[] = [
     color: "Navy Blue",
     price: 3000,
     discountedPrice: 200,
+    stock: 7,
     reviews: generateReviews(1, "trifold"),
   },
   {
@@ -38,6 +40,7 @@ const trifoldProducts: Product[] = [
     color: "Brown",
     price: 2700,
     discountedPrice: 200,
+    stock: 24,
     reviews: generateReviews(2, "trifold"),
   },
   {
@@ -49,6 +52,7 @@ const trifoldProducts: Product[] = [
     color: "Grennish Brown",
     price: 3000,
     discountedPrice: 250,
+    stock: 15,
     reviews: generateReviews(3, "trifold"),
   },
 ];

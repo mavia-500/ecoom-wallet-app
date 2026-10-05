@@ -3,7 +3,7 @@ import React from "react";
 const Announcement = () => {
   const announcements = [
     "Cash on Delivery across Pakistan",
-    "Ships in 3–4 working days via TCS & Leopard",
+    "Ships in 3-4 working days via TCS & Leopard",
     "Lifetime warranty on leather",
     "7-day easy return & exchange",
   ];

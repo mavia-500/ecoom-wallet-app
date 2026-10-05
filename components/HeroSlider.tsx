@@ -11,7 +11,7 @@ const heroSlides = [
     cta: "Shop wallets",
     href: "/bifoldwallet",
     image: "/images/wem.webp",
-    alt: "genuine leather bifold wallet in pocket — homepage hero",
+    alt: "genuine leather bifold wallet in pocket homepage hero",
   },
   {
     title: "Hilyah",
@@ -19,15 +19,15 @@ const heroSlides = [
     cta: "Explore collections",
     href: "/trifoldwallet",
     image: "/images/ad.webp",
-    alt: "full-grain leather trifold wallet — homepage hero",
+    alt: "full-grain leather trifold wallet homepage hero",
   },
   {
     title: "Hilyah",
-    subtitle: "Gifts that feel personal — for him, from Pakistan.",
+    subtitle: "Gifts that feel personal for him, from Pakistan.",
     cta: "Shop gifts",
     href: "/gifts",
     image: "/images/d.webp",
-    alt: "leather wallet gift set — homepage hero",
+    alt: "leather wallet gift set homepage hero",
   },
 ];
 
@@ -62,7 +62,7 @@ const HeroSlider = () => {
   };
 
   useEffect(() => {
-    // Autoplay only on larger screens — saves mobile main-thread work
+    // Autoplay only on larger screens saves mobile main-thread work
     if (window.matchMedia("(max-width: 640px)").matches) return;
     const id = window.setInterval(() => {
       if (pauseRef.current) return;

@@ -1,3 +1,4 @@
+import PremiumCollection from "@/components/PremiumCollection";
 import FlashSale from "@/components/FlashSale";
 import TopSelling from "@/components/TopSelling";
 import LeatherWallet from "@/components/LeatherWallet";
@@ -14,7 +15,7 @@ type ProductTeaser = {
   link: string;
 };
 
-/** Server-rendered below-fold home sections — visible without JS for SEO. */
+/** Server-rendered below-fold home sections visible without JS for SEO. */
 export default function HomeBelowFold({
   productData,
 }: {
@@ -22,6 +23,7 @@ export default function HomeBelowFold({
 }) {
   return (
     <>
+      <PremiumCollection />
       <FlashSale />
       <TopSelling />
       <LeatherWallet productData={productData} />

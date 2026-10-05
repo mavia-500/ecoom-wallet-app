@@ -12,7 +12,7 @@ export const PRODUCT_SORTS = [
 
 export type ProductSortId = (typeof PRODUCT_SORTS)[number]["id"];
 
-/** Matches home Top Selling order — used for the top-selling sort. */
+/** Matches home Top Selling order used for the top-selling sort. */
 const TOP_SELLING_KEYS = [
   "bifoldwallet-14",
   "bifoldwallet-2",

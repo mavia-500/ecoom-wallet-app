@@ -60,7 +60,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     >
       <CardImageCarousel
         images={product.image}
-        alt={`${product.title} —  ${product.color} leather product`}
+        alt={`${product.title}  ${product.color} leather product`}
         href={href}
         priority={priority}
         badge={
@@ -77,7 +77,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
       <Link href={href} className="group block">
         <div className="px-2.5 pt-2.5 sm:px-5 sm:pt-5">
-          <h2 className="font-display line-clamp-1 text-sm font-semibold text-[var(--ink)] sm:text-xl">
+          <h2 className="product-title line-clamp-2 text-[13px] font-semibold leading-snug text-[var(--ink)] sm:line-clamp-1 sm:text-xl">
             {product.title}
           </h2>
           <p className="mt-1 line-clamp-2 text-[11px] text-[var(--ink-soft)] sm:mt-2 sm:text-sm">

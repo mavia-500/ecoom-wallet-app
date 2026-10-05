@@ -8,7 +8,7 @@ export default function ProductsPage() {
   const lcpImage = products[0]?.image[0];
   const title = "All products";
   const description =
-    "Every Hilyah leather wallet in one place — cash on delivery across Pakistan.";
+    "Every Hilyah leather wallet in one place cash on delivery across Pakistan.";
 
   return (
     <>

@@ -1,8 +1,16 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FiPhone } from "react-icons/fi";
 import SocialMediaLinks from "./SocialMediaLinks";
+import NewsletterForm from "./NewsletterForm";
 
 const Footer = () => {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/placeorder")) return null;
+
   return (
     <footer
       className="mt-2 py-10 text-[#e5e1dc] sm:py-12"
@@ -20,7 +28,11 @@ const Footer = () => {
               can shop with confidence.
             </p>
             <p className="text-sm">
-              <a href="tel:+923285478737" className="underline-offset-2 hover:underline">
+              <a
+                href="tel:+923285478737"
+                className="inline-flex items-center gap-2 underline-offset-2 hover:underline"
+              >
+                <FiPhone className="h-4 w-4 shrink-0" aria-hidden />
                 +92 328 5478737
               </a>
             </p>
@@ -34,11 +46,6 @@ const Footer = () => {
               <li>
                 <Link href="/products" className="hover:text-[#faf9f7]">
                   All products
-                </Link>
-              </li>
-              <li>
-                <Link href="/sale" className="hover:text-[#faf9f7]">
-                  Sale
                 </Link>
               </li>
               <li>
@@ -58,12 +65,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/longwallet" className="hover:text-[#faf9f7]">
-                  Long wallets
-                </Link>
-              </li>
-              <li>
-                <Link href="/gifts" className="hover:text-[#faf9f7]">
-                  Gifts
+                  Traveller wallets
                 </Link>
               </li>
               <li>
@@ -72,18 +74,18 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/policy" className="hover:text-[#faf9f7]">
-                  Refund & exchange
-                </Link>
-              </li>
-              <li>
-                <Link href="/policy" className="hover:text-[#faf9f7]">
+                <Link href="/shipping" className="hover:text-[#faf9f7]">
                   Shipping policy
                 </Link>
               </li>
               <li>
-                <Link href="/policy" className="hover:text-[#faf9f7]">
+                <Link href="/privacy" className="hover:text-[#faf9f7]">
                   Privacy policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/policy" className="hover:text-[#faf9f7]">
+                  Return &amp; exchange
                 </Link>
               </li>
               <li>
@@ -99,10 +101,25 @@ const Footer = () => {
               Shop with confidence
             </h2>
             <ul className="space-y-2 text-sm">
-              <li>Cash on delivery (COD)</li>
-              <li>Lifetime leather warranty</li>
-              <li>7-day return window</li>
+              <li>
+                <Link href="/shipping" className="hover:text-[#faf9f7]">
+                  Cash on delivery (COD)
+                </Link>
+              </li>
+              <li>
+                <Link href="/policy" className="hover:text-[#faf9f7]">
+                  Lifetime leather warranty
+                </Link>
+              </li>
+              <li>
+                <Link href="/policy" className="hover:text-[#faf9f7]">
+                  7-day return window
+                </Link>
+              </li>
             </ul>
+            <div className="pt-4">
+              <NewsletterForm />
+            </div>
           </div>
         </div>
 

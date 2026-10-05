@@ -17,7 +17,7 @@ const Page = () => {
         Contact Hilyah
       </h1>
       <p className="mx-auto mt-3 max-w-md text-center text-sm text-[var(--ink-soft)]">
-        Real support for real orders — ask about sizing, shipping, or gifts
+        Real support for real orders ask about sizing, shipping, or gifts
         before you buy.
       </p>
 
@@ -83,8 +83,8 @@ const Page = () => {
         >
           Chat on WhatsApp
         </a>
-        <Link href="/policy" className="btn-secondary rounded-md px-5 py-2.5 text-sm">
-          Read policies
+        <Link href="/shipping" className="btn-secondary rounded-md px-5 py-2.5 text-sm">
+          Shipping policy
         </Link>
       </div>
     </div>

@@ -32,7 +32,7 @@ export default function SaleCatalog({
             Sale
           </h1>
           <p className="mx-auto mt-3 max-w-lg text-sm text-[var(--ink-soft)]">
-            Every Hilyah leather piece currently on discount — cash on delivery
+            Every Hilyah leather piece currently on discount cash on delivery
             across Pakistan.
           </p>
           <p className="mt-4 text-sm text-[var(--ink-soft)]">
@@ -42,7 +42,7 @@ export default function SaleCatalog({
 
         {products.length === 0 ? (
           <p className="py-16 text-center text-sm text-[var(--ink-soft)]">
-            No sale items right now — check back soon.
+            No sale items right now check back soon.
           </p>
         ) : (
           <>

@@ -8,6 +8,7 @@ interface Product {
   color: string;
   price: number;
   discountedPrice: number;
+  stock: number;
   reviews: Review[];
 }
 
@@ -24,6 +25,7 @@ const longwalletProducts: Product[] = [
     color: "Brown",
     price: 2700,
     discountedPrice: 300,
+    stock: 20,
     reviews: generateReviews(1, "longwallet"),
   },
   {
@@ -38,6 +40,7 @@ const longwalletProducts: Product[] = [
     color: "Black",
     price: 1500,
     discountedPrice: 50,
+    stock: 11,
     reviews: generateReviews(2, "longwallet"),
   },
   {
@@ -52,6 +55,7 @@ const longwalletProducts: Product[] = [
     color: "Brown",
     price: 2900,
     discountedPrice: 300,
+    stock: 28,
     reviews: generateReviews(3, "longwallet"),
   },
   {
@@ -67,6 +71,7 @@ const longwalletProducts: Product[] = [
     color: "Brown / Red",
     price: 6800,
     discountedPrice: 300,
+    stock: 19,
     reviews: generateReviews(4, "longwallet"),
   },
   {
@@ -81,13 +86,14 @@ const longwalletProducts: Product[] = [
     color: "Cognac / Green",
     price: 6300,
     discountedPrice: 300,
+    stock: 10,
     reviews: generateReviews(5, "longwallet"),
   },
   {
     id: 6,
     title: "Ochre Snap Pocket Handcrafted Long Wallet",
     description:
-      "Handcrafted long wallet in rich ochre honey pull-up leather with a rustic crazy-horse finish that lightens and darkens into a personal patina. Thick gold contrast saddle stitching frames every edge and pocket. Opens to a secure brass-snap coin pouch, an ID window with oval thumb cutout, a full-length cash compartment for unfolded notes, and six horizontal card slots arranged for high-capacity everyday carry. Closed it keeps a slim vertical silhouette with burnished rounded corners — genuine leather, built for travelers and daily use, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted long wallet in rich ochre honey pull-up leather with a rustic crazy-horse finish that lightens and darkens into a personal patina. Thick gold contrast saddle stitching frames every edge and pocket. Opens to a secure brass-snap coin pouch, an ID window with oval thumb cutout, a full-length cash compartment for unfolded notes, and six horizontal card slots arranged for high-capacity everyday carry. Closed it keeps a slim vertical silhouette with burnished rounded corners genuine leather, built for travelers and daily use, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/longwallet/ochre-snap-long-wallet-1.webp",
       "/assets/longwallet/ochre-snap-long-wallet-2.webp",
@@ -95,13 +101,14 @@ const longwalletProducts: Product[] = [
     color: "Ochre",
     price: 8000,
     discountedPrice: 0,
+    stock: 27,
     reviews: generateReviews(6, "longwallet"),
   },
   {
     id: 7,
     title: "Burgundy Snap Pocket Handcrafted Long Wallet",
     description:
-      "Handcrafted long wallet in deep burgundy wine leather with a soft pull-up finish and thick tonal red saddle stitching along every edge and pocket. Opens to a brass-snap coin pouch, a vertical ID/card slot with thumb cutout, three stacked horizontal card slots, and dual full-length cash compartments that hold unfolded notes without crowding. Closed it keeps a slim rectangular silhouette with burnished rounded corners and a clean minimal face — genuine leather that develops a richer patina with daily carry. Built for travelers and everyday use, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted long wallet in deep burgundy wine leather with a soft pull-up finish and thick tonal red saddle stitching along every edge and pocket. Opens to a brass-snap coin pouch, a vertical ID/card slot with thumb cutout, three stacked horizontal card slots, and dual full-length cash compartments that hold unfolded notes without crowding. Closed it keeps a slim rectangular silhouette with burnished rounded corners and a clean minimal face genuine leather that develops a richer patina with daily carry. Built for travelers and everyday use, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/longwallet/burgundy-snap-long-wallet-1.webp",
       "/assets/longwallet/burgundy-snap-long-wallet-2.webp",
@@ -109,13 +116,14 @@ const longwalletProducts: Product[] = [
     color: "Burgundy",
     price: 8000,
     discountedPrice: 0,
+    stock: 18,
     reviews: generateReviews(7, "longwallet"),
   },
   {
     id: 8,
     title: "Black Crocodile Embossed Long Wallet",
     description:
-      "Handcrafted long wallet in deep black leather with a bold crocodile-embossed exterior and smooth matte black interior panels. Thick tonal hand stitching frames the perimeter and every pocket. Opens to six horizontal card slots — three on each side — plus dual full-length cash and document compartments for unfolded notes. Premium textured face, clean burnished edges, and a solid traveler build meant to last. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted long wallet in deep black leather with a bold crocodile-embossed exterior and smooth matte black interior panels. Thick tonal hand stitching frames the perimeter and every pocket. Opens to six horizontal card slots three on each side plus dual full-length cash and document compartments for unfolded notes. Premium textured face, clean burnished edges, and a solid traveler build meant to last. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/longwallet/black-croc-long-wallet-2.webp",
       "/assets/longwallet/black-croc-long-wallet-1.webp",
@@ -123,13 +131,14 @@ const longwalletProducts: Product[] = [
     color: "Black",
     price: 7999,
     discountedPrice: 300,
+    stock: 9,
     reviews: generateReviews(8, "longwallet"),
   },
   {
     id: 9,
     title: "Chocolate Dual-Snap Traveler Long Wallet",
     description:
-      "Handcrafted long traveler wallet in deep chocolate crazy-horse leather with thick cream contrast stitching and an asymmetrical flap secured by dual antique-brass snaps. Opens to six tiered card slots — three on each side — with cognac-tan spine accents and full-length slip pockets for unfolded cash, phone, or documents. Includes a matching leather protective sleeve with diagonal opening. Burnished edges, personal emboss option shown, built for everyday and travel carry. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted long traveler wallet in deep chocolate crazy-horse leather with thick cream contrast stitching and an asymmetrical flap secured by dual antique-brass snaps. Opens to six tiered card slots three on each side with cognac-tan spine accents and full-length slip pockets for unfolded cash, phone, or documents. Includes a matching leather protective sleeve with diagonal opening. Burnished edges, personal emboss option shown, built for everyday and travel carry. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/longwallet/chocolate-dual-snap-long-wallet-1.webp",
       "/assets/longwallet/chocolate-dual-snap-long-wallet-3.webp",
@@ -139,6 +148,7 @@ const longwalletProducts: Product[] = [
     color: "Chocolate Brown",
     price: 8999,
     discountedPrice: 0,
+    stock: 26,
     reviews: generateReviews(9, "longwallet"),
   },
 ];

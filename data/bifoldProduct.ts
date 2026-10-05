@@ -8,6 +8,7 @@ interface Product {
   color: string;
   price: number;
   discountedPrice: number;
+  stock: number;
   reviews: Review[];
 }
 
@@ -24,13 +25,14 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 3400,
     discountedPrice: 200,
+    stock: 20,
     reviews: generateReviews(14, "bifold"),
   },
   {
     id: 15,
     title: "Wax Pull Up Bi-Fold Mini Wallet",
     description:
-      "Compact bi-fold mini wallet in 100% wax pull-up leather with 6 card slots and a cash compartment. Hand-stitched front-pocket bi-fold carry — lifetime leather warranty, cash on delivery across Pakistan.",
+      "Compact bi-fold mini wallet in 100% wax pull-up leather with 6 card slots and a cash compartment. Hand-stitched front-pocket bi-fold carry lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/be6d3cbd-926e-42bd-83ed-e29497832a7a.webp",
       "/assets/bifold/1.webp",
@@ -38,6 +40,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 2600,
     discountedPrice: 200,
+    stock: 11,
     reviews: generateReviews(15, "bifold"),
   },
   {
@@ -55,6 +58,7 @@ const bifoldProducts: Product[] = [
     color: "Choclate",
     price: 15000,
     discountedPrice: 1200,
+    stock: 28,
     reviews: generateReviews(16, "bifold"),
   },
   {
@@ -69,6 +73,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 2000,
     discountedPrice: 200,
+    stock: 7,
     reviews: generateReviews(1, "bifold"),
   },
   {
@@ -84,6 +89,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 2400,
     discountedPrice: 400,
+    stock: 24,
     reviews: generateReviews(2, "bifold"),
   },
   {
@@ -98,6 +104,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 1800,
     discountedPrice: 300,
+    stock: 15,
     reviews: generateReviews(3, "bifold"),
   },
   // {
@@ -127,6 +134,7 @@ const bifoldProducts: Product[] = [
     color: "Black",
     price: 2400,
     discountedPrice: 200,
+    stock: 23,
     reviews: generateReviews(5, "bifold"),
   },
   {
@@ -142,6 +150,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 2500,
     discountedPrice: 300,
+    stock: 14,
     reviews: generateReviews(6, "bifold"),
   },
   {
@@ -157,6 +166,7 @@ const bifoldProducts: Product[] = [
     color: "Black",
     price: 2200,
     discountedPrice: 300,
+    stock: 5,
     reviews: generateReviews(7, "bifold"),
   },
   {
@@ -172,6 +182,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 3200,
     discountedPrice: 300,
+    stock: 22,
     reviews: generateReviews(8, "bifold"),
   },
   {
@@ -185,6 +196,7 @@ const bifoldProducts: Product[] = [
     color: "Tan",
     price: 1700,
     discountedPrice: 300,
+    stock: 13,
     reviews: generateReviews(9, "bifold"),
   },
   {
@@ -199,6 +211,7 @@ const bifoldProducts: Product[] = [
     color: "Blue",
     price: 1400,
     discountedPrice: 200,
+    stock: 4,
     reviews: generateReviews(10, "bifold"),
   },
   {
@@ -214,6 +227,7 @@ const bifoldProducts: Product[] = [
     color: "Redish Brown",
     price: 3500,
     discountedPrice: 1000,
+    stock: 21,
     reviews: generateReviews(11, "bifold"),
   },
   {
@@ -228,6 +242,7 @@ const bifoldProducts: Product[] = [
     color: "Yellow",
     price: 3300,
     discountedPrice: 1000,
+    stock: 12,
     reviews: generateReviews(12, "bifold"),
   },
   {
@@ -244,6 +259,7 @@ const bifoldProducts: Product[] = [
     color: "Brown",
     price: 3400,
     discountedPrice: 1000,
+    stock: 3,
     reviews: generateReviews(13, "bifold"),
   },
   {
@@ -258,35 +274,38 @@ const bifoldProducts: Product[] = [
     color: "Burgundy",
     price: 2999,
     discountedPrice: 0,
+    stock: 19,
     reviews: generateReviews(17, "bifold"),
   },
   {
     id: 18,
     title: "Navy Pebble Grain Hand-Stitched Bifold",
     description:
-      "Handcrafted bifold in deep navy pebble-grain leather with bold amber contrast stitching on the outer edges and tonal navy stitching on the card slots. Opens flat to a practical layout with multiple vertical card slots on each side, rear slip pockets for extras, and a full-length bill compartment across the top. Thick artisanal thread, raw-burnished edges, and a rugged everyday feel — genuine leather with lifetime leather warranty. Cash on delivery across Pakistan.",
+      "Handcrafted bifold in deep navy pebble-grain leather with bold amber contrast stitching on the outer edges and tonal navy stitching on the card slots. Opens flat to a practical layout with multiple vertical card slots on each side, rear slip pockets for extras, and a full-length bill compartment across the top. Thick artisanal thread, raw-burnished edges, and a rugged everyday feel genuine leather with lifetime leather warranty. Cash on delivery across Pakistan.",
     image: ["/assets/bifold/navy-pebble-bifold-1.webp"],
     color: "Navy",
     price: 3500,
     discountedPrice: 0,
+    stock: 10,
     reviews: generateReviews(18, "bifold"),
   },
   {
     id: 19,
     title: "Crocodile Embossed Brown Bifold",
     description:
-      "Compact bifold covered in rich chocolate-brown crocodile-embossed leather with a semi-gloss pull-up finish and golden-tan contrast perimeter stitching. Classic closed bifold profile with slightly rounded corners — bold exotic texture for a refined yet rugged look. Genuine leather, hand-finished edges, lifetime leather warranty. Cash on delivery across Pakistan.",
+      "Compact bifold covered in rich chocolate-brown crocodile-embossed leather with a semi-gloss pull-up finish and golden-tan contrast perimeter stitching. Classic closed bifold profile with slightly rounded corners bold exotic texture for a refined yet rugged look. Genuine leather, hand-finished edges, lifetime leather warranty. Cash on delivery across Pakistan.",
     image: ["/assets/bifold/croc-brown-bifold-1.webp"],
     color: "Brown",
     price: 3500,
     discountedPrice: 100,
+    stock: 27,
     reviews: generateReviews(19, "bifold"),
   },
   {
     id: 20,
     title: "Cognac Snap Vertical Bifold Wallet",
     description:
-      "Handcrafted vertical bifold in rich cognac pull-up leather with a secure silver snap tab closure. Opens to two card pockets with curved edges and oval thumb slides for quick card access, plus a slim layered build for cash and extras. Thick cream contrast stitching, burnished edges, and an embossed mark on the front — rustic crazy-horse character that ages beautifully. Genuine leather, pocket-friendly size, lifetime leather warranty. Cash on delivery across Pakistan.",
+      "Handcrafted vertical bifold in rich cognac pull-up leather with a secure silver snap tab closure. Opens to two card pockets with curved edges and oval thumb slides for quick card access, plus a slim layered build for cash and extras. Thick cream contrast stitching, burnished edges, and an embossed mark on the front rustic crazy-horse character that ages beautifully. Genuine leather, pocket-friendly size, lifetime leather warranty. Cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/cognac-snap-bifold-1.webp",
       "/assets/bifold/cognac-snap-bifold-2.webp",
@@ -295,13 +314,14 @@ const bifoldProducts: Product[] = [
     color: "Cognac",
     price: 3200,
     discountedPrice: 150,
+    stock: 18,
     reviews: generateReviews(20, "bifold"),
   },
   {
     id: 21,
     title: "Tobacco Vertical Hand-Stitched Bifold",
     description:
-      "Handcrafted vertical bifold in warm tobacco-brown leather with thick cream contrast stitching and neatly burnished multi-layer edges. Opens to two large card pockets with rear slip compartments for bills or extras — a clean, rugged everyday layout that still feels slim in the pocket. Closed face shows a compact rectangular profile with soft rounded corners and a subtle embossed mark. Made from genuine leather that develops a richer patina with use, finished for lasting strength and backed by our lifetime leather warranty. Cash on delivery across Pakistan.",
+      "Handcrafted vertical bifold in warm tobacco-brown leather with thick cream contrast stitching and neatly burnished multi-layer edges. Opens to two large card pockets with rear slip compartments for bills or extras a clean, rugged everyday layout that still feels slim in the pocket. Closed face shows a compact rectangular profile with soft rounded corners and a subtle embossed mark. Made from genuine leather that develops a richer patina with use, finished for lasting strength and backed by our lifetime leather warranty. Cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/tobacco-vertical-bifold-1.webp",
       "/assets/bifold/tobacco-vertical-bifold-2.webp",
@@ -309,13 +329,14 @@ const bifoldProducts: Product[] = [
     color: "Tobacco Brown",
     price: 2999,
     discountedPrice: 0,
+    stock: 9,
     reviews: generateReviews(21, "bifold"),
   },
   {
     id: 22,
     title: "Oxblood Hand-Stitched Bifold Wallet",
     description:
-      "Artisan bifold in deep oxblood (burgundy) full-grain leather with a subtle pull-up sheen and matching red hand stitching throughout. Opens to six horizontal card slots — three on each side — plus rear slip pockets for folded notes or extra cards. Neatly beveled and burnished edges, a slim yet sturdy build, and a refined workshop finish that still feels rugged in the hand. Designed to age into a richer patina with daily use. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Artisan bifold in deep oxblood (burgundy) full-grain leather with a subtle pull-up sheen and matching red hand stitching throughout. Opens to six horizontal card slots three on each side plus rear slip pockets for folded notes or extra cards. Neatly beveled and burnished edges, a slim yet sturdy build, and a refined workshop finish that still feels rugged in the hand. Designed to age into a richer patina with daily use. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/oxblood-bifold-1.webp",
       "/assets/bifold/oxblood-bifold-2.webp",
@@ -324,13 +345,14 @@ const bifoldProducts: Product[] = [
     color: "Oxblood",
     price: 3450,
     discountedPrice: 300,
+    stock: 26,
     reviews: generateReviews(22, "bifold"),
   },
   {
     id: 23,
     title: "Tan Yellow-Stitch Handcrafted Bifold",
     description:
-      "Handcrafted bifold in warm tan camel-brown leather with bold golden-yellow contrast stitching along every edge and card pocket. Opens to four vertical card slots — two on each side — with rear slip pockets for extra cards or folded notes, plus a deep bill compartment that holds cash securely for daily use. Thick full-grain feel, burnished rounded corners, and a rugged workshop finish that still looks clean and premium. Built to soften and develop a personal patina over time. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted bifold in warm tan camel-brown leather with bold golden-yellow contrast stitching along every edge and card pocket. Opens to four vertical card slots two on each side with rear slip pockets for extra cards or folded notes, plus a deep bill compartment that holds cash securely for daily use. Thick full-grain feel, burnished rounded corners, and a rugged workshop finish that still looks clean and premium. Built to soften and develop a personal patina over time. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/tan-yellow-stitch-bifold-1.webp",
       "/assets/bifold/tan-yellow-stitch-bifold-2.webp",
@@ -338,13 +360,14 @@ const bifoldProducts: Product[] = [
     color: "Tan",
     price: 3700,
     discountedPrice: 0,
+    stock: 17,
     reviews: generateReviews(23, "bifold"),
   },
   {
     id: 24,
     title: "Black Minimal Hand-Stitched Bifold",
     description:
-      "Slim minimalist bifold in smooth matte black leather with thick tonal black hand stitching and neatly burnished edges. Opens to four overlapping card slots — two on each side — for everyday essentials without bulk, plus a clean folded profile for front-pocket carry. Quiet, refined exterior with no flashy hardware — just durable genuine leather built for daily use. Lifetime leather warranty. Cash on delivery across Pakistan.",
+      "Slim minimalist bifold in smooth matte black leather with thick tonal black hand stitching and neatly burnished edges. Opens to four overlapping card slots two on each side for everyday essentials without bulk, plus a clean folded profile for front-pocket carry. Quiet, refined exterior with no flashy hardware just durable genuine leather built for daily use. Lifetime leather warranty. Cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/black-minimal-bifold-1.webp",
       "/assets/bifold/black-minimal-bifold-2.webp",
@@ -352,13 +375,14 @@ const bifoldProducts: Product[] = [
     color: "Black",
     price: 3100,
     discountedPrice: 101,
+    stock: 8,
     reviews: generateReviews(24, "bifold"),
   },
   {
     id: 25,
     title: "Cognac Curved-Slot Handcrafted Bifold",
     description:
-      "Handcrafted bifold in warm cognac pull-up leather with thick tonal stitching and burnished edges. Opens to two card pockets with ergonomic curved cutouts for easy grip, plus a full-length cash compartment that holds notes without fuss. Closed it forms a slim sleeve with a soft U-notch for quick access — full-grain character that lightens and darkens with use into a personal patina. Built for everyday carry: rugged, refined, and made to last. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted bifold in warm cognac pull-up leather with thick tonal stitching and burnished edges. Opens to two card pockets with ergonomic curved cutouts for easy grip, plus a full-length cash compartment that holds notes without fuss. Closed it forms a slim sleeve with a soft U-notch for quick access full-grain character that lightens and darkens with use into a personal patina. Built for everyday carry: rugged, refined, and made to last. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/cognac-curved-bifold-1.webp",
       "/assets/bifold/cognac-curved-bifold-2.webp",
@@ -366,13 +390,14 @@ const bifoldProducts: Product[] = [
     color: "Cognac",
     price: 3300,
     discountedPrice: 0,
+    stock: 25,
     reviews: generateReviews(25, "bifold"),
   },
   {
     id: 26,
     title: "Forest Green White-Stitch Handcrafted Bifold",
     description:
-      "Handcrafted bifold in deep forest-green leather with thick off-white contrast saddle stitching and neatly burnished multi-layer edges. Opens to four vertical card slots — two on each side — plus a full-length cash compartment that holds notes without bulk. Closed it keeps a slim rectangular profile with rounded corners and a solid, durable build meant for daily pocket carry. Genuine leather, hand-stitched finish, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted bifold in deep forest-green leather with thick off-white contrast saddle stitching and neatly burnished multi-layer edges. Opens to four vertical card slots two on each side plus a full-length cash compartment that holds notes without bulk. Closed it keeps a slim rectangular profile with rounded corners and a solid, durable build meant for daily pocket carry. Genuine leather, hand-stitched finish, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/forest-green-bifold-2.webp",
       "/assets/bifold/forest-green-bifold-1.webp",
@@ -380,13 +405,14 @@ const bifoldProducts: Product[] = [
     color: "Forest Green",
     price: 2999,
     discountedPrice: 0,
+    stock: 16,
     reviews: generateReviews(26, "bifold"),
   },
   {
     id: 27,
     title: "Black Oxblood Red-Stitch Handcrafted Bifold",
     description:
-      "Handcrafted bifold in charcoal-black pebbled leather with vivid red saddle stitching and a rich mahogany interior lining. Opens to multiple card slots on each side plus room for folded notes, with oxblood crocodile-embossed accents that catch the light on the face panels. Thick hand-stitched edges and a solid everyday build — genuine leather that ages with character. Lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted bifold in charcoal-black pebbled leather with vivid red saddle stitching and a rich mahogany interior lining. Opens to multiple card slots on each side plus room for folded notes, with oxblood crocodile-embossed accents that catch the light on the face panels. Thick hand-stitched edges and a solid everyday build genuine leather that ages with character. Lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/black-oxblood-bifold-3.webp",
       "/assets/bifold/black-oxblood-bifold-1.webp",
@@ -395,13 +421,14 @@ const bifoldProducts: Product[] = [
     color: "Black / Oxblood",
     price: 3999,
     discountedPrice: 0,
+    stock: 7,
     reviews: generateReviews(27, "bifold"),
   },
   {
     id: 28,
     title: "Forest Croc Orange-Spine Handcrafted Bifold",
     description:
-      "Handcrafted bifold in deep forest green with crocodile-embossed faces, pebbled leather panels, and a vivid orange-tan spine that cuts through the center. Thick cream saddle stitching runs every edge and pocket. Opens to slanted croc card pockets over green slots on each side — a bold, textured everyday carry with solid multi-layer construction. Genuine leather, hand-finished edges, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted bifold in deep forest green with crocodile-embossed faces, pebbled leather panels, and a vivid orange-tan spine that cuts through the center. Thick cream saddle stitching runs every edge and pocket. Opens to slanted croc card pockets over green slots on each side a bold, textured everyday carry with solid multi-layer construction. Genuine leather, hand-finished edges, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/forest-croc-bifold-1.webp",
       "/assets/bifold/forest-croc-bifold-3.webp",
@@ -410,13 +437,14 @@ const bifoldProducts: Product[] = [
     color: "Forest Green / Orange",
     price: 4200,
     discountedPrice: 0,
+    stock: 24,
     reviews: generateReviews(28, "bifold"),
   },
   {
     id: 29,
     title: "Mahogany Cream-Stitch Handcrafted Bifold",
     description:
-      "Handcrafted bifold in rich mahogany pull-up leather with natural grain, warm russet undertones, and thick cream contrast saddle stitching. Opens to stacked card slots with thumb-friendly cutouts on one side and a roomy vertical pocket on the other, plus space for folded notes behind the panels. Rounded burnished corners and a classic slim pocket profile — full-grain character that softens and darkens with everyday carry. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted bifold in rich mahogany pull-up leather with natural grain, warm russet undertones, and thick cream contrast saddle stitching. Opens to stacked card slots with thumb-friendly cutouts on one side and a roomy vertical pocket on the other, plus space for folded notes behind the panels. Rounded burnished corners and a classic slim pocket profile full-grain character that softens and darkens with everyday carry. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/mahogany-cream-bifold-1.webp",
       "/assets/bifold/mahogany-cream-bifold-2.webp",
@@ -425,13 +453,14 @@ const bifoldProducts: Product[] = [
     color: "Mahogany",
     price: 3699,
     discountedPrice: 0,
+    stock: 15,
     reviews: generateReviews(29, "bifold"),
   },
   {
     id: 30,
     title: "Chocolate Tan-Stitch Wave-Slot Bifold",
     description:
-      "Handcrafted bifold in deep chocolate pull-up leather with thick orange-tan contrast saddle stitching and smoothly burnished rounded corners. Opens to six wave-edged card slots — three on each side — with slip pockets behind for receipts or extras, plus a full-length bill compartment. Raw suede-tone interior at the cash sleeve shows honest full-grain construction that softens and darkens into a personal patina. Rugged everyday carry, genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted bifold in deep chocolate pull-up leather with thick orange-tan contrast saddle stitching and smoothly burnished rounded corners. Opens to six wave-edged card slots three on each side with slip pockets behind for receipts or extras, plus a full-length bill compartment. Raw suede-tone interior at the cash sleeve shows honest full-grain construction that softens and darkens into a personal patina. Rugged everyday carry, genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/chocolate-tan-stitch-bifold-1.webp",
       "/assets/bifold/chocolate-tan-stitch-bifold-2.webp",
@@ -440,13 +469,14 @@ const bifoldProducts: Product[] = [
     color: "Chocolate Brown",
     price: 5999,
     discountedPrice: 0,
+    stock: 6,
     reviews: generateReviews(30, "bifold"),
   },
   {
     id: 31,
     title: "Russet Cream-Stitch Slim Bifold",
     description:
-      "Handcrafted slim bifold in rich russet-chestnut leather with a smooth matte finish and thick cream contrast saddle stitching. Opens to four curved card slots — two stacked on each side — for essentials without bulk. Closed it keeps a compact palm-size profile with rounded burnished corners and multi-layer edges built for daily pocket carry. Full-grain character that softens with use. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted slim bifold in rich russet-chestnut leather with a smooth matte finish and thick cream contrast saddle stitching. Opens to four curved card slots two stacked on each side for essentials without bulk. Closed it keeps a compact palm-size profile with rounded burnished corners and multi-layer edges built for daily pocket carry. Full-grain character that softens with use. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/russet-cream-bifold-1.webp",
       "/assets/bifold/russet-cream-bifold-2.webp",
@@ -454,13 +484,14 @@ const bifoldProducts: Product[] = [
     color: "Russet",
     price: 3499,
     discountedPrice: 0,
+    stock: 23,
     reviews: generateReviews(31, "bifold"),
   },
   {
     id: 32,
     title: "Burgundy Red-Stitch Quick-Access Bifold",
     description:
-      "Handcrafted bifold in deep burgundy oxblood leather with matching vibrant red saddle stitching and smoothly burnished rounded corners. Front face carries an external quick-access card slot so your go-to card stays ready without opening the wallet. Inside: curved card pockets, a riveted ID window pocket, and a full bill compartment for everyday cash. Full-grain mottled character that ages into a richer patina — genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted bifold in deep burgundy oxblood leather with matching vibrant red saddle stitching and smoothly burnished rounded corners. Front face carries an external quick-access card slot so your go-to card stays ready without opening the wallet. Inside: curved card pockets, a riveted ID window pocket, and a full bill compartment for everyday cash. Full-grain mottled character that ages into a richer patina genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/burgundy-red-stitch-bifold-3.webp",
       "/assets/bifold/burgundy-red-stitch-bifold-6.webp",
@@ -472,13 +503,14 @@ const bifoldProducts: Product[] = [
     color: "Burgundy",
     price: 5699,
     discountedPrice: 399,
+    stock: 14,
     reviews: generateReviews(32, "bifold"),
   },
   {
     id: 33,
     title: "Honey Tan Slim Minimalist Bifold",
     description:
-      "Handcrafted slim bifold in warm honey-tan pull-up leather with thick golden-cream contrast stitching and a clean, logo-free face. Opens to four curved card slots — two on each side — plus a soft suede-tone bill compartment for notes without bulk. Ultra-thin pocket profile with burnished edges that develop a personal patina over time. Genuine leather, artisanal finish, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted slim bifold in warm honey-tan pull-up leather with thick golden-cream contrast stitching and a clean, logo-free face. Opens to four curved card slots two on each side plus a soft suede-tone bill compartment for notes without bulk. Ultra-thin pocket profile with burnished edges that develop a personal patina over time. Genuine leather, artisanal finish, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/honey-tan-slim-bifold-4.webp",
       "/assets/bifold/honey-tan-slim-bifold-1.webp",
@@ -488,13 +520,14 @@ const bifoldProducts: Product[] = [
     color: "Honey Tan",
     price: 3199,
     discountedPrice: 0,
+    stock: 5,
     reviews: generateReviews(33, "bifold"),
   },
   {
     id: 34,
     title: "Cognac Circle-Inlay Gold-Stitch Bifold",
     description:
-      "Handcrafted vertical bifold in warm cognac leather with thick gold contrast saddle stitching and distinctive circular black leather inlays on each interior pocket. Opens to two slanted card slots with easy thumb access, plus an external quick-access pocket with a curved thumb notch on the face — slim enough for front-pocket carry with room for folded notes at the fold. Full-grain character that deepens into a personal patina. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted vertical bifold in warm cognac leather with thick gold contrast saddle stitching and distinctive circular black leather inlays on each interior pocket. Opens to two slanted card slots with easy thumb access, plus an external quick-access pocket with a curved thumb notch on the face slim enough for front-pocket carry with room for folded notes at the fold. Full-grain character that deepens into a personal patina. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/cognac-circle-bifold-1.webp",
       "/assets/bifold/cognac-circle-bifold-2.webp",
@@ -504,13 +537,14 @@ const bifoldProducts: Product[] = [
     color: "Cognac",
     price: 3399,
     discountedPrice: 0,
+    stock: 22,
     reviews: generateReviews(34, "bifold"),
   },
   {
     id: 35,
     title: "Matte Black Hand-Stitch Vertical Bifold",
     description:
-      "Handcrafted vertical bifold in deep matte-black leather with matching black saddle stitching and smoothly burnished rounded corners. Opens to three stacked horizontal card slots on one side and a thumb-cut vertical pocket on the other for quick access — a slim monochrome everyday carry with room for folded notes behind the panels. Genuine leather that softens with use, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted vertical bifold in deep matte-black leather with matching black saddle stitching and smoothly burnished rounded corners. Opens to three stacked horizontal card slots on one side and a thumb-cut vertical pocket on the other for quick access a slim monochrome everyday carry with room for folded notes behind the panels. Genuine leather that softens with use, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/matte-black-bifold-1.webp",
       "/assets/bifold/matte-black-bifold-2.webp",
@@ -519,13 +553,14 @@ const bifoldProducts: Product[] = [
     color: "Matte Black",
     price: 3399,
     discountedPrice: 0,
+    stock: 13,
     reviews: generateReviews(35, "bifold"),
   },
   {
     id: 36,
     title: "Matte Black Snap Flap Bifold",
     description:
-      "Handcrafted vertical snap bifold in deep matte-black leather with matching black saddle stitching and a secure metal snap flap closure. Front face carries an external quick-access card pocket with a curved thumb notch so your go-to card stays ready without opening the wallet. Compact palm-size profile with burnished edges — slim enough for front-pocket carry with room for folded notes inside. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted vertical snap bifold in deep matte-black leather with matching black saddle stitching and a secure metal snap flap closure. Front face carries an external quick-access card pocket with a curved thumb notch so your go-to card stays ready without opening the wallet. Compact palm-size profile with burnished edges slim enough for front-pocket carry with room for folded notes inside. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/bifold/matte-black-snap-bifold-1.webp",
       "/assets/bifold/matte-black-snap-bifold-2.webp",
@@ -537,6 +572,7 @@ const bifoldProducts: Product[] = [
     color: "Matte Black",
     price: 1999,
     discountedPrice: 0,
+    stock: 4,
     reviews: generateReviews(36, "bifold"),
   },
 ];

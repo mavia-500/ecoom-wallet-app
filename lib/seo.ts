@@ -98,7 +98,7 @@ function fitProductMetaTitle(
     }
   }
 
-  // Truncate the product name only — keep a clean suffix
+  // Truncate the product name only keep a clean suffix
   for (const suffix of suffixes) {
     for (const core of cores) {
       const room = max - suffix.length;

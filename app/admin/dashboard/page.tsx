@@ -174,7 +174,7 @@ export default function AdminDashboard() {
             <option value="cardholder">Card Holder</option>
             <option value="bifold">Bifold</option>
             <option value="trifold">Trifold</option>
-            <option value="longwallet">Long Wallet</option>
+            <option value="longwallet">Traveller Wallet</option>
           </select>
         </div>
 

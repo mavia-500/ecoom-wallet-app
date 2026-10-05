@@ -41,7 +41,7 @@ function slim(
   );
 }
 
-/** Listing cards only — drops reviews so category pages stay light. */
+/** Listing cards only drops reviews so category pages stay light. */
 export function forCategoryList(
   products: Array<{
     id: number;

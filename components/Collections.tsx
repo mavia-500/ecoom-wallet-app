@@ -23,7 +23,7 @@ const collections = [
   },
   {
     href: "/longwallet",
-    title: "Long Wallet",
+    title: "Traveller Wallet",
     image: "/images/d.webp",
     alt: "Hilyah long leather wallet collection",
   },
@@ -37,7 +37,7 @@ const Collections = () => {
           Shop by collection
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)] sm:text-base">
-          Handcrafted from rich full-grain leather — built for daily use and
+          Handcrafted from rich full-grain leather built for daily use and
           meant to age beautifully with you.
         </p>
       </div>

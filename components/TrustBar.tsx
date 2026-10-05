@@ -3,7 +3,7 @@ import React from "react";
 const items = [
   {
     title: "Fast delivery",
-    detail: "3–4 working days nationwide",
+    detail: "3-4 working days nationwide",
     path: "M3 12h13l4 4V8l-4 4H3zm13 0v8",
   },
   {

@@ -5,9 +5,9 @@ import { forCategoryList } from "@/lib/catalog";
 import { breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 
 export default function Page() {
-  const title = "Long wallets";
+  const title = "Traveller wallets";
   const description =
-    "Spacious leather wallets for cash, cards, and documents.";
+    "Spacious traveller wallets for cash, cards, and documents.";
   const products = forCategoryList(longwalletProducts);
 
   return (

@@ -14,7 +14,7 @@ type Props = { params: Promise<{ product: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { product } = await params;
   const item = findProductByParam(longwalletProducts, product);
-  return productMetadata(item, "longwallet", "Long Wallet");
+  return productMetadata(item, "longwallet", "Traveller Wallet");
 }
 
 export default async function LongwalletProductPage({ params }: Props) {
@@ -26,10 +26,10 @@ export default async function LongwalletProductPage({ params }: Props) {
       {item && (
         <JsonLd
           data={[
-            productJsonLd(item, "longwallet", "Long Wallet"),
+            productJsonLd(item, "longwallet", "Traveller Wallet"),
             breadcrumbJsonLd([
               { name: "Home", path: "/" },
-              { name: "Long Wallets", path: "/longwallet" },
+              { name: "Traveller Wallets", path: "/longwallet" },
               { name: item.title, path: productHref("longwallet", item) },
             ]),
           ]}

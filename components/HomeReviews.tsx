@@ -7,7 +7,7 @@ const reviews = [
     city: "Lahore",
     rating: 5,
     comment:
-      "Amazing quality leather. The stitching is neat and it feels premium in hand — worth every rupee.",
+      "Amazing quality leather. The stitching is neat and it feels premium in hand worth every rupee.",
   },
   {
     name: "Sara Ali",
@@ -21,7 +21,7 @@ const reviews = [
     city: "Islamabad",
     rating: 5,
     comment:
-      "Fast delivery via TCS. Cards fit perfectly and the leather smell is genuine — highly recommend.",
+      "Fast delivery via TCS. Cards fit perfectly and the leather smell is genuine highly recommend.",
   },
   {
     name: "Fatima Raza",
@@ -87,7 +87,7 @@ const HomeReviews = () => {
               ))}
             </div>
             <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--ink-soft)]">
-              “{review.comment}”
+              {review.comment}
             </p>
             <div className="mt-5 border-t pt-4" style={{ borderColor: "var(--line)" }}>
               <p className="font-medium text-[var(--ink)]">{review.name}</p>
@@ -100,6 +100,7 @@ const HomeReviews = () => {
       <div className="mt-6 text-center">
         <Link
           href="/products"
+          scroll
           className="btn-primary inline-block rounded-md px-6 py-3 text-sm"
         >
           Shop bestsellers

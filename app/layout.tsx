@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Figtree } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "@/components/Footer";
+import MobileBottomNav from "@/components/MobileBottomNav";
 import ScrollToTop from "@/components/ScrollToTop";
 import Providers from "@/components/Providers";
 import JsonLd from "@/components/JsonLd";
@@ -122,14 +123,14 @@ export default function RootLayout({
         <Providers>
           <AnnouncementBar />
           <Navbar />
-          <main>{children}</main>
+          <main className="pb-24 lg:pb-0">{children}</main>
           <ScrollToTop />
           <a
             href="https://wa.me/923285478737?text=Hello%2C%20I%20am%20interested%20in%20Hilyah%20leather%20wallets"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"
-            className="fixed bottom-20 right-4 z-50 drop-shadow-lg transition-transform hover:scale-105 sm:bottom-6"
+            className="fixed bottom-28 right-4 z-50 drop-shadow-lg transition-transform hover:scale-105 sm:bottom-6"
           >
             <svg
               viewBox="0 0 32 32"
@@ -147,6 +148,7 @@ export default function RootLayout({
             </svg>
           </a>
           <Footer />
+          <MobileBottomNav />
         </Providers>
       </body>
     </html>

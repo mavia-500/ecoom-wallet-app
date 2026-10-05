@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import type { CatalogProduct } from "@/lib/catalog";
@@ -16,7 +16,7 @@ const categories = [
   { id: "bifoldwallet", label: "Bi-Fold" },
   { id: "trifoldwallet", label: "Tri-Fold" },
   { id: "cardholder", label: "Card Holder" },
-  { id: "longwallet", label: "Long Wallet" },
+  { id: "longwallet", label: "Traveller Wallet" },
   { id: "gifts", label: "Gifts" },
 ] as const;
 
@@ -30,6 +30,10 @@ export default function ProductsCatalog({
   const [category, setCategory] = useState<CategoryId>("all");
   const [sort, setSort] = useState<ProductSortId>("featured");
   const [visibleCount, setVisibleCount] = useState(12);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const filtered = useMemo(() => {
     let list = products;
@@ -70,7 +74,7 @@ export default function ProductsCatalog({
             All products
           </h1>
           <p className="mx-auto mt-3 max-w-lg text-sm text-[var(--ink-soft)]">
-            Every Hilyah leather wallet in one place — cash on delivery across
+            Every Hilyah leather wallet in one place cash on delivery across
             Pakistan.
           </p>
         </div>

@@ -1,36 +1,38 @@
-import React from "react";
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Shipping, Returns & Privacy Policy | Hilyah",
+  title: "Return & Exchange Policy | Hilyah Pakistan",
   description:
-    "Read Hilyah policies for cash on delivery shipping, 7-day returns, refunds, and privacy. Clear terms for leather wallet orders in Pakistan.",
+    "Hilyah 7-day return and exchange policy for unused genuine leather wallets. Clear refund rules and support from Islamabad, Pakistan.",
   path: "/policy",
   keywords: [
     "Hilyah return policy",
-    "wallet shipping Pakistan",
-    "COD policy",
+    "wallet exchange Pakistan",
+    "7-day return window",
   ],
 });
 
-const Page = () => {
+export default function ReturnExchangePolicyPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
-      <h1 className="font-display text-center text-4xl font-semibold text-[var(--ink)]">
-        Policies & information
+      <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[var(--cognac)]">
+        Policy
+      </p>
+      <h1 className="font-display mt-3 text-center text-4xl font-semibold text-[var(--ink)]">
+        Return &amp; exchange policy
       </h1>
       <p className="mx-auto mt-3 max-w-xl text-center text-sm text-[var(--ink-soft)]">
-        Clear rules so you know exactly how returns, shipping, and privacy work
-        at Hilyah.
+        Clear rules so you know exactly how returns and exchanges work at Hilyah.
       </p>
 
       <section
-        className="mt-10 space-y-4 bg-[var(--surface)] p-6 sm:p-8"
+        id="return-exchange"
+        className="mt-10 scroll-mt-24 space-y-4 bg-[var(--surface)] p-6 sm:p-8"
         style={{ border: "1px solid var(--line)" }}
       >
         <h2 className="font-display text-2xl font-semibold text-[var(--ink)]">
-          Return & exchange
+          7-day return window
         </h2>
         <p className="leading-7 text-[var(--ink-soft)]">
           We offer a <strong className="text-[var(--ink)]">7-day return policy</strong>{" "}
@@ -45,8 +47,7 @@ const Page = () => {
           >
             hilyah967@gmail.com
           </a>{" "}
-          for approval before shipping returns to:{" "}
-          <em>Islamabad</em>.
+          for approval before shipping returns to: <em>Islamabad</em>.
         </p>
         <p className="leading-7 text-[var(--ink-soft)]">
           Damaged or incorrect items: contact us as soon as you open the parcel.
@@ -60,41 +61,36 @@ const Page = () => {
         style={{ border: "1px solid var(--line)" }}
       >
         <h2 className="font-display text-2xl font-semibold text-[var(--ink)]">
-          Shipping
+          Lifetime leather warranty
         </h2>
         <p className="leading-7 text-[var(--ink-soft)]">
-          All orders ship from <strong className="text-[var(--ink)]">Islamabad</strong>.
-          In-stock items usually leave within 3–5 business days. We deliver with{" "}
-          <strong className="text-[var(--ink)]">Cash on Delivery</strong>.
-        </p>
-        <ul className="list-disc space-y-2 pl-5 leading-7 text-[var(--ink-soft)]">
-          <li>Standard delivery: 2–5 business days</li>
-          <li>Delays during lockdowns or protests: 5–10 business days</li>
-        </ul>
-      </section>
-
-      <section
-        className="mt-6 space-y-4 bg-[var(--surface)] p-6 sm:p-8"
-        style={{ border: "1px solid var(--line)" }}
-      >
-        <h2 className="font-display text-2xl font-semibold text-[var(--ink)]">
-          Privacy
-        </h2>
-        <p className="leading-7 text-[var(--ink-soft)]">
-          We only collect what we need to fulfill your order — name, phone,
-          address, and email. We do not sell or share your data with third
-          parties for marketing. Your information is used for order confirmation
-          and delivery updates only.
+          Hilyah backs craftsmanship on genuine leather. Normal wear and aging of
+          leather are expected. Manufacturing defects in stitching or materials
+          may be reviewed for repair or replacement support. Contact us with
+          photos and your order details for help.
         </p>
       </section>
 
-      <div className="mt-10 text-center">
-        <Link href="/contact" className="btn-primary inline-block rounded-md px-5 py-2.5 text-sm">
-          Questions? Contact us
+      <div className="mt-10 flex flex-wrap justify-center gap-3">
+        <Link
+          href="/shipping"
+          className="btn-secondary rounded-md px-5 py-2.5 text-sm"
+        >
+          Shipping policy
+        </Link>
+        <Link
+          href="/privacy"
+          className="btn-secondary rounded-md px-5 py-2.5 text-sm"
+        >
+          Privacy policy
+        </Link>
+        <Link
+          href="/contact"
+          className="btn-primary rounded-md px-5 py-2.5 text-sm"
+        >
+          Contact us
         </Link>
       </div>
     </div>
   );
-};
-
-export default Page;
+}

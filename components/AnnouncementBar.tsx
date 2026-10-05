@@ -1,5 +1,5 @@
 const announcements = [
-  { title: "Fast delivery", detail: "3–4 working days nationwide" },
+  { title: "Fast delivery", detail: "3-4 working days nationwide" },
   { title: "Cash on delivery", detail: "Pay when you receive" },
   { title: "7-day returns", detail: "Easy exchange policy" },
   { title: "WhatsApp support", detail: "Real people, real help" },
@@ -23,10 +23,7 @@ export default function AnnouncementBar() {
             className="flex flex-shrink-0 items-center gap-2 px-6 py-2 text-xs sm:text-sm"
           >
             <span className="font-semibold tracking-wide">{item.title}</span>
-            <span className="text-[#c9c2b8]">— {item.detail}</span>
-            <span className="ml-4 text-[var(--cognac)]" aria-hidden>
-              •
-            </span>
+            <span className="text-[#c9c2b8]">{item.detail}</span>
           </p>
         ))}
       </div>

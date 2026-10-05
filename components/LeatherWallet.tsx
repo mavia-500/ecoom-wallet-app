@@ -18,7 +18,7 @@ const LeatherWallet = ({ productData }: { productData: Product[] }) => {
           Featured wallets
         </h2>
         <p className="mx-auto mt-2 max-w-lg text-sm text-[var(--ink-soft)] sm:text-base">
-          Everyday pieces from our latest leather collection — priced fairly,
+          Everyday pieces from our latest leather collection priced fairly,
           shipped with cash on delivery.
         </p>
       </div>
@@ -30,7 +30,7 @@ const LeatherWallet = ({ productData }: { productData: Product[] }) => {
               <div className="relative aspect-[3/4] w-full overflow-hidden bg-[var(--bg-deep)] sm:aspect-[4/5]">
                 <Image
                   src={imageUrl}
-                  alt={`${title} — featured leather collection`}
+                  alt={`${title} featured leather collection`}
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -39,7 +39,7 @@ const LeatherWallet = ({ productData }: { productData: Product[] }) => {
                 />
               </div>
               <div className="px-2 py-2.5 text-center sm:px-4 sm:py-4">
-                <h3 className="font-display text-sm font-semibold text-[var(--ink)] sm:text-lg">
+                <h3 className="product-title text-[13px] font-semibold leading-snug text-[var(--ink)] sm:text-lg">
                   {title}
                 </h3>
                 <p className="mt-0.5 text-xs font-semibold text-[var(--cognac)] sm:mt-1 sm:text-sm">

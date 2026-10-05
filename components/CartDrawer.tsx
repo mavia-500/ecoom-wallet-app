@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { FiMinus, FiPlus, FiTrash2, FiX } from "react-icons/fi";
 import { useCart } from "@/context/CartContext";
 import { productHref } from "@/lib/productSlug";
+import { DELIVERY_CHARGE } from "@/lib/pricing";
 
 export default function CartDrawer() {
   const {
@@ -111,7 +112,7 @@ export default function CartDrawer() {
                     >
                       <img
                         src={item.image}
-                        alt={`${item.title} — ${item.color} leather product`}
+                        alt={`${item.title} ${item.color} leather product`}
                         className="h-full w-full object-cover"
                       />
                     </Link>
@@ -190,14 +191,28 @@ export default function CartDrawer() {
             className="border-t px-4 py-4"
             style={{ borderColor: "var(--line)" }}
           >
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-[var(--ink-soft)]">Subtotal</span>
-              <span className="text-lg font-bold text-[var(--sale)]">
-                Rs {totalPrice.toLocaleString()}
-              </span>
+            <div className="space-y-1.5 text-sm">
+              <div className="flex items-center justify-between">
+                <span className="text-[var(--ink-soft)]">Subtotal</span>
+                <span className="font-medium text-[var(--ink)]">
+                  Rs {totalPrice.toLocaleString()}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[var(--ink-soft)]">Delivery</span>
+                <span className="font-medium text-[var(--ink)]">
+                  Rs {DELIVERY_CHARGE.toLocaleString()}
+                </span>
+              </div>
+              <div className="flex items-center justify-between pt-1">
+                <span className="font-semibold text-[var(--ink)]">Total</span>
+                <span className="text-lg font-bold text-[var(--sale)]">
+                  Rs {(totalPrice + DELIVERY_CHARGE).toLocaleString()}
+                </span>
+              </div>
             </div>
             <p className="mt-1 text-xs text-[var(--ink-soft)]">
-              Cash on delivery across Pakistan.
+              Cash on delivery across Pakistan. Delivery Rs {DELIVERY_CHARGE}.
             </p>
             <Link
               href="/placeorder?from=cart"

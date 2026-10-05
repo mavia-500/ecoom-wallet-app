@@ -8,6 +8,7 @@ interface Product {
   color: string;
   price: number;
   discountedPrice: number;
+  stock: number;
   reviews: Review[];
 }
 
@@ -21,6 +22,7 @@ const giftProducts: Product[] = [
     color: "Black",
     price: 2600,
     discountedPrice: 400,
+    stock: 7,
     reviews: generateReviews(1, "gift"),
   },
   {
@@ -36,13 +38,14 @@ const giftProducts: Product[] = [
     color: "Black",
     price: 5000,
     discountedPrice: 500,
+    stock: 24,
     reviews: generateReviews(2, "gift"),
   },
   {
     id: 3,
     title: "Chocolate Leather Triple Gift Set",
     description:
-      "Handcrafted three-piece gift set in rich chocolate-brown leather with thick cream contrast saddle stitching, presented in a charcoal gift box lined with plush red velvet. Includes a full vertical travel wallet with card slots, bill compartment, zip pocket and dual snap closures; a matching slim bifold with six card slots; and a leather key fob with metal ring — ready to gift for birthdays, anniversaries, or corporate giving. Genuine leather that develops a personal patina, lifetime leather warranty, cash on delivery across Pakistan.",
+      "Handcrafted three-piece gift set in rich chocolate-brown leather with thick cream contrast saddle stitching, presented in a charcoal gift box lined with plush red velvet. Includes a full vertical travel wallet with card slots, bill compartment, zip pocket and dual snap closures; a matching slim bifold with six card slots; and a leather key fob with metal ring ready to gift for birthdays, anniversaries, or corporate giving. Genuine leather that develops a personal patina, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
       "/assets/gifts/chocolate-gift-set-1.webp",
       "/assets/gifts/chocolate-gift-set-2.webp",
@@ -52,6 +55,7 @@ const giftProducts: Product[] = [
     color: "Chocolate Brown",
     price: 9999,
     discountedPrice: 0,
+    stock: 15,
     reviews: generateReviews(3, "gift"),
   },
 ];

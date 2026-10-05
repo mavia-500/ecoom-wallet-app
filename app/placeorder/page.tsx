@@ -6,6 +6,7 @@ import axios from "axios";
 import Link from "next/link";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { useCart } from "@/context/CartContext";
+import { DELIVERY_CHARGE, withDelivery } from "@/lib/pricing";
 
 interface FormData {
   fullName: string;
@@ -48,11 +49,12 @@ function PlaceOrderContent() {
   }, [fromCart, searchParams]);
 
   const orderItems = fromCart ? items : singleItem ? [singleItem] : [];
-  const orderTotal = fromCart
+  const subtotal = fromCart
     ? totalPrice
     : singleItem
       ? (singleItem.price - singleItem.discountedPrice) * singleItem.quantity
       : 0;
+  const orderTotal = withDelivery(subtotal);
 
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
@@ -87,7 +89,7 @@ function PlaceOrderContent() {
           .join("\n");
 
         const waText = encodeURIComponent(
-          `New Hilyah Order\nOrder ID: ${id}\nName: ${formData.fullName}\nPhone: ${formData.phone}\nAddress: ${formData.address}\nProvince: ${formData.province}\nCity: ${formData.city}\nNotes: ${formData.notes || "—"}\n\nItems:\n${lines}\n\nTotal: Rs ${orderTotal}`,
+          `New Hilyah Order\nOrder ID: ${id}\nName: ${formData.fullName}\nPhone: ${formData.phone}\nAddress: ${formData.address}\nProvince: ${formData.province}\nCity: ${formData.city}\nNotes: ${formData.notes || "None"}\n\nItems:\n${lines}\n\nSubtotal: Rs ${subtotal}\nDelivery: Rs ${DELIVERY_CHARGE}\nTotal: Rs ${orderTotal}`,
         );
 
         setWhatsappUrl(`https://wa.me/923285478737?text=${waText}`);
@@ -183,7 +185,7 @@ function PlaceOrderContent() {
               </p>
             )}
             <p className="mt-4 text-sm text-[var(--ink-soft)]">
-              You will receive your order within 2–4 working days. Payment is
+              You will receive your order within 2-4 working days. Payment is
               collected on delivery.
             </p>
             {whatsappUrl && (
@@ -252,7 +254,7 @@ function PlaceOrderContent() {
                   >
                     <img
                       src={item.image}
-                      alt={`${item.title} — ${item.color || "leather"}  product`}
+                      alt={`${item.title} ${item.color || "leather"}  product`}
                       className="h-16 w-16 object-cover"
                     />
                     <div className="min-w-0 flex-1">
@@ -269,11 +271,25 @@ function PlaceOrderContent() {
                   </div>
                 );
               })}
-              <div className="flex justify-between text-sm">
-                <span className="text-[var(--ink-soft)]">Total</span>
-                <span className="font-bold text-[var(--sale)]">
-                  Rs {orderTotal.toLocaleString()}
-                </span>
+              <div className="space-y-1.5 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-[var(--ink-soft)]">Subtotal</span>
+                  <span className="font-medium text-[var(--ink)]">
+                    Rs {subtotal.toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[var(--ink-soft)]">Delivery</span>
+                  <span className="font-medium text-[var(--ink)]">
+                    Rs {DELIVERY_CHARGE.toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="font-semibold text-[var(--ink)]">Total</span>
+                  <span className="font-bold text-[var(--sale)]">
+                    Rs {orderTotal.toLocaleString()}
+                  </span>
+                </div>
               </div>
               {fromCart && (
                 <button
@@ -412,7 +428,7 @@ function PlaceOrderContent() {
                     : "btn-primary"
                 }`}
               >
-                Confirm order (COD) — Rs {orderTotal.toLocaleString()}
+                Confirm order (COD) Rs {orderTotal.toLocaleString()}
               </button>
             </form>
           </>

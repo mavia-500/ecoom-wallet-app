@@ -91,7 +91,7 @@ function SaleCard({ item }: { item: SaleItem }) {
     <div className="flex h-full flex-col bg-[var(--surface)] transition-shadow hover:shadow-md">
       <CardImageCarousel
         images={item.images}
-        alt={`${item.title} —  leather wallet on sale`}
+        alt={`${item.title}  leather wallet on sale`}
         href={href}
         badge={
           <span
@@ -104,7 +104,7 @@ function SaleCard({ item }: { item: SaleItem }) {
       />
       <div className="flex flex-1 flex-col px-2.5 pb-2.5 pt-2 sm:px-4 sm:pb-4 sm:pt-3">
         <Link href={href}>
-          <h3 className="font-display line-clamp-1 text-sm font-semibold text-[var(--ink)] sm:text-lg">
+          <h3 className="product-title line-clamp-2 text-[13px] font-semibold leading-snug text-[var(--ink)] sm:line-clamp-1 sm:text-lg">
             {item.title}
           </h3>
           <div className="mt-1 flex items-baseline gap-1.5 sm:mt-2 sm:gap-2">

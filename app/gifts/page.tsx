@@ -7,7 +7,7 @@ import { breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 export default function Page() {
   const title = "Gifts";
   const description =
-    "Thoughtful leather pieces — ready to gift with COD checkout.";
+    "Thoughtful leather pieces ready to gift with COD checkout.";
   const products = forCategoryList(giftProducts);
 
   return (

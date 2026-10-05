@@ -1,14 +1,14 @@
 import Image from "next/image";
 import QuickShop from "@/components/QuickShop";
 
-/** Static home hero (no client JS) — keeps Total Blocking Time low on mobile. */
+/** Static home hero (no client JS) keeps Total Blocking Time low on mobile. */
 export default function HomeHero() {
   return (
     <section className="relative w-full overflow-hidden bg-[#1a1614]">
       <div className="relative min-h-[min(42vh,360px)] w-full sm:h-[min(58vh,540px)] sm:min-h-0">
         <Image
           src="/images/wem.webp"
-          alt="genuine leather bifold wallet in pocket — homepage hero"
+          alt="genuine leather bifold wallet in pocket homepage hero"
           fill
           priority
           quality={65}

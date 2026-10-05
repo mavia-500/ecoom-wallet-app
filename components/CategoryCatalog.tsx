@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import {
@@ -37,6 +37,10 @@ export default function CategoryCatalog({
   const [offer, setOffer] = useState<OfferFilter>("all");
   const [sort, setSort] = useState<ProductSortId>("featured");
   const [visibleCount, setVisibleCount] = useState(12);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const filtered = useMemo(() => {
     let list = products;

@@ -29,6 +29,7 @@ interface Product {
   color: string;
   price: number;
   discountedPrice: number;
+  stock: number;
   reviews: Review[];
 }
 
@@ -40,7 +41,7 @@ const categoryLabels: Record<string, string> = {
   bifoldwallet: "Bi-Fold",
   trifoldwallet: "Tri-Fold",
   cardholder: "Card Holder",
-  longwallet: "Long Wallet",
+  longwallet: "Traveller Wallet",
   gifts: "Gifts",
 };
 
@@ -50,11 +51,17 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [added, setAdded] = useState(false);
   const [reviewsOpen, setReviewsOpen] = useState(false);
+  const [descExpanded, setDescExpanded] = useState(false);
   const reviewsPerPage = 6;
   const pathname = usePathname();
   const category = pathname?.split("/")[1] || "bifoldwallet";
   const categoryLabel = categoryLabels[category] || "Wallets";
   const { addItem, openCart } = useCart();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setDescExpanded(false);
+  }, [pathname, products?.id]);
 
   useEffect(() => {
     if (!products || typeof window === "undefined" || !window.fbq) return;
@@ -92,6 +99,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
   const orderHref = `/placeorder?id=${products.id}&title=${encodeURIComponent(products.title)}&image=${encodeURIComponent(products.image[0])}&color=${encodeURIComponent(products.color)}&price=${products.price}&discountedPrice=${products.discountedPrice}`;
   const finalPrice = products.price - products.discountedPrice;
   const hasDiscount = products.discountedPrice > 0;
+  const inStock = (products.stock ?? 0) > 0;
   const percent = hasDiscount
     ? Math.round((products.discountedPrice / products.price) * 100)
     : 0;
@@ -164,16 +172,58 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
               )}
             </div>
 
-            <p className="mt-3 text-sm leading-relaxed text-[var(--ink-soft)] sm:text-base">
-              {products.description}
-            </p>
+            <div className="mt-3">
+              <p
+                className={`text-sm leading-relaxed text-[var(--ink-soft)] sm:text-base ${
+                  descExpanded ? "" : "line-clamp-2"
+                }`}
+              >
+                {products.description}
+              </p>
+              {products.description.length > 90 && (
+                <button
+                  type="button"
+                  onClick={() => setDescExpanded((open) => !open)}
+                  className="mt-1.5 inline-flex items-center justify-center rounded-md p-1 text-[var(--cognac)] transition hover:bg-[var(--bg-deep)] hover:text-[var(--cognac-hover)]"
+                  aria-expanded={descExpanded}
+                  aria-label={descExpanded ? "Minimize description" : "Expand description"}
+                >
+                  <FiChevronDown
+                    className={`h-5 w-5 transition-transform ${
+                      descExpanded ? "rotate-180" : ""
+                    }`}
+                    aria-hidden
+                  />
+                </button>
+              )}
+            </div>
 
-            <p className="mt-4 text-sm text-[var(--ink-soft)]">
-              Color:{" "}
-              <span className="font-medium text-[var(--ink)]">
-                {products.color}
-              </span>
-            </p>
+            <div className="mt-4 flex flex-wrap items-center gap-3 text-sm sm:text-base">
+              <p className="inline-flex items-center gap-1.5 rounded-md bg-[var(--bg-deep)] px-3 py-1.5">
+                <span className="font-semibold text-[var(--cognac)]">Color:</span>
+                <span className="font-semibold text-[var(--ink)]">
+                  {products.color}
+                </span>
+              </p>
+              <p
+                className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 ${
+                  inStock
+                    ? "bg-[var(--olive)]/15"
+                    : "bg-[var(--sale)]/10"
+                }`}
+              >
+                <span className="font-semibold text-[var(--cognac)]">Stock:</span>
+                {inStock ? (
+                  <span className="font-bold text-[var(--olive)]">
+                    In stock ({products.stock} left)
+                  </span>
+                ) : (
+                  <span className="font-bold text-[#9b2c2c]">
+                    Out of stock
+                  </span>
+                )}
+              </p>
+            </div>
 
             <div className="mt-4 flex flex-wrap items-baseline gap-3">
               <span className="text-2xl font-bold text-[var(--sale)]">
@@ -211,15 +261,26 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="btn-secondary w-full flex-1 rounded-md py-3.5 text-center text-base"
+                disabled={!inStock}
+                className="btn-secondary w-full flex-1 rounded-md py-3.5 text-center text-base disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {added ? "Added to cart ✓" : "Add to cart"}
+                {!inStock
+                  ? "Out of stock"
+                  : added
+                    ? "Added to cart ✓"
+                    : "Add to cart"}
               </button>
-              <Link href={orderHref} className="w-full flex-1">
-                <span className="btn-primary block w-full rounded-md py-3.5 text-center text-base">
-                  Order now — COD
+              {inStock ? (
+                <Link href={orderHref} className="w-full flex-1">
+                  <span className="btn-primary block w-full rounded-md py-3.5 text-center text-base">
+                    Order now (COD)
+                  </span>
+                </Link>
+              ) : (
+                <span className="btn-primary block w-full flex-1 cursor-not-allowed rounded-md py-3.5 text-center text-base opacity-50">
+                  Order now (COD)
                 </span>
-              </Link>
+              )}
             </div>
 
             {added && (
@@ -363,7 +424,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
       </div>
 
       <div
-        className="fixed inset-x-0 bottom-0 z-40 border-t bg-[var(--surface)] p-3 sm:hidden"
+        className="fixed inset-x-0 bottom-[4.75rem] z-40 border-t bg-[var(--surface)] p-3 sm:hidden"
         style={{ borderColor: "var(--line)" }}
       >
         <div className="mx-auto flex max-w-4xl items-center gap-2">
