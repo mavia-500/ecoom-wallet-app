@@ -7,8 +7,24 @@ export function getSiteUrl(): string {
   );
 }
 
+/** Public HTTPS URL for a site path or external URL (path segments are encoded). */
 export function absoluteUrl(path: string): string {
-  const base = getSiteUrl();
+  const base = getSiteUrl().replace(/\/$/, "");
   if (!path || path === "/") return `${base}/`;
-  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+
+  if (/^https?:\/\//i.test(path)) {
+    try {
+      return new URL(path).href;
+    } catch {
+      return path;
+    }
+  }
+
+  const pathname = path.startsWith("/") ? path : `/${path}`;
+  const encodedPath = pathname
+    .split("/")
+    .map((segment) => (segment ? encodeURIComponent(segment) : ""))
+    .join("/");
+
+  return new URL(encodedPath, `${base}/`).href;
 }

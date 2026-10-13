@@ -6,18 +6,22 @@ import giftProducts from "@/data/giftProducts";
 import { absoluteUrl, SITE_NAME } from "@/lib/site";
 import { productHref } from "@/lib/productSlug";
 
-export type MetaCatalogItem = {
+/** Core fields required by Meta Commerce Manager product feeds. */
+export type MetaFeedItem = {
   id: string;
   title: string;
   description: string;
-  availability: "in stock";
+  availability: "in stock" | "out of stock";
   condition: "new";
   price: string;
-  sale_price: string;
   link: string;
   image_link: string;
-  additional_image_link: string;
   brand: string;
+};
+
+export type MetaCatalogItem = MetaFeedItem & {
+  sale_price: string;
+  additional_image_link: string;
   product_type: string;
   google_product_category: string;
   color: string;
@@ -32,6 +36,7 @@ type SourceProduct = {
   color: string;
   price: number;
   discountedPrice: number;
+  stock: number;
 };
 
 const GOOGLE_CATEGORY = "5605"; // Wallets
@@ -52,11 +57,13 @@ function toItem(
     .map((src) => absoluteUrl(src))
     .join(",");
 
+  const inStock = (product.stock ?? 0) > 0;
+
   return {
     id: `${categoryPath}_${product.id}`,
     title: cleanText(product.title).slice(0, 150),
     description: cleanText(product.description).slice(0, 5000),
-    availability: "in stock",
+    availability: inStock ? "in stock" : "out of stock",
     condition: "new",
     price: `${product.price.toFixed(2)} PKR`,
     sale_price: hasSale ? `${finalPrice.toFixed(2)} PKR` : "",
@@ -98,29 +105,51 @@ function csvEscape(value: string): string {
   return value;
 }
 
+const META_FEED_HEADERS = [
+  "id",
+  "title",
+  "description",
+  "availability",
+  "condition",
+  "price",
+  "link",
+  "image_link",
+  "brand",
+] as const satisfies readonly (keyof MetaFeedItem)[];
+
+const META_CATALOG_EXTRA_HEADERS = [
+  "sale_price",
+  "additional_image_link",
+  "product_type",
+  "google_product_category",
+  "color",
+  "item_group_id",
+] as const;
+
+function buildCsvFromHeaders<T extends Record<string, string>>(
+  items: T[],
+  headers: readonly (keyof T & string)[],
+): string {
+  const rows = items.map((item) =>
+    headers.map((key) => csvEscape(String(item[key] ?? ""))).join(","),
+  );
+  return [headers.join(","), ...rows].join("\r\n");
+}
+
+/** Meta Commerce Manager feed (required columns only). UTF-8 with BOM for Excel. */
+export function buildMetaFeedCsv(): string {
+  const items = getMetaCatalogItems();
+  const body = buildCsvFromHeaders(items, META_FEED_HEADERS);
+  return `\uFEFF${body}`;
+}
+
+/** Extended catalog CSV (optional Meta / catalog fields). */
 export function buildMetaCatalogCsv(): string {
   const items = getMetaCatalogItems();
   const headers = [
-    "id",
-    "title",
-    "description",
-    "availability",
-    "condition",
-    "price",
-    "sale_price",
-    "link",
-    "image_link",
-    "additional_image_link",
-    "brand",
-    "product_type",
-    "google_product_category",
-    "color",
-    "item_group_id",
+    ...META_FEED_HEADERS,
+    ...META_CATALOG_EXTRA_HEADERS,
   ] as const;
-
-  const rows = items.map((item) =>
-    headers.map((key) => csvEscape(String(item[key] ?? ""))).join(",")
-  );
-
-  return [headers.join(","), ...rows].join("\n");
+  const body = buildCsvFromHeaders(items, headers);
+  return `\uFEFF${body}`;
 }

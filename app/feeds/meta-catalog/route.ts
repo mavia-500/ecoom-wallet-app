@@ -1,10 +1,14 @@
-import { buildMetaCatalogCsv } from "@/lib/metaCatalog";
+import { buildMetaCatalogCsv, buildMetaFeedCsv } from "@/lib/metaCatalog";
+
+/** ?minimal=1 returns required Meta columns only; default is extended catalog. */
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export async function GET() {
-  const csv = buildMetaCatalogCsv();
+export async function GET(request: Request) {
+  const minimal =
+    new URL(request.url).searchParams.get("minimal") === "1";
+  const csv = minimal ? buildMetaFeedCsv() : buildMetaCatalogCsv();
 
   return new Response(csv, {
     status: 200,
