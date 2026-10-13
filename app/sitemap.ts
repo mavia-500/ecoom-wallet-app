@@ -5,11 +5,10 @@ import cardholderProducts from "@/data/carholderProducts";
 import longwalletProducts from "@/data/longwalletProducts";
 import giftProducts from "@/data/giftProducts";
 import { productSlug } from "@/lib/productSlug";
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://www.hilyah.online";
+import { getSiteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const siteUrl = getSiteUrl();
   const lastModified = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [
