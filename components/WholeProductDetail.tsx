@@ -26,7 +26,7 @@ interface Product {
   title: string;
   description: string;
   image: string[];
-  video?: string;
+  video?: string | string[];
   color: string;
   price: number;
   discountedPrice: number;

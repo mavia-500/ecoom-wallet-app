@@ -16,7 +16,8 @@ import ProductVideo from "./ProductVideo";
 interface ImageSliderProps {
   images: string[];
   productTitle?: string;
-  video?: string;
+  /** One path or many — each loads only after the user taps play. */
+  video?: string | string[];
 }
 
 type Slide =
@@ -284,28 +285,35 @@ const ImageSlider = ({ images, productTitle, video }: ImageSliderProps) => {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const safeImages = images?.length ? images : [];
   const altBase = productTitle || "Hilyah leather wallet";
+  const videoKey = Array.isArray(video) ? video.join("|") : video ?? "";
+  const videoList = useMemo(() => {
+    if (!videoKey) return [] as string[];
+    return videoKey.split("|").filter(Boolean);
+  }, [videoKey]);
 
   const slides: Slide[] = useMemo(() => {
     const imageSlides: Slide[] = safeImages.map((src) => ({
       type: "image",
       src,
     }));
-    if (video && safeImages[0]) {
-      imageSlides.push({
-        type: "video",
-        src: video,
-        poster: safeImages[0],
+    if (safeImages[0] && videoList.length) {
+      videoList.forEach((src, i) => {
+        imageSlides.push({
+          type: "video",
+          src,
+          poster: safeImages[Math.min(i, safeImages.length - 1)] ?? safeImages[0],
+        });
       });
     }
     return imageSlides;
-  }, [safeImages.join("|"), video]);
+  }, [safeImages.join("|"), videoList.join("|")]);
 
   const closeLightbox = useCallback(() => setLightboxOpen(false), []);
 
   useEffect(() => {
     setCurrentIndex(0);
     scrollerRef.current?.scrollTo({ left: 0 });
-  }, [safeImages.join("|"), video]);
+  }, [safeImages.join("|"), videoList.join("|")]);
 
   if (!slides.length) {
     return (

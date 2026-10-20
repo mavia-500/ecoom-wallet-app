@@ -5,6 +5,8 @@ interface Product {
   title: string;
   description: string;
   image: string[];
+  /** Optional product video path(s) under /public (lazy-loaded only after tap play). */
+  video?: string | string[];
   color: string;
   price: number;
   discountedPrice: number;
@@ -51,6 +53,10 @@ const giftProducts: Product[] = [
       "/assets/gifts/chocolate-gift-set-2.webp",
       "/assets/gifts/chocolate-gift-set-3.webp",
       "/assets/gifts/chocolate-gift-set-4.webp",
+    ],
+    video: [
+      "/assets/gifts/chocolate-triple-gift-set.mp4",
+      "/assets/gifts/chocolate-triple-gift-set-2.mp4",
     ],
     color: "Chocolate Brown",
     price: 9999,

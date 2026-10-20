@@ -5,6 +5,8 @@ interface Product {
   title: string;
   description: string;
   image: string[];
+  /** Optional product video path under /public (lazy-loaded only after tap play). */
+  video?: string;
   color: string;
   price: number;
   discountedPrice: number;
@@ -145,6 +147,7 @@ const longwalletProducts: Product[] = [
       "/assets/longwallet/chocolate-dual-snap-long-wallet-2.webp",
       "/assets/longwallet/chocolate-dual-snap-long-wallet-4.webp",
     ],
+    video: "/assets/longwallet/chocolate-dual-snap-long-wallet.mp4",
     color: "Chocolate Brown",
     price: 8999,
     discountedPrice: 0,
