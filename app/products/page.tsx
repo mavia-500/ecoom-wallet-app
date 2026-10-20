@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ProductsCatalog from "@/components/ProductsCatalog";
 import JsonLd from "@/components/JsonLd";
 import { getCatalogProducts } from "@/lib/catalog";
@@ -34,7 +35,15 @@ export default function ProductsPage() {
           }),
         ]}
       />
-      <ProductsCatalog products={products} />
+      <Suspense
+        fallback={
+          <div className="px-4 py-16 text-center text-sm text-[var(--ink-soft)]">
+            Loading products…
+          </div>
+        }
+      >
+        <ProductsCatalog products={products} />
+      </Suspense>
     </>
   );
 }

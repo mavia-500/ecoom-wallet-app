@@ -26,6 +26,7 @@ interface Product {
   title: string;
   description: string;
   image: string[];
+  video?: string;
   color: string;
   price: number;
   discountedPrice: number;
@@ -155,7 +156,11 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
           className="overflow-hidden bg-[var(--surface)]"
           style={{ border: "1px solid var(--line)" }}
         >
-          <ImageSlider images={products.image} productTitle={products.title} />
+          <ImageSlider
+            images={products.image}
+            productTitle={products.title}
+            video={products.video}
+          />
 
           <div className="p-5 sm:p-8">
             <div className="flex flex-wrap items-start justify-between gap-3">

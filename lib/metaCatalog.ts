@@ -6,7 +6,7 @@ import giftProducts from "@/data/giftProducts";
 import { absoluteUrl, SITE_NAME } from "@/lib/site";
 import { productHref } from "@/lib/productSlug";
 
-/** Core fields required by Meta Commerce Manager product feeds. */
+/** Product feed row — every image for the product is in `image_links`. */
 export type MetaFeedItem = {
   id: string;
   title: string;
@@ -15,13 +15,17 @@ export type MetaFeedItem = {
   condition: "new";
   price: string;
   link: string;
-  image_link: string;
+  /** All product images as comma-separated public HTTPS URLs. */
+  image_links: string;
   brand: string;
 };
 
 export type MetaCatalogItem = MetaFeedItem & {
-  sale_price: string;
+  /** First image (Meta requires `image_link`). */
+  image_link: string;
+  /** Remaining images for Meta `additional_image_link`. */
   additional_image_link: string;
+  sale_price: string;
   product_type: string;
   google_product_category: string;
   color: string;
@@ -45,18 +49,23 @@ function cleanText(value: string): string {
   return value.replace(/\s+/g, " ").trim();
 }
 
+function toAbsoluteImages(images: string[]): string[] {
+  return images
+    .filter(Boolean)
+    .map((src) => absoluteUrl(src))
+    .filter((url, index, arr) => arr.indexOf(url) === index);
+}
+
 function toItem(
   product: SourceProduct,
   categoryPath: string,
-  productType: string
+  productType: string,
 ): MetaCatalogItem {
   const finalPrice = product.price - product.discountedPrice;
   const hasSale = product.discountedPrice > 0;
-  const extraImages = product.image
-    .slice(1, 11)
-    .map((src) => absoluteUrl(src))
-    .join(",");
-
+  const images = toAbsoluteImages(
+    product.image?.length ? product.image : ["/images/logo1.webp"],
+  );
   const inStock = (product.stock ?? 0) > 0;
 
   return {
@@ -68,8 +77,9 @@ function toItem(
     price: `${product.price.toFixed(2)} PKR`,
     sale_price: hasSale ? `${finalPrice.toFixed(2)} PKR` : "",
     link: absoluteUrl(productHref(categoryPath, product)),
-    image_link: absoluteUrl(product.image[0] || "/images/logo1.webp"),
-    additional_image_link: extraImages,
+    image_links: images.join(","),
+    image_link: images[0],
+    additional_image_link: images.slice(1).join(","),
     brand: SITE_NAME,
     product_type: productType,
     google_product_category: GOOGLE_CATEGORY,
@@ -81,20 +91,18 @@ function toItem(
 export function getMetaCatalogItems(): MetaCatalogItem[] {
   return [
     ...bifoldProducts.map((p) =>
-      toItem(p, "bifoldwallet", "Leather Wallets > Bi-Fold")
+      toItem(p, "bifoldwallet", "Leather Wallets > Bi-Fold"),
     ),
     ...trifoldProducts.map((p) =>
-      toItem(p, "trifoldwallet", "Leather Wallets > Tri-Fold")
+      toItem(p, "trifoldwallet", "Leather Wallets > Tri-Fold"),
     ),
     ...cardholderProducts.map((p) =>
-      toItem(p, "cardholder", "Leather Wallets > Card Holder")
+      toItem(p, "cardholder", "Leather Wallets > Card Holder"),
     ),
     ...longwalletProducts.map((p) =>
-      toItem(p, "longwallet", "Leather Wallets > Traveller Wallet")
+      toItem(p, "longwallet", "Leather Wallets > Traveller Wallet"),
     ),
-    ...giftProducts.map((p) =>
-      toItem(p, "gifts", "Leather Wallets > Gifts")
-    ),
+    ...giftProducts.map((p) => toItem(p, "gifts", "Leather Wallets > Gifts")),
   ];
 }
 
@@ -105,6 +113,7 @@ function csvEscape(value: string): string {
   return value;
 }
 
+/** User CSV: one `image_links` column with every product image. */
 const META_FEED_HEADERS = [
   "id",
   "title",
@@ -113,18 +122,28 @@ const META_FEED_HEADERS = [
   "condition",
   "price",
   "link",
-  "image_link",
+  "image_links",
   "brand",
 ] as const satisfies readonly (keyof MetaFeedItem)[];
 
-const META_CATALOG_EXTRA_HEADERS = [
+const META_CATALOG_HEADERS = [
+  "id",
+  "title",
+  "description",
+  "availability",
+  "condition",
+  "price",
   "sale_price",
+  "link",
+  "image_link",
   "additional_image_link",
+  "image_links",
+  "brand",
   "product_type",
   "google_product_category",
   "color",
   "item_group_id",
-] as const;
+] as const satisfies readonly (keyof MetaCatalogItem)[];
 
 function buildCsvFromHeaders<T extends Record<string, string>>(
   items: T[],
@@ -136,20 +155,16 @@ function buildCsvFromHeaders<T extends Record<string, string>>(
   return [headers.join(","), ...rows].join("\r\n");
 }
 
-/** Meta Commerce Manager feed (required columns only). UTF-8 with BOM for Excel. */
+/** Main product CSV: UTF-8 BOM, all images in `image_links`. */
 export function buildMetaFeedCsv(): string {
   const items = getMetaCatalogItems();
   const body = buildCsvFromHeaders(items, META_FEED_HEADERS);
   return `\uFEFF${body}`;
 }
 
-/** Extended catalog CSV (optional Meta / catalog fields). */
+/** Extended catalog CSV (Meta-friendly image_link + additional + full image_links). */
 export function buildMetaCatalogCsv(): string {
   const items = getMetaCatalogItems();
-  const headers = [
-    ...META_FEED_HEADERS,
-    ...META_CATALOG_EXTRA_HEADERS,
-  ] as const;
-  const body = buildCsvFromHeaders(items, headers);
+  const body = buildCsvFromHeaders(items, META_CATALOG_HEADERS);
   return `\uFEFF${body}`;
 }

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FiMenu, FiX, FiShoppingCart } from "react-icons/fi";
 import { useCart } from "@/context/CartContext";
+import SearchBar from "@/components/SearchBar";
 
 const links = [
   { href: "/", label: "Home" },
@@ -52,10 +53,10 @@ const Navbar = () => {
         }}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-14 items-center justify-between overflow-hidden sm:h-16">
+          <div className="flex h-14 items-center justify-between sm:h-16">
             <Link
               href="/"
-              className="flex h-full flex-shrink-0 items-center overflow-hidden"
+              className="flex h-full min-w-0 flex-shrink items-center overflow-hidden"
               aria-label="Hilyah home"
             >
               <img
@@ -86,6 +87,7 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center gap-1.5 sm:gap-2">
+              <SearchBar />
               <button
                 type="button"
                 onClick={openCart}
@@ -143,9 +145,15 @@ const Navbar = () => {
           </div>
 
           <div
-            className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain px-4 py-3"
+            className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain px-4 py-4"
             style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
           >
+            <div className="mb-5 w-full">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--ink-soft)]">
+                Search
+              </p>
+              <SearchBar variant="inline" onNavigate={closeMenu} />
+            </div>
             <div className="flex flex-col gap-1 pb-10">
               {links.map((link) => (
                 <Link

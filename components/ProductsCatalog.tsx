@@ -1,9 +1,13 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ProductCard } from "@/components/ProductCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import type { CatalogProduct } from "@/lib/catalog";
+import {
+  categoryLabel,
+  type CatalogProduct,
+} from "@/lib/catalog";
 import {
   PRODUCT_SORTS,
   type ProductSortId,
@@ -27,13 +31,22 @@ export default function ProductsCatalog({
 }: {
   products: CatalogProduct[];
 }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const urlQuery = (searchParams.get("q") || "").trim();
   const [category, setCategory] = useState<CategoryId>("all");
   const [sort, setSort] = useState<ProductSortId>("featured");
+  const [searchQuery, setSearchQuery] = useState(urlQuery);
   const [visibleCount, setVisibleCount] = useState(12);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    setSearchQuery(urlQuery);
+    setVisibleCount(12);
+  }, [urlQuery]);
 
   const filtered = useMemo(() => {
     let list = products;
@@ -44,16 +57,36 @@ export default function ProductsCatalog({
       list = list.filter((p) => p.category === category);
     }
 
+    const q = searchQuery.trim().toLowerCase();
+    if (q) {
+      const tokens = q.split(/\s+/).filter(Boolean);
+      list = list.filter((p) => {
+        const haystack = [
+          p.title,
+          p.color,
+          p.category,
+          categoryLabel(p.category),
+          p.description,
+        ]
+          .join(" ")
+          .toLowerCase();
+        return tokens.every((t) => haystack.includes(t));
+      });
+    }
+
     return sortCatalogProducts(list, sort);
-  }, [products, category, sort]);
+  }, [products, category, sort, searchQuery]);
 
   const visible = filtered.slice(0, visibleCount);
-  const hasActiveFilters = category !== "all" || sort !== "featured";
+  const hasActiveFilters =
+    category !== "all" || sort !== "featured" || searchQuery.trim().length > 0;
 
   const resetFilters = () => {
     setCategory("all");
     setSort("featured");
+    setSearchQuery("");
     setVisibleCount(12);
+    if (urlQuery) router.replace("/products");
   };
 
   return (
@@ -71,7 +104,9 @@ export default function ProductsCatalog({
             Shop
           </p>
           <h1 className="font-display mt-2 text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
-            All products
+            {searchQuery.trim()
+              ? `Results for “${searchQuery.trim()}”`
+              : "All products"}
           </h1>
           <p className="mx-auto mt-3 max-w-lg text-sm text-[var(--ink-soft)]">
             Every Hilyah leather wallet in one place cash on delivery across
@@ -80,6 +115,23 @@ export default function ProductsCatalog({
         </div>
 
         <div className="mb-6 space-y-4">
+          <label className="mx-auto flex w-full max-w-md flex-col gap-1.5 sm:mx-0">
+            <span className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-[var(--ink-soft)] sm:text-left">
+              Search
+            </span>
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setVisibleCount(12);
+              }}
+              placeholder="Search by name, color, or category…"
+              className="rounded-md border bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)] focus:border-[var(--cognac)]"
+              style={{ borderColor: "var(--line)" }}
+            />
+          </label>
+
           <div>
             <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[var(--ink-soft)] sm:text-left">
               Category

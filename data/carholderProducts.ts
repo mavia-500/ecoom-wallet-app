@@ -5,6 +5,8 @@ interface Product {
   title: string;
   description: string;
   image: string[];
+  /** Optional product video path under /public (lazy-loaded on detail page). */
+  video?: string;
   color: string;
   price: number;
   discountedPrice: number;
@@ -229,6 +231,7 @@ const cardholderProducts: Product[] = [
       "/assets/cardholder/olive-snap-cardholder-3.webp",
       "/assets/cardholder/olive-snap-cardholder-4.webp",
     ],
+    video: "/assets/cardholder/olive-snap-cardholder.mp4",
     color: "Olive Green",
     price: 3299,
     discountedPrice: 399,
@@ -246,6 +249,7 @@ const cardholderProducts: Product[] = [
       "/assets/cardholder/olive-diagonal-cardholder-3.webp",
       "/assets/cardholder/olive-diagonal-cardholder-2.webp",
     ],
+    video: "/assets/cardholder/olive-diagonal-cardholder.mp4",
     color: "Olive Green",
     price: 2099,
     discountedPrice: 0,
@@ -280,6 +284,7 @@ const cardholderProducts: Product[] = [
       "/assets/cardholder/navy-teal-cardholder-4.webp",
       "/assets/cardholder/navy-teal-cardholder-1.webp",
     ],
+    video: "/assets/cardholder/navy-teal-slim-cardholder.mp4",
     color: "Navy / Teal",
     price: 3299,
     discountedPrice: 0,
@@ -297,6 +302,7 @@ const cardholderProducts: Product[] = [
       "/assets/cardholder/burgundy-wave-cardholder-2.webp",
       "/assets/cardholder/burgundy-wave-cardholder-1.webp",
     ],
+    video: "/assets/cardholder/burgundy-wave-cardholder.mp4",
     color: "Burgundy",
     price: 2999,
     discountedPrice: 0,

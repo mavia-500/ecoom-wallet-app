@@ -5,6 +5,8 @@ interface Product {
   title: string;
   description: string;
   image: string[];
+  /** Optional product video path under /public (lazy-loaded in image scroller). */
+  video?: string;
   color: string;
   price: number;
   discountedPrice: number;
@@ -517,6 +519,7 @@ const bifoldProducts: Product[] = [
       "/assets/bifold/honey-tan-slim-bifold-3.webp",
       "/assets/bifold/honey-tan-slim-bifold-2.webp",
     ],
+    video: "/assets/bifold/honey-tan-slim-bifold.mp4",
     color: "Honey Tan",
     price: 3199,
     discountedPrice: 0,

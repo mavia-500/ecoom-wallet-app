@@ -1,13 +1,27 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { FiChevronLeft, FiChevronRight, FiMinus, FiPlus, FiX, FiZoomIn } from "react-icons/fi";
+import {
+  FiChevronLeft,
+  FiChevronRight,
+  FiMinus,
+  FiPlus,
+  FiPlay,
+  FiX,
+  FiZoomIn,
+} from "react-icons/fi";
+import ProductVideo from "./ProductVideo";
 
 interface ImageSliderProps {
   images: string[];
   productTitle?: string;
+  video?: string;
 }
+
+type Slide =
+  | { type: "image"; src: string }
+  | { type: "video"; src: string; poster: string };
 
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 3;
@@ -264,21 +278,36 @@ function ZoomableSlide({
   );
 }
 
-const ImageSlider = ({ images, productTitle }: ImageSliderProps) => {
+const ImageSlider = ({ images, productTitle, video }: ImageSliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const safeImages = images?.length ? images : [];
   const altBase = productTitle || "Hilyah leather wallet";
 
+  const slides: Slide[] = useMemo(() => {
+    const imageSlides: Slide[] = safeImages.map((src) => ({
+      type: "image",
+      src,
+    }));
+    if (video && safeImages[0]) {
+      imageSlides.push({
+        type: "video",
+        src: video,
+        poster: safeImages[0],
+      });
+    }
+    return imageSlides;
+  }, [safeImages.join("|"), video]);
+
   const closeLightbox = useCallback(() => setLightboxOpen(false), []);
 
   useEffect(() => {
     setCurrentIndex(0);
     scrollerRef.current?.scrollTo({ left: 0 });
-  }, [safeImages.join("|")]);
+  }, [safeImages.join("|"), video]);
 
-  if (!safeImages.length) {
+  if (!slides.length) {
     return (
       <div className="flex h-64 items-center justify-center bg-[var(--bg-deep)] text-sm text-[var(--ink-soft)]">
         No image available
@@ -289,7 +318,7 @@ const ImageSlider = ({ images, productTitle }: ImageSliderProps) => {
   const scrollToIndex = (index: number) => {
     const el = scrollerRef.current;
     if (!el) return;
-    const next = (index + safeImages.length) % safeImages.length;
+    const next = (index + slides.length) % slides.length;
     el.scrollTo({ left: next * el.clientWidth, behavior: "smooth" });
     setCurrentIndex(next);
   };
@@ -300,7 +329,8 @@ const ImageSlider = ({ images, productTitle }: ImageSliderProps) => {
     setCurrentIndex(Math.round(el.scrollLeft / el.clientWidth));
   };
 
-  const currentSrc = safeImages[currentIndex];
+  const currentSlide = slides[currentIndex];
+  const imageCount = safeImages.length;
 
   return (
     <div className="w-full">
@@ -310,31 +340,44 @@ const ImageSlider = ({ images, productTitle }: ImageSliderProps) => {
           onScroll={onScroll}
           className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {safeImages.map((src, index) => (
+          {slides.map((slide, index) => (
             <div
-              key={`${src}-${index}`}
+              key={
+                slide.type === "image"
+                  ? `img-${slide.src}-${index}`
+                  : `vid-${slide.src}`
+              }
               className="relative h-[min(70vh,560px)] w-full min-w-full flex-none snap-center"
             >
-              <ZoomableSlide
-                src={src}
-                alt={`${altBase} leather product photo ${index + 1} of ${safeImages.length}`}
-                priority={index === 0}
-                onOpenLightbox={() => {
-                  setCurrentIndex(index);
-                  setLightboxOpen(true);
-                }}
-              />
+              {slide.type === "image" ? (
+                <ZoomableSlide
+                  src={slide.src}
+                  alt={`${altBase} leather product photo ${index + 1} of ${imageCount}`}
+                  priority={index === 0}
+                  onOpenLightbox={() => {
+                    setCurrentIndex(index);
+                    setLightboxOpen(true);
+                  }}
+                />
+              ) : (
+                <ProductVideo
+                  src={slide.src}
+                  poster={slide.poster}
+                  title={altBase}
+                  active={currentIndex === index}
+                />
+              )}
             </div>
           ))}
         </div>
 
-        {safeImages.length > 1 && (
+        {slides.length > 1 && (
           <>
             <button
               type="button"
               onClick={() => scrollToIndex(currentIndex - 1)}
               className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--surface)]/90 text-[var(--ink)] shadow"
-              aria-label="Previous image"
+              aria-label="Previous media"
             >
               <FiChevronLeft className="h-5 w-5" />
             </button>
@@ -342,47 +385,64 @@ const ImageSlider = ({ images, productTitle }: ImageSliderProps) => {
               type="button"
               onClick={() => scrollToIndex(currentIndex + 1)}
               className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--surface)]/90 text-[var(--ink)] shadow"
-              aria-label="Next image"
+              aria-label="Next media"
             >
               <FiChevronRight className="h-5 w-5" />
             </button>
             <p className="absolute bottom-3 right-3 z-10 rounded bg-[var(--leather)]/80 px-2 py-1 text-xs text-[#faf9f7]">
-              {currentIndex + 1} / {safeImages.length}
+              {currentIndex + 1} / {slides.length}
             </p>
           </>
         )}
       </div>
 
-      {safeImages.length > 1 && (
+      {slides.length > 1 && (
         <div className="flex gap-2 overflow-x-auto p-3">
-          {safeImages.map((imageUrl, index) => (
-            <button
-              key={`${imageUrl}-${index}`}
-              type="button"
-              onClick={() => scrollToIndex(index)}
-              className={`relative h-16 w-16 flex-shrink-0 overflow-hidden rounded bg-[var(--bg-deep)] transition ${
-                currentIndex === index
-                  ? "ring-2 ring-[var(--cognac)]"
-                  : "opacity-70 hover:opacity-100"
-              }`}
-              aria-label={`View photo ${index + 1} of ${altBase}`}
-            >
-              <Image
-                src={imageUrl}
-                alt={`${altBase} thumbnail ${index + 1} of ${safeImages.length}`}
-                fill
-                sizes="64px"
-                loading="lazy"
-                className="object-contain p-0.5"
-              />
-            </button>
-          ))}
+          {slides.map((slide, index) => {
+            const thumbSrc =
+              slide.type === "image" ? slide.src : slide.poster;
+            return (
+              <button
+                key={
+                  slide.type === "image"
+                    ? `thumb-img-${slide.src}-${index}`
+                    : `thumb-vid-${slide.src}`
+                }
+                type="button"
+                onClick={() => scrollToIndex(index)}
+                className={`relative h-16 w-16 flex-shrink-0 overflow-hidden rounded bg-[var(--bg-deep)] transition ${
+                  currentIndex === index
+                    ? "ring-2 ring-[var(--cognac)]"
+                    : "opacity-70 hover:opacity-100"
+                }`}
+                aria-label={
+                  slide.type === "video"
+                    ? `View video of ${altBase}`
+                    : `View photo ${index + 1} of ${altBase}`
+                }
+              >
+                <Image
+                  src={thumbSrc}
+                  alt=""
+                  fill
+                  sizes="64px"
+                  loading="lazy"
+                  className="object-contain p-0.5"
+                />
+                {slide.type === "video" && (
+                  <span className="absolute inset-0 flex items-center justify-center bg-black/35">
+                    <FiPlay className="h-5 w-5 text-white" aria-hidden />
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
       )}
 
-      {lightboxOpen && (
+      {lightboxOpen && currentSlide?.type === "image" && (
         <ZoomLightbox
-          src={currentSrc}
+          src={currentSlide.src}
           alt={`${altBase} zoomed view`}
           onClose={closeLightbox}
         />
