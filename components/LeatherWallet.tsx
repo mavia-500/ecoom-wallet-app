@@ -12,7 +12,10 @@ interface Product {
 
 const LeatherWallet = ({ productData }: { productData: Product[] }) => {
   return (
-    <section className="mx-auto max-w-7xl px-4 pb-2 pt-2 sm:px-6 sm:pb-3 sm:pt-3 lg:px-8">
+    <section
+      className="mx-auto max-w-7xl px-4 pb-2 pt-2 sm:px-6 sm:pb-3 sm:pt-3 lg:px-8"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "1px 560px" }}
+    >
       <div className="mb-6 text-center">
         <h2 className="font-display text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
           Featured wallets

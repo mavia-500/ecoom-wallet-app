@@ -1,4 +1,4 @@
-import type { CatalogProduct } from "@/lib/catalog";
+import type { CatalogProduct } from "@/lib/searchClient";
 
 export const PRODUCT_SORTS = [
   { id: "featured", label: "Featured" },

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import type { CatalogProduct } from "@/lib/catalog";
+import type { CatalogProduct } from "@/lib/searchClient";
 
 export default function SaleCatalog({
   products,

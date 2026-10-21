@@ -48,7 +48,10 @@ const reviews = [
 
 const HomeReviews = () => {
   return (
-    <section className="mx-auto max-w-7xl px-4 pb-6 pt-8 sm:px-6 sm:pb-8 sm:pt-10 lg:px-8">
+    <section
+      className="mx-auto max-w-7xl px-4 pb-6 pt-8 sm:px-6 sm:pb-8 sm:pt-10 lg:px-8"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "1px 560px" }}
+    >
       <div className="text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--cognac)]">
           Customer love

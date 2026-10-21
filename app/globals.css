@@ -12,8 +12,6 @@
   --olive: #2f4a3c;
   --line: #d4cfc8;
   --sale: #2f4a3c;
-  --font-display: var(--font-display), "Georgia", serif;
-  --font-body: var(--font-body), "Segoe UI", sans-serif;
 }
 
 html {
@@ -26,7 +24,7 @@ body {
     radial-gradient(ellipse 90% 60% at 100% 0%, rgba(47, 74, 60, 0.06), transparent 45%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
   color: var(--ink);
-  font-family: var(--font-body);
+  font-family: var(--font-body), "Segoe UI", sans-serif;
   min-height: 100vh;
 }
 
@@ -34,12 +32,12 @@ h1,
 h2,
 h3,
 .font-display {
-  font-family: var(--font-display);
+  font-family: var(--font-display), "Georgia", serif;
   letter-spacing: -0.02em;
 }
 
 .font-body {
-  font-family: var(--font-body);
+  font-family: var(--font-body), "Segoe UI", sans-serif;
   letter-spacing: normal;
 }
 

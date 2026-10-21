@@ -3,17 +3,14 @@ import trifoldProducts from "@/data/trifoldProducts";
 import cardholderProducts from "@/data/carholderProducts";
 import longwalletProducts from "@/data/longwalletProducts";
 import giftProducts from "@/data/giftProducts";
+import {
+  categoryLabel,
+  searchProducts,
+  type CatalogProduct,
+  type SearchProduct,
+} from "@/lib/searchClient";
 
-export type CatalogProduct = {
-  id: number;
-  title: string;
-  description: string;
-  image: string[];
-  color: string;
-  price: number;
-  discountedPrice: number;
-  category: string;
-};
+export { categoryLabel, searchProducts, type CatalogProduct, type SearchProduct };
 
 function slim(
   products: Array<{
@@ -78,16 +75,6 @@ export function getCatalogProducts(): CatalogProduct[] {
   ];
 }
 
-export type SearchProduct = {
-  id: number;
-  title: string;
-  color: string;
-  category: string;
-  image: string;
-  price: number;
-  discountedPrice: number;
-};
-
 /** Slim index for sitewide product search. */
 export function getSearchIndex(): SearchProduct[] {
   return getCatalogProducts().map(
@@ -101,43 +88,6 @@ export function getSearchIndex(): SearchProduct[] {
       discountedPrice,
     })
   );
-}
-
-const CATEGORY_LABELS: Record<string, string> = {
-  bifoldwallet: "Bi-Fold",
-  trifoldwallet: "Tri-Fold",
-  cardholder: "Card Holder",
-  longwallet: "Traveller Wallet",
-  gifts: "Gifts",
-};
-
-export function categoryLabel(category: string): string {
-  return CATEGORY_LABELS[category] ?? category;
-}
-
-export function searchProducts(
-  products: SearchProduct[],
-  query: string,
-  limit = 8
-): SearchProduct[] {
-  const q = query.trim().toLowerCase();
-  if (!q) return [];
-
-  const tokens = q.split(/\s+/).filter(Boolean);
-
-  return products
-    .filter((p) => {
-      const haystack = [
-        p.title,
-        p.color,
-        p.category,
-        categoryLabel(p.category),
-      ]
-        .join(" ")
-        .toLowerCase();
-      return tokens.every((t) => haystack.includes(t));
-    })
-    .slice(0, limit);
 }
 
 /** Products currently on sale (discountedPrice > 0). */

@@ -11,6 +11,7 @@ export default function HomeHero() {
           alt="genuine leather bifold wallet in pocket homepage hero"
           fill
           priority
+          fetchPriority="high"
           quality={65}
           sizes="100vw"
           className="object-cover object-center sm:object-contain"

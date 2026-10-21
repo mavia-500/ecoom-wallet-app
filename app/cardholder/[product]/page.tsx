@@ -7,9 +7,19 @@ import {
   productJsonLd,
   productMetadata,
 } from "@/lib/seo";
-import { findProductByParam, productHref } from "@/lib/productSlug";
+import {
+  findProductByParam,
+  productHref,
+  productSlug,
+} from "@/lib/productSlug";
 
 type Props = { params: Promise<{ product: string }> };
+
+export function generateStaticParams() {
+  return cardholderProducts.map((item) => ({
+    product: productSlug(item.title),
+  }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { product } = await params;

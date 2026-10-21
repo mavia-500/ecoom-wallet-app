@@ -9,7 +9,10 @@ const HomeFAQ = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="mx-auto max-w-3xl px-4 pb-4 pt-4 sm:px-6 sm:pb-6 sm:pt-6 lg:px-8">
+    <section
+      className="mx-auto max-w-3xl px-4 pb-4 pt-4 sm:px-6 sm:pb-6 sm:pt-6 lg:px-8"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "1px 520px" }}
+    >
       <div className="text-center">
         <h2 className="font-display text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
           Common questions

@@ -136,7 +136,15 @@ function seededRandom(seed: number): number {
   return x - Math.floor(x);
 }
 
+const reviewCache = new Map<string, Review[]>();
+const BASE_DATE_MS = Date.UTC(2026, 1, 15);
+const DAY_MS = 86_400_000;
+
 export function generateReviews(productId: number, category: string): Review[] {
+  const cacheKey = `${category}:${productId}`;
+  const cached = reviewCache.get(cacheKey);
+  if (cached) return cached;
+
   const reviews: Review[] = [];
   const seed = productId * 1000 + category.length * 100;
 
@@ -151,8 +159,7 @@ export function generateReviews(productId: number, category: string): Review[] {
 
     // Generate a date within the last 12 months
     const daysAgo = Math.floor(seededRandom(seed + i * 7) * 365);
-    const date = new Date(2026, 1, 15); // Current date
-    date.setDate(date.getDate() - daysAgo);
+    const date = new Date(BASE_DATE_MS - daysAgo * DAY_MS);
 
     reviews.push({
       id: i + 1,
@@ -163,6 +170,7 @@ export function generateReviews(productId: number, category: string): Review[] {
     });
   }
 
+  reviewCache.set(cacheKey, reviews);
   return reviews;
 }
 

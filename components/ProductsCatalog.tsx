@@ -7,7 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import {
   categoryLabel,
   type CatalogProduct,
-} from "@/lib/catalog";
+} from "@/lib/searchClient";
 import {
   PRODUCT_SORTS,
   type ProductSortId,

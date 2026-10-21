@@ -249,6 +249,8 @@ function ZoomableSlide({
         alt={alt}
         fill
         priority={priority}
+        loading={priority ? "eager" : "lazy"}
+        quality={75}
         sizes="(max-width: 768px) 100vw, 896px"
         className={`object-contain object-center p-2 transition-opacity sm:p-4 ${
           hovering ? "md:opacity-0" : ""
@@ -259,7 +261,7 @@ function ZoomableSlide({
         className="pointer-events-none absolute inset-2 hidden overflow-hidden sm:inset-4 md:block"
         style={{
           opacity: hovering ? 1 : 0,
-          backgroundImage: `url(${src})`,
+          backgroundImage: hovering ? `url(${src})` : undefined,
           backgroundRepeat: "no-repeat",
           backgroundSize: "220%",
           backgroundPosition: `${pos.x}% ${pos.y}%`,

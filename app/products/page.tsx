@@ -6,21 +6,12 @@ import { breadcrumbJsonLd, catalogItemListJsonLd } from "@/lib/seo";
 
 export default function ProductsPage() {
   const products = getCatalogProducts();
-  const lcpImage = products[0]?.image[0];
   const title = "All products";
   const description =
     "Every Hilyah leather wallet in one place cash on delivery across Pakistan.";
 
   return (
     <>
-      {lcpImage ? (
-        <link
-          rel="preload"
-          as="image"
-          href={lcpImage}
-          fetchPriority="high"
-        />
-      ) : null}
       <JsonLd
         data={[
           breadcrumbJsonLd([

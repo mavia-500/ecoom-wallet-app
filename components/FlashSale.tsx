@@ -1,10 +1,7 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
 import CardImageCarousel from "@/components/CardImageCarousel";
 import SaleCountdown from "@/components/SaleCountdown";
-import { useCart } from "@/context/CartContext";
+import AddToCartButton from "@/components/AddToCartButton";
 import { productHref } from "@/lib/productSlug";
 
 type SaleItem = {
@@ -67,25 +64,9 @@ const saleItems: SaleItem[] = [
 ];
 
 function SaleCard({ item }: { item: SaleItem }) {
-  const { addItem } = useCart();
-  const [added, setAdded] = useState(false);
   const finalPrice = item.price - item.discountedPrice;
   const percent = Math.round((item.discountedPrice / item.price) * 100);
   const href = productHref(item.category, item);
-
-  const handleAddToCart = () => {
-    addItem({
-      id: item.id,
-      title: item.title,
-      image: item.images[0],
-      color: item.color,
-      price: item.price,
-      discountedPrice: item.discountedPrice,
-      category: item.category,
-    });
-    setAdded(true);
-    window.setTimeout(() => setAdded(false), 1500);
-  };
 
   return (
     <div className="flex h-full flex-col bg-[var(--surface)] transition-shadow hover:shadow-md">
@@ -117,13 +98,17 @@ function SaleCard({ item }: { item: SaleItem }) {
           </div>
         </Link>
         <div className="mt-1.5 flex flex-col gap-1.5 sm:mt-2 sm:gap-2">
-          <button
-            type="button"
-            onClick={handleAddToCart}
-            className="btn-primary w-full rounded-md py-2 text-xs sm:py-2.5 sm:text-sm"
-          >
-            {added ? "Added ✓" : "Add to cart"}
-          </button>
+          <AddToCartButton
+            item={{
+              id: item.id,
+              title: item.title,
+              image: item.images[0],
+              color: item.color,
+              price: item.price,
+              discountedPrice: item.discountedPrice,
+              category: item.category,
+            }}
+          />
           <Link
             href={href}
             className="btn-secondary block w-full rounded-md py-2 text-center text-xs sm:py-2.5 sm:text-sm"
@@ -138,7 +123,10 @@ function SaleCard({ item }: { item: SaleItem }) {
 
 const FlashSale = () => {
   return (
-    <section className="mx-auto max-w-7xl px-3 pb-1.5 pt-1.5 sm:px-5 sm:pb-2 sm:pt-2 lg:px-8">
+    <section
+      className="mx-auto max-w-7xl px-3 pb-1.5 pt-1.5 sm:px-5 sm:pb-2 sm:pt-2 lg:px-8"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "1px 620px" }}
+    >
       <div className="overflow-hidden" style={{ background: "var(--leather)" }}>
         <div className="flex flex-col gap-2 px-3 py-3 sm:flex-row sm:items-end sm:justify-between sm:gap-3 sm:px-5 sm:py-3.5">
           <div>

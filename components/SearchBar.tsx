@@ -6,13 +6,30 @@ import React, { useEffect, useId, useMemo, useRef, useState } from "react";
 import { FiSearch, FiX } from "react-icons/fi";
 import {
   categoryLabel,
-  getSearchIndex,
   searchProducts,
   type SearchProduct,
-} from "@/lib/catalog";
+} from "@/lib/searchClient";
 import { productHref } from "@/lib/productSlug";
 
-const SEARCH_INDEX = getSearchIndex();
+let cachedSearchIndex: SearchProduct[] | null = null;
+let searchIndexPromise: Promise<SearchProduct[]> | null = null;
+
+function loadSearchIndex(): Promise<SearchProduct[]> {
+  if (cachedSearchIndex) return Promise.resolve(cachedSearchIndex);
+  if (!searchIndexPromise) {
+    searchIndexPromise = fetch("/api/search-index")
+      .then((res) => (res.ok ? (res.json() as Promise<SearchProduct[]>) : []))
+      .then((data) => {
+        cachedSearchIndex = Array.isArray(data) ? data : [];
+        return cachedSearchIndex;
+      })
+      .catch(() => {
+        searchIndexPromise = null;
+        return [];
+      });
+  }
+  return searchIndexPromise;
+}
 
 type SearchBarProps = {
   /** Compact icon trigger (navbar) or full-width field (mobile menu). */
@@ -32,10 +49,28 @@ export default function SearchBar({
   const inputRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [searchIndex, setSearchIndex] = useState<SearchProduct[]>(
+    () => cachedSearchIndex ?? []
+  );
+
+  useEffect(() => {
+    if (!open && !query.trim() && variant !== "inline") return;
+    if (cachedSearchIndex) {
+      if (searchIndex.length === 0) setSearchIndex(cachedSearchIndex);
+      return;
+    }
+    let active = true;
+    loadSearchIndex().then((data) => {
+      if (active) setSearchIndex(data);
+    });
+    return () => {
+      active = false;
+    };
+  }, [open, query, variant, searchIndex.length]);
 
   const results = useMemo(
-    () => searchProducts(SEARCH_INDEX, query, 8),
-    [query]
+    () => searchProducts(searchIndex, query, 8),
+    [searchIndex, query]
   );
 
   useEffect(() => {
@@ -145,6 +180,8 @@ export default function SearchBar({
     <div ref={rootRef} className={className}>
       <button
         type="button"
+        onMouseEnter={() => void loadSearchIndex()}
+        onFocus={() => void loadSearchIndex()}
         onClick={() => setOpen(true)}
         className="inline-flex h-10 w-10 items-center justify-center rounded-md text-[var(--ink)] hover:bg-[var(--bg-deep)]"
         aria-label="Search products"

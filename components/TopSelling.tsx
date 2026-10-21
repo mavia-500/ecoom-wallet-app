@@ -1,9 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
 import CardImageCarousel from "@/components/CardImageCarousel";
-import { useCart } from "@/context/CartContext";
+import AddToCartButton from "@/components/AddToCartButton";
 import { productHref } from "@/lib/productSlug";
 
 type TopItem = {
@@ -75,25 +72,9 @@ function TopSellingCard({
   item: TopItem;
   index: number;
 }) {
-  const { addItem } = useCart();
-  const [added, setAdded] = useState(false);
   const finalPrice = item.price - item.discountedPrice;
   const hasDiscount = item.discountedPrice > 0;
   const href = productHref(item.category, item);
-
-  const handleAddToCart = () => {
-    addItem({
-      id: item.id,
-      title: item.title,
-      image: item.images[0],
-      color: item.color,
-      price: item.price,
-      discountedPrice: item.discountedPrice,
-      category: item.category,
-    });
-    setAdded(true);
-    window.setTimeout(() => setAdded(false), 1500);
-  };
 
   return (
     <div className="flex h-full flex-col bg-[var(--surface)] transition-shadow hover:shadow-md">
@@ -127,13 +108,17 @@ function TopSellingCard({
           </div>
         </Link>
         <div className="mt-1.5 flex flex-col gap-1.5 sm:mt-2 sm:gap-2">
-          <button
-            type="button"
-            onClick={handleAddToCart}
-            className="btn-primary w-full rounded-md py-2 text-xs sm:py-2.5 sm:text-sm"
-          >
-            {added ? "Added ✓" : "Add to cart"}
-          </button>
+          <AddToCartButton
+            item={{
+              id: item.id,
+              title: item.title,
+              image: item.images[0],
+              color: item.color,
+              price: item.price,
+              discountedPrice: item.discountedPrice,
+              category: item.category,
+            }}
+          />
           <Link
             href={href}
             className="btn-secondary block w-full rounded-md py-2 text-center text-xs sm:py-2.5 sm:text-sm"
@@ -151,6 +136,7 @@ const TopSelling = () => {
     <section
       id="top-selling"
       className="mx-auto max-w-7xl scroll-mt-24 px-4 pb-2 pt-2 sm:px-6 sm:pb-3 sm:pt-3 lg:px-8"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "1px 640px" }}
     >
       <div className="mb-6 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--cognac)]">

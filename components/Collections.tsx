@@ -31,7 +31,10 @@ const collections = [
 
 const Collections = () => {
   return (
-    <section className="px-4 pb-6 pt-2 sm:px-6 sm:pb-8 sm:pt-3 lg:px-8">
+    <section
+      className="px-4 pb-6 pt-2 sm:px-6 sm:pb-8 sm:pt-3 lg:px-8"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "1px 520px" }}
+    >
       <div className="mx-auto mb-6 max-w-2xl text-center">
         <h2 className="font-display text-3xl font-semibold text-[var(--ink)] sm:text-4xl">
           Shop by collection
