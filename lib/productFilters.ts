@@ -5,9 +5,6 @@ export const PRODUCT_SORTS = [
   { id: "price-asc", label: "Price: Low to High" },
   { id: "price-desc", label: "Price: High to Low" },
   { id: "top-selling", label: "Top Selling" },
-  { id: "discount", label: "Biggest Discount" },
-  { id: "name-asc", label: "Name: A to Z" },
-  { id: "name-desc", label: "Name: Z to A" },
 ] as const;
 
 export type ProductSortId = (typeof PRODUCT_SORTS)[number]["id"];
@@ -57,20 +54,6 @@ export function sortProducts<
       });
       break;
     }
-    case "discount":
-      next.sort(
-        (a, b) =>
-          b.discountedPrice / Math.max(b.price, 1) -
-            a.discountedPrice / Math.max(a.price, 1) ||
-          b.discountedPrice - a.discountedPrice,
-      );
-      break;
-    case "name-asc":
-      next.sort((a, b) => a.title.localeCompare(b.title));
-      break;
-    case "name-desc":
-      next.sort((a, b) => b.title.localeCompare(a.title));
-      break;
     default:
       break;
   }
@@ -104,20 +87,6 @@ export function sortCatalogProducts(
       });
       break;
     }
-    case "discount":
-      next.sort(
-        (a, b) =>
-          b.discountedPrice / Math.max(b.price, 1) -
-            a.discountedPrice / Math.max(a.price, 1) ||
-          b.discountedPrice - a.discountedPrice,
-      );
-      break;
-    case "name-asc":
-      next.sort((a, b) => a.title.localeCompare(b.title));
-      break;
-    case "name-desc":
-      next.sort((a, b) => b.title.localeCompare(a.title));
-      break;
     default:
       break;
   }
