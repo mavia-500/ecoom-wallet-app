@@ -357,7 +357,7 @@ const ImageSlider = ({ images, productTitle, video }: ImageSliderProps) => {
                   ? `img-${slide.src}-${index}`
                   : `vid-${slide.src}`
               }
-              className="relative h-[min(70vh,560px)] w-full min-w-full flex-none snap-center"
+              className="relative h-[min(42vh,340px)] w-full min-w-full flex-none snap-center sm:h-[min(65vh,520px)]"
             >
               {slide.type === "image" ? (
                 <ZoomableSlide
@@ -407,7 +407,7 @@ const ImageSlider = ({ images, productTitle, video }: ImageSliderProps) => {
       </div>
 
       {slides.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto p-3">
+        <div className="flex gap-2 overflow-x-auto p-2.5 sm:p-3">
           {slides.map((slide, index) => {
             const thumbSrc =
               slide.type === "image" ? slide.src : slide.poster;
@@ -420,7 +420,7 @@ const ImageSlider = ({ images, productTitle, video }: ImageSliderProps) => {
                 }
                 type="button"
                 onClick={() => scrollToIndex(index)}
-                className={`relative h-16 w-16 flex-shrink-0 overflow-hidden rounded bg-[var(--bg-deep)] transition ${
+                className={`relative h-12 w-12 flex-shrink-0 overflow-hidden rounded bg-[var(--bg-deep)] transition sm:h-16 sm:w-16 ${
                   currentIndex === index
                     ? "ring-2 ring-[var(--cognac)]"
                     : "opacity-70 hover:opacity-100"

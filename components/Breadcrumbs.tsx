@@ -9,21 +9,26 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   if (!items.length) return null;
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-6">
-      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[var(--ink-soft)]">
+    <nav aria-label="Breadcrumb" className="mb-3 sm:mb-6">
+      <ol className="flex flex-nowrap items-center gap-x-1 overflow-hidden text-[10px] leading-tight text-[var(--ink-soft)] sm:gap-x-2 sm:text-sm sm:leading-normal">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           return (
-            <li key={`${item.label}-${index}`} className="flex items-center gap-2">
+            <li
+              key={`${item.label}-${index}`}
+              className={`flex min-w-0 items-center gap-1 sm:gap-2 ${
+                isLast ? "min-w-0 flex-1" : "flex-shrink-0"
+              }`}
+            >
               {index > 0 && (
-                <span aria-hidden="true" className="text-[var(--line)]">
+                <span aria-hidden="true" className="flex-shrink-0 text-[var(--line)]">
                   /
                 </span>
               )}
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="transition-colors hover:text-[var(--cognac)]"
+                  className="whitespace-nowrap transition-colors hover:text-[var(--cognac)]"
                 >
                   {item.label}
                 </Link>
@@ -31,8 +36,8 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
                 <span
                   className={
                     isLast
-                      ? "line-clamp-1 font-medium text-[var(--ink)]"
-                      : undefined
+                      ? "truncate font-medium text-[var(--ink)]"
+                      : "whitespace-nowrap"
                   }
                   aria-current={isLast ? "page" : undefined}
                 >

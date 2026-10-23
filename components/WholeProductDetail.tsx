@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FiChevronDown } from "react-icons/fi";
+import { FiCheck, FiChevronDown, FiShoppingCart } from "react-icons/fi";
 import ImageSlider from "./ImageSlider";
 import Breadcrumbs from "./Breadcrumbs";
 import { useCart } from "@/context/CartContext";
@@ -141,7 +141,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
   );
 
   return (
-    <div className="px-4 py-8 pb-28 sm:px-6 sm:pb-10 lg:px-8">
+    <div className="px-3 py-4 pb-28 sm:px-6 sm:py-8 sm:pb-10 lg:px-8">
       <div className="mx-auto max-w-4xl">
         <Breadcrumbs
           items={[
@@ -162,9 +162,9 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
             video={products.video}
           />
 
-          <div className="p-5 sm:p-8">
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <h1 className="font-display text-2xl font-semibold text-[var(--ink)] sm:text-3xl">
+          <div className="p-4 sm:p-8">
+            <div className="flex flex-wrap items-start justify-between gap-2.5 sm:gap-3">
+              <h1 className="font-display text-xl font-semibold text-[var(--ink)] sm:text-3xl">
                 {products.title}
               </h1>
               {hasDiscount && (
@@ -444,9 +444,14 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
           <button
             type="button"
             onClick={handleAddToCart}
-            className="btn-secondary flex-shrink-0 rounded-md px-3 py-3 text-sm"
+            className="btn-secondary inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-md"
+            aria-label={added ? "Added to cart" : "Add to cart"}
           >
-            {added ? "Added ✓" : "Add"}
+            {added ? (
+              <FiCheck className="h-5 w-5" aria-hidden />
+            ) : (
+              <FiShoppingCart className="h-5 w-5" aria-hidden />
+            )}
           </button>
           <Link
             href={orderHref}
