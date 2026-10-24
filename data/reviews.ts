@@ -128,6 +128,14 @@ const walletComments = [
   "Lightweight yet sturdy. The ideal everyday wallet.",
   "The embossed details are beautiful. Premium product.",
   "Can't believe this quality at this price point. Amazing!",
+  "Nice wallet overall. Delivery took a bit longer than expected but worth the wait.",
+  "Good product. Wish there was one more card slot, still happy with it.",
+  "Looks exactly like the photos. Solid everyday carry.",
+  "Slightly stiff at first but softened nicely after a week of use.",
+  "Color is a shade darker than I imagined, still looks premium.",
+  "Great for gifting. Packaging was neat and presentable.",
+  "Used it daily for office — holds my cards and cash without bulk.",
+  "Happy with the finish. Edges are clean and stitching is even.",
 ];
 
 // Deterministic seeded random number generator
@@ -140,35 +148,76 @@ const reviewCache = new Map<string, Review[]>();
 const BASE_DATE_MS = Date.UTC(2026, 1, 15);
 const DAY_MS = 86_400_000;
 
+/** Pick a review count that varies by product (4–17), never a fixed 12 for all. */
+function reviewCountForProduct(seed: number): number {
+  // Weighted toward mid counts so popular items feel busier than niche ones
+  const roll = seededRandom(seed + 91);
+  if (roll < 0.12) return 4 + Math.floor(seededRandom(seed + 92) * 2); // 4–5
+  if (roll < 0.35) return 6 + Math.floor(seededRandom(seed + 93) * 3); // 6–8
+  if (roll < 0.7) return 9 + Math.floor(seededRandom(seed + 94) * 4); // 9–12
+  if (roll < 0.9) return 13 + Math.floor(seededRandom(seed + 95) * 3); // 13–15
+  return 16 + Math.floor(seededRandom(seed + 96) * 2); // 16–17
+}
+
+/** Mostly 4–5 stars, occasional 3 for realism. */
+function ratingForReview(seed: number, index: number): number {
+  const r = seededRandom(seed + index * 11 + 17);
+  if (r < 0.08) return 3;
+  if (r < 0.38) return 4;
+  return 5;
+}
+
 export function generateReviews(productId: number, category: string): Review[] {
   const cacheKey = `${category}:${productId}`;
   const cached = reviewCache.get(cacheKey);
   if (cached) return cached;
 
+  const seed =
+    productId * 7919 +
+    category.split("").reduce((sum, ch) => sum + ch.charCodeAt(0), 0) * 97;
+  const count = reviewCountForProduct(seed);
   const reviews: Review[] = [];
-  const seed = productId * 1000 + category.length * 100;
+  const usedUsernames = new Set<string>();
+  const usedComments = new Set<number>();
 
-  for (let i = 0; i < 12; i++) {
-    const r1 = seededRandom(seed + i * 3);
-    const r2 = seededRandom(seed + i * 3 + 1);
-    const r3 = seededRandom(seed + i * 3 + 2);
+  for (let i = 0; i < count; i++) {
+    let usernameIndex = Math.floor(
+      seededRandom(seed + i * 3) * usernames.length,
+    );
+    let username = usernames[usernameIndex];
+    let attempts = 0;
+    while (usedUsernames.has(username) && attempts < usernames.length) {
+      usernameIndex = (usernameIndex + 1) % usernames.length;
+      username = usernames[usernameIndex];
+      attempts += 1;
+    }
+    usedUsernames.add(username);
 
-    const usernameIndex = Math.floor(r1 * usernames.length);
-    const commentIndex = Math.floor(r2 * walletComments.length);
-    const rating = Math.floor(r3 * 3) + 3; // 3, 4, or 5
+    let commentIndex = Math.floor(
+      seededRandom(seed + i * 3 + 1) * walletComments.length,
+    );
+    attempts = 0;
+    while (usedComments.has(commentIndex) && attempts < walletComments.length) {
+      commentIndex = (commentIndex + 1) % walletComments.length;
+      attempts += 1;
+    }
+    usedComments.add(commentIndex);
 
-    // Generate a date within the last 12 months
-    const daysAgo = Math.floor(seededRandom(seed + i * 7) * 365);
+    const rating = ratingForReview(seed, i);
+    const daysAgo = Math.floor(seededRandom(seed + i * 7) * 320) + 3;
     const date = new Date(BASE_DATE_MS - daysAgo * DAY_MS);
 
     reviews.push({
       id: i + 1,
-      username: usernames[usernameIndex] + (i > usernames.length ? String(Math.floor(i / usernames.length)) : ""),
+      username,
       rating,
       comment: walletComments[commentIndex],
       date: date.toISOString().split("T")[0],
     });
   }
+
+  // Newest first — feels more natural on the product page
+  reviews.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 
   reviewCache.set(cacheKey, reviews);
   return reviews;

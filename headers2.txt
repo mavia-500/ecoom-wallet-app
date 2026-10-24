@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Connection: keep-alive
+Date: Sat, 24 Oct 2026 03:23:12 GMT
+ETag: "rht7132ejo440z"
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+Cache-Control: s-maxage=31536000
+Vary: Accept-Encoding
+X-Cache: Miss from cloudfront
+Via: 1.1 d9c549bfe98ca47166eb7671d9d8a4aa.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: DXB53-P1
+Alt-Svc: h3=":443"; ma=86400
+X-Amz-Cf-Id: AjAhoIvY4xzu6SRxwDTl1Tmtd2MQU-IxmQBsa6oAs2QtHX-NCRxiSg==
+

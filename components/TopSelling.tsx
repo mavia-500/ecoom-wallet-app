@@ -40,15 +40,15 @@ const topItems: TopItem[] = [
     category: "bifoldwallet",
   },
   {
-    id: 15,
-    title: "Wax Pull Up Card Holder Mini Wallet",
+    id: 16,
+    title: "Snap Flap Distressed Card Holder",
     images: [
-      "/assets/bifold/be6d3cbd-926e-42bd-83ed-e29497832a7a.webp",
-      "/assets/bifold/1.webp",
+      "/assets/cardholder/snap-yellow-cardholder-1.webp",
+      "/assets/cardholder/snap-yellow-cardholder-2.webp",
     ],
-    color: "Brown",
-    price: 2600,
-    discountedPrice: 200,
+    color: "Brown / Yellow",
+    price: 3500,
+    discountedPrice: 0,
     category: "cardholder",
   },
   {

@@ -128,7 +128,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
     window.setTimeout(() => setAdded(false), 1800);
   };
 
-  const displayReviews = products.reviews.slice(0, 12);
+  const displayReviews = products.reviews;
   const indexOfLastReview = currentPage * reviewsPerPage;
   const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
   const currentReviews = displayReviews.slice(
@@ -139,6 +139,13 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
     1,
     Math.ceil(displayReviews.length / reviewsPerPage),
   );
+  const avgRating =
+    displayReviews.length > 0
+      ? (
+          displayReviews.reduce((sum, r) => sum + (r.rating ?? 0), 0) /
+          displayReviews.length
+        ).toFixed(1)
+      : null;
 
   return (
     <div className="px-3 py-4 pb-28 sm:px-6 sm:py-8 sm:pb-10 lg:px-8">
@@ -332,6 +339,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
                   <span className="mt-0.5 block text-xs text-[var(--ink-soft)]">
                     {displayReviews.length}{" "}
                     {displayReviews.length === 1 ? "review" : "reviews"}
+                    {avgRating ? ` · ${avgRating} ★` : ""}
                   </span>
                 </span>
                 <FiChevronDown
