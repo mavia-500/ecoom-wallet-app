@@ -12,6 +12,7 @@ import {
   productHref,
   productSlug,
 } from "@/lib/productSlug";
+import { extraReviewRatingStubs } from "@/data/extraReviews";
 
 type Props = { params: Promise<{ product: string }> };
 
@@ -36,7 +37,17 @@ export default async function CardholderProductPage({ params }: Props) {
       {item && (
         <JsonLd
           data={[
-            productJsonLd(item, "cardholder", "Card Holder"),
+            productJsonLd(
+              {
+                ...item,
+                reviews: [
+                  ...item.reviews,
+                  ...extraReviewRatingStubs("cardholder", item.id),
+                ],
+              },
+              "cardholder",
+              "Card Holder",
+            ),
             breadcrumbJsonLd([
               { name: "Home", path: "/" },
               { name: "Card Holders", path: "/cardholder" },

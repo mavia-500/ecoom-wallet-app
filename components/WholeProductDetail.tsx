@@ -7,6 +7,7 @@ import { FiCheck, FiChevronDown, FiShoppingCart } from "react-icons/fi";
 import ImageSlider from "./ImageSlider";
 import Breadcrumbs from "./Breadcrumbs";
 import { useCart } from "@/context/CartContext";
+import { extraReviewMeta, loadExtraReviews } from "@/data/extraReviews";
 
 declare global {
   interface Window {
@@ -19,6 +20,7 @@ interface Review {
   username: string;
   comment: string;
   rating?: number;
+  date?: string;
 }
 
 interface Product {
@@ -53,6 +55,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
   const [added, setAdded] = useState(false);
   const [reviewsOpen, setReviewsOpen] = useState(false);
   const [descExpanded, setDescExpanded] = useState(false);
+  const [extraReviews, setExtraReviews] = useState<Review[]>([]);
   const reviewsPerPage = 6;
   const pathname = usePathname();
   const category = pathname?.split("/")[1] || "bifoldwallet";
@@ -62,7 +65,22 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
   useEffect(() => {
     window.scrollTo(0, 0);
     setDescExpanded(false);
+    setExtraReviews([]);
+    setCurrentPage(1);
   }, [pathname, products?.id]);
+
+  useEffect(() => {
+    if (!reviewsOpen || !products) return;
+    const extra = extraReviewMeta(category, products.id);
+    if (extra.count === 0 || extraReviews.length >= extra.count) return;
+    let cancelled = false;
+    loadExtraReviews(category, products.id).then((list) => {
+      if (!cancelled) setExtraReviews(list);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [reviewsOpen, products, category, extraReviews.length]);
 
   useEffect(() => {
     if (!products || typeof window === "undefined" || !window.fbq) return;
@@ -128,7 +146,14 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
     window.setTimeout(() => setAdded(false), 1800);
   };
 
-  const displayReviews = products.reviews;
+  const extraMeta = extraReviewMeta(category, products.id);
+  const displayReviews =
+    extraReviews.length > 0
+      ? [...products.reviews, ...extraReviews].sort((a, b) =>
+          (b.date || "").localeCompare(a.date || ""),
+        )
+      : products.reviews;
+  const reviewCount = products.reviews.length + extraMeta.count;
   const indexOfLastReview = currentPage * reviewsPerPage;
   const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
   const currentReviews = displayReviews.slice(
@@ -139,13 +164,11 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
     1,
     Math.ceil(displayReviews.length / reviewsPerPage),
   );
+  const ratingSum =
+    products.reviews.reduce((sum, r) => sum + (r.rating ?? 0), 0) +
+    extraMeta.ratingSum;
   const avgRating =
-    displayReviews.length > 0
-      ? (
-          displayReviews.reduce((sum, r) => sum + (r.rating ?? 0), 0) /
-          displayReviews.length
-        ).toFixed(1)
-      : null;
+    reviewCount > 0 ? (ratingSum / reviewCount).toFixed(1) : null;
 
   return (
     <div className="px-3 py-4 pb-28 sm:px-6 sm:py-8 sm:pb-10 lg:px-8">
@@ -337,8 +360,8 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
                     Customer reviews
                   </h2>
                   <span className="mt-0.5 block text-xs text-[var(--ink-soft)]">
-                    {displayReviews.length}{" "}
-                    {displayReviews.length === 1 ? "review" : "reviews"}
+                    {reviewCount}{" "}
+                    {reviewCount === 1 ? "review" : "reviews"}
                     {avgRating ? ` · ${avgRating} ★` : ""}
                   </span>
                 </span>
