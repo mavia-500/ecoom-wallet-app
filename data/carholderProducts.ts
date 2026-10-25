@@ -387,7 +387,7 @@ const cardholderProducts: Product[] = [
     ],
     video: "/assets/cardholder/charcoal-snap-cardholder.mp4",
     color: "Charcoal",
-    price: 3500,
+    price: 2500,
     discountedPrice: 0,
     stock: 12,
     reviews: generateReviews(36, "cardholder"),
