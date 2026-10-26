@@ -12,7 +12,7 @@ import {
   productHref,
   productSlug,
 } from "@/lib/productSlug";
-import { extraReviewRatingStubs } from "@/data/extraReviews";
+import { extraReviewMeta } from "@/data/extraReviews";
 
 type Props = { params: Promise<{ product: string }> };
 
@@ -38,15 +38,10 @@ export default async function CardholderProductPage({ params }: Props) {
         <JsonLd
           data={[
             productJsonLd(
-              {
-                ...item,
-                reviews: [
-                  ...item.reviews,
-                  ...extraReviewRatingStubs("cardholder", item.id),
-                ],
-              },
+              item,
               "cardholder",
               "Card Holder",
+              extraReviewMeta("cardholder", item.id),
             ),
             breadcrumbJsonLd([
               { name: "Home", path: "/" },

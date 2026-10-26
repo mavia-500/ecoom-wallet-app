@@ -250,19 +250,23 @@ export function faqJsonLd(
 export function productJsonLd(
   product: ProductLike,
   categoryPath: string,
-  categoryLabel: string
+  categoryLabel: string,
+  extraAggregate?: { count: number; ratingSum: number },
 ) {
   const finalPrice = product.price - product.discountedPrice;
   const url = absoluteUrl(productHref(categoryPath, product));
   const rated = (product.reviews || []).filter(
     (r) => typeof r.rating === "number" && r.rating > 0
   );
-  const ratingCount = rated.length;
+  const extraCount = extraAggregate?.count ?? 0;
+  const extraSum = extraAggregate?.ratingSum ?? 0;
+  const ratingCount = rated.length + extraCount;
   const ratingValue =
     ratingCount > 0
       ? Number(
           (
-            rated.reduce((sum, r) => sum + (r.rating || 0), 0) / ratingCount
+            (rated.reduce((sum, r) => sum + (r.rating || 0), 0) + extraSum) /
+            ratingCount
           ).toFixed(1)
         )
       : undefined;

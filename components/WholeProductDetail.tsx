@@ -375,7 +375,9 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
 
               {reviewsOpen && (
                 <div id="product-reviews" className="mt-4">
-                  {currentReviews.length === 0 ? (
+                  {extraMeta.count > 0 && extraReviews.length === 0 ? (
+                    <p className="text-[var(--ink-soft)]">Loading reviews…</p>
+                  ) : currentReviews.length === 0 ? (
                     <p className="text-[var(--ink-soft)]">No reviews yet.</p>
                   ) : (
                     <ul className="space-y-4">
