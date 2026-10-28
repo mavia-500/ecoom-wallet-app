@@ -12,6 +12,7 @@ import {
   productHref,
   productSlug,
 } from "@/lib/productSlug";
+import { extraReviewMeta } from "@/data/extraReviews";
 
 type Props = { params: Promise<{ product: string }> };
 
@@ -36,7 +37,12 @@ export default async function BifoldProductPage({ params }: Props) {
       {item && (
         <JsonLd
           data={[
-            productJsonLd(item, "bifoldwallet", "Bi-Fold Wallet"),
+            productJsonLd(
+              item,
+              "bifoldwallet",
+              "Bi-Fold Wallet",
+              extraReviewMeta("bifoldwallet", item.id),
+            ),
             breadcrumbJsonLd([
               { name: "Home", path: "/" },
               { name: "Bi-Fold Wallets", path: "/bifoldwallet" },

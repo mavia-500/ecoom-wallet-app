@@ -2,6 +2,7 @@ import type { Review } from "./reviews";
 
 const EXTRA_META: Record<string, { count: number; ratingSum: number }> = {
   "cardholder:36": { count: 100, ratingSum: 448 },
+  "bifoldwallet:14": { count: 150, ratingSum: 678 },
 };
 
 function key(category: string, productId: number) {
@@ -20,6 +21,10 @@ export async function loadExtraReviews(
   if (category === "cardholder" && productId === 36) {
     const mod = await import("./charcoalSnapReviews");
     return mod.charcoalSnapExtraReviews;
+  }
+  if (category === "bifoldwallet" && productId === 14) {
+    const mod = await import("./waxPullUpReviews");
+    return mod.waxPullUpExtraReviews;
   }
   return [];
 }

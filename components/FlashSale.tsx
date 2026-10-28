@@ -44,12 +44,14 @@ const saleItems: SaleItem[] = [
     id: 14,
     title: "Wax Pull Up Leather Wallet",
     images: [
-      "/assets/bifold/IMG-20251124-WA0003_b82sgl.webp",
-      "/assets/bifold/IMG-20251124-WA0002_rksaex.webp",
+      "/assets/bifold/wax-pull-up-leather-wallet-1.webp",
+      "/assets/bifold/wax-pull-up-leather-wallet-2.webp",
+      "/assets/bifold/wax-pull-up-leather-wallet-3.webp",
+      "/assets/bifold/wax-pull-up-leather-wallet-4.webp",
     ],
     color: "Brown",
-    price: 3400,
-    discountedPrice: 200,
+    price: 4500,
+    discountedPrice: 1800,
     category: "bifoldwallet",
   },
   {
