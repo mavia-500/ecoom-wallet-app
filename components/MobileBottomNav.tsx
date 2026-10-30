@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiBook, FiCreditCard, FiLayers, FiMap } from "react-icons/fi";
+import { useCart } from "@/context/CartContext";
 
 const items = [
   {
@@ -31,7 +32,9 @@ const HIDDEN_PREFIXES = ["/placeorder", "/admin", "/signin", "/cart"];
 
 export default function MobileBottomNav() {
   const pathname = usePathname() || "";
+  const { isCartOpen } = useCart();
 
+  if (isCartOpen) return null;
   if (HIDDEN_PREFIXES.some((p) => pathname.startsWith(p))) return null;
 
   return (

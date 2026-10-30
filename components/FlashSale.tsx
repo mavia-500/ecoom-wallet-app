@@ -130,8 +130,8 @@ const FlashSale = () => {
       style={{ contentVisibility: "auto", containIntrinsicSize: "1px 620px" }}
     >
       <div className="overflow-hidden" style={{ background: "var(--leather)" }}>
-        <div className="flex flex-col gap-2 px-3 py-3 sm:flex-row sm:items-end sm:justify-between sm:gap-3 sm:px-5 sm:py-3.5">
-          <div>
+        <div className="flex flex-col items-center gap-2 px-3 py-3 sm:flex-row sm:items-end sm:justify-between sm:gap-3 sm:px-5 sm:py-3.5">
+          <div className="text-center sm:text-left">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--cognac)] sm:text-xs">
               Limited time
             </p>

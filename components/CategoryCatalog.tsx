@@ -61,7 +61,7 @@ export default function CategoryCatalog({
   };
 
   return (
-    <div className="px-4 py-12 sm:px-6 lg:px-8">
+    <div className="px-4 pb-12 pt-4 sm:px-6 sm:pt-5 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <Breadcrumbs
           items={[

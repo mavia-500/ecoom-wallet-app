@@ -14,7 +14,7 @@ export default function SaleCatalog({
   const visible = products.slice(0, visibleCount);
 
   return (
-    <div className="px-4 py-12 sm:px-6 lg:px-8">
+    <div className="px-4 pb-12 pt-4 sm:px-6 sm:pt-5 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <Breadcrumbs
           items={[

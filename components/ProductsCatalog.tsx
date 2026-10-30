@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { FiChevronDown } from "react-icons/fi";
 import { ProductCard } from "@/components/ProductCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import {
@@ -38,6 +39,34 @@ export default function ProductsCatalog({
   const [sort, setSort] = useState<ProductSortId>("featured");
   const [searchQuery, setSearchQuery] = useState(urlQuery);
   const [visibleCount, setVisibleCount] = useState(12);
+  const [categoryOpen, setCategoryOpen] = useState(false);
+  const categoryRef = useRef<HTMLDivElement>(null);
+
+  const selectedCategory =
+    categories.find((item) => item.id === category)?.label ?? "All";
+
+  useEffect(() => {
+    if (!categoryOpen) return;
+    const onPointerDown = (e: MouseEvent | TouchEvent) => {
+      if (
+        categoryRef.current &&
+        !categoryRef.current.contains(e.target as Node)
+      ) {
+        setCategoryOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setCategoryOpen(false);
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("touchstart", onPointerDown);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("touchstart", onPointerDown);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [categoryOpen]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -86,11 +115,12 @@ export default function ProductsCatalog({
     setSort("featured");
     setSearchQuery("");
     setVisibleCount(12);
+    setCategoryOpen(false);
     if (urlQuery) router.replace("/products");
   };
 
   return (
-    <div className="px-4 py-12 sm:px-6 lg:px-8">
+    <div className="px-4 pb-12 pt-4 sm:px-6 sm:pt-5 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <Breadcrumbs
           items={[
@@ -115,48 +145,78 @@ export default function ProductsCatalog({
         </div>
 
         <div className="mb-6 space-y-4">
-          <label className="mx-auto flex w-full max-w-md flex-col gap-1.5 sm:mx-0">
-            <span className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-[var(--ink-soft)] sm:text-left">
-              Search
-            </span>
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                setVisibleCount(12);
-              }}
-              placeholder="Search by name, color, or category…"
-              className="rounded-md border bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)] focus:border-[var(--cognac)]"
-              style={{ borderColor: "var(--line)" }}
-            />
-          </label>
+          <div className="flex items-end gap-2 sm:flex-col sm:items-stretch sm:gap-4">
+            <label className="flex min-w-0 flex-1 flex-col gap-1.5 sm:mx-0 sm:max-w-md">
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--ink-soft)]">
+                Search
+              </span>
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setVisibleCount(12);
+                }}
+                placeholder="Search…"
+                className="w-full rounded-md border bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)] focus:border-[var(--cognac)]"
+                style={{ borderColor: "var(--line)" }}
+              />
+            </label>
 
-          <div>
-            <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[var(--ink-soft)] sm:text-left">
-              Category
-            </p>
-            <div className="flex flex-wrap justify-center gap-2 sm:justify-start">
-              {categories.map((item) => {
-                const active = category === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => {
-                      setCategory(item.id);
-                      setVisibleCount(12);
-                    }}
-                    className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                      active
-                        ? "bg-[var(--leather)] text-[#faf9f7]"
-                        : "bg-[var(--bg-deep)] text-[var(--ink)] hover:text-[var(--cognac)]"
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                );
-              })}
+            <div
+              ref={categoryRef}
+              className="relative w-[40%] shrink-0 sm:w-full sm:max-w-xs"
+            >
+              <p className="mb-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--ink-soft)]">
+                Category
+              </p>
+              <button
+                type="button"
+                onClick={() => setCategoryOpen((open) => !open)}
+                aria-expanded={categoryOpen}
+                aria-haspopup="listbox"
+                className="flex w-full items-center justify-between gap-1 rounded-md border bg-[var(--surface)] px-2.5 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--cognac)] sm:px-3"
+                style={{ borderColor: "var(--line)" }}
+              >
+                <span className="truncate font-medium">{selectedCategory}</span>
+                <FiChevronDown
+                  className={`h-4 w-4 shrink-0 text-[var(--ink-soft)] transition-transform duration-200 ${
+                    categoryOpen ? "rotate-180" : ""
+                  }`}
+                  aria-hidden
+                />
+              </button>
+              {categoryOpen && (
+                <ul
+                  role="listbox"
+                  aria-label="Product categories"
+                  className="absolute right-0 z-20 mt-1.5 w-[min(100vw-2rem,16rem)] overflow-hidden rounded-md border bg-[var(--surface)] py-1 shadow-lg sm:left-0 sm:right-auto sm:w-full"
+                  style={{ borderColor: "var(--line)" }}
+                >
+                  {categories.map((item) => {
+                    const active = category === item.id;
+                    return (
+                      <li key={item.id} role="option" aria-selected={active}>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setCategory(item.id);
+                            setVisibleCount(12);
+                            setCategoryOpen(false);
+                          }}
+                          className={`flex w-full px-3 py-2.5 text-left text-sm transition-colors ${
+                            active
+                              ? "bg-[var(--leather)] font-medium text-[#faf9f7]"
+                              : "text-[var(--ink)] hover:bg-[var(--bg-deep)]"
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </div>
           </div>
 

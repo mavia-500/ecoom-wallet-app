@@ -40,7 +40,7 @@ export default function CartDrawer() {
   if (!isCartOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[110]" role="dialog" aria-modal="true" aria-label="Shopping cart">
+    <div className="fixed inset-0 z-[130]" role="dialog" aria-modal="true" aria-label="Shopping cart">
       <button
         type="button"
         className="absolute inset-0 bg-black/40"

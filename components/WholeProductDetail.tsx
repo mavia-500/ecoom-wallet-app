@@ -171,7 +171,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
     reviewCount > 0 ? (ratingSum / reviewCount).toFixed(1) : null;
 
   return (
-    <div className="px-3 py-4 pb-28 sm:px-6 sm:py-8 sm:pb-10 lg:px-8">
+    <div className="px-3 pb-28 pt-3 sm:px-6 sm:pb-10 sm:pt-4 lg:px-8">
       <div className="mx-auto max-w-4xl">
         <Breadcrumbs
           items={[
