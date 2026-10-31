@@ -12,7 +12,7 @@ export default function HomeHero() {
           fill
           priority
           fetchPriority="high"
-          quality={65}
+          unoptimized
           sizes="100vw"
           className="object-cover object-center sm:object-contain"
         />

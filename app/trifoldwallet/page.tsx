@@ -1,5 +1,6 @@
 import CategoryCatalog from "@/components/CategoryCatalog";
 import JsonLd from "@/components/JsonLd";
+import LcpPreload from "@/components/LcpPreload";
 import trifoldProducts from "@/data/trifoldProducts";
 import { forCategoryList } from "@/lib/catalog";
 import { breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
@@ -28,6 +29,7 @@ export default function Page() {
           }),
         ]}
       />
+      <LcpPreload href={products[0]?.image[0]} />
       <CategoryCatalog
         title={title}
         description={description}

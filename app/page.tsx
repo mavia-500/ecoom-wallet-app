@@ -1,5 +1,6 @@
 import HomePageContent from "@/components/HomePageContent";
 import JsonLd from "@/components/JsonLd";
+import LcpPreload from "@/components/LcpPreload";
 import { homeFaqs } from "@/data/faqs";
 import { absoluteUrl } from "@/lib/site";
 import { breadcrumbJsonLd, faqJsonLd, pageMetadata } from "@/lib/seo";
@@ -40,6 +41,7 @@ export default function HomePage() {
           },
         ]}
       />
+      <LcpPreload href="/images/wem.webp" />
       <HomePageContent />
     </>
   );

@@ -27,7 +27,7 @@ const body = Figtree({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   display: "swap",
-  preload: true,
+  preload: false,
 });
 
 const siteUrl = getSiteUrl();

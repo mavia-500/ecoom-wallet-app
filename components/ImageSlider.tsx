@@ -5,8 +5,6 @@ import Image from "next/image";
 import {
   FiChevronLeft,
   FiChevronRight,
-  FiMinus,
-  FiPlus,
   FiPlay,
   FiX,
   FiZoomIn,
@@ -24,189 +22,168 @@ type Slide =
   | { type: "image"; src: string }
   | { type: "video"; src: string; poster: string };
 
-const MIN_ZOOM = 1;
-const MAX_ZOOM = 3;
-
 function ZoomLightbox({
-  src,
-  alt,
+  images,
+  index,
+  onIndexChange,
+  altBase,
   onClose,
 }: {
-  src: string;
-  alt: string;
+  images: string[];
+  index: number;
+  onIndexChange: (index: number) => void;
+  altBase: string;
   onClose: () => void;
 }) {
-  const [scale, setScale] = useState(1);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const dragRef = useRef<{ x: number; y: number; ox: number; oy: number } | null>(
-    null,
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const count = images.length;
+  const safeIndex = Math.min(Math.max(index, 0), Math.max(count - 1, 0));
+  const canPrev = safeIndex > 0;
+  const canNext = safeIndex < count - 1;
+
+  const goTo = useCallback(
+    (next: number, smooth = true) => {
+      if (count <= 0) return;
+      const clamped = Math.min(Math.max(next, 0), count - 1);
+      const el = scrollerRef.current;
+      if (el) {
+        el.scrollTo({
+          left: clamped * el.clientWidth,
+          behavior: smooth ? "smooth" : "auto",
+        });
+      }
+      onIndexChange(clamped);
+    },
+    [count, onIndexChange],
   );
-  const pinchRef = useRef<{ dist: number; scale: number } | null>(null);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    el.scrollTo({ left: safeIndex * el.clientWidth, behavior: "auto" });
+  }, []);
 
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft" && canPrev) goTo(safeIndex - 1);
+      if (e.key === "ArrowRight" && canNext) goTo(safeIndex + 1);
     };
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
     };
-  }, [onClose]);
+  }, [onClose, goTo, safeIndex, canPrev, canNext]);
 
-  const clampScale = (s: number) => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, s));
-
-  const pinchDistance = (touches: React.TouchList) => {
-    if (touches.length < 2) return 0;
-    const a = touches[0];
-    const b = touches[1];
-    return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
-  };
-
-  const onPointerDown = (e: React.PointerEvent) => {
-    if (e.pointerType === "touch") return;
-    if (scale <= 1) return;
-    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
-    dragRef.current = {
-      x: e.clientX,
-      y: e.clientY,
-      ox: offset.x,
-      oy: offset.y,
-    };
-  };
-
-  const onPointerMove = (e: React.PointerEvent) => {
-    if (!dragRef.current) return;
-    setOffset({
-      x: dragRef.current.ox + (e.clientX - dragRef.current.x),
-      y: dragRef.current.oy + (e.clientY - dragRef.current.y),
-    });
-  };
-
-  const onPointerUp = () => {
-    dragRef.current = null;
-  };
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length === 2) {
-      pinchRef.current = { dist: pinchDistance(e.touches), scale };
-    } else if (e.touches.length === 1 && scale > 1) {
-      const t = e.touches[0];
-      dragRef.current = { x: t.clientX, y: t.clientY, ox: offset.x, oy: offset.y };
+  const onScroll = () => {
+    const el = scrollerRef.current;
+    if (!el || !el.clientWidth) return;
+    const next = Math.round(el.scrollLeft / el.clientWidth);
+    if (next !== safeIndex && next >= 0 && next < count) {
+      onIndexChange(next);
     }
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    if (e.touches.length === 2 && pinchRef.current) {
-      e.preventDefault();
-      const dist = pinchDistance(e.touches);
-      if (!dist || !pinchRef.current.dist) return;
-      const ratio = dist / pinchRef.current.dist;
-      setScale(clampScale(pinchRef.current.scale * ratio));
-      return;
-    }
-    if (e.touches.length === 1 && dragRef.current) {
-      e.preventDefault();
-      const t = e.touches[0];
-      setOffset({
-        x: dragRef.current.ox + (t.clientX - dragRef.current.x),
-        y: dragRef.current.oy + (t.clientY - dragRef.current.y),
-      });
-    }
-  };
-
-  const onTouchEnd = () => {
-    pinchRef.current = null;
-    dragRef.current = null;
-  };
-
-  const onWheel = (e: React.WheelEvent) => {
-    e.preventDefault();
-    setScale((s) => clampScale(s + (e.deltaY < 0 ? 0.15 : -0.15)));
   };
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex flex-col bg-[#1a1614]/95"
+      className="fixed inset-0 z-[200] flex flex-col bg-[#1a1614]"
       role="dialog"
       aria-modal="true"
-      aria-label="Zoomed product image"
+      aria-label="Product image gallery"
     >
-      <div className="flex items-center justify-between gap-2 px-4 py-3">
-        <p className="text-sm text-[#e5e1dc]">Pinch or use + / − to zoom · drag when zoomed</p>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setScale((s) => clampScale(s - 0.25))}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#faf9f7]/10 text-[#faf9f7]"
-            aria-label="Zoom out"
-          >
-            <FiMinus className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            onClick={() => setScale((s) => clampScale(s + 0.25))}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#faf9f7]/10 text-[#faf9f7]"
-            aria-label="Zoom in"
-          >
-            <FiPlus className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            onClick={onClose}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#faf9f7]/10 text-[#faf9f7]"
-            aria-label="Close zoom"
-          >
-            <FiX className="h-5 w-5" />
-          </button>
-        </div>
+      <div className="flex items-center justify-between gap-3 px-4 py-3">
+        <p className="text-sm font-medium text-[#faf9f7]">
+          {safeIndex + 1} / {count}
+        </p>
+        <button
+          type="button"
+          onClick={onClose}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#faf9f7]/15 text-[#faf9f7]"
+          aria-label="Close gallery"
+        >
+          <FiX className="h-5 w-5" />
+        </button>
       </div>
 
-      <button
-        type="button"
-        className="absolute inset-0 -z-10"
-        aria-label="Close zoom"
-        onClick={onClose}
-      />
-
-      <div
-        className="relative min-h-0 flex-1 touch-none overflow-hidden"
-        onWheel={onWheel}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-        onTouchCancel={onTouchEnd}
-        style={{ cursor: scale > 1 ? "grab" : "zoom-in" }}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) onClose();
-        }}
-      >
-        <div className="flex h-full w-full items-center justify-center">
-          <div
-            className="relative h-[min(85vh,720px)] w-[min(92vw,720px)]"
-            style={{
-              transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
-              transition: dragRef.current ? "none" : "transform 0.15s ease-out",
-            }}
-          >
-            <Image
-              src={src}
-              alt={alt}
-              fill
-              sizes="100vw"
-              className="object-contain"
-              priority
-              draggable={false}
-            />
-          </div>
+      <div className="relative min-h-0 flex-1">
+        <div
+          ref={scrollerRef}
+          onScroll={onScroll}
+          className="flex h-full snap-x snap-mandatory overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {images.map((src, i) => (
+            <div
+              key={`${src}-${i}`}
+              className="relative h-full w-full min-w-full flex-none snap-center px-2"
+            >
+              <div className="relative mx-auto h-full w-full max-w-3xl">
+                <Image
+                  src={src}
+                  alt={`${altBase} photo ${i + 1} of ${count}`}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                  priority={i === safeIndex || Math.abs(i - safeIndex) <= 1}
+                  draggable={false}
+                />
+              </div>
+            </div>
+          ))}
         </div>
+
+        {count > 1 && (
+          <>
+            <button
+              type="button"
+              disabled={!canPrev}
+              onClick={() => goTo(safeIndex - 1)}
+              className="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#faf9f7]/90 text-[#1a1614] shadow disabled:pointer-events-none disabled:opacity-30 sm:left-4"
+              aria-label="Previous image"
+            >
+              <FiChevronLeft className="h-6 w-6" />
+            </button>
+            <button
+              type="button"
+              disabled={!canNext}
+              onClick={() => goTo(safeIndex + 1)}
+              className="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#faf9f7]/90 text-[#1a1614] shadow disabled:pointer-events-none disabled:opacity-30 sm:right-4"
+              aria-label="Next image"
+            >
+              <FiChevronRight className="h-6 w-6" />
+            </button>
+          </>
+        )}
       </div>
+
+      {count > 1 && (
+        <div className="flex justify-center gap-2 overflow-x-auto px-4 py-3">
+          {images.map((src, i) => (
+            <button
+              key={`lb-thumb-${src}-${i}`}
+              type="button"
+              onClick={() => goTo(i)}
+              className={`relative h-14 w-14 flex-shrink-0 overflow-hidden rounded bg-[#faf9f7]/10 transition ${
+                i === safeIndex
+                  ? "ring-2 ring-[#faf9f7]"
+                  : "opacity-55 hover:opacity-100"
+              }`}
+              aria-label={`Go to photo ${i + 1}`}
+              aria-current={i === safeIndex ? "true" : undefined}
+            >
+              <Image
+                src={src}
+                alt=""
+                fill
+                sizes="56px"
+                className="object-contain p-0.5"
+              />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -239,20 +216,32 @@ function ZoomableSlide({
   return (
     <div
       ref={containerRef}
-      className="group relative h-full w-full"
+      role="button"
+      tabIndex={0}
+      className="group relative h-full w-full cursor-zoom-in"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       onMouseMove={onMove}
+      onClick={onOpenLightbox}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpenLightbox();
+        }
+      }}
+      aria-label={`Open full view of ${alt}`}
     >
       <Image
         src={src}
         alt={alt}
         fill
         priority={priority}
+        fetchPriority={priority ? "high" : "auto"}
+        unoptimized={priority}
         loading={priority ? "eager" : "lazy"}
         quality={75}
         sizes="(max-width: 768px) 100vw, 896px"
-        className={`object-contain object-center p-2 transition-opacity sm:p-4 ${
+        className={`pointer-events-none object-contain object-center p-2 transition-opacity sm:p-4 ${
           hovering ? "md:opacity-0" : ""
         }`}
         draggable={false}
@@ -270,7 +259,10 @@ function ZoomableSlide({
       />
       <button
         type="button"
-        onClick={onOpenLightbox}
+        onClick={(e) => {
+          e.stopPropagation();
+          onOpenLightbox();
+        }}
         className="absolute bottom-3 left-3 z-10 inline-flex items-center gap-1.5 rounded-md bg-[var(--leather)]/85 px-2.5 py-1.5 text-xs font-medium text-[#faf9f7] shadow sm:text-sm"
         aria-label="Open zoom view"
       >
@@ -450,13 +442,24 @@ const ImageSlider = ({ images, productTitle, video }: ImageSliderProps) => {
         </div>
       )}
 
-      {lightboxOpen && currentSlide?.type === "image" && (
-        <ZoomLightbox
-          src={currentSlide.src}
-          alt={`${altBase} zoomed view`}
-          onClose={closeLightbox}
-        />
-      )}
+      {lightboxOpen &&
+        currentSlide?.type === "image" &&
+        safeImages.length > 0 &&
+        currentIndex < safeImages.length && (
+          <ZoomLightbox
+            images={safeImages}
+            index={currentIndex}
+            altBase={altBase}
+            onClose={closeLightbox}
+            onIndexChange={(next) => {
+              setCurrentIndex(next);
+              const el = scrollerRef.current;
+              if (el) {
+                el.scrollTo({ left: next * el.clientWidth });
+              }
+            }}
+          />
+        )}
     </div>
   );
 };

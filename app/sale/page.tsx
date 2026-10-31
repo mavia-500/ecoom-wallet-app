@@ -1,5 +1,6 @@
 import SaleCatalog from "@/components/SaleCatalog";
 import JsonLd from "@/components/JsonLd";
+import LcpPreload from "@/components/LcpPreload";
 import { getSaleProducts } from "@/lib/catalog";
 import { breadcrumbJsonLd, catalogItemListJsonLd } from "@/lib/seo";
 
@@ -26,6 +27,7 @@ export default function SalePage() {
           }),
         ]}
       />
+      <LcpPreload href={products[0]?.image[0]} />
       <SaleCatalog products={products} />
     </>
   );

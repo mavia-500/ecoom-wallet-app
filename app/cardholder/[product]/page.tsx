@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import cardholderProducts from "@/data/carholderProducts";
 import WholeProductDetail from "@/components/WholeProductDetail";
 import JsonLd from "@/components/JsonLd";
+import LcpPreload from "@/components/LcpPreload";
 import {
   breadcrumbJsonLd,
   productJsonLd,
@@ -51,6 +52,7 @@ export default async function CardholderProductPage({ params }: Props) {
           ]}
         />
       )}
+      <LcpPreload href={item?.image[0]} />
       <WholeProductDetail products={item} />
     </>
   );

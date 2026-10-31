@@ -67,6 +67,8 @@ export default function CardImageCarousel({
                 fill
                 sizes={sizes}
                 priority={priority && index === 0}
+                fetchPriority={priority && index === 0 ? "high" : "auto"}
+                unoptimized={priority && index === 0}
                 loading={priority && index === 0 ? "eager" : "lazy"}
                 quality={65}
                 className="object-cover object-center"

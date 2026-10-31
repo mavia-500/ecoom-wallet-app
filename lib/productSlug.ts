@@ -1,3 +1,5 @@
+import { absoluteUrl } from "@/lib/site";
+
 export function productSlug(title: string): string {
   return title
     .toLowerCase()
@@ -10,7 +12,7 @@ export function productHref(
   category: string,
   product: { title: string }
 ): string {
-  return `/${category}/${productSlug(product.title)}`;
+  return absoluteUrl(`/${category}/${productSlug(product.title)}`);
 }
 
 export function findProductByParam<T extends { id: number; title: string }>(

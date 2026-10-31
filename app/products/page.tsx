@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import ProductsCatalog from "@/components/ProductsCatalog";
 import JsonLd from "@/components/JsonLd";
+import LcpPreload from "@/components/LcpPreload";
 import { getCatalogProducts } from "@/lib/catalog";
 import { breadcrumbJsonLd, catalogItemListJsonLd } from "@/lib/seo";
 
@@ -26,6 +27,7 @@ export default function ProductsPage() {
           }),
         ]}
       />
+      <LcpPreload href={products[0]?.image[0]} />
       <Suspense
         fallback={
           <div className="px-4 py-16 text-center text-sm text-[var(--ink-soft)]">

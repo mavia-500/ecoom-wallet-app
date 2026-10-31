@@ -65,7 +65,7 @@ const Navbar = () => {
                 width={160}
                 height={56}
                 decoding="async"
-                fetchPriority="high"
+                fetchPriority="low"
                 className="h-11 w-auto object-contain object-center sm:h-12"
               />
             </Link>

@@ -1,4 +1,5 @@
 import HomePageContent from "@/components/HomePageContent";
+import LcpPreload from "@/components/LcpPreload";
 import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/site";
 
@@ -13,5 +14,10 @@ export const metadata: Metadata = {
 };
 
 export default function HomeAliasPage() {
-  return <HomePageContent />;
+  return (
+    <>
+      <LcpPreload href="/images/wem.webp" />
+      <HomePageContent />
+    </>
+  );
 }

@@ -179,7 +179,7 @@ export default function CategoryCatalog({
                   key={product.id}
                   product={product}
                   category={category}
-                  priority={index < 2}
+                  priority={index === 0}
                 />
               ))}
             </div>
