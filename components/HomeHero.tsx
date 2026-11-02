@@ -1,4 +1,3 @@
-import Image from "next/image";
 import QuickShop from "@/components/QuickShop";
 
 /** Static home hero (no client JS) keeps Total Blocking Time low on mobile. */
@@ -6,15 +5,14 @@ export default function HomeHero() {
   return (
     <section className="relative w-full overflow-hidden bg-[#1a1614]">
       <div className="relative min-h-[min(42vh,360px)] w-full sm:h-[min(58vh,540px)] sm:min-h-0">
-        <Image
+        <img
           src="/images/wem.webp"
           alt="genuine leather bifold wallet in pocket homepage hero"
-          fill
-          priority
+          width={823}
+          height={823}
           fetchPriority="high"
-          unoptimized
-          sizes="100vw"
-          className="object-cover object-center sm:object-contain"
+          decoding="sync"
+          className="absolute inset-0 h-full w-full object-cover object-center sm:object-contain"
         />
         <div
           className="pointer-events-none absolute inset-0"

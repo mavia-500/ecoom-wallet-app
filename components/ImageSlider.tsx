@@ -231,21 +231,34 @@ function ZoomableSlide({
       }}
       aria-label={`Open full view of ${alt}`}
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        priority={priority}
-        fetchPriority={priority ? "high" : "auto"}
-        unoptimized={priority}
-        loading={priority ? "eager" : "lazy"}
-        quality={75}
-        sizes="(max-width: 768px) 100vw, 896px"
-        className={`pointer-events-none object-contain object-center p-2 transition-opacity sm:p-4 ${
-          hovering ? "md:opacity-0" : ""
-        }`}
-        draggable={false}
-      />
+      {priority ? (
+        <img
+          src={src}
+          alt={alt}
+          width={800}
+          height={800}
+          fetchPriority="high"
+          decoding="sync"
+          className={`pointer-events-none absolute inset-0 h-full w-full object-contain object-center p-2 transition-opacity sm:p-4 ${
+            hovering ? "md:opacity-0" : ""
+          }`}
+          draggable={false}
+        />
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          fetchPriority="low"
+          loading="lazy"
+          quality={75}
+          sizes="(max-width: 768px) 100vw, 896px"
+          className={`pointer-events-none object-contain object-center p-2 transition-opacity sm:p-4 ${
+            hovering ? "md:opacity-0" : ""
+          }`}
+          draggable={false}
+        />
+      )}
       <div
         className="pointer-events-none absolute inset-2 hidden overflow-hidden sm:inset-4 md:block"
         style={{

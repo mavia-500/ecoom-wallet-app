@@ -19,7 +19,7 @@ const display = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["600", "700"],
   display: "swap",
-  preload: true,
+  preload: false,
 });
 
 const body = Figtree({

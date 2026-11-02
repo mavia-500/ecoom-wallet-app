@@ -61,19 +61,30 @@ export default function CardImageCarousel({
             aria-label={`${alt} photo ${index + 1}`}
           >
             {index === activeIndex ? (
-              <Image
-                src={src}
-                alt={`${alt} leather product photo ${index + 1}`}
-                fill
-                sizes={sizes}
-                priority={priority && index === 0}
-                fetchPriority={priority && index === 0 ? "high" : "auto"}
-                unoptimized={priority && index === 0}
-                loading={priority && index === 0 ? "eager" : "lazy"}
-                quality={65}
-                className="object-cover object-center"
-                draggable={false}
-              />
+              priority && index === 0 ? (
+                <img
+                  src={src}
+                  alt={`${alt} leather product photo ${index + 1}`}
+                  width={600}
+                  height={800}
+                  fetchPriority="high"
+                  decoding="sync"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  draggable={false}
+                />
+              ) : (
+                <Image
+                  src={src}
+                  alt={`${alt} leather product photo ${index + 1}`}
+                  fill
+                  sizes={sizes}
+                  fetchPriority="low"
+                  loading="lazy"
+                  quality={65}
+                  className="object-cover object-center"
+                  draggable={false}
+                />
+              )
             ) : (
               <div className="h-full w-full bg-[var(--bg-deep)]" />
             )}

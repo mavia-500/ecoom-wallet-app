@@ -7,6 +7,7 @@ export default function LcpPreload({ href }: { href?: string | null }) {
       rel="preload"
       as="image"
       href={href}
+      type="image/webp"
       fetchPriority="high"
     />
   );
