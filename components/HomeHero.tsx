@@ -27,10 +27,10 @@ export default function HomeHero() {
         {/* Mobile: top + center in flow (never clipped) · Desktop: bottom + left */}
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center px-4 pb-4 pt-5 text-center sm:absolute sm:inset-x-0 sm:bottom-0 sm:top-auto sm:items-start sm:px-6 sm:pb-4 sm:pt-10 sm:text-left lg:px-8">
           <h1 className="font-display text-3xl font-semibold tracking-wide text-[#faf9f7] sm:text-5xl md:text-6xl">
-            Hilyah
+            Genuine Leather Wallets for Men
           </h1>
           <p className="mt-1 max-w-xl text-xs text-[#f0eeec] sm:mt-1.5 sm:text-base">
-            Genuine leather wallets, made to last a lifetime.
+            Handcrafted bifolds, trifolds & card holders made to last a lifetime.
           </p>
 
           <div className="mt-2 w-full sm:mt-3">
