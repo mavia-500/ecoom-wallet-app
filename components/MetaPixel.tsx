@@ -1,18 +1,22 @@
 "use client";
 
 import Script from "next/script";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const PIXEL_ID = "697594026040202";
 
 export default function MetaPixel() {
+  const pathname = usePathname() || "";
   const [ready, setReady] = useState(false);
+  // Checkout needs the pixel ready for Purchase; elsewhere delay for LCP/TBT.
+  const delayMs = pathname.startsWith("/placeorder") ? 0 : 8000;
 
   useEffect(() => {
-    // Delay Meta Pixel well past first paint / TBT window
-    const t = window.setTimeout(() => setReady(true), 8000);
+    setReady(false);
+    const t = window.setTimeout(() => setReady(true), delayMs);
     return () => window.clearTimeout(t);
-  }, []);
+  }, [delayMs]);
 
   if (!ready) return null;
 

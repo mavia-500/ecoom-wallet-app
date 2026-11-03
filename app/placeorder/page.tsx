@@ -6,6 +6,7 @@ import axios from "axios";
 import Link from "next/link";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { useCart } from "@/context/CartContext";
+import { trackMetaEvent } from "@/lib/metaPixel";
 import { DELIVERY_CHARGE, withDelivery } from "@/lib/pricing";
 
 interface FormData {
@@ -43,7 +44,7 @@ function PlaceOrderContent() {
       color: searchParams.get("color") || "",
       price: Number(searchParams.get("price") || 0),
       discountedPrice: Number(searchParams.get("discountedPrice") || 0),
-      category: "direct",
+      category: searchParams.get("category") || "direct",
       quantity: 1,
     };
   }, [fromCart, searchParams]);
@@ -93,6 +94,17 @@ function PlaceOrderContent() {
         );
 
         setWhatsappUrl(`https://wa.me/923285478737?text=${waText}`);
+        trackMetaEvent("Purchase", {
+          value: orderTotal,
+          currency: "PKR",
+          content_name: orderItems.map((item) => item.title).join(", "),
+          content_ids: orderItems.map(
+            (item) => `${item.category}_${item.id}`,
+          ),
+          content_type: "product",
+          num_items: orderItems.reduce((sum, item) => sum + item.quantity, 0),
+          order_id: id,
+        });
         if (fromCart) clearCart();
         setOrderPlace(true);
         setError(null);

@@ -115,7 +115,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
     );
   }
 
-  const orderHref = `/placeorder?id=${products.id}&title=${encodeURIComponent(products.title)}&image=${encodeURIComponent(products.image[0])}&color=${encodeURIComponent(products.color)}&price=${products.price}&discountedPrice=${products.discountedPrice}`;
+  const orderHref = `/placeorder?id=${products.id}&title=${encodeURIComponent(products.title)}&image=${encodeURIComponent(products.image[0])}&color=${encodeURIComponent(products.color)}&price=${products.price}&discountedPrice=${products.discountedPrice}&category=${encodeURIComponent(category)}`;
   const finalPrice = products.price - products.discountedPrice;
   const hasDiscount = products.discountedPrice > 0;
   const inStock = (products.stock ?? 0) > 0;

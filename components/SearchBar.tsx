@@ -95,12 +95,32 @@ export default function SearchBar({
     };
 
     document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+
+    const scrollY = window.scrollY;
+    const pathWhenOpened = window.location.pathname;
+    const { style } = document.body;
+    const prev = {
+      overflow: style.overflow,
+      position: style.position,
+      top: style.top,
+      width: style.width,
+    };
+    style.overflow = "hidden";
+    style.position = "fixed";
+    style.top = `-${scrollY}px`;
+    style.width = "100%";
 
     return () => {
       document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
+      style.overflow = prev.overflow;
+      style.position = prev.position;
+      style.top = prev.top;
+      style.width = prev.width;
+      if (window.location.pathname !== pathWhenOpened) {
+        window.scrollTo(0, 0);
+      } else {
+        window.scrollTo(0, scrollY);
+      }
     };
   }, [open, variant]);
 
