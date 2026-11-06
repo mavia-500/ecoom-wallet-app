@@ -20,7 +20,7 @@ async function sendWithGmail(adminEmail: string, subject: string, html: string) 
   const pass = process.env.EMAIL_PASS?.replace(/\s+/g, "").trim();
   if (!user || !pass) {
     console.error(
-      "Gmail skipped: EMAIL_USER or EMAIL_PASS is not set on this server",
+      "Gmail skipped: EMAIL_USER or EMAIL_PASS is not set on this server set them first",
     );
     return false;
   }
