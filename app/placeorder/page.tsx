@@ -170,81 +170,125 @@ function PlaceOrderContent() {
     );
   }
 
+  const showConfirmation = placeOrder || loading;
+  const actionsDisabled = loading;
+
   return (
-    <div className="mx-auto max-w-lg px-4 py-12 sm:px-6">
+    <div className="relative mx-auto max-w-lg px-4 py-12 sm:px-6">
+      {loading && (
+        <div
+          className="fixed inset-0 z-[100] cursor-wait bg-[var(--ink)]/20"
+          aria-hidden="true"
+        />
+      )}
+
       <div
         className="bg-[var(--surface)] p-6 sm:p-8"
         style={{ border: "1px solid var(--line)" }}
+        aria-busy={loading}
       >
-        {placeOrder ? (
+        {showConfirmation ? (
           <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--olive)]">
-              Order confirmed
-            </p>
-            <h2 className="font-display mt-2 text-2xl font-semibold text-[var(--ink)]">
-              Thank you for choosing Hilyah
-            </h2>
-            <p className="mt-4 rounded-md bg-[var(--bg)] px-4 py-3 text-sm text-[var(--ink)]">
-              Your order ID: <strong>{orderId}</strong>
-              <br />
-              <span className="text-[var(--ink-soft)]">
-                Save this ID for your records.
-              </span>
-            </p>
-            {statusMessage && (
-              <p className="mt-3 text-sm text-[var(--ink-soft)]">
-                {statusMessage}
-              </p>
+            {placeOrder ? (
+              <>
+                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--olive)]">
+                  Order confirmed
+                </p>
+                <h2 className="font-display mt-2 text-2xl font-semibold text-[var(--ink)]">
+                  Thank you for choosing Hilyah
+                </h2>
+                <p className="mt-4 rounded-md bg-[var(--bg)] px-4 py-3 text-sm text-[var(--ink)]">
+                  Your order ID: <strong>{orderId}</strong>
+                  <br />
+                  <span className="text-[var(--ink-soft)]">
+                    Save this ID for your records.
+                  </span>
+                </p>
+                {statusMessage && (
+                  <p className="mt-3 text-sm text-[var(--ink-soft)]">
+                    {statusMessage}
+                  </p>
+                )}
+                <p className="mt-4 text-sm text-[var(--ink-soft)]">
+                  You will receive your order within 2-4 working days. Payment
+                  is collected on delivery.
+                </p>
+              </>
+            ) : (
+              <div className="flex flex-col items-center py-4">
+                <svg
+                  className="mb-3 h-12 w-12 animate-spin text-[var(--cognac)]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  />
+                </svg>
+                <p className="font-medium text-[var(--ink)]">
+                  Confirming your order…
+                </p>
+                <p className="mt-2 text-sm text-[var(--ink-soft)]">
+                  Please wait — do not refresh or go back.
+                </p>
+              </div>
             )}
-            <p className="mt-4 text-sm text-[var(--ink-soft)]">
-              You will receive your order within 2-4 working days. Payment is
-              collected on delivery.
-            </p>
-            {whatsappUrl && (
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white"
-              >
-                <FaWhatsappSquare className="text-xl" />
-                Also notify shop on WhatsApp
-              </a>
-            )}
-            <div className="mt-4">
-              <Link
-                href="/"
-                className="btn-primary inline-block rounded-md px-5 py-2.5 text-sm"
-              >
-                Continue shopping
-              </Link>
-            </div>
-          </div>
-        ) : loading ? (
-          <div className="flex flex-col items-center py-8 text-center">
-            <svg
-              className="mb-3 h-12 w-12 animate-spin text-[var(--cognac)]"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
+
+            <div
+              className={`mt-6 ${actionsDisabled ? "opacity-50" : ""}`}
+              aria-disabled={actionsDisabled}
             >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              />
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-              />
-            </svg>
-            <p className="font-medium text-[var(--ink)]">
-              Confirming your order…
-            </p>
+              {actionsDisabled || !whatsappUrl ? (
+                <button
+                  type="button"
+                  disabled
+                  className="inline-flex cursor-not-allowed items-center justify-center gap-2 rounded-md bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white"
+                >
+                  <FaWhatsappSquare className="text-xl" />
+                  Also notify shop on WhatsApp
+                </button>
+              ) : (
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white"
+                >
+                  <FaWhatsappSquare className="text-xl" />
+                  Also notify shop on WhatsApp
+                </a>
+              )}
+              <div className="mt-4">
+                {actionsDisabled ? (
+                  <button
+                    type="button"
+                    disabled
+                    className="btn-primary inline-block cursor-not-allowed rounded-md px-5 py-2.5 text-sm"
+                  >
+                    Continue shopping
+                  </button>
+                ) : (
+                  <Link
+                    href="/"
+                    className="btn-primary inline-block rounded-md px-5 py-2.5 text-sm"
+                  >
+                    Continue shopping
+                  </Link>
+                )}
+              </div>
+            </div>
           </div>
         ) : (
           <>
@@ -446,7 +490,7 @@ function PlaceOrderContent() {
           </>
         )}
 
-        {error && (
+        {error && !loading && (
           <div
             className="mt-6 flex items-start gap-3 bg-[var(--bg)] p-4"
             style={{ border: "1px solid var(--line)" }}
