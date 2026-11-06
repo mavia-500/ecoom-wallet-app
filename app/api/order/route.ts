@@ -54,59 +54,29 @@ async function sendWithGmail(adminEmail: string, subject: string, html: string) 
   }
 }
 
-async function sendWithFormSubmit(
-  adminEmail: string,
-  subject: string,
-  fields: Record<string, string>,
-) {
-  const response = await fetch(
-    `https://formsubmit.co/ajax/${encodeURIComponent(adminEmail)}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        name: fields.fullName,
-        email: adminEmail,
-        _replyto: adminEmail,
-        _subject: subject,
-        _template: "table",
-        _captcha: "false",
-        message: fields.message,
-        ...fields,
-      }),
-      signal: AbortSignal.timeout(3_000),
-    },
-  );
-
-  const result = await response.json().catch(() => ({}));
-  console.log("FormSubmit response:", response.status, result);
-
-  if (!response.ok) {
-    throw new Error(
-      result.message || `FormSubmit request failed (${response.status})`,
-    );
-  }
-
-  return result;
-}
-
-function gmailConfigured() {
-  return Boolean(
-    process.env.EMAIL_USER?.trim() && process.env.EMAIL_PASS?.replace(/\s+/g, ""),
-  );
+function envFlags() {
+  return {
+    gmailConfigured: Boolean(
+      process.env.EMAIL_USER?.trim() &&
+        process.env.EMAIL_PASS?.replace(/\s+/g, ""),
+    ),
+    hasEmailUser: Boolean(process.env.EMAIL_USER?.trim()),
+    hasEmailPass: Boolean(process.env.EMAIL_PASS?.replace(/\s+/g, "")),
+    adminConfigured: Boolean(process.env.ADMIN_EMAIL || process.env.EMAIL_USER),
+    mongoConfigured: Boolean(process.env.MONGO_URI),
+  };
 }
 
 async function saveOrder(payload: Record<string, unknown>) {
   try {
     await dbConnect();
     await Orders.create(payload);
-    return true;
+    return { saved: true, saveError: "" };
   } catch (error) {
+    const saveError =
+      error instanceof Error ? error.message : "Unknown order save error";
     console.error("Order save failed:", error);
-    return false;
+    return { saved: false, saveError };
   }
 }
 
@@ -134,11 +104,7 @@ function normalizeItems(body: any): CartItemPayload[] {
 }
 
 export async function GET() {
-  return NextResponse.json({
-    gmailConfigured: gmailConfigured(),
-    adminConfigured: Boolean(process.env.ADMIN_EMAIL || process.env.EMAIL_USER),
-    mongoConfigured: Boolean(process.env.MONGO_URI),
-  });
+  return NextResponse.json(envFlags());
 }
 
 export async function POST(req: Request) {
@@ -227,74 +193,20 @@ export async function POST(req: Request) {
     <p><strong>Grand Total:</strong> Rs ${total}</p>
   `;
 
-  const plainMessage = `
-New Hilyah Order
-Order ID: ${orderId}
-Name: ${fullName}
-Phone: ${phone}
-Address: ${address}
-Province: ${province}
-City: ${city}
-Notes: ${notes || " "}
-
-Items:
-${lines
-  .map(
-    (line) =>
-      `- ${line.title} (${line.color || " "}) x${line.qty} = Rs ${line.lineTotal}`,
-  )
-  .join("\n")}
-
-Subtotal: Rs ${subtotal}
-Delivery: Rs ${DELIVERY_CHARGE}
-Grand Total: Rs ${total}
-  `.trim();
-
+  const flags = envFlags();
   let emailed = false;
-  let emailError = gmailConfigured() ? "gmail_failed" : "gmail_env_missing";
+  let emailError = flags.gmailConfigured ? "gmail_failed" : "gmail_env_missing";
 
   try {
-    console.log("Order email env:", {
-      hasUser: Boolean(process.env.EMAIL_USER),
-      hasPass: Boolean(process.env.EMAIL_PASS),
-      hasAdmin: Boolean(process.env.ADMIN_EMAIL),
-      hasMongo: Boolean(process.env.MONGO_URI),
-    });
-
+    console.log("Order email env:", flags);
     emailed = await sendWithGmail(adminEmail, subject, html);
-    if (emailed) {
-      emailError = "";
-    } else {
-      try {
-        const formResult = await sendWithFormSubmit(adminEmail, subject, {
-          fullName,
-          phone,
-          address,
-          province,
-          city,
-          notes: notes || " ",
-          orderId,
-          subtotal: `Rs ${subtotal}`,
-          delivery: `Rs ${DELIVERY_CHARGE}`,
-          total: `Rs ${total}`,
-          message: plainMessage,
-        });
-        const needsActivation =
-          typeof formResult?.message === "string" &&
-          /confirm|activate|check your email/i.test(formResult.message);
-        emailed = !needsActivation;
-        emailError = needsActivation ? "formsubmit_activation" : "";
-      } catch (fallbackError) {
-        console.error("FormSubmit fallback failed:", fallbackError);
-        emailError = "formsubmit_failed";
-      }
-    }
+    emailError = emailed ? "" : emailError;
   } catch (error) {
     console.error("Error sending order email:", error);
     emailError = "email_exception";
   }
 
-  const saved = await saveOrder({
+  const { saved, saveError } = await saveOrder({
     orderId,
     fullName,
     phone,
@@ -323,7 +235,7 @@ Grand Total: Rs ${total}
         orderId,
         emailed,
         saved,
-        gmailConfigured: gmailConfigured(),
+        ...flags,
       },
       { status: 200 },
     );
@@ -336,8 +248,9 @@ Grand Total: Rs ${total}
       orderId,
       emailed: false,
       saved: false,
-      gmailConfigured: gmailConfigured(),
       emailError,
+      saveError,
+      ...flags,
     },
     { status: 500 },
   );
