@@ -15,22 +15,38 @@ type CartItemPayload = {
 };
 
 async function sendWithGmail(adminEmail: string, subject: string, html: string) {
-  const user = process.env.EMAIL_USER;
-  const pass = process.env.EMAIL_PASS;
-  if (!user || !pass) return false;
+  const user = process.env.EMAIL_USER?.trim();
+  // Google shows app passwords with spaces; SMTP login needs 16 chars with no spaces.
+  const pass = process.env.EMAIL_PASS?.replace(/\s+/g, "").trim();
+  if (!user || !pass) {
+    console.error(
+      "Gmail skipped: EMAIL_USER or EMAIL_PASS is not set on this server",
+    );
+    return false;
+  }
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: { user, pass },
-  });
+  try {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: { user, pass },
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 15_000,
+    });
 
-  await transporter.sendMail({
-    from: `"Hilyah Orders" <${user}>`,
-    to: adminEmail,
-    subject,
-    html,
-  });
-  return true;
+    await transporter.sendMail({
+      from: `"Hilyah Orders" <${user}>`,
+      to: adminEmail,
+      subject,
+      html,
+    });
+    return true;
+  } catch (error) {
+    console.error("Gmail send failed, will try fallback:", error);
+    return false;
+  }
 }
 
 async function sendWithFormSubmit(
@@ -56,6 +72,7 @@ async function sendWithFormSubmit(
         message: fields.message,
         ...fields,
       }),
+      signal: AbortSignal.timeout(8_000),
     },
   );
 
@@ -63,7 +80,7 @@ async function sendWithFormSubmit(
   console.log("FormSubmit response:", response.status, result);
 
   if (!response.ok) {
-    throw new Error(result.message || "FormSubmit request failed");
+    throw new Error(result.message || `FormSubmit request failed (${response.status})`);
   }
 
   return result;
@@ -202,6 +219,12 @@ Grand Total: Rs ${total}
   `.trim();
 
   try {
+    console.log("Order email env:", {
+      hasUser: Boolean(process.env.EMAIL_USER),
+      hasPass: Boolean(process.env.EMAIL_PASS),
+      hasAdmin: Boolean(process.env.ADMIN_EMAIL),
+    });
+
     const sentViaGmail = await sendWithGmail(adminEmail, subject, html);
     if (sentViaGmail) {
       return NextResponse.json(
