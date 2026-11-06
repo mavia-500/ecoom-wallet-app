@@ -378,7 +378,7 @@ const cardholderProducts: Product[] = [
     id: 36,
     title: "Charcoal Snap Flap Card Holder",
     description:
-      "Handcrafted vertical snap card holder in deep charcoal matte leather with tonal black saddle stitching and a secure metal snap flap. Front panel features a curved thumb-cut pocket for quick card access, with space behind for extras or folded notes. Slim palm-size profile built for front-pocket everyday carry. Genuine leather that develops a personal patina, lifetime leather warranty, cash on delivery across Pakistan.",
+      "This slim card holder is handmade from deep charcoal leather with a soft matte finish. Matching black stitching and a strong metal snap keep it neat and secure when closed.\nThe front has a curved thumb-cut pocket so you can pull out your main cards with one hand. Behind the flap there is space for extra cards or a few folded notes. It is palm-size and thin, so it sits comfortably in a front pocket.\nMade from genuine leather only — no cheap cloth lining. The charcoal tone stays smart for daily wear and slowly picks up a natural shine as you use it.\nKey features\nGenuine charcoal leather\nSecure metal snap flap\nQuick-access thumb-cut card pocket\nRoom for extra cards or folded cash\nSlim front-pocket friendly size\nBlack tonal hand stitching\nLifetime leather warranty\n\nPerfect for\nMinimal everyday carry, office use, travel, and gifts for men.\n\nCare tip\nKeep away from heavy water. Wipe with a soft dry cloth and condition lightly now and then to keep the leather soft.\nCash on delivery available across Pakistan.",
     image: [
       "/assets/cardholder/charcoal-snap-cardholder-1.webp",
       "/assets/cardholder/charcoal-snap-cardholder-2.webp",

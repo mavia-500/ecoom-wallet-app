@@ -3,6 +3,7 @@ import type { Review } from "./reviews";
 const EXTRA_META: Record<string, { count: number; ratingSum: number }> = {
   "cardholder:36": { count: 100, ratingSum: 448 },
   "bifoldwallet:14": { count: 150, ratingSum: 678 },
+  "bifoldwallet:35": { count: 150, ratingSum: 725 },
 };
 
 function key(category: string, productId: number) {
@@ -25,6 +26,10 @@ export async function loadExtraReviews(
   if (category === "bifoldwallet" && productId === 14) {
     const mod = await import("./waxPullUpReviews");
     return mod.waxPullUpExtraReviews;
+  }
+  if (category === "bifoldwallet" && productId === 35) {
+    const mod = await import("./moneyClipReviews");
+    return mod.moneyClipExtraReviews;
   }
   return [];
 }

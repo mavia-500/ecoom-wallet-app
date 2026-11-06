@@ -28,6 +28,7 @@ interface Product {
   title: string;
   description: string;
   image: string[];
+  imageAlts?: string[];
   video?: string | string[];
   color: string;
   price: number;
@@ -188,6 +189,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
         >
           <ImageSlider
             images={products.image}
+            imageAlts={products.imageAlts}
             productTitle={products.title}
             video={products.video}
           />
@@ -209,7 +211,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
 
             <div className="mt-3">
               <p
-                className={`text-sm leading-relaxed text-[var(--ink-soft)] sm:text-base ${
+                className={`whitespace-pre-line text-sm leading-relaxed text-[var(--ink-soft)] sm:text-base ${
                   descExpanded ? "" : "line-clamp-2"
                 }`}
               >
@@ -219,12 +221,12 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
                 <button
                   type="button"
                   onClick={() => setDescExpanded((open) => !open)}
-                  className="mt-1.5 inline-flex items-center justify-center rounded-md p-1 text-[var(--cognac)] transition hover:bg-[var(--bg-deep)] hover:text-[var(--cognac-hover)]"
+                  className="mt-1.5 inline-flex items-center gap-1 rounded-md px-1.5 py-1 text-sm font-bold text-[var(--leather)] underline underline-offset-2 transition hover:bg-[var(--bg-deep)] hover:text-[var(--cognac)]"
                   aria-expanded={descExpanded}
-                  aria-label={descExpanded ? "Minimize description" : "Expand description"}
                 >
+                  {descExpanded ? "See less" : "See more"}
                   <FiChevronDown
-                    className={`h-5 w-5 transition-transform ${
+                    className={`h-4 w-4 transition-transform ${
                       descExpanded ? "rotate-180" : ""
                     }`}
                     aria-hidden

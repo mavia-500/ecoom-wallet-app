@@ -5,6 +5,8 @@ interface Product {
   title: string;
   description: string;
   image: string[];
+  /** Optional SEO alt text for each gallery image. */
+  imageAlts?: string[];
   /** Optional product video path under /public (lazy-loaded in image scroller). */
   video?: string;
   color: string;
@@ -16,10 +18,34 @@ interface Product {
 
 const bifoldProducts: Product[] = [
   {
+    id: 35,
+    title: "Handmade Leather Money Clip Wallet",
+    description:
+      "This handmade money clip wallet is cut and stitched by hand from premium pull-up leather. The surface shows natural tonal variation, and every piece has its own character. It will also develop a richer patina the longer you use it.\nThe metal spring clip grips your cash firmly. 4 card pockets, each with a thumb cutout, give quick one-handed access to your everyday cards. The edges are neatly burnished and sewn with bold yellow thread for a clean, durable finish.\nKey features\nHandmade from genuine leather\nStrong metal money clip that keeps cash secure\n4 card slots with thumb-slide cutouts\nContrast yellow hand stitching\nSlim front-pocket-friendly design\nNatural leather grain that ages beautifully\n\nPerfect for\nEveryday carry, gifts for men, birthdays, weddings and corporate gifting.\n\nCare tip\nKeep away from prolonged moisture and wipe with a soft dry cloth. Condition lightly now and then to maintain the leather’s glow.",
+    image: [
+      "/assets/bifold/handmade-money-clip-wallet-1.webp",
+      "/assets/bifold/handmade-money-clip-wallet-2.webp",
+    ],
+    imageAlts: [
+      "Handmade leather money clip wallet open, front angle",
+      "Mustard leather card holder with metal clip, upright view",
+      "Open slim leather wallet with yellow stitching, side angle",
+      "Close-up of money clip and card slots",
+      "Leather money clip wallet closed, back view",
+      "Back detail of handcrafted leather wallet",
+    ],
+    video: "/assets/bifold/handmade-money-clip-wallet.mp4",
+    color: "Mustard",
+    price: 3800,
+    discountedPrice: 1000,
+    stock: 18,
+    reviews: generateReviews(35, "bifold"),
+  },
+  {
     id: 14,
     title: "Wax Pull Up Leather Wallet",
     description:
-      "Handcrafted bifold in rich wax pull-up leather with natural light-and-dark character that deepens with everyday use. Features 6 card slots, 2 hidden slots, and 1 cash compartment for notes without bulk. Thick cream contrast stitching, burnished edges, and a slim pocket-friendly profile. 100% genuine wax pull-up leather — no cloth lining. Handmade and hand-stitched, lifetime leather warranty, cash on delivery across Pakistan.",
+      "This bifold is handmade from genuine wax pull-up leather. The leather has natural light and dark shades, so every wallet looks a little different. The more you use it, the richer and more personal the color becomes.\nInside you get 6 card slots, 2 hidden slots for extra cards or your CNIC, and 1 cash compartment for notes without making the wallet bulky. Thick cream stitching and smooth burnished edges give it a clean, finished look. It stays slim enough for everyday front or back pocket carry.\nNo cloth lining is used — only real leather from top to bottom. Each piece is cut and stitched by hand in our workshop.\nKey features\n100% genuine wax pull-up leather\n6 card slots + 2 hidden slots\n1 cash compartment for notes\nThick cream contrast stitching\nSlim, pocket-friendly bifold shape\nLeather that ages beautifully with use\nLifetime leather warranty\n\nPerfect for\nEveryday carry, office use, gifts for men, birthdays, and special occasions.\n\nCare tip\nKeep away from heavy water. Wipe with a soft dry cloth and condition lightly now and then to keep the leather soft and glowing.\nCash on delivery available across Pakistan.",
     image: [
       "/assets/bifold/wax-pull-up-leather-wallet-1.webp",
       "/assets/bifold/wax-pull-up-leather-wallet-2.webp",

@@ -13,6 +13,8 @@ import ProductVideo from "./ProductVideo";
 
 interface ImageSliderProps {
   images: string[];
+  /** Optional per-image alt text (falls back to product title). */
+  imageAlts?: string[];
   productTitle?: string;
   /** One path or many — each loads only after the user taps play. */
   video?: string | string[];
@@ -24,12 +26,14 @@ type Slide =
 
 function ZoomLightbox({
   images,
+  imageAlts,
   index,
   onIndexChange,
   altBase,
   onClose,
 }: {
   images: string[];
+  imageAlts?: string[];
   index: number;
   onIndexChange: (index: number) => void;
   altBase: string;
@@ -122,7 +126,10 @@ function ZoomLightbox({
               <div className="relative mx-auto h-full w-full max-w-3xl">
                 <Image
                   src={src}
-                  alt={`${altBase} photo ${i + 1} of ${count}`}
+                  alt={
+                    imageAlts?.[i]?.trim() ||
+                    `${altBase} photo ${i + 1} of ${count}`
+                  }
                   fill
                   sizes="100vw"
                   className="object-contain"
@@ -286,12 +293,20 @@ function ZoomableSlide({
   );
 }
 
-const ImageSlider = ({ images, productTitle, video }: ImageSliderProps) => {
+const ImageSlider = ({
+  images,
+  imageAlts,
+  productTitle,
+  video,
+}: ImageSliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const safeImages = images?.length ? images : [];
   const altBase = productTitle || "Hilyah leather wallet";
+  const altFor = (index: number) =>
+    imageAlts?.[index]?.trim() ||
+    `${altBase} leather product photo ${index + 1} of ${safeImages.length}`;
   const videoKey = Array.isArray(video) ? video.join("|") : video ?? "";
   const videoList = useMemo(() => {
     if (!videoKey) return [] as string[];
@@ -367,7 +382,7 @@ const ImageSlider = ({ images, productTitle, video }: ImageSliderProps) => {
               {slide.type === "image" ? (
                 <ZoomableSlide
                   src={slide.src}
-                  alt={`${altBase} leather product photo ${index + 1} of ${imageCount}`}
+                  alt={altFor(index)}
                   priority={index === 0}
                   onOpenLightbox={() => {
                     setCurrentIndex(index);
@@ -461,6 +476,7 @@ const ImageSlider = ({ images, productTitle, video }: ImageSliderProps) => {
         currentIndex < safeImages.length && (
           <ZoomLightbox
             images={safeImages}
+            imageAlts={imageAlts}
             index={currentIndex}
             altBase={altBase}
             onClose={closeLightbox}
