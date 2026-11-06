@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { v4 as uuidv4 } from "uuid";
+import dbConnect from "@/config/db";
+import Orders from "@/models/order";
 import { DELIVERY_CHARGE, withDelivery } from "@/lib/pricing";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 type CartItemPayload = {
   id: number | string;
@@ -72,7 +77,7 @@ async function sendWithFormSubmit(
         message: fields.message,
         ...fields,
       }),
-      signal: AbortSignal.timeout(8_000),
+      signal: AbortSignal.timeout(3_000),
     },
   );
 
@@ -80,10 +85,29 @@ async function sendWithFormSubmit(
   console.log("FormSubmit response:", response.status, result);
 
   if (!response.ok) {
-    throw new Error(result.message || `FormSubmit request failed (${response.status})`);
+    throw new Error(
+      result.message || `FormSubmit request failed (${response.status})`,
+    );
   }
 
   return result;
+}
+
+function gmailConfigured() {
+  return Boolean(
+    process.env.EMAIL_USER?.trim() && process.env.EMAIL_PASS?.replace(/\s+/g, ""),
+  );
+}
+
+async function saveOrder(payload: Record<string, unknown>) {
+  try {
+    await dbConnect();
+    await Orders.create(payload);
+    return true;
+  } catch (error) {
+    console.error("Order save failed:", error);
+    return false;
+  }
 }
 
 function normalizeItems(body: any): CartItemPayload[] {
@@ -107,6 +131,14 @@ function normalizeItems(body: any): CartItemPayload[] {
   }
 
   return [];
+}
+
+export async function GET() {
+  return NextResponse.json({
+    gmailConfigured: gmailConfigured(),
+    adminConfigured: Boolean(process.env.ADMIN_EMAIL || process.env.EMAIL_USER),
+    mongoConfigured: Boolean(process.env.MONGO_URI),
+  });
 }
 
 export async function POST(req: Request) {
@@ -218,60 +250,95 @@ Delivery: Rs ${DELIVERY_CHARGE}
 Grand Total: Rs ${total}
   `.trim();
 
+  let emailed = false;
+  let emailError = gmailConfigured() ? "gmail_failed" : "gmail_env_missing";
+
   try {
     console.log("Order email env:", {
       hasUser: Boolean(process.env.EMAIL_USER),
       hasPass: Boolean(process.env.EMAIL_PASS),
       hasAdmin: Boolean(process.env.ADMIN_EMAIL),
+      hasMongo: Boolean(process.env.MONGO_URI),
     });
 
-    const sentViaGmail = await sendWithGmail(adminEmail, subject, html);
-    if (sentViaGmail) {
-      return NextResponse.json(
-        { message: "Order placed successfully!", orderId, emailed: true },
-        { status: 200 },
-      );
+    emailed = await sendWithGmail(adminEmail, subject, html);
+    if (emailed) {
+      emailError = "";
+    } else {
+      try {
+        const formResult = await sendWithFormSubmit(adminEmail, subject, {
+          fullName,
+          phone,
+          address,
+          province,
+          city,
+          notes: notes || " ",
+          orderId,
+          subtotal: `Rs ${subtotal}`,
+          delivery: `Rs ${DELIVERY_CHARGE}`,
+          total: `Rs ${total}`,
+          message: plainMessage,
+        });
+        const needsActivation =
+          typeof formResult?.message === "string" &&
+          /confirm|activate|check your email/i.test(formResult.message);
+        emailed = !needsActivation;
+        emailError = needsActivation ? "formsubmit_activation" : "";
+      } catch (fallbackError) {
+        console.error("FormSubmit fallback failed:", fallbackError);
+        emailError = "formsubmit_failed";
+      }
     }
+  } catch (error) {
+    console.error("Error sending order email:", error);
+    emailError = "email_exception";
+  }
 
-    const formResult = await sendWithFormSubmit(adminEmail, subject, {
-      fullName,
-      phone,
-      address,
-      province,
-      city,
-      notes: notes || " ",
-      orderId,
-      subtotal: `Rs ${subtotal}`,
-      delivery: `Rs ${DELIVERY_CHARGE}`,
-      total: `Rs ${total}`,
-      message: plainMessage,
-    });
+  const saved = await saveOrder({
+    orderId,
+    fullName,
+    phone,
+    address,
+    province,
+    city,
+    notes: notes || "",
+    items: lines.map((line) => ({
+      id: line.id,
+      title: line.title,
+      color: line.color || "",
+      qty: line.qty,
+      unit: line.unit,
+      lineTotal: line.lineTotal,
+    })),
+    subtotal,
+    delivery: DELIVERY_CHARGE,
+    total,
+    emailed,
+  });
 
-    const needsActivation =
-      typeof formResult?.message === "string" &&
-      /confirm|activate|check your email/i.test(formResult.message);
-
+  if (emailed || saved) {
     return NextResponse.json(
       {
-        message: needsActivation
-          ? "Order saved. Check hilyah967@gmail.com (and Spam) for a FormSubmit confirmation email, click Activate once, then new orders will arrive."
-          : "Order placed successfully!",
+        message: "Order placed successfully!",
         orderId,
-        emailed: !needsActivation,
-        formSubmit: formResult,
+        emailed,
+        saved,
+        gmailConfigured: gmailConfigured(),
       },
       { status: 200 },
     );
-  } catch (error) {
-    console.error("Error sending order email:", error);
-    return NextResponse.json(
-      {
-        message:
-          "Order details could not be emailed. Please contact us on WhatsApp with your order.",
-        orderId,
-        emailed: false,
-      },
-      { status: 500 },
-    );
   }
+
+  return NextResponse.json(
+    {
+      message:
+        "Order details could not be emailed. Please contact us on WhatsApp with your order.",
+      orderId,
+      emailed: false,
+      saved: false,
+      gmailConfigured: gmailConfigured(),
+      emailError,
+    },
+    { status: 500 },
+  );
 }
