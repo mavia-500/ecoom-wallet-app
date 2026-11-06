@@ -331,7 +331,7 @@ function ResultRow({
       >
         <img
           src={product.image}
-          alt=""
+          alt={`${product.title}${product.color ? ` ${product.color}` : ""} leather product`}
           width={48}
           height={48}
           className="h-12 w-12 flex-none rounded object-cover"

@@ -8,6 +8,7 @@ import ImageSlider from "./ImageSlider";
 import Breadcrumbs from "./Breadcrumbs";
 import { useCart } from "@/context/CartContext";
 import { extraReviewMeta, loadExtraReviews } from "@/data/extraReviews";
+import { productImageAlts } from "@/lib/imageAlt";
 
 declare global {
   interface Window {
@@ -189,7 +190,12 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
         >
           <ImageSlider
             images={products.image}
-            imageAlts={products.imageAlts}
+            imageAlts={productImageAlts(
+              products.title,
+              products.color,
+              products.image.length,
+              products.imageAlts,
+            )}
             productTitle={products.title}
             video={products.video}
           />

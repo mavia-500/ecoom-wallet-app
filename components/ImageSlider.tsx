@@ -182,7 +182,10 @@ function ZoomLightbox({
             >
               <Image
                 src={src}
-                alt=""
+                alt={
+                  imageAlts?.[i]?.trim() ||
+                  `${altBase} thumbnail ${i + 1} of ${count}`
+                }
                 fill
                 sizes="56px"
                 className="object-contain p-0.5"
@@ -453,7 +456,11 @@ const ImageSlider = ({
               >
                 <Image
                   src={thumbSrc}
-                  alt=""
+                  alt={
+                    slide.type === "video"
+                      ? `${altBase} video thumbnail`
+                      : altFor(index)
+                  }
                   fill
                   sizes="64px"
                   loading="lazy"

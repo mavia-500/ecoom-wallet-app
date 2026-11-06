@@ -56,7 +56,7 @@ export default function ProductVideo({
         >
           <Image
             src={poster}
-            alt=""
+            alt={`${title} leather product video preview`}
             fill
             sizes="(max-width: 768px) 100vw, 896px"
             className="object-contain object-center p-2 sm:p-4"

@@ -74,7 +74,7 @@ function SaleCard({ item }: { item: SaleItem }) {
     <div className="flex h-full flex-col bg-[var(--surface)] transition-shadow hover:shadow-md">
       <CardImageCarousel
         images={item.images}
-        alt={`${item.title}  leather wallet on sale`}
+        alt={`${item.title} ${item.color} leather wallet on sale`}
         href={href}
         badge={
           <span

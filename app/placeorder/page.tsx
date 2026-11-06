@@ -266,7 +266,7 @@ function PlaceOrderContent() {
                   >
                     <img
                       src={item.image}
-                      alt={`${item.title} ${item.color || "leather"}  product`}
+                      alt={`${item.title} ${item.color || ""} leather product`.replace(/\s+/g, " ").trim()}
                       className="h-16 w-16 object-cover"
                     />
                     <div className="min-w-0 flex-1">

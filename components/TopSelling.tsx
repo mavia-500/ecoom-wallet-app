@@ -82,7 +82,7 @@ function TopSellingCard({
     <div className="flex h-full flex-col bg-[var(--surface)] transition-shadow hover:shadow-md">
       <CardImageCarousel
         images={item.images}
-        alt={`${item.title}  bestselling leather wallet`}
+        alt={`${item.title} ${item.color} bestselling leather wallet`}
         href={href}
         badge={
           <span

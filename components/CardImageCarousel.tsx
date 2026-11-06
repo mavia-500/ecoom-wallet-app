@@ -8,6 +8,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 type CardImageCarouselProps = {
   images: string[];
   alt: string;
+  imageAlts?: string[];
   href: string;
   sizes?: string;
   badge?: React.ReactNode;
@@ -17,6 +18,7 @@ type CardImageCarouselProps = {
 export default function CardImageCarousel({
   images,
   alt,
+  imageAlts,
   href,
   sizes = "(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw",
   badge,
@@ -64,7 +66,10 @@ export default function CardImageCarousel({
               priority && index === 0 ? (
                 <img
                   src={src}
-                  alt={`${alt} leather product photo ${index + 1}`}
+                  alt={
+                    imageAlts?.[index]?.trim() ||
+                    `${alt} photo ${index + 1}`
+                  }
                   width={600}
                   height={800}
                   fetchPriority="high"
@@ -75,7 +80,10 @@ export default function CardImageCarousel({
               ) : (
                 <Image
                   src={src}
-                  alt={`${alt} leather product photo ${index + 1}`}
+                  alt={
+                    imageAlts?.[index]?.trim() ||
+                    `${alt} photo ${index + 1}`
+                  }
                   fill
                   sizes={sizes}
                   fetchPriority="low"

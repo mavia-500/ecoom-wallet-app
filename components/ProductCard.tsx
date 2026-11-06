@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import CardImageCarousel from "@/components/CardImageCarousel";
 import { useCart } from "@/context/CartContext";
+import { productCardAlt, productImageAlts } from "@/lib/imageAlt";
 import { productHref } from "@/lib/productSlug";
 
 interface Product {
@@ -11,6 +12,7 @@ interface Product {
   title: string;
   description: string;
   image: string[];
+  imageAlts?: string[];
   color: string;
   price: number;
   discountedPrice: number;
@@ -60,7 +62,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     >
       <CardImageCarousel
         images={product.image}
-        alt={`${product.title}  ${product.color} leather product`}
+        alt={productCardAlt(product.title, product.color)}
+        imageAlts={productImageAlts(
+          product.title,
+          product.color,
+          product.image.length,
+          product.imageAlts,
+        )}
         href={href}
         priority={priority}
         badge={

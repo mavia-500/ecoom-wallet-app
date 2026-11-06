@@ -83,7 +83,7 @@ function PremiumCard({
     <div className="flex h-full flex-col bg-[var(--surface)] transition-shadow hover:shadow-md">
       <CardImageCarousel
         images={item.images}
-        alt={`${item.title} premium leather wallet`}
+        alt={`${item.title} ${item.color} premium leather wallet`}
         href={href}
         priority={priority}
         badge={
