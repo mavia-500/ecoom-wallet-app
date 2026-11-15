@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState, Suspense } from "react";
+import React, { useMemo, useRef, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
@@ -24,6 +24,7 @@ function PlaceOrderContent() {
   const router = useRouter();
   const { items, totalPrice, clearCart, isReady } = useCart();
   const fromCart = searchParams.get("from") === "cart";
+  const submittingRef = useRef(false);
 
   const [placeOrder, setOrderPlace] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -69,11 +70,13 @@ function PlaceOrderContent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submittingRef.current || loading) return;
     if (orderItems.length === 0) {
       setError("Your cart is empty. Please add products first.");
       return;
     }
 
+    submittingRef.current = true;
     setLoading(true);
     try {
       const res = await axios.post("/api/order", {
@@ -94,17 +97,21 @@ function PlaceOrderContent() {
         );
 
         setWhatsappUrl(`https://wa.me/923285478737?text=${waText}`);
-        trackMetaEvent("Purchase", {
-          value: orderTotal,
-          currency: "PKR",
-          content_name: orderItems.map((item) => item.title).join(", "),
-          content_ids: orderItems.map(
-            (item) => `${item.category}_${item.id}`,
-          ),
-          content_type: "product",
-          num_items: orderItems.reduce((sum, item) => sum + item.quantity, 0),
-          order_id: id,
-        });
+        trackMetaEvent(
+          "Purchase",
+          {
+            value: orderTotal,
+            currency: "PKR",
+            content_name: orderItems.map((item) => item.title).join(", "),
+            content_ids: orderItems.map(
+              (item) => `${item.category}_${item.id}`,
+            ),
+            content_type: "product",
+            num_items: orderItems.reduce((sum, item) => sum + item.quantity, 0),
+            order_id: id,
+          },
+          { eventID: id },
+        );
         if (fromCart) clearCart();
         setOrderPlace(true);
         setError(null);
@@ -112,10 +119,12 @@ function PlaceOrderContent() {
         setStatusMessage(res.data.message || "Order placed successfully!");
       } else {
         setError(res.data.message);
+        submittingRef.current = false;
       }
     } catch (err: any) {
       console.error(err.response?.data?.message || err.message);
       setError(err.response?.data?.message || "An error occurred");
+      submittingRef.current = false;
     } finally {
       setLoading(false);
     }
