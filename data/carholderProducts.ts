@@ -30,6 +30,24 @@ const cardholderProducts: Product[] = [
   //   reviews: generateReviews(1, "cardholder"),
   // },
   {
+    id: 34,
+    title: "Chestnut & Black Wave-Slot Card Holder",
+    description:
+      "Handcrafted vertical bifold card holder in warm chestnut leather with cream contrast stitching also available in sleek matte black with matching black stitch. Opens to curved wave-cut card slots for easy thumb access and a deep panel pocket for extras or folded notes. Dual-tone build with black-edged finish keeps a slim front-pocket profile without bulk. Genuine leather that develops a personal patina, lifetime leather warranty, cash on delivery across Pakistan.",
+    image: [
+      "/assets/cardholder/chestnut-wave-open-1.webp",
+      "/assets/cardholder/chestnut-wave-open-2.webp",
+      "/assets/cardholder/chestnut-wave-thickness.webp",
+      "/assets/cardholder/chestnut-wave-engraved.webp",
+    ],
+    video: "/assets/cardholder/chestnut-black-wave-cardholder.mp4",
+    color: "Chestnut / Black",
+    price: 1999,
+    discountedPrice: 499,
+    stock: 9,
+    reviews: generateReviews(34, "cardholder"),
+  },
+  {
     id: 16,
     title: "Snap Flap Distressed Card Holder",
     description:
@@ -55,7 +73,7 @@ const cardholderProducts: Product[] = [
     ],
     color: "Burgundy",
     price: 2500,
-    discountedPrice: 0,
+    discountedPrice: 700,
     stock: 6,
     reviews: generateReviews(17, "cardholder"),
   },
@@ -336,24 +354,6 @@ const cardholderProducts: Product[] = [
     discountedPrice: 0,
     stock: 18,
     reviews: generateReviews(33, "cardholder"),
-  },
-  {
-    id: 34,
-    title: "Chestnut & Black Wave-Slot Card Holder",
-    description:
-      "Handcrafted vertical bifold card holder in warm chestnut leather with cream contrast stitching also available in sleek matte black with matching black stitch. Opens to curved wave-cut card slots for easy thumb access and a deep panel pocket for extras or folded notes. Dual-tone build with black-edged finish keeps a slim front-pocket profile without bulk. Genuine leather that develops a personal patina, lifetime leather warranty, cash on delivery across Pakistan.",
-    image: [
-      "/assets/cardholder/chestnut-wave-open-1.webp",
-      "/assets/cardholder/chestnut-wave-open-2.webp",
-      "/assets/cardholder/chestnut-wave-thickness.webp",
-      "/assets/cardholder/chestnut-wave-engraved.webp",
-    ],
-    video: "/assets/cardholder/chestnut-black-wave-cardholder.mp4",
-    color: "Chestnut / Black",
-    price: 1999,
-    discountedPrice: 0,
-    stock: 9,
-    reviews: generateReviews(34, "cardholder"),
   },
   {
     id: 35,

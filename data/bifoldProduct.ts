@@ -18,6 +18,24 @@ interface Product {
 
 const bifoldProducts: Product[] = [
   {
+    id: 33,
+    title: "Honey Tan Slim Minimalist Bifold",
+    description:
+      "Handcrafted slim bifold in warm honey-tan pull-up leather with thick golden-cream contrast stitching and a clean, logo-free face. Opens to four curved card slots two on each side plus a soft suede-tone bill compartment for notes without bulk. Ultra-thin pocket profile with burnished edges that develop a personal patina over time. Genuine leather, artisanal finish, lifetime leather warranty, cash on delivery across Pakistan.",
+    image: [
+      "/assets/bifold/honey-tan-slim-bifold-4.webp",
+      "/assets/bifold/honey-tan-slim-bifold-1.webp",
+      "/assets/bifold/honey-tan-slim-bifold-3.webp",
+      "/assets/bifold/honey-tan-slim-bifold-2.webp",
+    ],
+    video: "/assets/bifold/honey-tan-slim-urdu-captions.mp4",
+    color: "Honey Tan",
+    price: 3199,
+    discountedPrice: 1199,
+    stock: 5,
+    reviews: generateReviews(33, "bifold"),
+  },
+  {
     id: 35,
     title: "Handmade Leather Money Clip Wallet",
     description:
@@ -489,24 +507,6 @@ const bifoldProducts: Product[] = [
     discountedPrice: 399,
     stock: 14,
     reviews: generateReviews(32, "bifold"),
-  },
-  {
-    id: 33,
-    title: "Honey Tan Slim Minimalist Bifold",
-    description:
-      "Handcrafted slim bifold in warm honey-tan pull-up leather with thick golden-cream contrast stitching and a clean, logo-free face. Opens to four curved card slots two on each side plus a soft suede-tone bill compartment for notes without bulk. Ultra-thin pocket profile with burnished edges that develop a personal patina over time. Genuine leather, artisanal finish, lifetime leather warranty, cash on delivery across Pakistan.",
-    image: [
-      "/assets/bifold/honey-tan-slim-bifold-4.webp",
-      "/assets/bifold/honey-tan-slim-bifold-1.webp",
-      "/assets/bifold/honey-tan-slim-bifold-3.webp",
-      "/assets/bifold/honey-tan-slim-bifold-2.webp",
-    ],
-    video: "/assets/bifold/honey-tan-slim-urdu-captions.mp4",
-    color: "Honey Tan",
-    price: 3199,
-    discountedPrice: 0,
-    stock: 5,
-    reviews: generateReviews(33, "bifold"),
   },
   {
     id: 34,
