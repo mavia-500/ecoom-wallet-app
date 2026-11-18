@@ -10,6 +10,7 @@ import Providers from "@/components/Providers";
 import JsonLd from "@/components/JsonLd";
 import MetaPixel from "@/components/MetaPixel";
 import MicrosoftClarity from "@/components/MicrosoftClarity";
+import GoogleTagManager from "@/components/GoogleTagManager";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import { getSiteUrl } from "@/lib/site";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
@@ -122,6 +123,7 @@ export default function RootLayout({
       <body className={`${display.variable} ${body.variable} antialiased`}>
         <MetaPixel />
         <MicrosoftClarity />
+        <GoogleTagManager />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         <Providers>
           <AnnouncementBar />
