@@ -9,12 +9,7 @@ import Breadcrumbs from "./Breadcrumbs";
 import { useCart } from "@/context/CartContext";
 import { extraReviewMeta, loadExtraReviews } from "@/data/extraReviews";
 import { productImageAlts } from "@/lib/imageAlt";
-
-declare global {
-  interface Window {
-    fbq?: (...args: unknown[]) => void;
-  }
-}
+import { trackMetaEvent } from "@/lib/metaPixel";
 
 interface Review {
   id: number;
@@ -85,15 +80,22 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
   }, [reviewsOpen, products, category, extraReviews.length]);
 
   useEffect(() => {
-    if (!products || typeof window === "undefined" || !window.fbq) return;
+    if (!products) return;
     const finalPrice = products.price - products.discountedPrice;
-    window.fbq("track", "ViewContent", {
-      content_ids: [`${category}_${products.id}`],
-      content_type: "product",
-      content_name: products.title,
-      value: finalPrice,
-      currency: "PKR",
-    });
+    const contentId = `${category}_${products.id}`;
+    // ~3s bucket blocks Strict Mode / remount doubles; real revisits still track.
+    const bucket = Math.floor(Date.now() / 3000);
+    trackMetaEvent(
+      "ViewContent",
+      {
+        content_ids: [contentId],
+        content_type: "product",
+        content_name: products.title,
+        value: finalPrice,
+        currency: "PKR",
+      },
+      { eventID: `vc:${contentId}:${bucket}` },
+    );
   }, [products, category]);
 
   if (!products) {
@@ -136,15 +138,14 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
       category,
     });
     setAdded(true);
-    if (typeof window !== "undefined" && window.fbq) {
-      window.fbq("track", "AddToCart", {
-        content_ids: [`${category}_${products.id}`],
-        content_type: "product",
-        content_name: products.title,
-        value: finalPrice,
-        currency: "PKR",
-      });
-    }
+    const contentId = `${category}_${products.id}`;
+    trackMetaEvent("AddToCart", {
+      content_ids: [contentId],
+      content_type: "product",
+      content_name: products.title,
+      value: finalPrice,
+      currency: "PKR",
+    });
     window.setTimeout(() => setAdded(false), 1800);
   };
 

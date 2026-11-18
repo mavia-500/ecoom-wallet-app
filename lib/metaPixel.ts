@@ -2,6 +2,7 @@ declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void;
     __hilyahMetaFired?: Set<string>;
+    __hilyahPixelInit?: boolean;
   }
 }
 

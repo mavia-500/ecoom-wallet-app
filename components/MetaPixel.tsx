@@ -9,14 +9,16 @@ const PIXEL_ID = "697594026040202";
 export default function MetaPixel() {
   const pathname = usePathname() || "";
   const [ready, setReady] = useState(false);
-  // Checkout needs the pixel ready for Purchase; elsewhere delay for LCP/TBT.
-  const delayMs = pathname.startsWith("/placeorder") ? 0 : 8000;
+  const isCheckout = pathname.startsWith("/placeorder");
 
+  // Load the pixel once. Never set ready back to false — remounting the
+  // Script re-runs fbq('init') / PageView and Meta counts every event twice.
   useEffect(() => {
-    setReady(false);
+    if (ready) return;
+    const delayMs = isCheckout ? 0 : 8000;
     const t = window.setTimeout(() => setReady(true), delayMs);
     return () => window.clearTimeout(t);
-  }, [delayMs]);
+  }, [isCheckout, ready]);
 
   if (!ready) return null;
 
@@ -32,8 +34,11 @@ export default function MetaPixel() {
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '${PIXEL_ID}');
-          fbq('track', 'PageView');
+          if (!window.__hilyahPixelInit) {
+            window.__hilyahPixelInit = true;
+            fbq('init', '${PIXEL_ID}');
+            fbq('track', 'PageView');
+          }
         `}
       </Script>
       <noscript>
