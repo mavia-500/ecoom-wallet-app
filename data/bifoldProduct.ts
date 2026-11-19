@@ -31,7 +31,7 @@ const bifoldProducts: Product[] = [
     video: "/assets/bifold/honey-tan-slim-urdu-captions.mp4",
     color: "Honey Tan",
     price: 3199,
-    discountedPrice: 1199,
+    discountedPrice: 0,
     stock: 5,
     reviews: generateReviews(33, "bifold"),
   },
@@ -83,8 +83,10 @@ const bifoldProducts: Product[] = [
     description:
       "Compact bi-fold mini wallet in 100% wax pull-up leather with 6 card slots and a cash compartment. Hand-stitched front-pocket bi-fold carry lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/bifold/be6d3cbd-926e-42bd-83ed-e29497832a7a.webp",
-      "/assets/bifold/1.webp",
+      "/assets/bifold/wax-pull-up-bi-fold-mini-1.webp",
+      "/assets/bifold/wax-pull-up-bi-fold-mini-2.webp",
+      "/assets/bifold/wax-pull-up-bi-fold-mini-3.webp",
+      "/assets/bifold/wax-pull-up-bi-fold-mini-4.webp",
     ],
     video: "/assets/bifold/wax-pull-up-bi-fold-mini.mp4",
     color: "Brown",
@@ -99,11 +101,11 @@ const bifoldProducts: Product[] = [
     description:
       "Premium leather wallet with 4 card slots, 2 hidden slots, 1 coin pocket  and 3 cash compartment 100%  Leather.Life time Leather Warranty. No Cloth Stuff is used. Hand Made and hand stichthed.",
     image: [
-      "/assets/bifold/Gemini_Generated_Image_1e6qnh1e6qnh1e6q.webp",
       "/assets/bifold/Gemini_Generated_Image_v20n5ev20n5ev20n.webp",
       "/assets/bifold/4e2afded-fe05-4b77-9c2b-9e0558251f55.webp",
       "/assets/bifold/801a9156-3514-4844-9774-bb933ede67c0.webp",
       "/assets/bifold/de40d1cb-dec1-4c2b-ac74-6bfa58feceab.webp",
+      "/assets/bifold/Gemini_Generated_Image_1e6qnh1e6qnh1e6q.webp",
     ],
     video: "/assets/bifold/vegetable-leather-wallet.mp4",
     color: "Choclate",

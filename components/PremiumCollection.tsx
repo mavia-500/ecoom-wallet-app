@@ -19,9 +19,9 @@ const premiumItems: PremiumItem[] = [
     id: 16,
     title: "Vegetable Leather  Wallet",
     images: [
-      "/assets/bifold/Gemini_Generated_Image_1e6qnh1e6qnh1e6q.webp",
       "/assets/bifold/Gemini_Generated_Image_v20n5ev20n5ev20n.webp",
       "/assets/bifold/4e2afded-fe05-4b77-9c2b-9e0558251f55.webp",
+      "/assets/bifold/Gemini_Generated_Image_1e6qnh1e6qnh1e6q.webp",
     ],
     color: "Choclate",
     price: 15000,
@@ -32,9 +32,9 @@ const premiumItems: PremiumItem[] = [
     id: 3,
     title: "Chocolate Leather Triple Gift Set",
     images: [
+      "/assets/gifts/chocolate-gift-set-3.webp",
       "/assets/gifts/chocolate-gift-set-1.webp",
       "/assets/gifts/chocolate-gift-set-2.webp",
-      "/assets/gifts/chocolate-gift-set-3.webp",
     ],
     color: "Chocolate Brown",
     price: 9999,
