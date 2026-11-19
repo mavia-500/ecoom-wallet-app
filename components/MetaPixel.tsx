@@ -60,11 +60,12 @@ export default function MetaPixel() {
         }
       }
 
-      // Turns off Meta's built-in button-click / inferred events (SubscribedButtonClick
-      // and estimated Purchase with ob3_plugin-set_ / cs_est). The Events Manager
-      // "Automatic events" toggle does not fully stop this — it must be off in code.
+      // Disable Meta autoConfig before init so button-click / estimated Purchase
+      // (ob3_plugin-set_ / cs_est) does not duplicate our manual Purchase.
       window.fbq?.("set", "autoConfig", false, PIXEL_ID);
       window.fbq?.("init", PIXEL_ID);
+      // Re-assert after init in case fbevents.js resets opt-ins on load.
+      window.fbq?.("set", "autoConfig", false, PIXEL_ID);
       // Dedupe key so a Strict Mode remount cannot send PageView twice.
       trackMetaEvent("PageView", undefined, { eventID: "pv:session" });
     };

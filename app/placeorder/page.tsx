@@ -6,6 +6,7 @@ import axios from "axios";
 import Link from "next/link";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { useCart } from "@/context/CartContext";
+import { trackMetaEvent } from "@/lib/metaPixel";
 import { DELIVERY_CHARGE, withDelivery } from "@/lib/pricing";
 
 interface FormData {
@@ -24,6 +25,8 @@ function PlaceOrderContent() {
   const { items, totalPrice, clearCart, isReady } = useCart();
   const fromCart = searchParams.get("from") === "cart";
   const submittingRef = useRef(false);
+  /** Ensures one Purchase per successful order id (no double-fire). */
+  const purchaseFiredRef = useRef<string | null>(null);
 
   const [placeOrder, setOrderPlace] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -96,6 +99,28 @@ function PlaceOrderContent() {
         );
 
         setWhatsappUrl(`https://wa.me/923285478737?text=${waText}`);
+        // One Purchase only: same order id never fires twice (code or remount).
+        if (purchaseFiredRef.current !== id) {
+          purchaseFiredRef.current = id;
+          trackMetaEvent(
+            "Purchase",
+            {
+              value: orderTotal,
+              currency: "PKR",
+              content_name: orderItems.map((item) => item.title).join(", "),
+              content_ids: orderItems.map(
+                (item) => `${item.category}_${item.id}`,
+              ),
+              content_type: "product",
+              num_items: orderItems.reduce(
+                (sum, item) => sum + item.quantity,
+                0,
+              ),
+              order_id: id,
+            },
+            { eventID: id },
+          );
+        }
         if (fromCart) clearCart();
         setOrderPlace(true);
         setError(null);
