@@ -1,55 +1,82 @@
 "use client";
 
-import Script from "next/script";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { trackMetaEvent } from "@/lib/metaPixel";
 
 const PIXEL_ID = "697594026040202";
 
+/**
+ * Original bug (since first install): the Meta base snippet ends with
+ *   fbq('init'); fbq('track', 'PageView');
+ * outside the `if (f.fbq) return` guard. When Next/React mounts the client
+ * script twice, init + PageView run again and Meta shows every event x2.
+ *
+ * This loader inits the pixel once per tab and never remounts that snippet.
+ */
 export default function MetaPixel() {
-  const pathname = usePathname() || "";
-  const [ready, setReady] = useState(false);
-  const isCheckout = pathname.startsWith("/placeorder");
-
-  // Load the pixel once. Never set ready back to false — remounting the
-  // Script re-runs fbq('init') / PageView and Meta counts every event twice.
   useEffect(() => {
-    if (ready) return;
-    const delayMs = isCheckout ? 0 : 8000;
-    const t = window.setTimeout(() => setReady(true), delayMs);
-    return () => window.clearTimeout(t);
-  }, [isCheckout, ready]);
+    if (typeof window === "undefined") return;
+    if (window.__hilyahPixelInit) return;
 
-  if (!ready) return null;
+    const boot = () => {
+      if (window.__hilyahPixelInit) return;
+      window.__hilyahPixelInit = true;
 
-  return (
-    <>
-      <Script id="meta-pixel" strategy="lazyOnload">
-        {`
-          !function(f,b,e,v,n,t,s)
-          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)}(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');
-          if (!window.__hilyahPixelInit) {
-            window.__hilyahPixelInit = true;
-            fbq('init', '${PIXEL_ID}');
-            fbq('track', 'PageView');
-          }
-        `}
-      </Script>
-      <noscript>
-        <img
-          height="1"
-          width="1"
-          style={{ display: "none" }}
-          src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`}
-          alt="Meta Pixel tracking"
-        />
-      </noscript>
-    </>
-  );
+      if (!window.fbq) {
+        const n = function (...args: unknown[]) {
+          const self = n as typeof n & {
+            callMethod?: (...a: unknown[]) => void;
+            queue: unknown[];
+            push: typeof n;
+            loaded: boolean;
+            version: string;
+          };
+          if (self.callMethod) self.callMethod(...args);
+          else self.queue.push(args);
+        } as ((...args: unknown[]) => void) & {
+          callMethod?: (...a: unknown[]) => void;
+          queue: unknown[];
+          push: (...args: unknown[]) => void;
+          loaded: boolean;
+          version: string;
+        };
+        n.queue = [];
+        n.loaded = true;
+        n.version = "2.0";
+        n.push = n;
+        window.fbq = n;
+        (window as Window & { _fbq?: typeof window.fbq })._fbq = n;
+
+        if (
+          !document.querySelector(
+            'script[src*="connect.facebook.net"][src*="fbevents.js"]',
+          )
+        ) {
+          const script = document.createElement("script");
+          script.async = true;
+          script.src = "https://connect.facebook.net/en_US/fbevents.js";
+          const first = document.getElementsByTagName("script")[0];
+          first?.parentNode?.insertBefore(script, first);
+        }
+      }
+
+      // Turns off Meta's built-in button-click / inferred events (SubscribedButtonClick
+      // and estimated Purchase with ob3_plugin-set_ / cs_est). The Events Manager
+      // "Automatic events" toggle does not fully stop this — it must be off in code.
+      window.fbq?.("set", "autoConfig", false, PIXEL_ID);
+      window.fbq?.("init", PIXEL_ID);
+      // Dedupe key so a Strict Mode remount cannot send PageView twice.
+      trackMetaEvent("PageView", undefined, { eventID: "pv:session" });
+    };
+
+    // Checkout needs the pixel immediately for Purchase; elsewhere delay for LCP.
+    const onCheckout =
+      window.location.pathname.startsWith("/placeorder");
+    const delayMs = onCheckout ? 0 : 8000;
+    const timer = window.setTimeout(boot, delayMs);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  return null;
 }

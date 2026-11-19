@@ -83,8 +83,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
     if (!products) return;
     const finalPrice = products.price - products.discountedPrice;
     const contentId = `${category}_${products.id}`;
-    // ~3s bucket blocks Strict Mode / remount doubles; real revisits still track.
-    const bucket = Math.floor(Date.now() / 3000);
+    // One ViewContent per product per tab session (blocks Strict Mode doubles).
     trackMetaEvent(
       "ViewContent",
       {
@@ -94,7 +93,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
         value: finalPrice,
         currency: "PKR",
       },
-      { eventID: `vc:${contentId}:${bucket}` },
+      { eventID: `vc:${contentId}` },
     );
   }, [products, category]);
 
@@ -139,13 +138,19 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
     });
     setAdded(true);
     const contentId = `${category}_${products.id}`;
-    trackMetaEvent("AddToCart", {
-      content_ids: [contentId],
-      content_type: "product",
-      content_name: products.title,
-      value: finalPrice,
-      currency: "PKR",
-    });
+    trackMetaEvent(
+      "AddToCart",
+      {
+        content_ids: [contentId],
+        content_type: "product",
+        content_name: products.title,
+        value: finalPrice,
+        currency: "PKR",
+      },
+      {
+        eventID: `atc:${contentId}:${Date.now()}:${Math.random().toString(36).slice(2, 8)}`,
+      },
+    );
     window.setTimeout(() => setAdded(false), 1800);
   };
 
