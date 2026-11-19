@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Figtree } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "@/components/Footer";
@@ -15,21 +14,8 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import { getSiteUrl } from "@/lib/site";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
-const display = Cormorant_Garamond({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  display: "swap",
-  preload: false,
-});
-
-const body = Figtree({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  display: "swap",
-  preload: false,
-});
+// Fonts load via <link> (not next/font/google) so Amplify builds do not hit the
+// known Google Fonts flake: Cannot read properties of null (reading '1').
 
 const siteUrl = getSiteUrl();
 
@@ -120,7 +106,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-PK">
-      <body className={`${display.variable} ${body.variable} antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Figtree:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="antialiased">
         <MetaPixel />
         <MicrosoftClarity />
         <GoogleTagManager />

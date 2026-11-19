@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --font-display: "Cormorant Garamond";
+  --font-body: "Figtree";
   --bg: #f0eeec;
   --bg-deep: #e5e1dc;
   --surface: #faf9f7;
@@ -90,13 +92,16 @@ h3,
 }
 
 .input {
-  @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2;
-  border-color: var(--line);
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
   background: var(--surface);
 }
 
 .input:focus {
-  --tw-ring-color: var(--cognac);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--cognac);
 }
 
 .btn-primary {
