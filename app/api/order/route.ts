@@ -110,7 +110,7 @@ export async function GET() {
 export async function POST(req: Request) {
   const orderId = uuidv4();
   const body = await req.json();
-  const { fullName, phone, address, province, city, notes } =
+  const { fullName, email, phone, address, province, city, notes } =
     body.formData || {};
 
   const items = normalizeItems(body);
@@ -119,7 +119,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         message:
-          "All the fields are required except notes. Please fill the remaining fields or contact us on WhatsApp.",
+          "All the fields are required except email and notes. Please fill the remaining fields or contact us on WhatsApp.",
       },
       { status: 401 },
     );
@@ -170,6 +170,7 @@ export async function POST(req: Request) {
     <p><strong>Order ID:</strong> ${orderId}</p>
     <h3>Customer</h3>
     <p><strong>Name:</strong> ${fullName}</p>
+    <p><strong>Email:</strong> ${email || "Not provided"}</p>
     <p><strong>Phone:</strong> ${phone}</p>
     <p><strong>Address:</strong> ${address}</p>
     <p><strong>Province:</strong> ${province}</p>
@@ -209,6 +210,7 @@ export async function POST(req: Request) {
   const { saved, saveError } = await saveOrder({
     orderId,
     fullName,
+    email: email || "",
     phone,
     address,
     province,

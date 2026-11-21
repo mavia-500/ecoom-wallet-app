@@ -13,6 +13,7 @@ interface OrderItem {
 export interface OrderDocument extends Document {
   orderId: string;
   fullName: string;
+  email?: string;
   phone: string;
   address: string;
   province: string;
@@ -29,6 +30,7 @@ const orderSchema = new Schema(
   {
     orderId: { type: String, required: true, unique: true },
     fullName: { type: String, required: true },
+    email: { type: String },
     phone: { type: String, required: true },
     address: { type: String, required: true },
     province: { type: String, required: true },

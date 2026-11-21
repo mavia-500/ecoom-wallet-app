@@ -119,7 +119,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           href={href}
           className="btn-secondary block w-full rounded-md py-2 text-center text-xs sm:py-2.5 sm:text-sm"
         >
-          View details
+          Shop now
         </Link>
       </div>
     </article>

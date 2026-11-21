@@ -8,6 +8,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { trackMetaEvent } from "@/lib/metaPixel";
 
 export type CartItem = {
   id: number;
@@ -85,6 +86,23 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         return [...prev, { ...item, quantity }];
       });
       setIsCartOpen(true);
+
+      // One AddToCart for every add path (detail, cards, home). Short eventID
+      // bucket blocks double-click / remount duplicates without blocking later adds.
+      const contentId = `${item.category}_${item.id}`;
+      const unit = item.price - item.discountedPrice;
+      const bucket = Math.floor(Date.now() / 2000);
+      trackMetaEvent(
+        "AddToCart",
+        {
+          content_ids: [contentId],
+          content_type: "product",
+          content_name: item.title,
+          value: unit * quantity,
+          currency: "PKR",
+        },
+        { eventID: `atc:${contentId}:${bucket}` },
+      );
     },
     [],
   );

@@ -95,7 +95,7 @@ function PlaceOrderContent() {
           .join("\n");
 
         const waText = encodeURIComponent(
-          `New Hilyah Order\nOrder ID: ${id}\nName: ${formData.fullName}\nPhone: ${formData.phone}\nAddress: ${formData.address}\nProvince: ${formData.province}\nCity: ${formData.city}\nNotes: ${formData.notes || "None"}\n\nItems:\n${lines}\n\nSubtotal: Rs ${subtotal}\nDelivery: Rs ${DELIVERY_CHARGE}\nTotal: Rs ${orderTotal}`,
+          `New Hilyah Order\nOrder ID: ${id}\nName: ${formData.fullName}\nEmail: ${formData.email || "Not provided"}\nPhone: ${formData.phone}\nAddress: ${formData.address}\nProvince: ${formData.province}\nCity: ${formData.city}\nNotes: ${formData.notes || "None"}\n\nItems:\n${lines}\n\nSubtotal: Rs ${subtotal}\nDelivery: Rs ${DELIVERY_CHARGE}\nTotal: Rs ${orderTotal}`,
         );
 
         setWhatsappUrl(`https://wa.me/923285478737?text=${waText}`);
@@ -390,6 +390,22 @@ function PlaceOrderContent() {
                   autoComplete="name"
                   onChange={handleChange}
                   required
+                />
+              </label>
+
+              <label className="block">
+                <span className="mb-1.5 block text-sm font-medium text-[var(--ink)]">
+                  Email{" "}
+                  <span className="text-[var(--ink-soft)]">(optional)</span>
+                </span>
+                <input
+                  type="email"
+                  placeholder="e.g. ahmed@email.com"
+                  className={inputClass}
+                  style={inputStyle}
+                  name="email"
+                  autoComplete="email"
+                  onChange={handleChange}
                 />
               </label>
 

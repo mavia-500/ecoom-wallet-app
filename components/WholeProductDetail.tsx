@@ -137,20 +137,7 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
       category,
     });
     setAdded(true);
-    const contentId = `${category}_${products.id}`;
-    trackMetaEvent(
-      "AddToCart",
-      {
-        content_ids: [contentId],
-        content_type: "product",
-        content_name: products.title,
-        value: finalPrice,
-        currency: "PKR",
-      },
-      {
-        eventID: `atc:${contentId}:${Date.now()}:${Math.random().toString(36).slice(2, 8)}`,
-      },
-    );
+    // Meta AddToCart is fired once inside CartContext.addItem (no duplicate here).
     window.setTimeout(() => setAdded(false), 1800);
   };
 
