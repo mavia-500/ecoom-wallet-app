@@ -18,6 +18,64 @@ interface Product {
 
 const bifoldProducts: Product[] = [
   {
+    id: 34,
+    title: "Cognac Circle-Inlay Gold-Stitch Bifold",
+    description:
+      "This wallet is made of wax brown leather with a rich, natural look. Every piece is a little different, so yours is truly one of a kind. The stitching around the edges makes it strong and neat.\nIt has 4 card slots for your cards and 1 compartment for your cash, so everything has its own place. You can also pull a card out quickly through the small cut-out on the front, without opening the wallet.\nIt is thin, light and easy to carry every day. It also makes a great gift.\nMain features\n4 card slots\n1 cash compartment\nQuick card pull-out on the front\nSlim and light, fits in any pocket\nStrong stitching on the edges\nReal leather look that gets better with time",
+    image: [
+      "/assets/bifold/cognac-circle-bifold-1.webp",
+      "/assets/bifold/cognac-circle-bifold-2.webp",
+      "/assets/bifold/cognac-circle-bifold-3.webp",
+      "/assets/bifold/cognac-circle-bifold-4.webp",
+      "/assets/bifold/cognac-circle-bifold-5.webp",
+    ],
+    video: "/assets/bifold/cognac-circle-bifold-v2.mp4",
+    color: "Cognac",
+    price: 3399,
+    discountedPrice: 0,
+    stock: 22,
+    reviews: generateReviews(34, "bifold"),
+  },
+  {
+    id: 32,
+    title: "NestiCraft Black Passport Holder",
+    description:
+      "This wallet is made of smooth black leather with a clean, simple look and looks good with any outfit. The stitching around the edges is neat and strong, and the snap buttons keep the wallet closed.\nIt has 6 card slots, so your cards stay in order and are easy to reach. It also has 1 cash compartment for your notes. Everything has its own place, and the wallet stays slim even when it is full.\nAbout the leather\nSmooth black leather with a rich, even color\nEdges are stitched and finished neatly\nLeather looks better with time, so it keeps its good look as you use it\nWipe with a soft, dry cloth to keep it clean, and keep it away from water\nMain features\n6 card slots\n1 cash compartment\n2 passport slots\nSnap button closing\nStrong stitching on the edges\nHandmade with care",
+    image: [
+      "/assets/bifold/burgundy-red-stitch-bifold-v2-1.webp",
+      "/assets/bifold/burgundy-red-stitch-bifold-v2-2.webp",
+      "/assets/bifold/burgundy-red-stitch-bifold-v2-3.webp",
+      "/assets/bifold/burgundy-red-stitch-bifold-v2-4.webp",
+      "/assets/bifold/burgundy-red-stitch-bifold-v2-5.webp",
+      "/assets/bifold/burgundy-red-stitch-bifold-v2-6.webp",
+    ],
+    video: "/assets/bifold/burgundy-red-stitch-bifold-v2.mp4",
+    color: "Black",
+    price: 5699,
+    discountedPrice: 399,
+    stock: 14,
+    reviews: generateReviews(32, "bifold"),
+  },
+  {
+    id: 36,
+    title: "Cognac Voyager: Leather Passport Wallet",
+    description:
+      "Carry your passport, cards and cash in one organised, hand-stitched wallet. The Wanderfold Leather Passport Wallet is made for travellers and everyday carry alike. It has a warm cognac tan finish with contrast stitching, and a secure snap closure keeps everything in place.\nEach pocket has a clear purpose, so you stop digging through bags and pockets at the airport, hotel desk or checkout counter.\nKey Features\n6 card slots for debit cards, credit cards, ID and membership cards\n2 passport slots for a passport, a second passport or travel documents\n1 cash compartment for banknotes and boarding passes\nSnap button closure to keep contents secure\nHand-stitched seams with contrast thread for strength and a classic look\nSlim bifold design that fits in a jacket, pocket or travel bag\nCognac tan finish that deepens and develops character with use",
+    image: [
+      "/assets/bifold/cognac-voyager-passport-1.webp",
+      "/assets/bifold/cognac-voyager-passport-2.webp",
+      "/assets/bifold/cognac-voyager-passport-3.webp",
+      "/assets/bifold/cognac-voyager-passport-4.webp",
+      "/assets/bifold/cognac-voyager-passport-5.webp",
+    ],
+    video: "/assets/bifold/cognac-voyager-passport.mp4",
+    color: "Cognac",
+    price: 6500,
+    discountedPrice: 0,
+    stock: 18,
+    reviews: generateReviews(36, "bifold"),
+  },
+  {
     id: 33,
     title: "Honey Tan Slim Minimalist Bifold",
     description:
@@ -489,44 +547,6 @@ const bifoldProducts: Product[] = [
     discountedPrice: 0,
     stock: 23,
     reviews: generateReviews(31, "bifold"),
-  },
-  {
-    id: 32,
-    title: "Burgundy Red-Stitch Quick-Access Bifold",
-    description:
-      "Handcrafted bifold in deep burgundy oxblood leather with matching vibrant red saddle stitching and smoothly burnished rounded corners. Front face carries an external quick-access card slot so your go-to card stays ready without opening the wallet. Inside: curved card pockets, a riveted ID window pocket, and a full bill compartment for everyday cash. Full-grain mottled character that ages into a richer patina genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
-    image: [
-      "/assets/bifold/burgundy-red-stitch-bifold-3.webp",
-      "/assets/bifold/burgundy-red-stitch-bifold-6.webp",
-      "/assets/bifold/burgundy-red-stitch-bifold-4.webp",
-      "/assets/bifold/burgundy-red-stitch-bifold-5.webp",
-      "/assets/bifold/burgundy-red-stitch-bifold-1.webp",
-      "/assets/bifold/burgundy-red-stitch-bifold-2.webp",
-    ],
-    video: "/assets/bifold/burgundy-red-stitch-music.mp4",
-    color: "Burgundy",
-    price: 5699,
-    discountedPrice: 399,
-    stock: 14,
-    reviews: generateReviews(32, "bifold"),
-  },
-  {
-    id: 34,
-    title: "Cognac Circle-Inlay Gold-Stitch Bifold",
-    description:
-      "Handcrafted vertical bifold in warm cognac leather with thick gold contrast saddle stitching and distinctive circular black leather inlays on each interior pocket. Opens to two slanted card slots with easy thumb access, plus an external quick-access pocket with a curved thumb notch on the face slim enough for front-pocket carry with room for folded notes at the fold. Full-grain character that deepens into a personal patina. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
-    image: [
-      "/assets/bifold/cognac-circle-bifold-1.webp",
-      "/assets/bifold/cognac-circle-bifold-2.webp",
-      "/assets/bifold/cognac-circle-bifold-3.webp",
-      "/assets/bifold/cognac-circle-bifold-4.webp",
-    ],
-    video: "/assets/bifold/cognac-circle-bifold.mp4",
-    color: "Cognac",
-    price: 3399,
-    discountedPrice: 0,
-    stock: 22,
-    reviews: generateReviews(34, "bifold"),
   },
 ];
 

@@ -6,7 +6,7 @@ import axios from "axios";
 import Link from "next/link";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { useCart } from "@/context/CartContext";
-import { trackMetaEvent } from "@/lib/metaPixel";
+import { buildMetaUserData, trackMetaEvent } from "@/lib/metaPixel";
 import { DELIVERY_CHARGE, withDelivery } from "@/lib/pricing";
 
 interface FormData {
@@ -118,7 +118,16 @@ function PlaceOrderContent() {
               ),
               order_id: id,
             },
-            { eventID: id },
+            {
+              eventID: id,
+              userData: buildMetaUserData({
+                fullName: formData.fullName,
+                email: formData.email,
+                phone: formData.phone,
+                city: formData.city,
+                province: formData.province,
+              }),
+            },
           );
         }
         if (fromCart) clearCart();

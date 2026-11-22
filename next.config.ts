@@ -16,6 +16,20 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["react-icons"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/bifoldwallet/burgundy-red-stitch-quick-access-bifold",
+        destination: "/bifoldwallet/nesticraft-black-passport-holder",
+        permanent: true,
+      },
+      {
+        source: "/cardholder/olive-diagonal-pocket-slim-card-holder",
+        destination: "/cardholder/diagonal-pocket-slim-card-holder",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     const longCache = [
       {

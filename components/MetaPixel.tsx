@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { trackMetaEvent } from "@/lib/metaPixel";
-
-const PIXEL_ID = "697594026040202";
+import { META_PIXEL_ID, trackMetaEvent } from "@/lib/metaPixel";
 
 /**
  * Original bug (since first install): the Meta base snippet ends with
@@ -62,10 +60,10 @@ export default function MetaPixel() {
 
       // Disable Meta autoConfig before init so button-click / estimated Purchase
       // (ob3_plugin-set_ / cs_est) does not duplicate our manual Purchase.
-      window.fbq?.("set", "autoConfig", false, PIXEL_ID);
-      window.fbq?.("init", PIXEL_ID);
+      window.fbq?.("set", "autoConfig", false, META_PIXEL_ID);
+      window.fbq?.("init", META_PIXEL_ID);
       // Re-assert after init in case fbevents.js resets opt-ins on load.
-      window.fbq?.("set", "autoConfig", false, PIXEL_ID);
+      window.fbq?.("set", "autoConfig", false, META_PIXEL_ID);
       // Dedupe key so a Strict Mode remount cannot send PageView twice.
       trackMetaEvent("PageView", undefined, { eventID: "pv:session" });
     };

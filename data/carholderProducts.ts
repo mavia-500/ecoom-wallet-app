@@ -30,6 +30,25 @@ const cardholderProducts: Product[] = [
   //   reviews: generateReviews(1, "cardholder"),
   // },
   {
+    id: 28,
+    title: "Diagonal Pocket Slim Card Holder",
+    description:
+      "This wallet is made of brown leather with a warm tan color. The orange stitching around the edges gives it a clean, handmade look and keeps it strong.\nWhen you open it, your cards are easy to see and easy to take out. It has 4 card slots, so your cards stay in order, and 1 compartment for your cash. It folds in half, so it stays slim and light even with cards inside.\nIt fits easily in a front or back pocket. It is a nice gift for family, friends or yourself.\nAbout the leather\nBrown leather with a rich, warm color\nNeat stitching on all edges\nThe color gets deeper and better with time\nWipe with a soft, dry cloth, and keep it away from water\nMain features\n4 card slots\n1 cash compartment\nFolds in half and stays slim\nContrast stitching on the edges\nLight and easy to carry\nHandmade with care",
+    image: [
+      "/assets/cardholder/diagonal-pocket-cardholder-2.webp",
+      "/assets/cardholder/diagonal-pocket-cardholder-3.webp",
+      "/assets/cardholder/diagonal-pocket-cardholder-4.webp",
+      "/assets/cardholder/diagonal-pocket-cardholder-5.webp",
+      "/assets/cardholder/diagonal-pocket-cardholder-6.webp",
+    ],
+    video: "/assets/cardholder/diagonal-pocket-cardholder.mp4",
+    color: "Brown",
+    price: 2099,
+    discountedPrice: 0,
+    stock: 11,
+    reviews: generateReviews(28, "cardholder"),
+  },
+  {
     id: 34,
     title: "Chestnut & Black Wave-Slot Card Holder",
     description:
@@ -248,24 +267,6 @@ const cardholderProducts: Product[] = [
     discountedPrice: 399,
     stock: 20,
     reviews: generateReviews(27, "cardholder"),
-  },
-  {
-    id: 28,
-    title: "Olive Diagonal Pocket Slim Card Holder",
-    description:
-      "Handcrafted slim bifold card holder in distressed olive pull-up leather with thick cream contrast stitching and neatly rounded corners. Opens to two vertical card slots with diagonal easy-access face pockets one on each side for essentials without bulk. Soft suede-tone center fold and a front-pocket slim profile that lightens and mottles into a personal patina. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
-    image: [
-      "/assets/cardholder/olive-diagonal-cardholder-1.webp",
-      "/assets/cardholder/olive-diagonal-cardholder-4.webp",
-      "/assets/cardholder/olive-diagonal-cardholder-3.webp",
-      "/assets/cardholder/olive-diagonal-cardholder-2.webp",
-    ],
-    video: "/assets/cardholder/olive-diagonal-urdu-captions.mp4",
-    color: "Olive Green",
-    price: 2099,
-    discountedPrice: 0,
-    stock: 11,
-    reviews: generateReviews(28, "cardholder"),
   },
   {
     id: 29,
