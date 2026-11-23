@@ -49,6 +49,61 @@ const cardholderProducts: Product[] = [
     reviews: generateReviews(28, "cardholder"),
   },
   {
+    id: 37,
+    title: "Envelope Flap Slim Card Holder",
+    description:
+      "Designed for everyday carry without the bulk, this handcrafted brown leather wallet keeps your daily essentials neat and accessible. Featuring a compact envelope-style flap and clean contrast stitching, it comfortably holds folded banknotes and cards while slipping effortlessly into your front or back pocket.\nMaterial: Handcrafted brown leather with reinforced edge stitching\nDesign: Slim, compact profile with a fold-over flap\nCapacity: Holds folded bills and everyday cards\nUse: Ideal for daily carry, travel, or gifting",
+    image: [
+      "/assets/cardholder/brown-envelope-flap-cardholder-1.webp",
+      "/assets/cardholder/brown-envelope-flap-cardholder-2.webp",
+    ],
+    video: "/assets/cardholder/envelope-flap-cardholder.mp4",
+    color: "Brown",
+    price: 3799,
+    discountedPrice: 1000,
+    stock: 20,
+    reviews: generateReviews(37, "cardholder"),
+  },
+  {
+    id: 26,
+    title: "Cognac Strap-Flap Slim Card Holder",
+    description:
+      "Handmade Pure Leather Slim Wallet\nUpgrade your daily style with this Handmade Pure Leather Slim Wallet. Made from 100% genuine, high-quality leather, this wallet is built to last for years and looks even better the more you use it. Its smart flap design keeps your cash and cards completely safe without making your pocket feel heavy or bulky.\nKey Features:\n100% Pure Leather: Strong, durable leather that does not peel or crack easily.\nStrong Hand-Stitching: Carefully stitched by hand with thick thread so it stays strong for daily rough use.\nSafe Flap Lock: The top leather flap tucks neatly into the front strap—no buttons or chains that can break over time.\nFits Pakistani Notes & Cards Easily: Has a front pocket for your daily ATM/debit cards and a deep main pocket that easily holds folded 5,000 and 1,000 rupee notes.\nSlim & Comfortable: Thin design fits smoothly into the front pocket of your shalwar kameez, jeans, or trousers.\nDetails:\nMaterial: 100% Pure Cow/Buffalo Leather\nCapacity: Easily holds 6–8 cards (CNIC, ATM cards) + folded cash\nType: Slim Vertical Flap Wallet",
+    image: [
+      "/assets/cardholder/cognac-flap-cardholder-v3-1.webp",
+      "/assets/cardholder/cognac-flap-cardholder-v3-2.webp",
+      "/assets/cardholder/cognac-flap-cardholder-v3-3.webp",
+      "/assets/cardholder/cognac-flap-cardholder-v3-4.webp",
+      "/assets/cardholder/cognac-flap-cardholder-v3-5.webp",
+      "/assets/cardholder/cognac-flap-cardholder-v3-6.webp",
+    ],
+    video: "/assets/cardholder/cognac-strap-flap-cardholder.mp4",
+    color: "Cognac",
+    price: 2899,
+    discountedPrice: 299,
+    stock: 3,
+    reviews: generateReviews(26, "cardholder"),
+  },
+  {
+    id: 38,
+    title: "Slim Full-Grain Leather Tuck-Flap Wallet",
+    description:
+      "Handmade Pure Leather Slim Wallet\nUpgrade your daily style with this Handmade Pure Leather Slim Wallet. Made from 100% genuine, high-quality leather, this wallet is built to last for years and looks even better the more you use it. Its smart flap design keeps your cash and cards completely safe without making your pocket feel heavy or bulky.\nKey Features:\n100% Pure Leather: Strong, durable leather that does not peel or crack easily.\nStrong Hand-Stitching: Carefully stitched by hand with thick thread so it stays strong for daily rough use.\nSafe Flap Lock: The top leather flap tucks neatly into the front strap—no buttons or chains that can break over time.\nFits Pakistani Notes & Cards Easily: Has a front pocket for your daily ATM/debit cards and a deep main pocket that easily holds folded 5,000 and 1,000 rupee notes.\nSlim & Comfortable: Thin design fits smoothly into the front pocket of your shalwar kameez, jeans, or trousers.\nDetails:\nMaterial: 100% Pure Cow/Buffalo Leather\nCapacity: Easily holds 6–8 cards (CNIC, ATM cards) + folded cash\nType: Slim Vertical Flap Wallet",
+    image: [
+      "/assets/cardholder/cognac-flap-cardholder-v2-1.webp",
+      "/assets/cardholder/cognac-flap-cardholder-v2-2.webp",
+      "/assets/cardholder/cognac-flap-cardholder-v2-3.webp",
+      "/assets/cardholder/cognac-flap-cardholder-v2-4.webp",
+      "/assets/cardholder/cognac-flap-cardholder-v2-5.webp",
+    ],
+    video: "/assets/cardholder/slim-full-grain-tuck-flap.mp4",
+    color: "Deep Dark Brown",
+    price: 2999,
+    discountedPrice: 0,
+    stock: 15,
+    reviews: generateReviews(38, "cardholder"),
+  },
+  {
     id: 34,
     title: "Chestnut & Black Wave-Slot Card Holder",
     description:
@@ -231,24 +286,6 @@ const cardholderProducts: Product[] = [
     discountedPrice: 0,
     stock: 12,
     reviews: generateReviews(25, "cardholder"),
-  },
-  {
-    id: 26,
-    title: "Cognac Strap-Flap Slim Card Holder",
-    description:
-      "Handcrafted slim vertical card holder in warm cognac tan leather with thick light-brown hand stitching and a fold-over flap that tucks behind a front strap no snaps, just clean leather-on-leather security. Opens to a main rear compartment and a shorter front pocket for quick-access cards or folded notes. Ultra-thin front-pocket profile with burnished edges that develop a personal patina. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
-    image: [
-      "/assets/cardholder/cognac-flap-cardholder-3.webp",
-      "/assets/cardholder/cognac-flap-cardholder-4.webp",
-      "/assets/cardholder/cognac-flap-cardholder-2.webp",
-      "/assets/cardholder/cognac-flap-cardholder-1.webp",
-    ],
-    video: "/assets/cardholder/cognac-strap-flap-cardholder.mp4",
-    color: "Cognac",
-    price: 2899,
-    discountedPrice: 299,
-    stock: 3,
-    reviews: generateReviews(26, "cardholder"),
   },
   {
     id: 27,

@@ -28,6 +28,16 @@ const nextConfig: NextConfig = {
         destination: "/cardholder/diagonal-pocket-slim-card-holder",
         permanent: true,
       },
+      {
+        source: "/cardholder/brown-envelope-flap-slim-card-holder",
+        destination: "/cardholder/envelope-flap-slim-card-holder",
+        permanent: true,
+      },
+      {
+        source: "/cardholder/lost-dutch-leather",
+        destination: "/cardholder/slim-full-grain-leather-tuck-flap-wallet",
+        permanent: true,
+      },
     ];
   },
   async headers() {

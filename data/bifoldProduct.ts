@@ -27,7 +27,7 @@ const bifoldProducts: Product[] = [
       "/assets/bifold/cognac-circle-bifold-2.webp",
       "/assets/bifold/cognac-circle-bifold-3.webp",
       "/assets/bifold/cognac-circle-bifold-4.webp",
-      "/assets/bifold/cognac-circle-bifold-5.webp",
+      "/assets/bifold/cognac-circle-bifold-5v2.webp",
     ],
     video: "/assets/bifold/cognac-circle-bifold-v2.mp4",
     color: "Cognac",
