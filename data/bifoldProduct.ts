@@ -81,10 +81,10 @@ const bifoldProducts: Product[] = [
     description:
       "Handcrafted slim bifold in warm honey-tan pull-up leather with thick golden-cream contrast stitching and a clean, logo-free face. Opens to four curved card slots two on each side plus a soft suede-tone bill compartment for notes without bulk. Ultra-thin pocket profile with burnished edges that develop a personal patina over time. Genuine leather, artisanal finish, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/bifold/honey-tan-slim-bifold-4.webp",
-      "/assets/bifold/honey-tan-slim-bifold-1.webp",
-      "/assets/bifold/honey-tan-slim-bifold-3.webp",
-      "/assets/bifold/honey-tan-slim-bifold-2.webp",
+      "/assets/bifold/honey-tan-slim-bifold-v2-1.webp",
+      "/assets/bifold/honey-tan-slim-bifold-v2-2.webp",
+      "/assets/bifold/honey-tan-slim-bifold-v2-3.webp",
+      "/assets/bifold/honey-tan-slim-bifold-v2-4.webp",
     ],
     video: "/assets/bifold/honey-tan-slim-urdu-captions.mp4",
     color: "Honey Tan",
@@ -99,16 +99,12 @@ const bifoldProducts: Product[] = [
     description:
       "This handmade money clip wallet is cut and stitched by hand from premium pull-up leather. The surface shows natural tonal variation, and every piece has its own character. It will also develop a richer patina the longer you use it.\nThe metal spring clip grips your cash firmly. 4 card pockets, each with a thumb cutout, give quick one-handed access to your everyday cards. The edges are neatly burnished and sewn with bold yellow thread for a clean, durable finish.\nKey features\nHandmade from genuine leather\nStrong metal money clip that keeps cash secure\n4 card slots with thumb-slide cutouts\nContrast yellow hand stitching\nSlim front-pocket-friendly design\nNatural leather grain that ages beautifully\n\nPerfect for\nEveryday carry, gifts for men, birthdays, weddings and corporate gifting.\n\nCare tip\nKeep away from prolonged moisture and wipe with a soft dry cloth. Condition lightly now and then to maintain the leather’s glow.",
     image: [
-      "/assets/bifold/handmade-money-clip-wallet-1.webp",
-      "/assets/bifold/handmade-money-clip-wallet-2.webp",
+      "/assets/bifold/handmade-money-clip-wallet-v2-1.webp",
+      "/assets/bifold/handmade-money-clip-wallet-v2-2.webp",
     ],
     imageAlts: [
-      "Handmade leather money clip wallet open, front angle",
-      "Mustard leather card holder with metal clip, upright view",
-      "Open slim leather wallet with yellow stitching, side angle",
-      "Close-up of money clip and card slots",
-      "Leather money clip wallet closed, back view",
-      "Back detail of handcrafted leather wallet",
+      "Mustard leather money clip wallet closed front with yellow stitching",
+      "Open handmade money clip wallet showing card slots and metal clip",
     ],
     video: "/assets/bifold/handmade-money-clip-wallet.mp4",
     color: "Mustard",
@@ -141,10 +137,10 @@ const bifoldProducts: Product[] = [
     description:
       "Compact bi-fold mini wallet in 100% wax pull-up leather with 6 card slots and a cash compartment. Hand-stitched front-pocket bi-fold carry lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/bifold/wax-pull-up-bi-fold-mini-1.webp",
-      "/assets/bifold/wax-pull-up-bi-fold-mini-2.webp",
-      "/assets/bifold/wax-pull-up-bi-fold-mini-3.webp",
-      "/assets/bifold/wax-pull-up-bi-fold-mini-4.webp",
+      "/assets/bifold/wax-pull-up-bi-fold-mini-v2-1.webp",
+      "/assets/bifold/wax-pull-up-bi-fold-mini-v2-2.webp",
+      "/assets/bifold/wax-pull-up-bi-fold-mini-v2-3.webp",
+      "/assets/bifold/wax-pull-up-bi-fold-mini-v2-4.webp",
     ],
     video: "/assets/bifold/wax-pull-up-bi-fold-mini.mp4",
     color: "Brown",

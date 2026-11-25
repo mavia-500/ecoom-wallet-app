@@ -109,10 +109,9 @@ const cardholderProducts: Product[] = [
     description:
       "Handcrafted vertical bifold card holder in warm chestnut leather with cream contrast stitching also available in sleek matte black with matching black stitch. Opens to curved wave-cut card slots for easy thumb access and a deep panel pocket for extras or folded notes. Dual-tone build with black-edged finish keeps a slim front-pocket profile without bulk. Genuine leather that develops a personal patina, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/cardholder/chestnut-wave-open-1.webp",
-      "/assets/cardholder/chestnut-wave-open-2.webp",
-      "/assets/cardholder/chestnut-wave-thickness.webp",
-      "/assets/cardholder/chestnut-wave-engraved.webp",
+      "/assets/cardholder/chestnut-wave-cardholder-v2-2.webp",
+      "/assets/cardholder/chestnut-wave-cardholder-v2-1.webp",
+      "/assets/cardholder/chestnut-wave-cardholder-v2-3.webp",
     ],
     video: "/assets/cardholder/chestnut-black-wave-cardholder.mp4",
     color: "Chestnut / Black",
@@ -127,8 +126,8 @@ const cardholderProducts: Product[] = [
     description:
       "Compact vertical card holder in distressed brown leather with golden contrast stitching and a gunmetal snap flap. Opens to a bright yellow lining and a thumb-notch card pocket for easy access and a cash compartment. Handcrafted genuine leather slim everyday carry with lifetime leather warranty.",
     image: [
-      "/assets/cardholder/snap-yellow-cardholder-1.webp",
-      "/assets/cardholder/snap-yellow-cardholder-2.webp",
+      "/assets/cardholder/snap-yellow-cardholder-v2-1.webp",
+      "/assets/cardholder/snap-yellow-cardholder-v2-2.webp",
     ],
     color: "Brown / Yellow",
     price: 3500,
@@ -142,8 +141,8 @@ const cardholderProducts: Product[] = [
     description:
       "Ultra-slim front-pocket card holder in rich burgundy pull-up leather with red contrast stitching. Multi-layer burnished edges, V-cut front pocket for quick card access, and a second rear slot. Genuine leather, minimalist everyday carry, lifetime leather warranty.",
     image: [
-      "/assets/cardholder/burgundy-slim-cardholder-1.webp",
-      "/assets/cardholder/burgundy-slim-cardholder-2.webp",
+      "/assets/cardholder/burgundy-slim-cardholder-v2-1.webp",
+      "/assets/cardholder/burgundy-slim-cardholder-v2-2.webp",
     ],
     color: "Burgundy",
     price: 2500,
@@ -157,8 +156,8 @@ const cardholderProducts: Product[] = [
     description:
       "Handcrafted slim card holder in vibrant mustard-yellow leather with a soft natural grain and matching yellow hand stitching. Front face carries two tiered card slots with wave-curved tops for easy grip, plus a central cash sleeve that holds folded notes without bulk. Light suede-tone interior and dark burnished edges keep the profile clean and front-pocket ready. Genuine leather, minimalist everyday carry, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/cardholder/mustard-slim-cardholder-1.webp",
-      "/assets/cardholder/mustard-slim-cardholder-2.webp",
+      "/assets/cardholder/mustard-slim-cardholder-v2-2.webp",
+      "/assets/cardholder/mustard-slim-cardholder-v2-1.webp",
     ],
     video: "/assets/cardholder/mustard-slim-wave-cardholder.mp4",
     color: "Mustard",
@@ -173,8 +172,8 @@ const cardholderProducts: Product[] = [
     description:
       "Handcrafted slim bifold card holder in deep black leather with a bold crocodile-embossed scale texture and thick tonal hand stitching. Opens to four card slots two on each side with smooth leather slot edges and a soft matte center fold for a clean, organized carry. Burnished black edges and a compact pocket profile keep it sharp for everyday use. Genuine leather, artisanal finish, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/cardholder/black-croc-cardholder-1.webp",
-      "/assets/cardholder/black-croc-cardholder-2.webp",
+      "/assets/cardholder/black-croc-cardholder-v2-1.webp",
+      "/assets/cardholder/black-croc-cardholder-v2-2.webp",
     ],
     color: "Black",
     price: 2200,
@@ -188,9 +187,9 @@ const cardholderProducts: Product[] = [
     description:
       "Handcrafted slim bifold card holder in matte black pebbled leather with bold red contrast stitching. Opens to four card slots two on each side with oxblood crocodile-embossed accent faces on the top pockets for a sharp two-tone look. Compact pocket profile built for essentials without bulk. Genuine leather, hand-stitched finish, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/cardholder/black-oxblood-cardholder-1.webp",
-      "/assets/cardholder/black-oxblood-cardholder-2.webp",
-      "/assets/cardholder/black-oxblood-cardholder-3.webp",
+      "/assets/cardholder/black-oxblood-cardholder-v2-1.webp",
+      "/assets/cardholder/black-oxblood-cardholder-v2-2.webp",
+      "/assets/cardholder/black-oxblood-cardholder-v2-3.webp",
     ],
     video: "/assets/cardholder/black-oxblood-cardholder.mp4",
     color: "Black / Oxblood",
@@ -256,11 +255,10 @@ const cardholderProducts: Product[] = [
     description:
       "Handcrafted slim bifold card holder in matte black leather with deep burgundy mottled face pockets and thick cream contrast saddle stitching. Oval thumb cutouts make cards easy to slide out; opens to dual burgundy slots with a central cash sleeve for folded notes. Burnished black edges, layered pocket options, and a compact pocket profile built for daily carry. Genuine leather, artisanal finish, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/cardholder/black-burgundy-cream-cardholder-1.webp",
-      "/assets/cardholder/black-burgundy-cream-cardholder-2.webp",
-      "/assets/cardholder/black-burgundy-cream-cardholder-4.webp",
-      "/assets/cardholder/black-burgundy-cream-cardholder-3.webp",
-      "/assets/cardholder/black-burgundy-cream-cardholder-5.webp",
+      "/assets/cardholder/black-burgundy-cream-cardholder-v2-1.webp",
+      "/assets/cardholder/black-burgundy-cream-cardholder-v2-2.webp",
+      "/assets/cardholder/black-burgundy-cream-cardholder-v2-3.webp",
+      "/assets/cardholder/black-burgundy-cream-cardholder-v2-4.webp",
     ],
     video: "/assets/cardholder/black-burgundy-cream-cardholder.mp4",
     color: "Black / Burgundy",
@@ -311,8 +309,8 @@ const cardholderProducts: Product[] = [
     description:
       "Handcrafted vertical bifold card holder in textured pebbled brown leather with thick yellow contrast saddle stitching and a secure antique-brass snap closure. Opens to two wave-curved card slots one on each side with slip pockets behind for extras or folded notes. Rugged grain character and a compact palm-size profile built for everyday carry. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/cardholder/rustic-brown-snap-cardholder-1.webp",
-      "/assets/cardholder/rustic-brown-snap-cardholder-2.webp",
+      "/assets/cardholder/rustic-brown-snap-cardholder-v2-1.webp",
+      "/assets/cardholder/rustic-brown-snap-cardholder-v2-2.webp",
     ],
     color: "Rustic Brown",
     price: 2999,
@@ -326,12 +324,11 @@ const cardholderProducts: Product[] = [
     description:
       "Handcrafted slim card holder in deep navy pull-up leather that flashes teal and cyan highlights when flexed. Thick tonal blue hand stitching, rounded corners, and a compact front-pocket profile. Features layered card slots with a rear compartment for folded notes, plus a clean strap-flap option that tucks for secure carry each piece shows unique mottled character that ages into a personal patina. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/cardholder/navy-teal-cardholder-5.webp",
-      "/assets/cardholder/navy-teal-cardholder-2.webp",
-      "/assets/cardholder/navy-teal-cardholder-6.webp",
-      "/assets/cardholder/navy-teal-cardholder-3.webp",
-      "/assets/cardholder/navy-teal-cardholder-4.webp",
-      "/assets/cardholder/navy-teal-cardholder-1.webp",
+      "/assets/cardholder/navy-teal-cardholder-v2-1.webp",
+      "/assets/cardholder/navy-teal-cardholder-v2-2.webp",
+      "/assets/cardholder/navy-teal-cardholder-v2-3.webp",
+      "/assets/cardholder/navy-teal-cardholder-v2-4.webp",
+      "/assets/cardholder/navy-teal-cardholder-v2-5.webp",
     ],
     video: "/assets/cardholder/navy-teal-slim-urdu-captions.mp4",
     color: "Navy / Teal",
@@ -346,10 +343,10 @@ const cardholderProducts: Product[] = [
     description:
       "Handcrafted ultra-slim bifold card holder in deep burgundy oxblood leather with vibrant red contrast saddle stitching and a soft red suede-tone center fold. Opens to two wave-curved card slots one on each side for quick thumb access without bulk. Burnished multi-layer edges and a front-pocket profile built for everyday essentials. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/cardholder/burgundy-wave-cardholder-3.webp",
-      "/assets/cardholder/burgundy-wave-cardholder-4.webp",
-      "/assets/cardholder/burgundy-wave-cardholder-2.webp",
-      "/assets/cardholder/burgundy-wave-cardholder-1.webp",
+      "/assets/cardholder/burgundy-wave-cardholder-v2-1.webp",
+      "/assets/cardholder/burgundy-wave-cardholder-v2-2.webp",
+      "/assets/cardholder/burgundy-wave-cardholder-v2-3.webp",
+      "/assets/cardholder/burgundy-wave-cardholder-v2-4.webp",
     ],
     video: "/assets/cardholder/burgundy-wave-urdu-captions.mp4",
     color: "Burgundy",
@@ -364,10 +361,10 @@ const cardholderProducts: Product[] = [
     description:
       "Handcrafted vertical bifold card holder in rich chocolate-brown leather with thick cream contrast saddle stitching and smoothly burnished rounded corners. Opens to three stacked horizontal card slots on one side and a thumb-cut vertical pocket on the other for quick access slim enough for front-pocket carry with room for folded notes behind the panels. Genuine leather that develops a personal patina, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/cardholder/chocolate-cream-cardholder-3.webp",
-      "/assets/cardholder/chocolate-cream-cardholder-4.webp",
-      "/assets/cardholder/chocolate-cream-cardholder-1.webp",
-      "/assets/cardholder/chocolate-cream-cardholder-2.webp",
+      "/assets/cardholder/chocolate-cream-cardholder-v2-1.webp",
+      "/assets/cardholder/chocolate-cream-cardholder-v2-2.webp",
+      "/assets/cardholder/chocolate-cream-cardholder-v2-3.webp",
+      "/assets/cardholder/chocolate-cream-cardholder-v2-4.webp",
     ],
     video: "/assets/cardholder/chocolate-cream-urdu-captions.mp4",
     color: "Chocolate Brown",
@@ -382,9 +379,9 @@ const cardholderProducts: Product[] = [
     description:
       "Handcrafted vertical bifold card holder in deep matte-black leather with matching black saddle stitching and smoothly burnished rounded corners. Opens to three stacked horizontal card slots on one side and a thumb-cut vertical pocket on the other for quick access a slim, monochrome everyday carry with room for folded notes behind the panels. Genuine leather that develops a personal patina, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/cardholder/matte-black-cardholder-1.webp",
-      "/assets/cardholder/matte-black-cardholder-2.webp",
-      "/assets/cardholder/matte-black-cardholder-3.webp",
+      "/assets/cardholder/matte-black-cardholder-v2-1.webp",
+      "/assets/cardholder/matte-black-cardholder-v2-2.webp",
+      "/assets/cardholder/matte-black-cardholder-v2-3.webp",
     ],
     video: "/assets/cardholder/matte-black-cardholder.mp4",
     color: "Matte Black",
@@ -399,11 +396,10 @@ const cardholderProducts: Product[] = [
     description:
       "Handcrafted vertical snap card holder in deep burgundy oxblood leather with thick cream contrast saddle stitching and a vivid red suede-tone interior on the flap. Front face carries a diagonal quick-access card slot plus a secure triangular snap flap with antique brass hardware slim enough for front-pocket carry with room for extras behind the panel. Genuine leather that develops a richer wine patina over time, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/cardholder/burgundy-snap-cardholder-1.webp",
-      "/assets/cardholder/burgundy-snap-cardholder-2.webp",
-      "/assets/cardholder/burgundy-snap-cardholder-3.webp",
-      "/assets/cardholder/burgundy-snap-cardholder-4.webp",
-      "/assets/cardholder/burgundy-snap-cardholder-5.webp",
+      "/assets/cardholder/burgundy-snap-cardholder-v2-1.webp",
+      "/assets/cardholder/burgundy-snap-cardholder-v2-2.webp",
+      "/assets/cardholder/burgundy-snap-cardholder-v2-3.webp",
+      "/assets/cardholder/burgundy-snap-cardholder-v2-4.webp",
     ],
     video: "/assets/cardholder/burgundy-red-interior-snap-cardholder.mp4",
     color: "Burgundy",
@@ -418,10 +414,10 @@ const cardholderProducts: Product[] = [
     description:
       "This slim card holder is handmade from deep charcoal leather with a soft matte finish. Matching black stitching and a strong metal snap keep it neat and secure when closed.\nThe front has a curved thumb-cut pocket so you can pull out your main cards with one hand. Behind the flap there is space for extra cards or a few folded notes. It is palm-size and thin, so it sits comfortably in a front pocket.\nMade from genuine leather only — no cheap cloth lining. The charcoal tone stays smart for daily wear and slowly picks up a natural shine as you use it.\nKey features\nGenuine charcoal leather\nSecure metal snap flap\nQuick-access thumb-cut card pocket\nRoom for extra cards or folded cash\nSlim front-pocket friendly size\nBlack tonal hand stitching\nLifetime leather warranty\n\nPerfect for\nMinimal everyday carry, office use, travel, and gifts for men.\n\nCare tip\nKeep away from heavy water. Wipe with a soft dry cloth and condition lightly now and then to keep the leather soft.\nCash on delivery available across Pakistan.",
     image: [
-      "/assets/cardholder/charcoal-snap-cardholder-1.webp",
-      "/assets/cardholder/charcoal-snap-cardholder-2.webp",
-      "/assets/cardholder/charcoal-snap-cardholder-3.webp",
-      "/assets/cardholder/charcoal-snap-cardholder-4.webp",
+      "/assets/cardholder/charcoal-snap-cardholder-v2-1.webp",
+      "/assets/cardholder/charcoal-snap-cardholder-v2-2.webp",
+      "/assets/cardholder/charcoal-snap-cardholder-v2-3.webp",
+      "/assets/cardholder/charcoal-snap-cardholder-v2-4.webp",
     ],
     video: "/assets/cardholder/charcoal-snap-cardholder-v2.mp4",
     color: "Charcoal",
