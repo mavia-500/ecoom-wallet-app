@@ -268,9 +268,9 @@ const bifoldProducts: Product[] = [
     description:
       "Handcrafted bifold in deep chocolate pull-up leather with thick orange-tan contrast saddle stitching and smoothly burnished rounded corners. Opens to six wave-edged card slots three on each side with slip pockets behind for receipts or extras, plus a full-length bill compartment. Raw suede-tone interior at the cash sleeve shows honest full-grain construction that softens and darkens into a personal patina. Rugged everyday carry, genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/bifold/chocolate-tan-stitch-bifold-1.webp",
-      "/assets/bifold/chocolate-tan-stitch-bifold-2.webp",
-      "/assets/bifold/chocolate-tan-stitch-bifold-3.webp",
+      "/assets/bifold/chocolate-tan-stitch-bifold-v2-1.webp",
+      "/assets/bifold/chocolate-tan-stitch-bifold-v2-2.webp",
+      "/assets/bifold/chocolate-tan-stitch-bifold-v2-3.webp",
     ],
     video: "/assets/bifold/chocolate-tan-stitch-bifold.mp4",
     color: "Chocolate Brown",
@@ -341,22 +341,6 @@ const bifoldProducts: Product[] = [
     reviews: generateReviews(5, "bifold"),
   },
   {
-    id: 6,
-    title: "Bifold Leather Wallet",
-    description:
-      "Top to bottom leather.4 card slots. Cash compartement. 100% leather",
-    image: [
-      "/assets/bifold/Gemini_Generated_Image_r5kr1sr5kr1sr5kr.webp",
-      "/assets/bifold/Gemini_Generated_Image_9nq09i9nq09i9nq0.webp",
-      "/assets/bifold/Gemini_Generated_Image_7yufu37yufu37yuf.webp",
-    ],
-    color: "Brown",
-    price: 2500,
-    discountedPrice: 300,
-    stock: 14,
-    reviews: generateReviews(6, "bifold"),
-  },
-  {
     id: 7,
     title: "Turkish Leather Wallet",
     description:
@@ -371,20 +355,6 @@ const bifoldProducts: Product[] = [
     discountedPrice: 300,
     stock: 5,
     reviews: generateReviews(7, "bifold"),
-  },
-  {
-    id: 9,
-    title: "Mini Leather Wallet",
-    description:
-      "8 Card slots. 2 Cash Compartments. Small in size. 100% Lether. Best For use.Easy to carry. Small in size",
-    image: [
-      "/assets/bifold/44.webp",
-    ],
-    color: "Tan",
-    price: 1700,
-    discountedPrice: 300,
-    stock: 13,
-    reviews: generateReviews(9, "bifold"),
   },
   {
     id: 10,

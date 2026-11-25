@@ -19,6 +19,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/bifoldwallet/mini-leather-wallet",
+        destination: "/bifoldwallet",
+        permanent: true,
+      },
+      {
+        source: "/bifoldwallet/bifold-leather-wallet",
+        destination: "/bifoldwallet",
+        permanent: true,
+      },
+      {
         source: "/bifoldwallet/burgundy-red-stitch-quick-access-bifold",
         destination: "/bifoldwallet/nesticraft-black-passport-holder",
         permanent: true,
