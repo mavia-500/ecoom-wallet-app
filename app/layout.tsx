@@ -11,6 +11,8 @@ import MetaPixel from "@/components/MetaPixel";
 import MicrosoftClarity from "@/components/MicrosoftClarity";
 import GoogleTagManager from "@/components/GoogleTagManager";
 import AnnouncementBar from "@/components/AnnouncementBar";
+import PurchaseNotification from "@/components/PurchaseNotification";
+import { getSearchIndex } from "@/lib/catalog";
 import { getSiteUrl } from "@/lib/site";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -104,6 +106,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const toastProducts = getSearchIndex().map(
+    ({ id, title, image, category }) => ({ id, title, image, category }),
+  );
+
   return (
     <html lang="en-PK">
       <head>
@@ -129,6 +135,7 @@ export default function RootLayout({
           <main className="pb-24 lg:pb-0">{children}</main>
           <ScrollToTop />
           <FloatingWhatsApp />
+          <PurchaseNotification products={toastProducts} />
           <Footer />
           <MobileBottomNav />
         </Providers>

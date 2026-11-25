@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FiCheck, FiChevronDown, FiShoppingCart } from "react-icons/fi";
+import { FiCheck, FiChevronDown, FiEye, FiShoppingCart } from "react-icons/fi";
+import { FaFire } from "react-icons/fa";
 import ImageSlider from "./ImageSlider";
 import Breadcrumbs from "./Breadcrumbs";
 import { useCart } from "@/context/CartContext";
@@ -53,6 +54,11 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
   const [reviewsOpen, setReviewsOpen] = useState(false);
   const [descExpanded, setDescExpanded] = useState(false);
   const [extraReviews, setExtraReviews] = useState<Review[]>([]);
+  const [viewingCount, setViewingCount] = useState<number | null>(null);
+  const [soldProof, setSoldProof] = useState<{
+    sold: number;
+    hours: number;
+  } | null>(null);
   const reviewsPerPage = 6;
   const pathname = usePathname();
   const category = pathname?.split("/")[1] || "bifoldwallet";
@@ -64,6 +70,12 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
     setDescExpanded(false);
     setExtraReviews([]);
     setCurrentPage(1);
+    // Fresh social-proof numbers each product visit (client-only).
+    setViewingCount(Math.floor(Math.random() * 461) + 40); // 40–500
+    setSoldProof({
+      sold: Math.floor(Math.random() * 36) + 5, // 5–40
+      hours: Math.floor(Math.random() * 19) + 6, // 6–24
+    });
   }, [pathname, products?.id]);
 
   useEffect(() => {
@@ -192,6 +204,38 @@ const WholeProductDetail: React.FC<WholeProductDetailProps> = ({
             productTitle={products.title}
             video={products.video}
           />
+
+          {(viewingCount !== null || soldProof) && (
+            <div className="flex flex-col gap-1.5 px-3 pb-3 pt-0.5 text-sm text-[var(--ink)] sm:px-4">
+              {viewingCount !== null && (
+                <p className="flex items-center gap-2" aria-live="polite">
+                  <FiEye
+                    className="h-4 w-4 shrink-0 text-[var(--ink-soft)]"
+                    aria-hidden
+                  />
+                  <span>
+                    <span className="font-semibold">{viewingCount}</span>{" "}
+                    <span className="font-semibold">People</span> are viewing
+                    this right now
+                  </span>
+                </p>
+              )}
+              {soldProof && (
+                <p className="flex items-center gap-2" aria-live="polite">
+                  <FaFire
+                    className="h-3.5 w-3.5 shrink-0 text-[var(--cognac)]"
+                    aria-hidden
+                  />
+                  <span>
+                    <span className="font-semibold">{soldProof.sold}</span> sold
+                    in last{" "}
+                    <span className="font-semibold">{soldProof.hours}</span>{" "}
+                    hours
+                  </span>
+                </p>
+              )}
+            </div>
+          )}
 
           <div className="p-4 sm:p-8">
             <div className="flex flex-wrap items-start justify-between gap-2.5 sm:gap-3">

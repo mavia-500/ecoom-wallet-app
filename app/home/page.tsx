@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function HomeAliasPage() {
   return (
     <>
-      <LcpPreload href="/images/wem.webp" />
+      <LcpPreload href="/assets/bifold/honey-tan-slim-bifold-v2-1.webp" />
       <HomePageContent />
     </>
   );

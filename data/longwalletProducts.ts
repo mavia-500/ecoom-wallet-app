@@ -16,53 +16,21 @@ interface Product {
 
 const longwalletProducts: Product[] = [
   {
-    id: 1,
-    title: "Leather Long Wallet",
-    description:
-      "Premium leather wallet with  and multiple card slots.Cash Comkpartment. Easy to carry. Elegent Look. Most Attractive Personality maker",
-    image: [
-      "/assets/longwallet/Gemini_Generated_Image_7pywpy7pywpy7pyw (1).webp",
-      "/assets/longwallet/Gemini_Generated_Image_kq5az0kq5az0kq5a.webp",
-    ],
-    color: "Brown",
-    price: 2700,
-    discountedPrice: 300,
-    stock: 20,
-    reviews: generateReviews(1, "longwallet"),
-  },
-  {
     id: 2,
     title: "Attractive Leather Wallet",
     description:
       "Carry your cash and cards in a wallet made to last. This long wallet is handcrafted from genuine leather , finished with neat white contrast stitching along every edge.\n\nThe inside is organised and easy to use. There is a full-length zip compartment for cash, coins and receipts, along with multiple card slots and a snap-button inner pocket. A snap-button flap keeps everything closed, and the slim body slips easily into a bag or jacket pocket. The leather is smooth and soft, and it will develop a richer look over time.\n\nFeatures\n\nGenuine leather, handcrafted\nFull-length zip compartment\nMultiple card slots plus a snap-button inner pocket\nSnap-button flap closure\nLong (bifold) size, good for cash, cards and a phone-sized fit\nSuitable for men and women, and a good gift",
     image: [
-      "/assets/longwallet/attractive-leather-wallet-1.webp",
-      "/assets/longwallet/attractive-leather-wallet-2.webp",
-      "/assets/longwallet/attractive-leather-wallet-3.webp",
-      "/assets/longwallet/attractive-leather-wallet-4.webp",
-      "/assets/longwallet/attractive-leather-wallet-5.webp",
+      "/assets/longwallet/attractive-leather-wallet-v2-1.webp",
+      "/assets/longwallet/attractive-leather-wallet-v2-2.webp",
+      "/assets/longwallet/attractive-leather-wallet-v2-3.webp",
     ],
     video: "/assets/longwallet/attractive-leather-wallet.mp4",
-    color: "Black",
+    color: "Navy",
     price: 6000,
     discountedPrice: 1000,
     stock: 11,
     reviews: generateReviews(2, "longwallet"),
-  },
-  {
-    id: 3,
-    title: "Original Leather Wallet",
-    description:
-      "Sleek design with quick-access card slot and cash compartment. Beautiful Look. Easy to Carry. 100% Leather. Best for use. Top to Bottom Lether ",
-    image: [
-      "/assets/longwallet/Gemini_Generated_Image_qp8oiqp8oiqp8oiq.webp",
-      "/assets/longwallet/Gemini_Generated_Image_r2ddlgr2ddlgr2dd.webp",
-    ],
-    color: "Brown",
-    price: 2900,
-    discountedPrice: 300,
-    stock: 28,
-    reviews: generateReviews(3, "longwallet"),
   },
   {
     id: 4,
@@ -79,21 +47,6 @@ const longwalletProducts: Product[] = [
     discountedPrice: 300,
     stock: 19,
     reviews: generateReviews(4, "longwallet"),
-  },
-  {
-    id: 5,
-    title: "Cognac Green Stitch Long Wallet",
-    description:
-      "Premium cognac-brown leather long wallet with bold forest-green hand stitching. Opens to a red leather spine, document pocket for passport or notebook, and card slots with a clean traveler layout. Genuine leather, handcrafted finish, lifetime leather warranty.",
-    image: [
-      "/assets/longwallet/cognac-green-long-wallet-1.webp",
-      "/assets/longwallet/cognac-green-long-wallet-2.webp",
-    ],
-    color: "Cognac / Green",
-    price: 6300,
-    discountedPrice: 300,
-    stock: 10,
-    reviews: generateReviews(5, "longwallet"),
   },
   {
     id: 6,
@@ -133,8 +86,8 @@ const longwalletProducts: Product[] = [
     description:
       "Handcrafted long wallet in deep black leather with a bold crocodile-embossed exterior and smooth matte black interior panels. Thick tonal hand stitching frames the perimeter and every pocket. Opens to six horizontal card slots three on each side plus dual full-length cash and document compartments for unfolded notes. Premium textured face, clean burnished edges, and a solid traveler build meant to last. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/longwallet/black-croc-long-wallet-2.webp",
-      "/assets/longwallet/black-croc-long-wallet-1.webp",
+      "/assets/longwallet/black-croc-long-wallet-v2-1.webp",
+      "/assets/longwallet/black-croc-long-wallet-v2-2.webp",
     ],
     color: "Black",
     price: 7999,
@@ -148,10 +101,10 @@ const longwalletProducts: Product[] = [
     description:
       "Handcrafted long traveler wallet in deep chocolate crazy-horse leather with thick cream contrast stitching and an asymmetrical flap secured by dual antique-brass snaps. Opens to six tiered card slots three on each side with cognac-tan spine accents and full-length slip pockets for unfolded cash, phone, or documents. Includes a matching leather protective sleeve with diagonal opening. Burnished edges, personal emboss option shown, built for everyday and travel carry. Genuine leather, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/longwallet/chocolate-dual-snap-long-wallet-1.webp",
-      "/assets/longwallet/chocolate-dual-snap-long-wallet-3.webp",
-      "/assets/longwallet/chocolate-dual-snap-long-wallet-2.webp",
-      "/assets/longwallet/chocolate-dual-snap-long-wallet-4.webp",
+      "/assets/longwallet/chocolate-dual-snap-long-wallet-v2-1.webp",
+      "/assets/longwallet/chocolate-dual-snap-long-wallet-v2-2.webp",
+      "/assets/longwallet/chocolate-dual-snap-long-wallet-v2-3.webp",
+      "/assets/longwallet/chocolate-dual-snap-long-wallet-v2-4.webp",
     ],
     video: "/assets/longwallet/chocolate-dual-snap-urdu-captions.mp4",
     color: "Chocolate Brown",
@@ -159,6 +112,51 @@ const longwalletProducts: Product[] = [
     discountedPrice: 0,
     stock: 26,
     reviews: generateReviews(9, "longwallet"),
+  },
+  {
+    id: 1,
+    title: "Leather Long Wallet",
+    description:
+      "Premium leather wallet with  and multiple card slots.Cash Comkpartment. Easy to carry. Elegent Look. Most Attractive Personality maker",
+    image: [
+      "/assets/longwallet/Gemini_Generated_Image_7pywpy7pywpy7pyw (1).webp",
+      "/assets/longwallet/Gemini_Generated_Image_kq5az0kq5az0kq5a.webp",
+    ],
+    color: "Brown",
+    price: 2700,
+    discountedPrice: 300,
+    stock: 20,
+    reviews: generateReviews(1, "longwallet"),
+  },
+  {
+    id: 3,
+    title: "Original Leather Wallet",
+    description:
+      "Sleek design with quick-access card slot and cash compartment. Beautiful Look. Easy to Carry. 100% Leather. Best for use. Top to Bottom Lether ",
+    image: [
+      "/assets/longwallet/Gemini_Generated_Image_qp8oiqp8oiqp8oiq.webp",
+      "/assets/longwallet/Gemini_Generated_Image_r2ddlgr2ddlgr2dd.webp",
+    ],
+    color: "Brown",
+    price: 2900,
+    discountedPrice: 300,
+    stock: 28,
+    reviews: generateReviews(3, "longwallet"),
+  },
+  {
+    id: 5,
+    title: "Cognac Green Stitch Long Wallet",
+    description:
+      "Premium cognac-brown leather long wallet with bold forest-green hand stitching. Opens to a red leather spine, document pocket for passport or notebook, and card slots with a clean traveler layout. Genuine leather, handcrafted finish, lifetime leather warranty.",
+    image: [
+      "/assets/longwallet/cognac-green-long-wallet-1.webp",
+      "/assets/longwallet/cognac-green-long-wallet-2.webp",
+    ],
+    color: "Cognac / Green",
+    price: 6300,
+    discountedPrice: 300,
+    stock: 10,
+    reviews: generateReviews(5, "longwallet"),
   },
 ];
 export default longwalletProducts;

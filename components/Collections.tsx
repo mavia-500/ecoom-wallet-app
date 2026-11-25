@@ -6,7 +6,7 @@ const collections = [
   {
     href: "/bifoldwallet",
     title: "Bi-Fold",
-    image: "/images/wem.webp",
+    image: "/assets/bifold/honey-tan-slim-bifold-v2-1.webp",
     alt: "bi-fold genuine leather wallet collection",
   },
   {
@@ -18,7 +18,7 @@ const collections = [
   {
     href: "/cardholder",
     title: "Card Holder",
-    image: "/images/cardh.webp",
+    image: "/assets/cardholder/burgundy-wave-cardholder-v2-1.webp",
     alt: "slim leather card holder collection",
   },
   {

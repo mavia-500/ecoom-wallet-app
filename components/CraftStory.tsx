@@ -14,8 +14,8 @@ const CraftStory = () => {
       >
         <div className="relative min-h-[320px]">
           <Image
-            src="/images/IMG_20250501_115816_569.webp"
-            alt="artisan stitching genuine leather wallets in workshop"
+            src="/assets/bifold/honey-tan-slim-bifold-v2-2.webp"
+            alt="handcrafted honey tan leather bifold on workshop bench"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"

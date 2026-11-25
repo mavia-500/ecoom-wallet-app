@@ -37,10 +37,9 @@ const giftProducts: Product[] = [
     description:
       "Handcrafted three-piece gift set in rich chocolate-brown leather with thick cream contrast saddle stitching, presented in a charcoal gift box lined with plush red velvet. Includes a full vertical travel wallet with card slots, bill compartment, zip pocket and dual snap closures; a matching slim bifold with six card slots; and a leather key fob with metal ring ready to gift for birthdays, anniversaries, or corporate giving. Genuine leather that develops a personal patina, lifetime leather warranty, cash on delivery across Pakistan.",
     image: [
-      "/assets/gifts/chocolate-gift-set-3.webp",
-      "/assets/gifts/chocolate-gift-set-1.webp",
-      "/assets/gifts/chocolate-gift-set-2.webp",
-      "/assets/gifts/chocolate-gift-set-4.webp",
+      "/assets/gifts/chocolate-gift-set-v2-1.webp",
+      "/assets/gifts/chocolate-gift-set-v2-2.webp",
+      "/assets/gifts/chocolate-gift-set-v2-3.webp",
     ],
     video: "/assets/gifts/chocolate-triple-gift-set.mp4",
     color: "Chocolate Brown",

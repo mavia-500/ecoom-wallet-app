@@ -41,7 +41,7 @@ export default function HomePage() {
           },
         ]}
       />
-      <LcpPreload href="/images/wem.webp" />
+      <LcpPreload href="/assets/bifold/honey-tan-slim-bifold-v2-1.webp" />
       <HomePageContent />
     </>
   );

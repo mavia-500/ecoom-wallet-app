@@ -11,14 +11,14 @@ export type ProductSortId = (typeof PRODUCT_SORTS)[number]["id"];
 
 /** Matches home Top Selling order used for the top-selling sort. */
 const TOP_SELLING_KEYS = [
+  "bifoldwallet-33",
+  "bifoldwallet-34",
+  "cardholder-31",
+  "bifoldwallet-36",
   "bifoldwallet-14",
   "bifoldwallet-2",
-  "cardholder-15",
   "longwallet-1",
   "bifoldwallet-1",
-  "bifoldwallet-3",
-  "bifoldwallet-15",
-  "longwallet-3",
 ];
 
 export function finalPrice(p: { price: number; discountedPrice: number }) {

@@ -6,10 +6,10 @@ export default function HomeHero() {
     <section className="relative w-full overflow-hidden bg-[#1a1614]">
       <div className="relative min-h-[min(42vh,360px)] w-full sm:h-[min(58vh,540px)] sm:min-h-0">
         <img
-          src="/images/wem.webp"
-          alt="genuine leather bifold wallet in pocket homepage hero"
-          width={823}
-          height={823}
+          src="/assets/bifold/honey-tan-slim-bifold-v2-1.webp"
+          alt="honey tan slim minimalist bifold leather wallet homepage hero"
+          width={1000}
+          height={1400}
           fetchPriority="high"
           decoding="sync"
           className="absolute inset-0 h-full w-full object-cover object-center sm:object-contain"
