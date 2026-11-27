@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/longwallet/leather-long-wallet",
+        destination: "/longwallet",
+        permanent: true,
+      },
+      {
         source: "/bifoldwallet/mini-leather-wallet",
         destination: "/bifoldwallet",
         permanent: true,

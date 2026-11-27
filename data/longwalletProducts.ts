@@ -114,21 +114,6 @@ const longwalletProducts: Product[] = [
     reviews: generateReviews(9, "longwallet"),
   },
   {
-    id: 1,
-    title: "Leather Long Wallet",
-    description:
-      "Premium leather wallet with  and multiple card slots.Cash Comkpartment. Easy to carry. Elegent Look. Most Attractive Personality maker",
-    image: [
-      "/assets/longwallet/Gemini_Generated_Image_7pywpy7pywpy7pyw (1).webp",
-      "/assets/longwallet/Gemini_Generated_Image_kq5az0kq5az0kq5a.webp",
-    ],
-    color: "Brown",
-    price: 2700,
-    discountedPrice: 300,
-    stock: 20,
-    reviews: generateReviews(1, "longwallet"),
-  },
-  {
     id: 3,
     title: "Original Leather Wallet",
     description:
